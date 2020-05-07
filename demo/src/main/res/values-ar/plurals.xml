@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="horses">
+    <item quantity="other">%d حصان</item>
+    <item quantity="zero">%d حصان</item>
+    <item quantity="one">حصان</item>
+    <item quantity="two">حصانين</item>
+    <item quantity="few">%d أحصنة</item>
+    <item quantity="many">%d حصاناً</item>
+  </plurals>
+</resources>

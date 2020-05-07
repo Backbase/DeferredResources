@@ -1,0 +1,4 @@
+rootProject.name='Deferred Resources'
+
+include ':deferred-resources'
+include ':demo'

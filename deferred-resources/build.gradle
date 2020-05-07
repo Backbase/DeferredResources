@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'dev.drewhamilton.extracare'
+
+ext {
+    artifactName = 'deferred-resources'
+    publishedDescription = 'Decoupling resource declaration from resource resolution.'
+}
+apply from: '../publish.gradle'
+
+android {
+    compileSdkVersion rootProject.ext.targetSdk
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdk
+        versionName version
+
+        consumerProguardFiles 'consumer-rules.pro'
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    implementation deps.androidAnnotations
+
+    implementation deps.coreKtx
+    implementation deps.kotlinStdLib
+
+    // TODO WORKAROUND: Instrumented tests won't run without this
+    debugImplementation deps.appCompat
+
+    androidTestImplementation deps.junitAndroidX
+    androidTestImplementation deps.androidTestRules
+    androidTestImplementation deps.androidTestRunner
+    androidTestImplementation deps.truth
+}

@@ -1,0 +1,26 @@
+<resources>
+
+  <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <item name="colorPrimary">@color/primary</item>
+    <item name="colorPrimaryVariant">@color/primaryVariant</item>
+    <item name="colorOnPrimary">@color/onPrimary</item>
+
+    <item name="colorSecondary">@color/secondary</item>
+    <item name="colorSecondaryVariant">@color/secondaryVariant</item>
+    <item name="colorOnSecondary">@color/onSecondary</item>
+
+    <item name="android:colorBackground">@color/background</item>
+    <item name="colorOnBackground">@color/onBackground</item>
+
+    <item name="colorSurface">@color/surface</item>
+    <item name="colorOnSurface">@color/onSurface</item>
+
+    <item name="colorError">@color/error</item>
+    <item name="colorOnError">@color/onError</item>
+
+    <!--Remap legacy AppCompat attributes to MaterialComponent attributes-->
+    <item name="colorPrimaryDark">?colorPrimaryVariant</item>
+    <item name="colorAccent">?colorSecondary</item>
+  </style>
+
+</resources>

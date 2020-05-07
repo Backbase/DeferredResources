@@ -1,0 +1,96 @@
+// Applied per published module
+//  The module must define ext.artifactName and ext.publishedDescription
+
+group = rootProject.ext.publishGroup
+version = rootProject.ext.libraryVersion
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+def javadocDestinationDir = "$buildDir/docs/javadoc"
+apply plugin: 'org.jetbrains.dokka'
+task dokkaJavadoc(type: dokka.class) {
+    outputFormat = 'javadoc'
+    outputDirectory = javadocDestinationDir
+    inputs.dir 'src/main/java'
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    archiveClassifier.set 'javadoc'
+    from javadocDestinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+apply plugin: 'maven-publish'
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId group
+                artifactId artifactName
+                version version
+
+                from components.release
+                artifact sourcesJar
+                artifact javadocJar
+
+                pom {
+                    name = artifactName
+                    description = publishedDescription
+
+                    // TODO: Verify
+                    url = 'https://github.com/backbase/DeferredResources'
+                    licenses {
+                        license {
+                            name = 'The Apache Software License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            name = 'Backbase R&D B.V.'
+                        }
+                    }
+
+                    scm {
+                        connection = 'scm:git:github.com/backbase/DeferredResources.git'
+                        developerConnection = 'scm:git:ssh://github.com/backbase/DeferredResources.git'
+                        url = 'https://github.com/backbase/DeferredResources'
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                name = 'MavenCentral'
+
+                def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+                def snapshotsRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+                def sonatypeUsername = project.hasProperty('backbaseSonatypeUsername') ? backbaseSonatypeUsername : 'x'
+                def sonatypePassword = project.hasProperty('backbaseSonatypePassword') ? backbaseSonatypePassword : 'x'
+                credentials {
+                    username sonatypeUsername
+                    password sonatypePassword
+                }
+            }
+        }
+    }
+}
+
+apply plugin: 'signing'
+ext.'signing.keyId' = hasProperty('backbaseGpgKeyId') ? backbaseGpgKeyId : 'x'
+ext.'signing.password' = hasProperty('backbaseGpgPassword') ? backbaseGpgPassword : 'x'
+ext.'signing.secretKeyRingFile' = hasProperty('backbaseGpgKeyringFile') ? backbaseGpgKeyringFile : 'x'
+signing {
+    sign publishing.publications
+}

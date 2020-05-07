@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <plurals name="horses">
+    <item quantity="one">%d horse</item>
+    <item quantity="other">%d horses</item>
+  </plurals>
+</resources>

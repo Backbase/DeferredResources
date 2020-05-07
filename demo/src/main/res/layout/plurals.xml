@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:layout_height="match_parent"
+    tools:layout_width="match_parent"
+
+    tools:parentTag="android.widget.ScrollView">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+
+      android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/zero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="16dp"
+        android:textAppearance="?android:textAppearanceLarge"
+
+        tools:text="zero" />
+
+    <TextView
+        android:id="@+id/one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="16dp"
+        android:textAppearance="?android:textAppearanceLarge"
+
+        tools:text="one" />
+
+    <TextView
+        android:id="@+id/two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="16dp"
+        android:textAppearance="?android:textAppearanceLarge"
+
+        tools:text="two" />
+
+    <TextView
+        android:id="@+id/few"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="16dp"
+        android:textAppearance="?android:textAppearanceLarge"
+
+        tools:text="few" />
+
+    <TextView
+        android:id="@+id/many"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="16dp"
+        android:textAppearance="?android:textAppearanceLarge"
+
+        tools:text="many" />
+
+    <TextView
+        android:id="@+id/other"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="16dp"
+        android:textAppearance="?android:textAppearanceLarge"
+
+        tools:text="other" />
+
+  </LinearLayout>
+
+</merge>
