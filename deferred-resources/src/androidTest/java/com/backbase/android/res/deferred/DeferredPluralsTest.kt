@@ -2,12 +2,11 @@ package com.backbase.android.res.deferred
 
 import android.graphics.Typeface
 import android.icu.text.PluralRules
-import android.os.Build
 import android.text.SpannedString
 import android.text.style.StyleSpan
+import androidx.test.filters.SdkSuppress
 import com.backbase.android.res.deferred.test.R
 import com.google.common.truth.Truth.assertThat
-import org.junit.Assume.assumeTrue
 import org.junit.Test
 
 class DeferredPluralsTest : SpecificLocaleTest() {
@@ -33,9 +32,8 @@ class DeferredPluralsTest : SpecificLocaleTest() {
         assertThat(deferred.resolve(context, 100)).isEqualTo(some)
     }
 
+    @SdkSuppress(minSdkVersion = 24)
     @Test fun constant_ordinalTypeAndUsLocale_resolvesOneTwoFewAndOther() {
-        assumeTrue("This constructor requires Android API 24", Build.VERSION.SDK_INT >= 24)
-
         setTestLanguage("en-US")
 
         val some = "Some"
