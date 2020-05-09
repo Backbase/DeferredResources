@@ -27,7 +27,7 @@ abstract class SpecificLocaleTest {
         val newConfiguration = Configuration(context.resources.configuration).apply {
             setLocales(LocaleListCompat.forLanguageTags(language))
         }
-        context = context.createConfigurationContext(newConfiguration)
+        context = context.compatCreateConfigurationContext(newConfiguration)
     }
 
     private fun Configuration.setLocales(locales: LocaleListCompat) = when {
