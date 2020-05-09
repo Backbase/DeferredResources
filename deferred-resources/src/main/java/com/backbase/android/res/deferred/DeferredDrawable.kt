@@ -9,19 +9,19 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving a [Drawable] on demand.
  */
-sealed class DeferredDrawable {
+interface DeferredDrawable {
 
     /**
      * Resolve the [Drawable].
      */
-    abstract fun resolve(context: Context): Drawable?
+    fun resolve(context: Context): Drawable?
 
     /**
      * A wrapper for a constant Drawable [value].
      */
     @DataApi class Constant(
         private val value: Drawable?
-    ) : DeferredDrawable() {
+    ) : DeferredDrawable {
         /**
          * Always resolves to [value], ignoring [context].
          */
@@ -38,7 +38,7 @@ sealed class DeferredDrawable {
         @DrawableRes private val resId: Int,
         private val mutate: Boolean = true,
         private val transformations: Drawable.() -> Unit = {}
-    ) : DeferredDrawable() {
+    ) : DeferredDrawable {
 
         /**
          * Convenience constructor that sets [mutate] to true when [transformations] are supplied.

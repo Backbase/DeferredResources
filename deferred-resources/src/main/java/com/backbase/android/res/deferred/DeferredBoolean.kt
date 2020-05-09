@@ -10,19 +10,19 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving a boolean on demand.
  */
-sealed class DeferredBoolean {
+interface DeferredBoolean {
 
     /**
      * Resolve the boolean.
      */
-    abstract fun resolve(context: Context): Boolean
+    fun resolve(context: Context): Boolean
 
     /**
      * A wrapper for a constant boolean [value].
      */
     @DataApi class Constant(
         private val value: Boolean
-    ) : DeferredBoolean() {
+    ) : DeferredBoolean {
         /**
          * Always resolves to [value], ignoring [context].
          */
@@ -34,7 +34,7 @@ sealed class DeferredBoolean {
      */
     @DataApi class Resource(
         @BoolRes private val resId: Int
-    ) : DeferredBoolean() {
+    ) : DeferredBoolean {
         /**
          * Resolve [resId] to a boolean with the given [context].
          */
@@ -43,7 +43,7 @@ sealed class DeferredBoolean {
 
     @DataApi class Attribute(
         @AttrRes private val resId: Int
-    ) : DeferredBoolean() {
+    ) : DeferredBoolean {
 
         // Re-used every time the boolean is resolved, for efficiency
         private val resolvedValue = TypedValue()
