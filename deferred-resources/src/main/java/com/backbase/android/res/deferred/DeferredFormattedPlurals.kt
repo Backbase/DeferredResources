@@ -17,7 +17,7 @@ interface DeferredFormattedPlurals {
     /**
      * Resolve the string for the given [quantity] with the given [formatArgs].
      */
-    fun resolve(context: Context, quantity: Int, vararg formatArgs: Any): String
+    fun resolve(context: Context, quantity: Int, vararg formatArgs: Any = arrayOf(quantity)): String
 
     /**
      * A wrapper for constant format-able pluralized text. [zero], [one], [two], [few], and [many] are locale-specific,
@@ -84,11 +84,3 @@ interface DeferredFormattedPlurals {
             context.resources.getQuantityString(resId, quantity, *formatArgs)
     }
 }
-
-/**
- * Resolve the string for the given [quantity] using [quantity] as the only format arg.
- */
-fun DeferredFormattedPlurals.resolveWithQuantity(
-    context: Context,
-    quantity: Int
-): String = resolve(context, quantity, quantity)

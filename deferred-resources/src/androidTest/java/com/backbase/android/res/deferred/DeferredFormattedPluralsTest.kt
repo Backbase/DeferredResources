@@ -73,12 +73,12 @@ class DeferredFormattedPluralsTest : SpecificLocaleTest() {
         assertThat(deferred.resolve(context, 100, moose)).isEqualTo("Some $moose")
     }
 
-    @Test fun resource_resolveWithQuantity_resolvesAndFormatsStringWithContext() {
+    @Test fun resource_resolvesAndFormatsStringWithContext() {
         setTestLanguage("en-US")
 
         val deferred = DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals)
 
-        assertThat(deferred.resolveWithQuantity(context, 1)).isEqualTo("1 bear")
-        assertThat(deferred.resolveWithQuantity(context, 9)).isEqualTo("9 bears")
+        assertThat(deferred.resolve(context, 1)).isEqualTo("1 bear")
+        assertThat(deferred.resolve(context, 9)).isEqualTo("9 bears")
     }
 }

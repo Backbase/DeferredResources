@@ -122,16 +122,16 @@ public final class com/backbase/android/res/deferred/DeferredFormattedPlurals$Co
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/backbase/android/res/deferred/DeferredFormattedPlurals$DefaultImpls {
+	public static synthetic fun resolve$default (Lcom/backbase/android/res/deferred/DeferredFormattedPlurals;Landroid/content/Context;I[Ljava/lang/Object;ILjava/lang/Object;)Ljava/lang/String;
+}
+
 public final class com/backbase/android/res/deferred/DeferredFormattedPlurals$Resource : com/backbase/android/res/deferred/DeferredFormattedPlurals {
 	public fun <init> (I)V
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;I[Ljava/lang/Object;)Ljava/lang/String;
 	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/backbase/android/res/deferred/DeferredFormattedPluralsUtils {
-	public static final fun resolveWithQuantity (Lcom/backbase/android/res/deferred/DeferredFormattedPlurals;Landroid/content/Context;I)Ljava/lang/String;
 }
 
 public abstract interface class com/backbase/android/res/deferred/DeferredFormattedString {
