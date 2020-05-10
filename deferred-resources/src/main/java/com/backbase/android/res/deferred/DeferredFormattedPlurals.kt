@@ -1,5 +1,3 @@
-@file:JvmName("DeferredFormattedPluralsUtils")
-
 package com.backbase.android.res.deferred
 
 import android.annotation.SuppressLint
