@@ -10,17 +10,12 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving format-able pluralized text on demand.
  */
-sealed class DeferredFormattedPlurals {
-
-    /**
-     * Resolve the string for the given [quantity] using [quantity] as the only format arg.
-     */
-    fun resolve(context: Context, quantity: Int): String = resolve(context, quantity, quantity)
+interface DeferredFormattedPlurals {
 
     /**
      * Resolve the string for the given [quantity] with the given [formatArgs].
      */
-    abstract fun resolve(context: Context, quantity: Int, vararg formatArgs: Any): String
+    fun resolve(context: Context, quantity: Int, vararg formatArgs: Any = arrayOf(quantity)): String
 
     /**
      * A wrapper for constant format-able pluralized text. [zero], [one], [two], [few], and [many] are locale-specific,
@@ -37,7 +32,7 @@ sealed class DeferredFormattedPlurals {
         private val few: String = other,
         private val many: String = other,
         private val type: PluralRules.PluralType? = null
-    ) : DeferredFormattedPlurals() {
+    ) : DeferredFormattedPlurals {
         /**
          * Constructor for API < 24. "CARDINAL" plural type will be used implicitly.
          */
@@ -79,7 +74,7 @@ sealed class DeferredFormattedPlurals {
      */
     @DataApi class Resource(
         @PluralsRes private val resId: Int
-    ) : DeferredFormattedPlurals() {
+    ) : DeferredFormattedPlurals {
         /**
          * Resolve [resId] to a formatted string with the given [context], [quantity], and [formatArgs].
          */

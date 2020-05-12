@@ -7,19 +7,19 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving a formatted string on demand.
  */
-sealed class DeferredFormattedString {
+interface DeferredFormattedString {
 
     /**
      * Resolve the string with the supplied [formatArgs].
      */
-    abstract fun resolve(context: Context, vararg formatArgs: Any): String
+    fun resolve(context: Context, vararg formatArgs: Any): String
 
     /**
      * A wrapper for a constant format-able [format] string.
      */
     @DataApi class Constant(
         private val format: String
-    ) : DeferredFormattedString() {
+    ) : DeferredFormattedString {
         /**
          * Always resolves [format] with the supplied [formatArgs] and the primary locale from [context].
          */
@@ -32,7 +32,7 @@ sealed class DeferredFormattedString {
      */
     @DataApi class Resource(
         @StringRes private val resId: Int
-    ) : DeferredFormattedString() {
+    ) : DeferredFormattedString {
 
         /**
          * Resolve [resId] to a formatted string with the given [context] and [formatArgs].

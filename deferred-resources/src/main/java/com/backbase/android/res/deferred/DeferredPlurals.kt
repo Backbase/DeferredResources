@@ -10,12 +10,12 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving pluralized text on demand.
  */
-sealed class DeferredPlurals {
+interface DeferredPlurals {
 
     /**
      * Resolve the text for the given [quantity].
      */
-    abstract fun resolve(context: Context, quantity: Int): CharSequence
+    fun resolve(context: Context, quantity: Int): CharSequence
 
     /**
      * A wrapper for constant pluralized text. [zero], [one], [two], [few], and [many] are locale-specific,
@@ -32,7 +32,7 @@ sealed class DeferredPlurals {
         private val few: CharSequence = other,
         private val many: CharSequence = other,
         private val type: PluralRules.PluralType? = null
-    ) : DeferredPlurals() {
+    ) : DeferredPlurals {
 
         /**
          * Constructor for APIs < 24. "CARDINAL" plural type will be used implicitly.
@@ -75,7 +75,7 @@ sealed class DeferredPlurals {
     @DataApi class Resource(
         @PluralsRes private val resId: Int,
         private val type: Type = Type.STRING
-    ) : DeferredPlurals() {
+    ) : DeferredPlurals {
         /**
          * Resolve [resId] to text with the given [context].
          *

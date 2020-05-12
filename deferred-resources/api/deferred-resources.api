@@ -1,4 +1,4 @@
-public abstract class com/backbase/android/res/deferred/DeferredBoolean {
+public abstract interface class com/backbase/android/res/deferred/DeferredBoolean {
 	public abstract fun resolve (Landroid/content/Context;)Z
 }
 
@@ -27,7 +27,7 @@ public final class com/backbase/android/res/deferred/DeferredBoolean$Resource : 
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract class com/backbase/android/res/deferred/DeferredColor {
+public abstract interface class com/backbase/android/res/deferred/DeferredColor {
 	public abstract fun resolve (Landroid/content/Context;)I
 }
 
@@ -56,7 +56,7 @@ public final class com/backbase/android/res/deferred/DeferredColor$Resource : co
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract class com/backbase/android/res/deferred/DeferredDimension {
+public abstract interface class com/backbase/android/res/deferred/DeferredDimension {
 	public abstract fun resolveAsOffset (Landroid/content/Context;)I
 	public abstract fun resolveAsSize (Landroid/content/Context;)I
 	public abstract fun resolveExact (Landroid/content/Context;)F
@@ -83,7 +83,7 @@ public final class com/backbase/android/res/deferred/DeferredDimension$Resource 
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract class com/backbase/android/res/deferred/DeferredDrawable {
+public abstract interface class com/backbase/android/res/deferred/DeferredDrawable {
 	public abstract fun resolve (Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
 }
 
@@ -107,8 +107,7 @@ public final class com/backbase/android/res/deferred/DeferredDrawable$Resource :
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract class com/backbase/android/res/deferred/DeferredFormattedPlurals {
-	public final fun resolve (Landroid/content/Context;I)Ljava/lang/String;
+public abstract interface class com/backbase/android/res/deferred/DeferredFormattedPlurals {
 	public abstract fun resolve (Landroid/content/Context;I[Ljava/lang/Object;)Ljava/lang/String;
 }
 
@@ -123,6 +122,10 @@ public final class com/backbase/android/res/deferred/DeferredFormattedPlurals$Co
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/backbase/android/res/deferred/DeferredFormattedPlurals$DefaultImpls {
+	public static synthetic fun resolve$default (Lcom/backbase/android/res/deferred/DeferredFormattedPlurals;Landroid/content/Context;I[Ljava/lang/Object;ILjava/lang/Object;)Ljava/lang/String;
+}
+
 public final class com/backbase/android/res/deferred/DeferredFormattedPlurals$Resource : com/backbase/android/res/deferred/DeferredFormattedPlurals {
 	public fun <init> (I)V
 	public fun equals (Ljava/lang/Object;)Z
@@ -131,7 +134,7 @@ public final class com/backbase/android/res/deferred/DeferredFormattedPlurals$Re
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract class com/backbase/android/res/deferred/DeferredFormattedString {
+public abstract interface class com/backbase/android/res/deferred/DeferredFormattedString {
 	public abstract fun resolve (Landroid/content/Context;[Ljava/lang/Object;)Ljava/lang/String;
 }
 
@@ -151,7 +154,7 @@ public final class com/backbase/android/res/deferred/DeferredFormattedString$Res
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract class com/backbase/android/res/deferred/DeferredInteger {
+public abstract interface class com/backbase/android/res/deferred/DeferredInteger {
 	public abstract fun resolve (Landroid/content/Context;)I
 }
 
@@ -171,7 +174,7 @@ public final class com/backbase/android/res/deferred/DeferredInteger$Resource : 
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract class com/backbase/android/res/deferred/DeferredPlurals {
+public abstract interface class com/backbase/android/res/deferred/DeferredPlurals {
 	public abstract fun resolve (Landroid/content/Context;I)Ljava/lang/CharSequence;
 }
 
@@ -202,7 +205,7 @@ public final class com/backbase/android/res/deferred/DeferredPlurals$Resource$Ty
 	public static fun values ()[Lcom/backbase/android/res/deferred/DeferredPlurals$Resource$Type;
 }
 
-public abstract class com/backbase/android/res/deferred/DeferredText {
+public abstract interface class com/backbase/android/res/deferred/DeferredText {
 	public abstract fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
 }
 

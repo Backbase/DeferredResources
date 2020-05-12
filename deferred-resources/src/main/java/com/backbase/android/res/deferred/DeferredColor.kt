@@ -12,19 +12,19 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving a [ColorInt] color on demand.
  */
-sealed class DeferredColor {
+interface DeferredColor {
 
     /**
      * Resolve the [ColorInt] color.
      */
-    @ColorInt abstract fun resolve(context: Context): Int
+    @ColorInt fun resolve(context: Context): Int
 
     /**
      * A wrapper for a constant color [value].
      */
     @DataApi class Constant(
         @ColorInt private val value: Int
-    ) : DeferredColor() {
+    ) : DeferredColor {
         /**
          * Always resolves to [value], ignoring [context].
          */
@@ -36,7 +36,7 @@ sealed class DeferredColor {
      */
     @DataApi class Resource(
         @ColorRes private val resId: Int
-    ) : DeferredColor() {
+    ) : DeferredColor {
         /**
          * Resolve [resId] to a [ColorInt] with the given [context].
          */
@@ -48,7 +48,7 @@ sealed class DeferredColor {
      */
     @DataApi class Attribute(
         @AttrRes private val resId: Int
-    ) : DeferredColor() {
+    ) : DeferredColor {
 
         // Re-used every time the color is resolved, for efficiency
         private val resolvedValue = TypedValue()

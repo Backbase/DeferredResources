@@ -9,30 +9,30 @@ import kotlin.math.roundToInt
 /**
  * A wrapper for resolving an integer dimension on demand.
  */
-sealed class DeferredDimension {
+interface DeferredDimension {
 
     /**
      * Resolve the dimension as an integer pixel value for use as a size. The exact value is rounded, and non-zero exact
      * values are ensured to be at least one pixel in size.
      */
-    @Px abstract fun resolveAsSize(context: Context): Int
+    @Px fun resolveAsSize(context: Context): Int
 
     /**
      * Resolve the dimension as an integer pixel value. The exact value is truncated to an integer.
      */
-    @Px abstract fun resolveAsOffset(context: Context): Int
+    @Px fun resolveAsOffset(context: Context): Int
 
     /**
      * Resolve the dimension's exact value.
      */
-    @Px abstract fun resolveExact(context: Context): Float
+    @Px fun resolveExact(context: Context): Float
 
     /**
      * A wrapper for a constant integer [pxValue].
      */
     @DataApi class Constant(
         @Px private val pxValue: Float
-    ) : DeferredDimension() {
+    ) : DeferredDimension {
 
         /**
          * Convenience for initializing with an integer [pxValue].
@@ -69,7 +69,7 @@ sealed class DeferredDimension {
      */
     @DataApi class Resource(
         @DimenRes private val resId: Int
-    ) : DeferredDimension() {
+    ) : DeferredDimension {
         /**
          * Resolve [resId] to a pixel dimension size with the given [context].
          */
