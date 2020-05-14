@@ -6,7 +6,7 @@ android {
     buildToolsVersion '29.0.3'
 
     defaultConfig {
-        applicationId 'com.backbase.android.res.deferred.demo'
+        applicationId 'com.backbase.deferredresources.demo'
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdk
         versionCode 1

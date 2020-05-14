@@ -44,8 +44,7 @@ afterEvaluate {
                     name = artifactName
                     description = publishedDescription
 
-                    // TODO: Verify
-                    url = 'https://github.com/backbase/DeferredResources'
+                    url = 'https://github.com/Backbase/DeferredResources'
                     licenses {
                         license {
                             name = 'The Apache Software License, Version 2.0'
@@ -60,9 +59,9 @@ afterEvaluate {
                     }
 
                     scm {
-                        connection = 'scm:git:github.com/backbase/DeferredResources.git'
-                        developerConnection = 'scm:git:ssh://github.com/backbase/DeferredResources.git'
-                        url = 'https://github.com/backbase/DeferredResources'
+                        connection = 'scm:git:github.com/Backbase/DeferredResources.git'
+                        developerConnection = 'scm:git:ssh://github.com/Backbase/DeferredResources.git'
+                        url = 'https://github.com/Backbase/DeferredResources'
                     }
                 }
             }
@@ -88,9 +87,9 @@ afterEvaluate {
 }
 
 apply plugin: 'signing'
-ext.'signing.keyId' = hasProperty('backbaseGpgKeyId') ? backbaseGpgKeyId : 'x'
-ext.'signing.password' = hasProperty('backbaseGpgPassword') ? backbaseGpgPassword : 'x'
-ext.'signing.secretKeyRingFile' = hasProperty('backbaseGpgKeyringFile') ? backbaseGpgKeyringFile : 'x'
+ext.'signing.keyId' = hasProperty('backbaseOssGpgKeyId') ? backbaseOssGpgKeyId : 'x'
+ext.'signing.password' = hasProperty('backbaseOssGpgPassword') ? backbaseOssGpgPassword : 'x'
+ext.'signing.secretKeyRingFile' = hasProperty('backbaseOssGpgKeyringFile') ? backbaseOssGpgKeyringFile : 'x'
 signing {
     sign publishing.publications
 }

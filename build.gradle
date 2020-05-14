@@ -36,8 +36,7 @@ buildscript {
 }
 
 ext {
-    // TODO: Decide on group name
-    publishGroup = 'com.backbase.android.res.deferred'
+    publishGroup = 'com.backbase.oss.deferredresources'
     libraryVersion = '0.1.0'
     minSdk = 14
     targetSdk = 29
