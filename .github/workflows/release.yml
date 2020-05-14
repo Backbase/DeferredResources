@@ -1,0 +1,26 @@
+
+name: Release
+
+on:
+  push:
+    branches: publish
+    tags: '*'
+
+jobs:
+  release:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Assemble for release
+        run: ./gradlew clean assembleRelease --stacktrace
+      - name: Publish
+        env:
+          ORG_GRADLE_PROJECT_backbaseOssSonatypeUsername: ${{ secrets.ORG_GRADLE_PROJECT_backbaseOssSonatypeUsername }}
+          ORG_GRADLE_PROJECT_backbaseOssSonatypePassword: ${{ secrets.ORG_GRADLE_PROJECT_backbaseOssSonatypePassword }}
+          ORG_GRADLE_PROJECT_backbaseOssGpgKey: ${{ secrets.ORG_GRADLE_PROJECT_backbaseOssGpgKey }}
+          ORG_GRADLE_PROJECT_backbaseOssGpgPassword: ${{ secrets.ORG_GRADLE_PROJECT_backbaseOssGpgPassword }}
+        run: ./gradlew publishReleasePublicationToMavenCentralRepository
