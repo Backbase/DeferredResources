@@ -55,6 +55,7 @@ afterEvaluate {
                     developers {
                         developer {
                             name = 'Backbase R&D B.V.'
+                            email = 'oss@backbase.com'
                         }
                     }
 
@@ -87,9 +88,9 @@ afterEvaluate {
 }
 
 apply plugin: 'signing'
-ext.'signing.keyId' = hasProperty('backbaseOssGpgKeyId') ? backbaseOssGpgKeyId : 'x'
-ext.'signing.password' = hasProperty('backbaseOssGpgPassword') ? backbaseOssGpgPassword : 'x'
-ext.'signing.secretKeyRingFile' = hasProperty('backbaseOssGpgKeyringFile') ? backbaseOssGpgKeyringFile : 'x'
 signing {
+    def key = findProperty('backbaseOssGpgKey')
+    def password = findProperty('backbaseOssGpgPassword')
+    useInMemoryPgpKeys(key, password)
     sign publishing.publications
 }
