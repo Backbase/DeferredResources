@@ -76,8 +76,8 @@ afterEvaluate {
                 def snapshotsRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
                 url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
-                def sonatypeUsername = project.hasProperty('backbaseSonatypeUsername') ? backbaseSonatypeUsername : 'x'
-                def sonatypePassword = project.hasProperty('backbaseSonatypePassword') ? backbaseSonatypePassword : 'x'
+                def sonatypeUsername = findProperty('backbaseOssSonatypeUsername')
+                def sonatypePassword = findProperty('backbaseOssSonatypePassword')
                 credentials {
                     username sonatypeUsername
                     password sonatypePassword
