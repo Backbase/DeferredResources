@@ -5,7 +5,6 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import androidx.core.content.ContextCompat
 import com.backbase.deferredresources.test.R
-import com.backbase.deferredresources.test.context
 import com.google.common.truth.Truth.assertThat
 import org.junit.After
 import org.junit.Assume.assumeFalse
