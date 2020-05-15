@@ -9,7 +9,9 @@ layers to remain ignorant of Android's Context.
 ## Download
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.backbase.oss.deferredresources/deferred-resources/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.backbase.oss.deferredresources/deferred-resources)
 
-Deferred Resources is available on Maven Central.
+Deferred Resources is available on Maven Central. Snapshots of the development version are available
+in [Sonatype's Snapshots
+repository](https://oss.sonatype.org/#view-repositories;snapshots~browsestorage).
 
 ```groovy
 implementation "com.backbase.oss.deferredresources:deferred-resources:$version"
