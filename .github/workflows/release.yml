@@ -3,7 +3,7 @@ name: Release
 
 on:
   push:
-    branches: publish
+    branches: master
     tags: '*'
 
 jobs:
@@ -23,4 +23,4 @@ jobs:
           ORG_GRADLE_PROJECT_backbaseOssSonatypePassword: ${{ secrets.ORG_GRADLE_PROJECT_backbaseOssSonatypePassword }}
           ORG_GRADLE_PROJECT_backbaseOssGpgKey: ${{ secrets.ORG_GRADLE_PROJECT_backbaseOssGpgKey }}
           ORG_GRADLE_PROJECT_backbaseOssGpgPassword: ${{ secrets.ORG_GRADLE_PROJECT_backbaseOssGpgPassword }}
-        run: ./gradlew publishReleasePublicationToMavenCentralRepository
+        run: ./gradlew publishReleasePublicationToMavenCentralRepository --stacktrace
