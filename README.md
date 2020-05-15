@@ -1,4 +1,5 @@
 # Deferred Resources
+[![](https://github.com/Backbase/DeferredResources/workflows/CI/badge.svg?branch=master)](https://github.com/Backbase/DeferredResources/actions?query=workflow%3ACI+branch%3Amaster)
 
 An Android library that decouples resource declaration (without Context) from resource resolution
 (with Context). This allows the resolver (Activity, Fragment, or View) to be agnostic to the source
@@ -6,8 +7,15 @@ An Android library that decouples resource declaration (without Context) from re
 layers to remain ignorant of Android's Context.
 
 ## Download
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.backbase.oss.deferredresources/deferred-resources/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.backbase.oss.deferredresources/deferred-resources)
 
-Deferred Resources is not yet available on Maven Central.
+Deferred Resources is available on Maven Central. Snapshots of the development version are available
+in [Sonatype's Snapshots
+repository](https://oss.sonatype.org/#view-repositories;snapshots~browsestorage).
+
+```groovy
+implementation "com.backbase.oss.deferredresources:deferred-resources:$version"
+```
 
 ## Use
 
@@ -15,6 +23,7 @@ In the view layer, resolve a deferred resource to display it:
 ```kotlin
 val text: DeferredText = respository.getText()
 val textColor: DeferredColor = repository.getTextColor()
+textView.text = text.resolve(context)
 textView.setTextColor(textColor.resolve(context))
 ```
 
@@ -26,7 +35,7 @@ class LocalRepository : Repository {
     override fun getTextColor(): DeferredColor = DeferredColor.Attribute(R.attr.colorOnBackground)
 }
 
-class RemoteRepository(private val api: Api) : Respository {
+class RemoteRepository(private val api: Api) : Repository {
     override fun getText(): DeferredText = DeferredText.Constant(api.fetchText())
     override fun getTextColor(): DeferredColor = DeferredColor.Constant(api.fetchTextColor())
 }
