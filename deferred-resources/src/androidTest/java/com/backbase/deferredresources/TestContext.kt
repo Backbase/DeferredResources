@@ -1,3 +1,5 @@
+@file:JvmName("TestContext")
+
 package com.backbase.deferredresources
 
 import android.content.Context

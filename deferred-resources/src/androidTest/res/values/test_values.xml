@@ -24,4 +24,9 @@
   <string name="formattedString">This is %1$s text.</string>
   <string name="plainString">A string</string>
   <string name="richText"><b>Rich</b> text</string>
+
+  <string-array name="stringArray">
+    <item><b>Bold one</b></item>
+    <item>Regular one</item>
+  </string-array>
 </resources>
