@@ -8,6 +8,11 @@
 
   <integer name="five">5</integer>
 
+  <integer-array name="integerArray">
+    <item>101</item>
+    <item>103</item>
+  </integer-array>
+
   <plurals name="plainPlurals">
     <item quantity="one">Car</item>
     <item quantity="other">Cars</item>

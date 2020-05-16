@@ -2,7 +2,6 @@ package com.backbase.deferredresources
 
 import android.content.Context
 import androidx.annotation.ArrayRes
-import com.backbase.deferredresources.DeferredTextArray.Resource.Type
 import dev.drewhamilton.extracare.DataApi
 
 /**
@@ -18,8 +17,8 @@ interface DeferredTextArray {
     /**
      * A wrapper for a constant array of text [values].
      *
-     * This class protect against mutability of by holding a copy of the input [values] and by always returning a new
-     * copy of those [values] when resolved.
+     * This class protects against array mutability by holding a copy of the input [values] and by always returning a
+     * new copy of those [values] when resolved.
      */
     @DataApi class Constant private constructor(
         // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
