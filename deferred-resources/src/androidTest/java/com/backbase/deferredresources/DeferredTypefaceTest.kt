@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.provider.FontsContractCompat
+import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry
 import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
@@ -196,10 +197,18 @@ class DeferredTypefaceTest {
         deferred.resolve(context)
     }
 
-    @Test fun asset_resolveSync_nonFontFile_returnsDefaultTypeface() {
+    @SdkSuppress(minSdkVersion = 27)
+    @Test fun asset_resolveSync_nonFontFileApi27_returnsDefaultTypeface() {
         val deferred = DeferredTypeface.Asset("invalid.txt")
         val resolved = deferred.resolve(context)
         assertThat(resolved).isEqualTo(Typeface.DEFAULT)
+    }
+
+    @SdkSuppress(maxSdkVersion = 26)
+    @Test(expected = RuntimeException::class)
+    fun asset_resolveSync_nonFontFileApi14_throwsException() {
+        val deferred = DeferredTypeface.Asset("invalid.txt")
+        deferred.resolve(context)
     }
 
     @Test fun asset_resolveAsync_nullHandler_resolvesWithContextOnMainThread() {
@@ -272,7 +281,8 @@ class DeferredTypefaceTest {
         assertThat(result.reason).isEqualTo(FontsContractCompat.FontRequestCallback.FAIL_REASON_FONT_NOT_FOUND)
     }
 
-    @Test fun asset_resolveAsync_nonFontFile_returnsDefaultTypeface() {
+    @SdkSuppress(minSdkVersion = 27)
+    @Test fun asset_resolveAsync_nonFontFileApi27_returnsDefaultTypeface() {
         val deferred = DeferredTypeface.Asset("invalid.txt")
         val callback = TestFontCallback()
 
@@ -286,6 +296,23 @@ class DeferredTypefaceTest {
 
         result as TestFontCallback.Result.Success
         assertThat(result.typeface).isEqualTo(Typeface.DEFAULT)
+    }
+
+    @SdkSuppress(maxSdkVersion = 26)
+    @Test fun asset_resolveAsync_nonFontFileApi14_returnsDefaultTypeface() {
+        val deferred = DeferredTypeface.Asset("invalid.txt")
+        val callback = TestFontCallback()
+
+        deferred.resolve(context, callback)
+
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+        assertThat(callback.results).hasSize(1)
+
+        val result = callback.results[0]
+        assertThat(result).isInstanceOf(TestFontCallback.Result.Failure::class.java)
+
+        result as TestFontCallback.Result.Failure
+        assertThat(result.reason).isEqualTo(FontsContractCompat.FontRequestCallback.FAIL_REASON_FONT_NOT_FOUND)
     }
     //endregion
 
