@@ -2,6 +2,7 @@ package com.backbase.deferredresources
 
 import android.content.res.Resources
 import android.graphics.Typeface
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import androidx.core.content.res.ResourcesCompat
@@ -88,7 +89,8 @@ class DeferredTypefaceTest {
         val resolved = deferred.resolve(context)
         assertThat(resolved).isNotNull()
         resolved as Typeface
-        assertThat(resolved.weight).isEqualTo(300)
+        if (Build.VERSION.SDK_INT >= 28)
+            assertThat(resolved.weight).isEqualTo(300)
         assertThat(resolved.style).isEqualTo(Typeface.ITALIC)
     }
 
@@ -117,7 +119,8 @@ class DeferredTypefaceTest {
         assertThat(result).isInstanceOf(TestFontCallback.Result.Success::class.java)
 
         val resolved = (result as TestFontCallback.Result.Success).typeface
-        assertThat(resolved.weight).isEqualTo(300)
+        if (Build.VERSION.SDK_INT >= 28)
+            assertThat(resolved.weight).isEqualTo(300)
         assertThat(resolved.style).isEqualTo(Typeface.ITALIC)
     }
 
@@ -151,7 +154,8 @@ class DeferredTypefaceTest {
         assertThat(result).isInstanceOf(TestFontCallback.Result.Success::class.java)
 
         val resolved = (result as TestFontCallback.Result.Success).typeface
-        assertThat(resolved.weight).isEqualTo(300)
+        if (Build.VERSION.SDK_INT >= 28)
+            assertThat(resolved.weight).isEqualTo(300)
         assertThat(resolved.style).isEqualTo(Typeface.ITALIC)
     }
 
@@ -181,7 +185,8 @@ class DeferredTypefaceTest {
         val deferredDark = DeferredTypeface.Asset("merriweather_bold.ttf")
         val resolved = deferredDark.resolve(context)
 
-        assertThat(resolved.weight).isEqualTo(700)
+        if (Build.VERSION.SDK_INT >= 28)
+            assertThat(resolved.weight).isEqualTo(700)
         assertThat(resolved.style).isEqualTo(Typeface.BOLD)
     }
 
@@ -211,7 +216,8 @@ class DeferredTypefaceTest {
         assertThat(result).isInstanceOf(TestFontCallback.Result.Success::class.java)
 
         val resolved = (result as TestFontCallback.Result.Success).typeface
-        assertThat(resolved.weight).isEqualTo(700)
+        if (Build.VERSION.SDK_INT >= 28)
+            assertThat(resolved.weight).isEqualTo(700)
         assertThat(resolved.style).isEqualTo(Typeface.BOLD)
     }
 
@@ -245,7 +251,8 @@ class DeferredTypefaceTest {
         assertThat(result).isInstanceOf(TestFontCallback.Result.Success::class.java)
 
         val resolved = (result as TestFontCallback.Result.Success).typeface
-        assertThat(resolved.weight).isEqualTo(700)
+        if (Build.VERSION.SDK_INT >= 28)
+            assertThat(resolved.weight).isEqualTo(700)
         assertThat(resolved.style).isEqualTo(Typeface.BOLD)
     }
 
