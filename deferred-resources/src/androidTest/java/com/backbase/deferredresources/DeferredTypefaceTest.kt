@@ -1,9 +1,11 @@
 package com.backbase.deferredresources
 
+import android.content.res.Resources
 import android.graphics.Typeface
 import android.os.Handler
 import android.os.Looper
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.provider.FontsContractCompat
 import androidx.test.platform.app.InstrumentationRegistry
 import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
@@ -80,7 +82,7 @@ class DeferredTypefaceTest {
     //endregion
 
     //region Resource
-    @Test fun resource_resolveSync_resolvesWithContext() {
+    @Test fun resource_resolveSync_validId_resolvesWithContext() {
         val deferred = DeferredTypeface.Resource(R.font.merriweather_light_italic)
 
         val resolved = deferred.resolve(context)
@@ -90,10 +92,21 @@ class DeferredTypefaceTest {
         assertThat(resolved.style).isEqualTo(Typeface.ITALIC)
     }
 
+    @Test(expected = Resources.NotFoundException::class)
+    fun resource_resolveSync_invalidId_throwsException() {
+        val deferred = DeferredTypeface.Resource(0)
+        deferred.resolve(context)
+    }
+
+    @Test fun resource_resolveSync_restrictedContext_returnsNull() {
+        val deferred = DeferredTypeface.Resource(R.font.merriweather_light_italic)
+        assertThat(deferred.resolve(context.createRestrictedContext())).isNull()
+    }
+
     @Test fun resource_resolveAsync_nullHandler_resolvesWithContextOnMainThread() {
         val deferred = DeferredTypeface.Resource(R.font.merriweather_light_italic)
-
         val callback = TestFontCallback()
+
         deferred.resolve(context, callback)
 
         InstrumentationRegistry.getInstrumentation().waitForIdleSync()
@@ -141,15 +154,47 @@ class DeferredTypefaceTest {
         assertThat(resolved.weight).isEqualTo(300)
         assertThat(resolved.style).isEqualTo(Typeface.ITALIC)
     }
+
+    @Test(expected = Resources.NotFoundException::class)
+    fun resource_resolveAsync_invalidId_throwsException() {
+        val deferred = DeferredTypeface.Resource(0)
+        deferred.resolve(context, TestFontCallback())
+    }
+
+    @Test fun resource_resolveAsync_restrictedContext_postsError() {
+        val deferred = DeferredTypeface.Resource(R.font.merriweather_light_italic)
+        val callback = TestFontCallback()
+
+        deferred.resolve(context.createRestrictedContext(), callback)
+
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+        assertThat(callback.results).hasSize(1)
+        val result = callback.results[0]
+        assertThat(result).isInstanceOf(TestFontCallback.Result.Failure::class.java)
+        result as TestFontCallback.Result.Failure
+        assertThat(result.reason).isEqualTo(FontsContractCompat.FontRequestCallback.FAIL_REASON_SECURITY_VIOLATION)
+    }
     //endregion
 
     //region Asset
-    @Test fun asset_resolveSync_resolvesWithContext() {
+    @Test fun asset_resolveSync_validFontFile_resolvesWithContext() {
         val deferredDark = DeferredTypeface.Asset("merriweather_bold.ttf")
         val resolved = deferredDark.resolve(context)
 
         assertThat(resolved.weight).isEqualTo(700)
         assertThat(resolved.style).isEqualTo(Typeface.BOLD)
+    }
+
+    @Test(expected = RuntimeException::class)
+    fun asset_resolveSync_nonexistentFontFile_throwsException() {
+        val deferred = DeferredTypeface.Asset("nothing.ttf")
+        deferred.resolve(context)
+    }
+
+    @Test fun asset_resolveSync_nonFontFile_returnsDefaultTypeface() {
+        val deferred = DeferredTypeface.Asset("invalid.txt")
+        val resolved = deferred.resolve(context)
+        assertThat(resolved).isEqualTo(Typeface.DEFAULT)
     }
 
     @Test fun asset_resolveAsync_nullHandler_resolvesWithContextOnMainThread() {
@@ -202,6 +247,38 @@ class DeferredTypefaceTest {
         val resolved = (result as TestFontCallback.Result.Success).typeface
         assertThat(resolved.weight).isEqualTo(700)
         assertThat(resolved.style).isEqualTo(Typeface.BOLD)
+    }
+
+    @Test fun asset_resolveAsync_nonexistentFontFile_postsErrorNotFound() {
+        val deferred = DeferredTypeface.Asset("nothing.ttf")
+        val callback = TestFontCallback()
+
+        deferred.resolve(context, callback)
+
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+        assertThat(callback.results).hasSize(1)
+
+        val result = callback.results[0]
+        assertThat(result).isInstanceOf(TestFontCallback.Result.Failure::class.java)
+
+        result as TestFontCallback.Result.Failure
+        assertThat(result.reason).isEqualTo(FontsContractCompat.FontRequestCallback.FAIL_REASON_FONT_NOT_FOUND)
+    }
+
+    @Test fun asset_resolveAsync_nonFontFile_returnsDefaultTypeface() {
+        val deferred = DeferredTypeface.Asset("invalid.txt")
+        val callback = TestFontCallback()
+
+        deferred.resolve(context, callback)
+
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+        assertThat(callback.results).hasSize(1)
+
+        val result = callback.results[0]
+        assertThat(result).isInstanceOf(TestFontCallback.Result.Success::class.java)
+
+        result as TestFontCallback.Result.Success
+        assertThat(result.typeface).isEqualTo(Typeface.DEFAULT)
     }
     //endregion
 
