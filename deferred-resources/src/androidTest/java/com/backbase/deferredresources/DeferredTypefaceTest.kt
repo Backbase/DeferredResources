@@ -197,14 +197,14 @@ class DeferredTypefaceTest {
         deferred.resolve(context)
     }
 
-    @SdkSuppress(minSdkVersion = 27)
+    @SdkSuppress(minSdkVersion = 28)
     @Test fun asset_resolveSync_nonFontFileApi27_returnsDefaultTypeface() {
         val deferred = DeferredTypeface.Asset("invalid.txt")
         val resolved = deferred.resolve(context)
         assertThat(resolved).isEqualTo(Typeface.DEFAULT)
     }
 
-    @SdkSuppress(maxSdkVersion = 26)
+    @SdkSuppress(maxSdkVersion = 27)
     @Test(expected = RuntimeException::class)
     fun asset_resolveSync_nonFontFileApi14_throwsException() {
         val deferred = DeferredTypeface.Asset("invalid.txt")
@@ -281,7 +281,7 @@ class DeferredTypefaceTest {
         assertThat(result.reason).isEqualTo(FontsContractCompat.FontRequestCallback.FAIL_REASON_FONT_NOT_FOUND)
     }
 
-    @SdkSuppress(minSdkVersion = 27)
+    @SdkSuppress(minSdkVersion = 28)
     @Test fun asset_resolveAsync_nonFontFileApi27_returnsDefaultTypeface() {
         val deferred = DeferredTypeface.Asset("invalid.txt")
         val callback = TestFontCallback()
@@ -298,7 +298,7 @@ class DeferredTypefaceTest {
         assertThat(result.typeface).isEqualTo(Typeface.DEFAULT)
     }
 
-    @SdkSuppress(maxSdkVersion = 26)
+    @SdkSuppress(maxSdkVersion = 27)
     @Test fun asset_resolveAsync_nonFontFileApi14_returnsDefaultTypeface() {
         val deferred = DeferredTypeface.Asset("invalid.txt")
         val callback = TestFontCallback()
