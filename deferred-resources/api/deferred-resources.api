@@ -234,3 +234,39 @@ public final class com/backbase/deferredresources/DeferredText$Resource$Type : j
 	public static fun values ()[Lcom/backbase/deferredresources/DeferredText$Resource$Type;
 }
 
+public abstract interface class com/backbase/deferredresources/DeferredTypeface {
+	public abstract fun resolve (Landroid/content/Context;)Landroid/graphics/Typeface;
+	public abstract fun resolve (Landroid/content/Context;Landroidx/core/content/res/ResourcesCompat$FontCallback;Landroid/os/Handler;)V
+}
+
+public final class com/backbase/deferredresources/DeferredTypeface$Asset : com/backbase/deferredresources/DeferredTypeface {
+	public fun <init> (Ljava/lang/String;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)Landroid/graphics/Typeface;
+	public fun resolve (Landroid/content/Context;Landroidx/core/content/res/ResourcesCompat$FontCallback;Landroid/os/Handler;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/DeferredTypeface$Constant : com/backbase/deferredresources/DeferredTypeface {
+	public fun <init> (Landroid/graphics/Typeface;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)Landroid/graphics/Typeface;
+	public fun resolve (Landroid/content/Context;Landroidx/core/content/res/ResourcesCompat$FontCallback;Landroid/os/Handler;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/DeferredTypeface$DefaultImpls {
+	public static synthetic fun resolve$default (Lcom/backbase/deferredresources/DeferredTypeface;Landroid/content/Context;Landroidx/core/content/res/ResourcesCompat$FontCallback;Landroid/os/Handler;ILjava/lang/Object;)V
+}
+
+public final class com/backbase/deferredresources/DeferredTypeface$Resource : com/backbase/deferredresources/DeferredTypeface {
+	public fun <init> (I)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)Landroid/graphics/Typeface;
+	public fun resolve (Landroid/content/Context;Landroidx/core/content/res/ResourcesCompat$FontCallback;Landroid/os/Handler;)V
+	public fun toString ()Ljava/lang/String;
+}
+
