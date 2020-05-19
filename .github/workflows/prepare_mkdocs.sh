@@ -32,6 +32,7 @@ done
 set -x
 
 # Copy in special files that GitHub wants in the project root.
+cp README.md docs/index.md
 #cp UPGRADING.md docs/upgrading.md
 cp CHANGELOG.md docs/changelog.md
 cp CONTRIBUTING.md docs/contributing.md

@@ -182,6 +182,7 @@ sonar-reports
 # Dokka/MkDocs
 site/
 docs/0.x
+docs/index.md
 docs/changelog.md
 docs/upgrading.md
 docs/contributing.md
