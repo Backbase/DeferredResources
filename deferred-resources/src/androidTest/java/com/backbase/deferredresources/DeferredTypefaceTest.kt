@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.os.MessageQueue.IdleHandler
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.provider.FontsContractCompat
 import androidx.test.filters.SdkSuppress
@@ -14,7 +15,6 @@ import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -75,8 +75,7 @@ class DeferredTypefaceTest {
         // Resolve the typeface from this thread:
         deferred.resolve(context, callback, otherThreadHandler)
 
-        // TODO: Wait for idle or something
-        runBlocking { delay(100) }
+        otherThreadHandler.waitForIdleSync()
 
         // Now the result has been posted on the other thread:
         assertThat(callback.results).hasSize(1)
@@ -149,8 +148,7 @@ class DeferredTypefaceTest {
         // Resolve the typeface from this thread:
         deferred.resolve(context, callback, otherThreadHandler)
 
-        // TODO: Wait for idle or something
-        runBlocking { delay(100) }
+        otherThreadHandler.waitForIdleSync()
 
         // Now the result has been posted on the other thread:
         assertThat(callback.results).hasSize(1)
@@ -256,8 +254,7 @@ class DeferredTypefaceTest {
         // Resolve the typeface from this thread:
         deferred.resolve(context, callback, otherThreadHandler)
 
-        // TODO: Wait for idle or something
-        runBlocking { delay(100) }
+        otherThreadHandler.waitForIdleSync()
 
         // Now the result has been posted on the other thread:
         assertThat(callback.results).hasSize(1)
@@ -320,6 +317,37 @@ class DeferredTypefaceTest {
 
         result as TestFontCallback.Result.Failure
         assertThat(result.reason).isEqualTo(FontsContractCompat.FontRequestCallback.FAIL_REASON_FONT_NOT_FOUND)
+    }
+    //endregion
+
+    //region waitForIdleSync (copied from Instrumentation, adaped for non-main thread)
+    private fun Handler.waitForIdleSync() {
+        val idler = Idler()
+        looper.queue.addIdleHandler(idler)
+        post {}
+        idler.waitForIdle()
+    }
+
+    @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN") // Needed for notifyAll and wait
+    private class Idler : IdleHandler {
+        private var mIdle = false
+
+        override fun queueIdle(): Boolean {
+            synchronized(this) {
+                mIdle = true
+                (this as Object).notifyAll()
+            }
+            return false
+        }
+
+        fun waitForIdle() = synchronized(this) {
+            while (!mIdle) {
+                try {
+                    (this as Object).wait()
+                } catch (e: InterruptedException) {
+                }
+            }
+        }
     }
     //endregion
 
