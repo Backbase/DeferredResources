@@ -16,7 +16,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Prepare MkDocs
-        run: sudo .github/workflows/prepare_mkdocs.sh
+        run:
+          chmod +x ./gradlew
+          .github/workflows/prepare_mkdocs.sh
 
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
