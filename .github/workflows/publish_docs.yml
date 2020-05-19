@@ -15,8 +15,8 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v2
 
-      - name: Prep MkDocs
-        run: .github/workflows/prepare_mkdocs.sh
+      - name: Prepare MkDocs
+        run: sudo .github/workflows/prepare_mkdocs.sh
 
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
