@@ -9,7 +9,7 @@ remote_branch: gh-pages
 
 nav:
   - 'Overview': index.md
-  - '0.x API': 0.x/index.html
+  - '0.x API': 0.x/deferred-resources/index.html
   - 'Changelog': changelog.md
   - 'Contributing': contributing.md
 
