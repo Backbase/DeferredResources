@@ -13,8 +13,6 @@ set -ex
 cp CHANGELOG.md docs/changelog.md
 cp CONTRIBUTING.md docs/contributing.md
 
-# Make ./gradlew executable
-chmod +x ./gradlew
 # Generate the API docs
 ./gradlew dokka
 
