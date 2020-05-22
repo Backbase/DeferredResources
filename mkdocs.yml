@@ -16,8 +16,8 @@ nav:
 theme:
   name: 'material'
   palette:
-    primary: '#181E41'
-    accent: '#C22327'
+    primary: 'amber'
+    accent: 'light blue'
 
 markdown_extensions:
   - codehilite:
