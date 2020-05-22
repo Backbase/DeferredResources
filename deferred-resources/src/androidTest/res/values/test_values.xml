@@ -8,6 +8,11 @@
 
   <integer name="five">5</integer>
 
+  <integer-array name="integerArray">
+    <item>101</item>
+    <item>103</item>
+  </integer-array>
+
   <plurals name="plainPlurals">
     <item quantity="one">Car</item>
     <item quantity="other">Cars</item>
@@ -24,4 +29,9 @@
   <string name="formattedString">This is %1$s text.</string>
   <string name="plainString">A string</string>
   <string name="richText"><b>Rich</b> text</string>
+
+  <string-array name="stringArray">
+    <item><b>Bold one</b></item>
+    <item>Regular one</item>
+  </string-array>
 </resources>

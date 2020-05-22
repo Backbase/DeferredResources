@@ -174,6 +174,27 @@ public final class com/backbase/deferredresources/DeferredInteger$Resource : com
 	public fun toString ()Ljava/lang/String;
 }
 
+public abstract interface class com/backbase/deferredresources/DeferredIntegerArray {
+	public abstract fun resolve (Landroid/content/Context;)[I
+}
+
+public final class com/backbase/deferredresources/DeferredIntegerArray$Constant : com/backbase/deferredresources/DeferredIntegerArray {
+	public fun <init> (Ljava/util/Collection;)V
+	public fun <init> ([I)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)[I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/DeferredIntegerArray$Resource : com/backbase/deferredresources/DeferredIntegerArray {
+	public fun <init> (I)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)[I
+	public fun toString ()Ljava/lang/String;
+}
+
 public abstract interface class com/backbase/deferredresources/DeferredPlurals {
 	public abstract fun resolve (Landroid/content/Context;I)Ljava/lang/CharSequence;
 }
@@ -232,6 +253,36 @@ public final class com/backbase/deferredresources/DeferredText$Resource$Type : j
 	public static final field TEXT Lcom/backbase/deferredresources/DeferredText$Resource$Type;
 	public static fun valueOf (Ljava/lang/String;)Lcom/backbase/deferredresources/DeferredText$Resource$Type;
 	public static fun values ()[Lcom/backbase/deferredresources/DeferredText$Resource$Type;
+}
+
+public abstract interface class com/backbase/deferredresources/DeferredTextArray {
+	public abstract fun resolve (Landroid/content/Context;)[Ljava/lang/CharSequence;
+}
+
+public final class com/backbase/deferredresources/DeferredTextArray$Constant : com/backbase/deferredresources/DeferredTextArray {
+	public fun <init> (Ljava/util/Collection;)V
+	public fun <init> ([Ljava/lang/CharSequence;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)[Ljava/lang/CharSequence;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/DeferredTextArray$Resource : com/backbase/deferredresources/DeferredTextArray {
+	public fun <init> (I)V
+	public fun <init> (ILcom/backbase/deferredresources/DeferredTextArray$Resource$Type;)V
+	public synthetic fun <init> (ILcom/backbase/deferredresources/DeferredTextArray$Resource$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)[Ljava/lang/CharSequence;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/DeferredTextArray$Resource$Type : java/lang/Enum {
+	public static final field STRING Lcom/backbase/deferredresources/DeferredTextArray$Resource$Type;
+	public static final field TEXT Lcom/backbase/deferredresources/DeferredTextArray$Resource$Type;
+	public static fun valueOf (Ljava/lang/String;)Lcom/backbase/deferredresources/DeferredTextArray$Resource$Type;
+	public static fun values ()[Lcom/backbase/deferredresources/DeferredTextArray$Resource$Type;
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredTypeface {
