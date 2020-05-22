@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.2.0
+_2020-05-22_
+
+Add `DeferredTypeface`, `DeferredIntegerArray`, and `DeferredTextArray`.
+
 ## 0.1.0
 _2020-05-15_
 
