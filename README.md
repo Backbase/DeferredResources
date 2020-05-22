@@ -6,6 +6,8 @@ An Android library that decouples resource declaration (without Context) from re
 (standard resources, attributes, or values fetched from an API), and allows repository/configuration
 layers to remain ignorant of Android's Context.
 
+See the [project website](https://backbase.github.io/DeferredResources/) for API documentation.
+
 ## Download
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.backbase.oss.deferredresources/deferred-resources/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.backbase.oss.deferredresources/deferred-resources)
 
