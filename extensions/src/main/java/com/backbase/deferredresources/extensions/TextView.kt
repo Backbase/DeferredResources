@@ -105,7 +105,7 @@ fun TextView.setFirstBaselineToTopHeight(deferredFirstBaselineToTopHeight: Defer
  *
  * Note: If `FontMetrics.bottom` or `FontMetrics.descent` was already greater than the resolved height, the bottom
  * padding is not updated.
-*/
+ */
 fun TextView.setLastBaselineToBottomHeight(deferredLastBaselineToBottomHeight: DeferredDimension) =
     TextViewCompat.setLastBaselineToBottomHeight(this, deferredLastBaselineToBottomHeight.resolveAsSize(context))
 
@@ -179,5 +179,6 @@ fun TextView.setWidth(deferredWidth: DeferredDimension) {
  * Resolves [add] and sets line spacing for this TextView. Each line other than the last line will have its height
  * multiplied by [mult] and have [add] added to it.
  */
-// TODO UNDECIDED: Add and use a DeferredFloat?
+// TODO: Add and use a DeferredFloat, then remove `internal` keyword
+internal
 fun TextView.setLineSpacing(add: DeferredDimension, mult: Float) = setLineSpacing(add.resolveExact(context), mult)
