@@ -8,6 +8,11 @@
 
 set -ex
 
+# Copy in special files that GitHub wants in the project root.
+#cp UPGRADING.md docs/upgrading.md
+cp CHANGELOG.md docs/changelog.md
+cp CONTRIBUTING.md docs/contributing.md
+
 # Generate the API docs
 ./gradlew dokka
 
@@ -30,8 +35,3 @@ for MARKDOWN_FILE in $(find docs/0.x/ -name '*.md'); do
   title_markdown_file $MARKDOWN_FILE
 done
 set -x
-
-# Copy in special files that GitHub wants in the project root.
-#cp UPGRADING.md docs/upgrading.md
-cp CHANGELOG.md docs/changelog.md
-cp CONTRIBUTING.md docs/contributing.md
