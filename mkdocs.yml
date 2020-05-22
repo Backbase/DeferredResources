@@ -16,6 +16,8 @@ nav:
 
 theme:
   name: 'material'
+  favicon: images/icon-backbase.png
+  logo: images/icon-backbase.png
   palette:
     primary: 'light blue'
     accent: 'orange'
