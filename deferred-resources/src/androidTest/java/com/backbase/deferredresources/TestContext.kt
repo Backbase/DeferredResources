@@ -12,6 +12,7 @@ import androidx.test.platform.app.InstrumentationRegistry
  */
 internal val context get() = InstrumentationRegistry.getInstrumentation().context
 
+//region Configuration
 internal fun Context.compatCreateConfigurationContext(overrideConfiguration: Configuration) =
     if (Build.VERSION.SDK_INT >= 17)
         createConfigurationContext(overrideConfiguration)
@@ -47,3 +48,14 @@ private class ConfigurationContext(
         }
     }
 }
+//endregion
+
+//region Restricted
+/**
+ * Creates a Context that always returns true from [Context.isRestricted]. If the receiver is already restricted,
+ * returns itself.
+ */
+fun Context.createRestrictedContext() = if (isRestricted) this else object : ContextWrapper(this) {
+    override fun isRestricted() = true
+}
+//endregion
