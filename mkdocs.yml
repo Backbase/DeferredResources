@@ -1,0 +1,27 @@
+site_name: Deferred Resources
+site_url: https://backbase.github.io/DeferredResources/
+repo_name: DeferredResources
+repo_url: https://github.com/Backbase/DeferredResources
+site_description: 'Deferred Resources - Decoupling resource declaration from resource resolution on Android.'
+site_author: 'Backbase R&amp;D, B.V.'
+copyright: 'Copyright &copy; 2020 Backbase R&amp;D, B.V.'
+remote_branch: gh-pages
+
+nav:
+  - 'Overview': index.md
+  - '0.x API':
+    - 'deferred-resources': 0.x/deferred-resources/index.html
+  - 'Changelog': changelog.md
+  - 'Contributing': contributing.md
+
+theme:
+  name: 'material'
+  favicon: images/icon-backbase.png
+  logo: images/icon-backbase.png
+  palette:
+    primary: 'light blue'
+    accent: 'orange'
+
+markdown_extensions:
+  - codehilite:
+      guess_lang: false

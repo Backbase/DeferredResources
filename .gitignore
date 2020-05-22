@@ -178,3 +178,10 @@ jacoco.exec
 
 # Sonar
 sonar-reports
+
+# Dokka/MkDocs
+site/
+docs/0.x
+docs/changelog.md
+docs/upgrading.md
+docs/contributing.md

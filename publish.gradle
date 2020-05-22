@@ -9,8 +9,14 @@ task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
 }
 
-def javadocDestinationDir = "$buildDir/docs/javadoc"
 apply plugin: 'org.jetbrains.dokka'
+dokka {
+    outputDirectory = "$rootDir/docs/0.x"
+    outputFormat = 'gfm'
+    inputs.dir 'src/main/java'
+}
+
+def javadocDestinationDir = "$buildDir/docs/javadoc"
 task dokkaJavadoc(type: dokka.class) {
     outputFormat = 'javadoc'
     outputDirectory = javadocDestinationDir
