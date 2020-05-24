@@ -51,8 +51,8 @@ class DemoPagerAdapter : RecyclerView.Adapter<DemoPagerAdapter.DeferredResourceV
                     DeferredText.Constant("Backbase red")
                 )
                 view.display(
-                    DeferredColor.Constant(Color.parseColor("#00A1E0")),
-                    DeferredText.Constant("#00A1E0")
+                    DeferredColor.Constant(Color.WHITE),
+                    DeferredText.Constant("White")
                 )
             }
             is DeferredPluralsView -> when (position) {
