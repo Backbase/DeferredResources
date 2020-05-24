@@ -10,7 +10,7 @@
       android:scaleX="0.7"
       android:scaleY="0.7"
       android:translateX="30"
-      android:translateY="38">
+      android:translateY="40">
 
     <path
         android:fillAlpha="0.7351423"
@@ -31,7 +31,7 @@
               android:offset="0" />
 
           <item
-              android:color="#C0000000"
+              android:color="#30000000"
               android:offset="1" />
         </gradient>
       </aapt:attr>

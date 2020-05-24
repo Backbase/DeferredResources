@@ -27,10 +27,7 @@ sealed class DeferredResourceView(context: Context) : ScrollView(context)
 class DeferredColorsView(context: Context) : DeferredResourceView(context) {
     private val binding = ColorsBinding.inflate(LayoutInflater.from(context), this)
 
-    fun display(
-        color: DeferredColor,
-        text: DeferredText
-    ) = with (binding.container) {
+    fun display(color: DeferredColor, text: DeferredText) = with (binding.container) {
         val colorView = newColorView().apply {
             val backgroundColor = color.resolve(context)
             setBackgroundColor(backgroundColor)
