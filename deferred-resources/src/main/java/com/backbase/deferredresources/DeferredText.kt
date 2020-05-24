@@ -57,13 +57,26 @@ interface DeferredText {
     }
 
     /**
+     * A wrapper for pluralized text with the quantity already known at instantiation.
+     */
+    @DataApi class Quantified(
+        private val deferredPlurals: DeferredPlurals,
+        private val quantity: Int
+    ) : DeferredText {
+        /**
+         * Resolve [deferredPlurals] for [quantity] using the given [context].
+         */
+        override fun resolve(context: Context): CharSequence = deferredPlurals.resolve(context, quantity)
+    }
+
+    /**
      * A wrapper for formatted text with the format arguments already known at instantiation.
      */
     @DataApi class Formatted private constructor(
         // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
         @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
         private val deferredFormattedString: DeferredFormattedString,
-        private vararg val formatArgs: Any
+        private val formatArgs: Array<out Any>
     ) : DeferredText {
 
         /**
@@ -79,7 +92,7 @@ interface DeferredText {
         /**
          * Resolve [deferredFormattedString] with [formatArgs] using the given [context].
          */
-        override fun resolve(context: Context): CharSequence = deferredFormattedString.resolve(context, formatArgs)
+        override fun resolve(context: Context): CharSequence = deferredFormattedString.resolve(context, *formatArgs)
 
         /**
          * Two instances of [DeferredText.Formatted] are considered equals if they hold equals
@@ -97,19 +110,6 @@ interface DeferredText {
     }
 
     /**
-     * A wrapper for pluralized text with the quantity already known at instantiation.
-     */
-    @DataApi class Quantified(
-        private val deferredPlurals: DeferredPlurals,
-        private val quantity: Int
-    ) : DeferredText {
-        /**
-         * Resolve [deferredPlurals] for [quantity] using the given [context].
-         */
-        override fun resolve(context: Context): CharSequence = deferredPlurals.resolve(context, quantity)
-    }
-
-    /**
      * A wrapper for format-able pluralized text with the quantity and format arguments already known at instantiation.
      */
     @DataApi class QuantifiedAndFormatted private constructor(
@@ -117,7 +117,7 @@ interface DeferredText {
         @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
         private val deferredFormattedPlurals: DeferredFormattedPlurals,
         private val quantity: Int,
-        private vararg val formatArgs: Any = arrayOf(quantity)
+        private val formatArgs: Array<out Any> = arrayOf(quantity)
     ) : DeferredText {
 
         /**
@@ -135,7 +135,7 @@ interface DeferredText {
          * Resolve [deferredFormattedPlurals] with [quantity] and [formatArgs] using the given [context].
          */
         override fun resolve(context: Context): CharSequence =
-            deferredFormattedPlurals.resolve(context, quantity, formatArgs)
+            deferredFormattedPlurals.resolve(context, quantity, *formatArgs)
 
         /**
          * Two instances of [DeferredText.QuantifiedAndFormatted] are considered equals if they hold equals
