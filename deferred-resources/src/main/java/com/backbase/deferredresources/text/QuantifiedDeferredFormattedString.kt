@@ -28,5 +28,5 @@ import dev.drewhamilton.extracare.DataApi
      * Resolve [deferredFormattedPlurals] with [quantity] and [formatArgs] using the given [context].
      */
     override fun resolve(context: Context, vararg formatArgs: Any): String =
-        deferredFormattedPlurals.resolve(context, quantity, formatArgs)
+        deferredFormattedPlurals.resolve(context, quantity, *formatArgs)
 }
