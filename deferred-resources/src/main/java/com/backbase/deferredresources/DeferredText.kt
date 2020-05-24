@@ -56,14 +56,25 @@ interface DeferredText {
         }
     }
 
-    //region TODO? Change to conversion extensions?
     /**
      * A wrapper for formatted text with the format arguments already known at instantiation.
      */
-    @DataApi class Preformatted(
+    @DataApi class Formatted private constructor(
+        // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
+        @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
         private val deferredFormattedString: DeferredFormattedString,
         private vararg val formatArgs: Any
     ) : DeferredText {
+
+        /**
+         * Initialize with the given [deferredFormattedString] and [formatArgs].
+         *
+         * This constructor protects against array mutability by making a copy of [formatArgs].
+         */
+        constructor(
+            deferredFormattedString: DeferredFormattedString,
+            vararg formatArgs: Any
+        ) : this(1, deferredFormattedString, arrayOf(*formatArgs))
 
         /**
          * Resolve [deferredFormattedString] with [formatArgs] using the given [context].
@@ -71,11 +82,11 @@ interface DeferredText {
         override fun resolve(context: Context): CharSequence = deferredFormattedString.resolve(context, formatArgs)
 
         /**
-         * Two instances of [DeferredText.Preformatted] are considered equals if they hold equals
+         * Two instances of [DeferredText.Formatted] are considered equals if they hold equals
          * [deferredFormattedString]s, they hold the same number of [formatArgs], and each format arg in this instance
          * is equals to the corresponding format arg in [other].
          */
-        override fun equals(other: Any?): Boolean = other is Preformatted &&
+        override fun equals(other: Any?): Boolean = other is Formatted &&
                 this.deferredFormattedString == other.deferredFormattedString &&
                 this.formatArgs.contentEquals(other.formatArgs)
 
@@ -88,7 +99,7 @@ interface DeferredText {
     /**
      * A wrapper for pluralized text with the quantity already known at instantiation.
      */
-    @DataApi class Plurals(
+    @DataApi class Quantified(
         private val deferredPlurals: DeferredPlurals,
         private val quantity: Int
     ) : DeferredText {
@@ -101,11 +112,25 @@ interface DeferredText {
     /**
      * A wrapper for format-able pluralized text with the quantity and format arguments already known at instantiation.
      */
-    @DataApi class FormattedPlurals(
+    @DataApi class QuantifiedAndFormatted private constructor(
+        // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
+        @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
         private val deferredFormattedPlurals: DeferredFormattedPlurals,
         private val quantity: Int,
         private vararg val formatArgs: Any = arrayOf(quantity)
     ) : DeferredText {
+
+        /**
+         * Initialize with the given [deferredFormattedPlurals], [quantity], and [formatArgs].
+         *
+         * This constructor protects against array mutability by making a copy of [formatArgs].
+         */
+        constructor(
+            deferredFormattedPlurals: DeferredFormattedPlurals,
+            quantity: Int,
+            vararg formatArgs: Any = arrayOf(quantity)
+        ) : this(1, deferredFormattedPlurals, quantity, arrayOf(*formatArgs))
+
         /**
          * Resolve [deferredFormattedPlurals] with [quantity] and [formatArgs] using the given [context].
          */
@@ -113,11 +138,11 @@ interface DeferredText {
             deferredFormattedPlurals.resolve(context, quantity, formatArgs)
 
         /**
-         * Two instances of [DeferredText.FormattedPlurals] are considered equals if they hold equals
+         * Two instances of [DeferredText.QuantifiedAndFormatted] are considered equals if they hold equals
          * [deferredFormattedPlurals], they hold the same [quantity], they hold the same number of [formatArgs], and
          * each format arg in this instance is equal to the corresponding format arg in [other].
          */
-        override fun equals(other: Any?): Boolean = other is FormattedPlurals &&
+        override fun equals(other: Any?): Boolean = other is QuantifiedAndFormatted &&
                 this.deferredFormattedPlurals == other.deferredFormattedPlurals &&
                 this.quantity == other.quantity &&
                 this.formatArgs.contentEquals(other.formatArgs)
@@ -128,5 +153,4 @@ interface DeferredText {
         override fun hashCode(): Int =
             (31 * deferredFormattedPlurals.hashCode()) * 31 + quantity.hashCode() + formatArgs.contentHashCode()
     }
-    //endregion
 }
