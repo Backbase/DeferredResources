@@ -146,6 +146,14 @@ public final class com/backbase/deferredresources/DeferredFormattedString$Consta
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/backbase/deferredresources/DeferredFormattedString$Quantified : com/backbase/deferredresources/DeferredFormattedString {
+	public fun <init> (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;[Ljava/lang/Object;)Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/backbase/deferredresources/DeferredFormattedString$Resource : com/backbase/deferredresources/DeferredFormattedString {
 	public fun <init> (I)V
 	public fun equals (Ljava/lang/Object;)Z
@@ -210,6 +218,14 @@ public final class com/backbase/deferredresources/DeferredPlurals$Constant : com
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/backbase/deferredresources/DeferredPlurals$Formatted : com/backbase/deferredresources/DeferredPlurals {
+	public fun <init> (Lcom/backbase/deferredresources/DeferredFormattedPlurals;[Ljava/lang/Object;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;I)Ljava/lang/CharSequence;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/backbase/deferredresources/DeferredPlurals$Resource : com/backbase/deferredresources/DeferredPlurals {
 	public fun <init> (ILcom/backbase/deferredresources/DeferredPlurals$Resource$Type;)V
 	public synthetic fun <init> (ILcom/backbase/deferredresources/DeferredPlurals$Resource$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -232,6 +248,31 @@ public abstract interface class com/backbase/deferredresources/DeferredText {
 
 public final class com/backbase/deferredresources/DeferredText$Constant : com/backbase/deferredresources/DeferredText {
 	public fun <init> (Ljava/lang/CharSequence;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/DeferredText$Formatted : com/backbase/deferredresources/DeferredText {
+	public fun <init> (Lcom/backbase/deferredresources/DeferredFormattedString;[Ljava/lang/Object;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/DeferredText$Quantified : com/backbase/deferredresources/DeferredText {
+	public fun <init> (Lcom/backbase/deferredresources/DeferredPlurals;I)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/DeferredText$QuantifiedAndFormatted : com/backbase/deferredresources/DeferredText {
+	public fun <init> (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;)V
+	public synthetic fun <init> (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
@@ -319,5 +360,14 @@ public final class com/backbase/deferredresources/DeferredTypeface$Resource : co
 	public fun resolve (Landroid/content/Context;)Landroid/graphics/Typeface;
 	public fun resolve (Landroid/content/Context;Landroidx/core/content/res/ResourcesCompat$FontCallback;Landroid/os/Handler;)V
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/TextConversionsKt {
+	public static final synthetic fun withFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedPlurals;[Ljava/lang/Object;)Lcom/backbase/deferredresources/DeferredPlurals;
+	public static final synthetic fun withFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedString;[Ljava/lang/Object;)Lcom/backbase/deferredresources/DeferredText;
+	public static final synthetic fun withQuantity (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I)Lcom/backbase/deferredresources/DeferredFormattedString;
+	public static final synthetic fun withQuantity (Lcom/backbase/deferredresources/DeferredPlurals;I)Lcom/backbase/deferredresources/DeferredText;
+	public static final synthetic fun withQuantityAndFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;)Lcom/backbase/deferredresources/DeferredText;
+	public static synthetic fun withQuantityAndFormatArgs$default (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;ILjava/lang/Object;)Lcom/backbase/deferredresources/DeferredText;
 }
 
