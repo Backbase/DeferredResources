@@ -55,6 +55,6 @@ class FormattedDeferredPluralsTest : SpecificLocaleTest() {
         val formattedPlurals = DeferredFormattedPlurals.Constant("%s")
         val deferred = FormattedDeferredPlurals(formattedPlurals, "Yes")
         assertThat(deferred.toString())
-            .isEqualTo("FormattedDeferredPlurals(deferredFormattedPlurals=$formattedPlurals, formatArgs=[Yes])")
+            .isEqualTo("FormattedDeferredPlurals(wrapped=$formattedPlurals, formatArgs=[Yes])")
     }
 }

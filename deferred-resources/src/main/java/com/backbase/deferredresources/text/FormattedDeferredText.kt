@@ -10,7 +10,7 @@ import dev.drewhamilton.extracare.DataApi
  * resolved.
  */
 @JvmSynthetic fun DeferredFormattedString.withFormatArgs(vararg formatArgs: Any): DeferredText =
-    FormattedDeferredText(this, *formatArgs)
+    FormattedDeferredText(wrapped = this, formatArgs = *formatArgs)
 
 /**
  * A [DeferredText] implementation that wraps a [DeferredFormattedString] along with its [formatArgs]. Designed for use
@@ -21,36 +21,36 @@ import dev.drewhamilton.extracare.DataApi
 @DataApi class FormattedDeferredText private constructor(
     // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
     @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
-    private val deferredFormattedString: DeferredFormattedString,
+    private val wrapped: DeferredFormattedString,
     private val formatArgs: Array<out Any>
 ) : DeferredText {
 
     /**
-     * Initialize with the given [deferredFormattedString] and [formatArgs].
+     * Initialize with the given [wrapped] [DeferredFormattedString] and [formatArgs].
      *
      * This constructor protects against array mutability by making a copy of [formatArgs].
      */
     constructor(
-        deferredFormattedString: DeferredFormattedString,
+        wrapped: DeferredFormattedString,
         vararg formatArgs: Any
-    ) : this(1, deferredFormattedString, arrayOf(*formatArgs))
+    ) : this(1, wrapped, arrayOf(*formatArgs))
 
     /**
-     * Resolve [deferredFormattedString] with [formatArgs] using the given [context].
+     * Resolve [wrapped] with [formatArgs] using the given [context].
      */
-    override fun resolve(context: Context): CharSequence = deferredFormattedString.resolve(context, *formatArgs)
+    override fun resolve(context: Context): CharSequence = wrapped.resolve(context, *formatArgs)
 
     /**
-     * Two instances of [FormattedDeferredText] are considered equals if they hold equals [deferredFormattedString]s,
+     * Two instances of [FormattedDeferredText] are considered equals if they wrap equals [DeferredFormattedString]s,
      * they hold the same number of [formatArgs], and each format arg in this instance is equals to the corresponding
      * format arg in [other].
      */
     override fun equals(other: Any?): Boolean = other is FormattedDeferredText &&
-            this.deferredFormattedString == other.deferredFormattedString &&
+            this.wrapped == other.wrapped &&
             this.formatArgs.contentEquals(other.formatArgs)
 
     /**
      * A hash of the formatted string and its format arguments.
      */
-    override fun hashCode(): Int = 31 * deferredFormattedString.hashCode() + formatArgs.contentHashCode()
+    override fun hashCode(): Int = 31 * wrapped.hashCode() + formatArgs.contentHashCode()
 }

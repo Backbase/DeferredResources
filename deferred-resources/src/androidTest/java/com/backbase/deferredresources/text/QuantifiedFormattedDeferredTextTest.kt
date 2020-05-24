@@ -64,7 +64,7 @@ class QuantifiedFormattedDeferredTextTest : SpecificLocaleTest() {
         val formattedPlurals = DeferredFormattedPlurals.Constant("%s")
         val deferred = QuantifiedFormattedDeferredText(formattedPlurals, 1, "Yes")
         assertThat(deferred.toString()).isEqualTo(
-            "QuantifiedFormattedDeferredText(deferredFormattedPlurals=$formattedPlurals, quantity=1, formatArgs=[Yes])"
+            "QuantifiedFormattedDeferredText(wrapped=$formattedPlurals, quantity=1, formatArgs=[Yes])"
         )
     }
     //endregion

@@ -53,6 +53,6 @@ class FormattedDeferredTextTest {
     @Test fun toString_includesFormattedStringAndFormatArgs() {
         val deferred = FormattedDeferredText(DeferredFormattedString.Constant("%s"), "Yes")
         assertThat(deferred.toString())
-            .isEqualTo("FormattedDeferredText(deferredFormattedString=Constant(format=%s), formatArgs=[Yes])")
+            .isEqualTo("FormattedDeferredText(wrapped=Constant(format=%s), formatArgs=[Yes])")
     }
 }

@@ -12,7 +12,7 @@ import dev.drewhamilton.extracare.DataApi
 @JvmSynthetic fun DeferredFormattedPlurals.withQuantityAndFormatArgs(
     quantity: Int,
     vararg formatArgs: Any = arrayOf(quantity)
-): DeferredText = QuantifiedFormattedDeferredText(this, quantity, *formatArgs)
+): DeferredText = QuantifiedFormattedDeferredText(wrapped = this, quantity = quantity, formatArgs = *formatArgs)
 
 /**
  * A [DeferredText] implementation that wraps a [DeferredFormattedPlurals] along with its [quantity] and [formatArgs].
@@ -24,35 +24,34 @@ import dev.drewhamilton.extracare.DataApi
 @DataApi class QuantifiedFormattedDeferredText private constructor(
     // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
     @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
-    private val deferredFormattedPlurals: DeferredFormattedPlurals,
+    private val wrapped: DeferredFormattedPlurals,
     private val quantity: Int,
     private val formatArgs: Array<out Any> = arrayOf(quantity)
 ) : DeferredText {
 
     /**
-     * Initialize with the given [deferredFormattedPlurals], [quantity], and [formatArgs].
+     * Initialize with the given [wrapped] [DeferredFormattedPlurals], [quantity], and [formatArgs].
      *
      * This constructor protects against array mutability by making a copy of [formatArgs].
      */
     constructor(
-        deferredFormattedPlurals: DeferredFormattedPlurals,
+        wrapped: DeferredFormattedPlurals,
         quantity: Int,
         vararg formatArgs: Any = arrayOf(quantity)
-    ) : this(1, deferredFormattedPlurals, quantity, arrayOf(*formatArgs))
+    ) : this(1, wrapped, quantity, arrayOf(*formatArgs))
 
     /**
-     * Resolve [deferredFormattedPlurals] with [quantity] and [formatArgs] using the given [context].
+     * Resolve [wrapped] with [quantity] and [formatArgs] using the given [context].
      */
-    override fun resolve(context: Context): CharSequence =
-        deferredFormattedPlurals.resolve(context, quantity, *formatArgs)
+    override fun resolve(context: Context): CharSequence = wrapped.resolve(context, quantity, *formatArgs)
 
     /**
-     * Two instances of [QuantifiedFormattedDeferredText] are considered equals if they hold equals
-     * [deferredFormattedPlurals], they hold the same [quantity], they hold the same number of [formatArgs], and
+     * Two instances of [QuantifiedFormattedDeferredText] are considered equals if they wrap equals
+     * [DeferredFormattedPlurals], they hold the same [quantity], they hold the same number of [formatArgs], and
      * each format arg in this instance is equal to the corresponding format arg in [other].
      */
     override fun equals(other: Any?): Boolean = other is QuantifiedFormattedDeferredText &&
-            this.deferredFormattedPlurals == other.deferredFormattedPlurals &&
+            this.wrapped == other.wrapped &&
             this.quantity == other.quantity &&
             this.formatArgs.contentEquals(other.formatArgs)
 
@@ -60,5 +59,5 @@ import dev.drewhamilton.extracare.DataApi
      * A hash of the formatted plurals, their quantity, and their arguments.
      */
     override fun hashCode(): Int =
-        (31 * deferredFormattedPlurals.hashCode()) * 31 + quantity.hashCode() + formatArgs.contentHashCode()
+        (31 * wrapped.hashCode()) * 31 + quantity.hashCode() + formatArgs.contentHashCode()
 }

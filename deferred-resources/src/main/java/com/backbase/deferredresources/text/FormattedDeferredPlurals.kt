@@ -10,7 +10,7 @@ import dev.drewhamilton.extracare.DataApi
  * A quantity must still be provided when resolved.
  */
 @JvmSynthetic fun DeferredFormattedPlurals.withFormatArgs(vararg formatArgs: Any): DeferredPlurals =
-    FormattedDeferredPlurals(this, *formatArgs)
+    FormattedDeferredPlurals(wrapped = this, formatArgs = *formatArgs)
 
 /**
  * A [DeferredPlurals] implementation that wraps a [DeferredFormattedPlurals] along with its [formatArgs]. Designed for
@@ -23,37 +23,37 @@ import dev.drewhamilton.extracare.DataApi
 @DataApi class FormattedDeferredPlurals private constructor(
     // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
     @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
-    private val deferredFormattedPlurals: DeferredFormattedPlurals,
+    private val wrapped: DeferredFormattedPlurals,
     private val formatArgs: Array<out Any>
 ) : DeferredPlurals {
 
     /**
-     * Initialize with the given [deferredFormattedPlurals] and [formatArgs].
+     * Initialize with the given [wrapped] [DeferredFormattedPlurals] and [formatArgs].
      *
      * This constructor protects against array mutability by making a copy of [formatArgs].
      */
     constructor(
-        deferredFormattedPlurals: DeferredFormattedPlurals,
+        wrapped: DeferredFormattedPlurals,
         vararg formatArgs: Any
-    ) : this(1, deferredFormattedPlurals, arrayOf(*formatArgs))
+    ) : this(1, wrapped, arrayOf(*formatArgs))
 
     /**
-     * Resolve [deferredFormattedPlurals] with [quantity] and [formatArgs] using the given [context].
+     * Resolve [wrapped] with [quantity] and [formatArgs] using the given [context].
      */
     override fun resolve(context: Context, quantity: Int): CharSequence =
-        deferredFormattedPlurals.resolve(context, quantity, *formatArgs)
+        wrapped.resolve(context, quantity, *formatArgs)
 
     /**
-     * Two instances of [FormattedDeferredPlurals] are considered equals if they hold equals [deferredFormattedPlurals],
+     * Two instances of [FormattedDeferredPlurals] are considered equals if they wrap equals [DeferredFormattedPlurals],
      * they hold the same number of [formatArgs], and each format arg in this instance is equal to the corresponding
      * format arg in [other].
      */
     override fun equals(other: Any?): Boolean = other is FormattedDeferredPlurals &&
-            this.deferredFormattedPlurals == other.deferredFormattedPlurals &&
+            this.wrapped == other.wrapped &&
             this.formatArgs.contentEquals(other.formatArgs)
 
     /**
      * A hash of the formatted plurals and their format arguments.
      */
-    override fun hashCode(): Int = 31 * deferredFormattedPlurals.hashCode() + formatArgs.contentHashCode()
+    override fun hashCode(): Int = 31 * wrapped.hashCode() + formatArgs.contentHashCode()
 }
