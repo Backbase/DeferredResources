@@ -11,7 +11,7 @@ public final class FormattedDeferredTextJavaTest {
 
     // This test is impossible in Kotlin because Kotlin enforces spreading the original array when passed as a vararg
     @Test
-    public void formatted_initializedWithArray_doesNotReflectLaterArrayChanges() {
+    public void initializedWithArray_doesNotReflectLaterArrayChanges() {
         Object[] formatArgs = new String[]{"Original"};
         DeferredText deferred = new FormattedDeferredText(new DeferredFormattedString.Constant("%s text"), formatArgs);
         formatArgs[0] = "Changed";

@@ -11,7 +11,7 @@ public final class QuantifiedFormattedDeferredTextJavaTest extends SpecificLocal
 
     // This test is impossible in Kotlin because Kotlin enforces spreading the original array when passed as a vararg
     @Test
-    public void quantifiedAndFormatted_initializedWithArray_doesNotReflectLaterArrayChanges() {
+    public void initializedWithArray_doesNotReflectLaterArrayChanges() {
         setTestLanguage("en");
 
         Object[] formatArgs = new Object[]{2, "small"};

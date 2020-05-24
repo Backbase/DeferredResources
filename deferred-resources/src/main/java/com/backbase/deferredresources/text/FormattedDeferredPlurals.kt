@@ -10,7 +10,7 @@ import dev.drewhamilton.extracare.DataApi
  * A quantity must still be provided when resolved.
  */
 @JvmSynthetic fun DeferredFormattedPlurals.withFormatArgs(vararg formatArgs: Any): DeferredPlurals =
-    FormattedDeferredPlurals(this, formatArgs)
+    FormattedDeferredPlurals(this, *formatArgs)
 
 /**
  * A [DeferredPlurals] implementation that wraps a [DeferredFormattedPlurals] along with its [formatArgs]. Designed for
@@ -24,7 +24,7 @@ import dev.drewhamilton.extracare.DataApi
     // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
     @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
     private val deferredFormattedPlurals: DeferredFormattedPlurals,
-    private vararg val formatArgs: Any
+    private val formatArgs: Array<out Any>
 ) : DeferredPlurals {
 
     /**
@@ -41,19 +41,19 @@ import dev.drewhamilton.extracare.DataApi
      * Resolve [deferredFormattedPlurals] with [quantity] and [formatArgs] using the given [context].
      */
     override fun resolve(context: Context, quantity: Int): CharSequence =
-        deferredFormattedPlurals.resolve(context, quantity, formatArgs)
+        deferredFormattedPlurals.resolve(context, quantity, *formatArgs)
 
     /**
-     * Two instances of [DeferredPlurals.Formatted] are considered equals if they hold equals
-     * [deferredFormattedPlurals], they hold the same number of [formatArgs], and each format arg in this instance
-     * is equal to the corresponding format arg in [other].
+     * Two instances of [FormattedDeferredPlurals] are considered equals if they hold equals [deferredFormattedPlurals],
+     * they hold the same number of [formatArgs], and each format arg in this instance is equal to the corresponding
+     * format arg in [other].
      */
     override fun equals(other: Any?): Boolean = other is FormattedDeferredPlurals &&
             this.deferredFormattedPlurals == other.deferredFormattedPlurals &&
             this.formatArgs.contentEquals(other.formatArgs)
 
     /**
-     * A hash of the formatted plurals and their arguments.
+     * A hash of the formatted plurals and their format arguments.
      */
     override fun hashCode(): Int = 31 * deferredFormattedPlurals.hashCode() + formatArgs.contentHashCode()
 }
