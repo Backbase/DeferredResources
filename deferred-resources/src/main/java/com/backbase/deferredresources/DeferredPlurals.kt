@@ -98,45 +98,4 @@ interface DeferredPlurals {
             STRING, TEXT
         }
     }
-
-    /**
-     * A wrapper for format-able pluralized text with the format arguments already known at instantiation.
-     */
-    @DataApi class Formatted private constructor(
-        // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
-        @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
-        private val deferredFormattedPlurals: DeferredFormattedPlurals,
-        private vararg val formatArgs: Any
-    ) : DeferredPlurals {
-
-        /**
-         * Initialize with the given [deferredFormattedPlurals] and [formatArgs].
-         *
-         * This constructor protects against array mutability by making a copy of [formatArgs].
-         */
-        constructor(
-            deferredFormattedPlurals: DeferredFormattedPlurals,
-            vararg formatArgs: Any
-        ) : this(1, deferredFormattedPlurals, arrayOf(*formatArgs))
-
-        /**
-         * Resolve [deferredFormattedPlurals] with [quantity] and [formatArgs] using the given [context].
-         */
-        override fun resolve(context: Context, quantity: Int): CharSequence =
-            deferredFormattedPlurals.resolve(context, quantity, formatArgs)
-
-        /**
-         * Two instances of [DeferredPlurals.Formatted] are considered equals if they hold equals
-         * [deferredFormattedPlurals], they hold the same number of [formatArgs], and each format arg in this instance
-         * is equal to the corresponding format arg in [other].
-         */
-        override fun equals(other: Any?): Boolean = other is Formatted &&
-                this.deferredFormattedPlurals == other.deferredFormattedPlurals &&
-                this.formatArgs.contentEquals(other.formatArgs)
-
-        /**
-         * A hash of the formatted plurals and their arguments.
-         */
-        override fun hashCode(): Int = 31 * deferredFormattedPlurals.hashCode() + formatArgs.contentHashCode()
-    }
 }

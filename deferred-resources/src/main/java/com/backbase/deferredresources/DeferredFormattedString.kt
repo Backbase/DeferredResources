@@ -40,18 +40,4 @@ interface DeferredFormattedString {
          */
         override fun resolve(context: Context, vararg formatArgs: Any) = context.getString(resId, *formatArgs)
     }
-
-    /**
-     * A wrapper for pluralized text with the quantity already known at instantiation.
-     */
-    @DataApi class Quantified(
-        private val deferredFormattedPlurals: DeferredFormattedPlurals,
-        private val quantity: Int
-    ) : DeferredFormattedString {
-        /**
-         * Resolve [deferredFormattedPlurals] with [quantity] and [formatArgs] using the given [context].
-         */
-        override fun resolve(context: Context, vararg formatArgs: Any): String =
-            deferredFormattedPlurals.resolve(context, quantity, formatArgs)
-    }
 }
