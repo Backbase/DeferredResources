@@ -23,7 +23,7 @@ interface DeferredText {
         /**
          * Always resolves to [value], ignoring [context].
          */
-        override fun resolve(context: Context) = value
+        override fun resolve(context: Context): CharSequence = value
     }
 
     /**
@@ -43,7 +43,7 @@ interface DeferredText {
          * @see android.content.Context.getString
          * @see android.content.Context.getText
          */
-        override fun resolve(context: Context) = when (type) {
+        override fun resolve(context: Context): CharSequence = when (type) {
             Type.STRING -> context.getString(resId)
             Type.TEXT -> context.getText(resId)
         }
