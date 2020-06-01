@@ -20,7 +20,7 @@ buildscript {
     //endregion
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0-rc01'
+        classpath 'com.android.tools.build:gradle:4.0.0'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         // TODO WORKAROUND: Update to 0.10.x after https://github.com/Kotlin/dokka/issues/879
