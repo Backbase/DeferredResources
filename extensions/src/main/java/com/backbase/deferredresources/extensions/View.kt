@@ -74,4 +74,38 @@ fun View.setPaddingRelative(
     deferredBottom.resolveAsSize(context)
 )
 
-// TODO: Translation, offsets
+/**
+ * Resolves [deferredTranslationX] and sets the horizontal location of this view relative to its [left][View.getLeft]
+ * position. This effectively positions the object post-layout, in addition to wherever the object's layout placed it.
+ */
+fun View.setTranslationX(deferredTranslationX: DeferredDimension) {
+    translationX = deferredTranslationX.resolveExact(context)
+}
+
+/**
+ * Resolves [deferredTranslationY] and sets the vertical location of this view relative to its [top][View.getTop]
+ * position. This effectively positions the object post-layout, in addition to wherever the object's layout placed it.
+ */
+fun View.setTranslationY(deferredTranslationY: DeferredDimension) {
+    translationY = deferredTranslationY.resolveExact(context)
+}
+
+/**
+ * Resolves [deferredTranslationZ] and sets the depth location of this view relative to its
+ * [elevation][View.getElevation].
+ */
+fun View.setTranslationZ(deferredTranslationZ: DeferredDimension) {
+    ViewCompat.setTranslationZ(this, deferredTranslationZ.resolveExact(context))
+}
+
+/**
+ * Resolve [deferredOffset] and offset this view's horizontal location by the resolved amount.
+ */
+fun View.offsetLeftAndRight(deferredOffset: DeferredDimension) =
+    offsetLeftAndRight(deferredOffset.resolveAsOffset(context))
+
+/**
+ * Resolve [deferredOffset] and offset this view's vertical location by the resolved amount.
+ */
+fun View.offsetTopAndBottom(deferredOffset: DeferredDimension) =
+    offsetTopAndBottom(deferredOffset.resolveAsOffset(context))
