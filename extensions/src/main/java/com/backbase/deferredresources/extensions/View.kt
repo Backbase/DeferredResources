@@ -1,6 +1,7 @@
 package com.backbase.deferredresources.extensions
 
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDimension
@@ -109,3 +110,88 @@ fun View.offsetLeftAndRight(deferredOffset: DeferredDimension) =
  */
 fun View.offsetTopAndBottom(deferredOffset: DeferredDimension) =
     offsetTopAndBottom(deferredOffset.resolveAsOffset(context))
+
+/**
+ * Resolve [deferredLength] and set the size of the faded edge used to indicate that more content in this view is
+ * available.
+ *
+ * Will not change whether the fading edge is enabled; use [View.setVerticalFadingEdgeEnabled] or
+ * [View.setHorizontalFadingEdgeEnabled] to enable the fading edge for the vertical or horizontal fading edges.
+ */
+fun View.setFadingEdgeLength(deferredLength: DeferredDimension) =
+    setFadingEdgeLength(deferredLength.resolveAsSize(context))
+
+/**
+ * Shows the context menu for this view anchored to the resolved coordinates of [deferredX] and [deferredY].
+ */
+@RequiresApi(24)
+fun View.showContextMenu(deferredX: DeferredDimension, deferredY: DeferredDimension) =
+    showContextMenu(deferredX.resolveExact(context), deferredY.resolveExact(context))
+
+/**
+ * Resolve [deferredValue] and set the horizontal scrolled position of your view. This will cause a call to
+ * [View.onScrollChanged] and the view will be invalidated.
+ */
+fun View.setScrollX(deferredValue: DeferredDimension) {
+    scrollX = deferredValue.resolveAsOffset(context)
+}
+
+/**
+ * Resolve [deferredValue] and set the vertical scrolled position of your view. This will cause a call to
+ * [View.onScrollChanged] and the view will be invalidated.
+ */
+fun View.setScrollY(deferredValue: DeferredDimension) {
+    scrollY = deferredValue.resolveAsOffset(context)
+}
+
+/**
+ * Resolve [deferredX] and [deferredY] and move the scrolled position of your view. This will cause a call to
+ * [View.onScrollChanged] and the view will be invalidated.
+ */
+fun View.scrollBy(
+    deferredX: DeferredDimension = DeferredDimension.Constant(0),
+    deferredY: DeferredDimension = DeferredDimension.Constant(0)
+) = scrollBy(deferredX.resolveAsOffset(context), deferredY.resolveAsOffset(context))
+
+/**
+ * Resolves [deferredDistance] and sets the distance along the Z axis from the camera to this view.
+ *
+ * @see View.setCameraDistance
+ */
+fun View.setCameraDistance(deferredDistance: DeferredDimension) {
+    cameraDistance = deferredDistance.resolveExact(context)
+}
+
+/**
+ * Resolves [deferredX] and sets the visual x position of this view. This is equivalent to setting the
+ * [translationX][setTranslationX] property to be the difference between the x value passed in and the current
+ * [left][View.getLeft] property.
+ */
+fun View.setX(deferredX: DeferredDimension) {
+    x = deferredX.resolveExact(context)
+}
+
+/**
+ * Resolves [deferredY] and sets the visual y position of this view. This is equivalent to setting the
+ * [translationY][setTranslationY] property to be the difference between the y value passed in and the current
+ * [top][View.getTop] property.
+ */
+fun View.setY(deferredY: DeferredDimension) {
+    y = deferredY.resolveExact(context)
+}
+
+/**
+ * Resolves [deferredZ] and sets the visual z position of this view. This is equivalent to setting the
+ * [translationZ][setTranslationZ] property to be the difference between the z value passed in and the current
+ * [elevation][View.getElevation] property.
+ *
+ * On API < 21, this is a no-op.
+ */
+fun View.setZ(deferredZ: DeferredDimension) =
+    ViewCompat.setZ(this, deferredZ.resolveExact(context))
+
+/**
+ * Resolves [deferredElevation] and sets the base elevation of this view.
+ */
+fun View.setElevation(deferredElevation: DeferredDimension) =
+    ViewCompat.setElevation(this, deferredElevation.resolveExact(context))
