@@ -322,6 +322,14 @@ public final class com/backbase/deferredresources/DeferredTypeface$Resource : co
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/backbase/deferredresources/drawable/DeferredColorDrawable : com/backbase/deferredresources/DeferredDrawable {
+	public fun <init> (Lcom/backbase/deferredresources/DeferredColor;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/backbase/deferredresources/text/FormattedDeferredPlurals : com/backbase/deferredresources/DeferredPlurals {
 	public fun <init> (Lcom/backbase/deferredresources/DeferredFormattedPlurals;[Ljava/lang/Object;)V
 	public fun equals (Ljava/lang/Object;)Z
