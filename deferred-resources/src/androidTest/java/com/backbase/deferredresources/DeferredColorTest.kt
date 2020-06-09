@@ -7,9 +7,14 @@ import org.junit.Test
 
 class DeferredColorTest {
 
-    @Test fun constant_returnsConstantValue() {
+    @Test fun constant_withIntValue_returnsSameValue() {
         val deferred = DeferredColor.Constant(Color.MAGENTA)
         assertThat(deferred.resolve(context)).isEqualTo(Color.MAGENTA)
+    }
+
+    @Test fun constant_withStringValue_returnsParsedValue() {
+        val deferred = DeferredColor.Constant("#00FF00")
+        assertThat(deferred.resolve(context)).isEqualTo(Color.GREEN)
     }
 
     @Test fun resource_resolvesWithContext() {

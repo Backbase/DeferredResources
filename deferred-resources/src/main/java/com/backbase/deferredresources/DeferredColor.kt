@@ -2,6 +2,7 @@ package com.backbase.deferredresources
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Color
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -25,6 +26,12 @@ interface DeferredColor {
     @DataApi class Constant(
         @ColorInt private val value: Int
     ) : DeferredColor {
+
+        /**
+         * Convenience for wrapping a constant color value parsed from the given [colorString].
+         */
+        constructor(colorString: String) : this(Color.parseColor(colorString))
+
         /**
          * Always resolves to [value], ignoring [context].
          */
