@@ -11,13 +11,13 @@ In the logic layer, declare the resource values however you like, without worryi
 resolution:
 ```kotlin
 // Resource/attribute-based text and color:
-class LocalRepository : Repository {
+class LocalViewModel : MyViewModel {
     override fun getText(): DeferredText = DeferredText.Resource(R.string.someText)
     override fun getTextColor(): DeferredColor = DeferredColor.Attribute(R.attr.colorOnBackground)
 }
 
 // API-based text and color:
-class RemoteRepository(private val api: Api) : Repository {
+class RemoteViewModel(private val api: Api) : MyViewModel {
     override fun getText(): DeferredText = DeferredText.Constant(api.fetchText())
     override fun getTextColor(): DeferredColor = DeferredColor.Constant(api.fetchTextColor())
 }
@@ -25,8 +25,8 @@ class RemoteRepository(private val api: Api) : Repository {
 
 In the view layer, resolve a deferred resource to display it:
 ```kotlin
-val text: DeferredText = respository.getText()
-val textColor: DeferredColor = repository.getTextColor()
+val text: DeferredText = viewModel.getText()
+val textColor: DeferredColor = viewModel.getTextColor()
 textView.text = text.resolve(context)
 textView.setTextColor(textColor.resolve(context))
 ```
