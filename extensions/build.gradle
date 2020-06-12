@@ -38,4 +38,5 @@ dependencies {
     androidTestImplementation deps.androidTestRules
     androidTestImplementation deps.androidTestRunner
     androidTestImplementation deps.truth
+    androidTestImplementation deps.espresso
 }
