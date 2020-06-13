@@ -1,44 +1,58 @@
 package com.backbase.deferredresources.extensions
 
+import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.BoundedMatcher
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredText
-import org.hamcrest.Description
-import org.hamcrest.Matcher
+import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
 class TextViewTest {
 
-    @Test fun setText_displaysResolvedText() = onActivity(
-        execute = {
-            val deferred = DeferredText.Constant("Test")
-            view.setText(deferred)
-        },
-        assert = {
-            check(matches(withText("Test")))
-        }
-    )
+    @Test fun setText_displaysResolvedText() = onView { view ->
+        val deferred = DeferredText.Constant("Deferred")
+        view.setText(deferred)
 
-    private fun onActivity(execute: Activity.() -> Unit, assert: ViewInteraction.() -> Unit) {
+        assertThat(view.text).isEqualTo("Deferred")
+    }
+
+    @Test fun setText_withBufferType_displaysResolvedText() = onView { view ->
+        assertThat(view.editableText).isNull()
+
+        val deferred = DeferredText.Constant("Deferred")
+        view.setText(deferred, TextView.BufferType.EDITABLE)
+
+        assertThat(view.text.toString()).isEqualTo("Deferred")
+        assertThat(view.editableText).isNotNull()
+        assertThat(view.editableText.toString()).isEqualTo("Deferred")
+    }
+
+    @Test fun setHint_displaysResolvedHint() = onView { view ->
+        val deferred = DeferredText.Constant("Deferred")
+        view.setHint(deferred)
+
+        assertThat(view.hint).isEqualTo("Deferred")
+    }
+
+    @Test fun setTextColor_displaysResolvedColor() = onView { view ->
+        val deferred = DeferredColor.Constant(Color.GREEN)
+        view.setTextColor(deferred)
+
+        assertThat(view.currentTextColor).isEqualTo(Color.GREEN)
+    }
+
+    @Test fun setHintTextColor_displaysResolvedColor() = onView { view ->
+        val deferred = DeferredColor.Constant(Color.LTGRAY)
+        view.setHintTextColor(deferred)
+
+        assertThat(view.currentHintTextColor).isEqualTo(Color.LTGRAY)
+    }
+
+    private fun onView(test: (TextView) -> Unit) {
         val scenario = ActivityScenario.launch(Activity::class.java)
-        var matcher: Matcher<View>? = null
-        scenario.onActivity { activity ->
-            matcher = object : BoundedMatcher<View, TextView>(TextView::class.java) {
-                override fun matchesSafely(item: TextView) = item === activity.view
-                override fun describeTo(description: Description) {
-                    description.appendText("is ").appendValue(activity.view)
-                }
-            }
-            activity.execute()
-        }
-        onView(matcher!!).assert()
+        scenario.onActivity { test(it.view) }
     }
 
     class Activity : android.app.Activity() {

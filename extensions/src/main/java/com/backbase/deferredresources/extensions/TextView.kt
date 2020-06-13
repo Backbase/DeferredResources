@@ -22,6 +22,13 @@ fun TextView.setText(deferredText: DeferredText, type: TextView.BufferType) =
     setText(deferredText.resolve(context), type)
 
 /**
+ * Resolves [deferredHint] and sets the text to be displayed when the text of the TextView is empty.
+ */
+fun TextView.setHint(deferredHint: DeferredText) {
+    hint = deferredHint.resolve(context)
+}
+
+/**
  * Resolves [deferredColor] and sets the text color for all the states to be the resolved color.
  */
 fun TextView.setTextColor(deferredColor: DeferredColor) = setTextColor(deferredColor.resolve(context))
