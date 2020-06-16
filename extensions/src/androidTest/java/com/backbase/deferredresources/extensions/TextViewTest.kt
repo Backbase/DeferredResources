@@ -192,7 +192,7 @@ class TextViewTest {
 
     class Activity : android.app.Activity() {
 
-        lateinit var view: AppCompatTextView
+        lateinit var view: TextView
             private set
 
         override fun onCreate(savedInstanceState: Bundle?) {
