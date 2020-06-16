@@ -37,7 +37,7 @@ interface DeferredDimension {
         /**
          * Convenience for initializing with an integer [pxValue].
          */
-        constructor(pxValue: Int) : this(pxValue.toFloat())
+        constructor(@Px pxValue: Int) : this(pxValue.toFloat())
 
         /**
          * Rounds [pxValue] to an integer. If [pxValue] is non-zero but rounds to zero, returns 1 pixel. [context] is
