@@ -1,5 +1,5 @@
 # Deferred Resources
-[![](https://github.com/Backbase/DeferredResources/workflows/CI/badge.svg?branch=master)](https://github.com/Backbase/DeferredResources/actions?query=workflow%3ACI+branch%3Amaster)
+[![](https://github.com/Backbase/DeferredResources/workflows/CI/badge.svg?branch=main)](https://github.com/Backbase/DeferredResources/actions?query=workflow%3ACI+branch%3Amain)
 
 An Android library that decouples resource declaration (without Context) from resource resolution
 (with Context). This allows the resolver (Activity, Fragment, or View) to be agnostic to the source
