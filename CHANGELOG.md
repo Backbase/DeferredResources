@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.3.1
+_2020-06-17_
+
+Add the `@Px` annotation to the integer pixel value parameter of `DeferredDimension.Constant`'s
+convenience constructor.
+
 ## 0.3.0
 _2020-06-09_
 
