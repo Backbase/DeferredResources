@@ -8,6 +8,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import com.backbase.deferredresources.internal.EMPTY_TYPED_VALUE
 import dev.drewhamilton.extracare.DataApi
 
 /**
@@ -73,7 +74,7 @@ interface DeferredColor {
             val type = resolvedValue.type
             val data = resolvedValue.data
             // Clear for re-use:
-            resolvedValue.setTo(EMPTY_VALUE)
+            resolvedValue.setTo(EMPTY_TYPED_VALUE)
 
             if (isResolved && COLOR_TYPES.contains(type))
                 return data
@@ -88,8 +89,6 @@ interface DeferredColor {
                 TypedValue.TYPE_INT_COLOR_RGB4,
                 TypedValue.TYPE_INT_COLOR_ARGB4
             )
-
-            private val EMPTY_VALUE = TypedValue()
         }
     }
 }

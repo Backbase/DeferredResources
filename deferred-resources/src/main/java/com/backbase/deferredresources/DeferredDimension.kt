@@ -6,6 +6,7 @@ import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.DimenRes
 import androidx.annotation.Px
+import com.backbase.deferredresources.internal.EMPTY_TYPED_VALUE
 import com.backbase.deferredresources.internal.toSize
 import dev.drewhamilton.extracare.DataApi
 
@@ -129,7 +130,7 @@ interface DeferredDimension {
                 }
             } finally {
                 // Clear for re-use:
-                resolvedValue.setTo(EMPTY_VALUE)
+                resolvedValue.setTo(EMPTY_TYPED_VALUE)
             }
         }
 
@@ -139,10 +140,6 @@ interface DeferredDimension {
             "Attribute <$name> could not be resolved$infix in the given Context's theme"
         } catch (notFoundException: Resources.NotFoundException) {
             "Attribute <$resId> could not be found"
-        }
-
-        private companion object {
-            private val EMPTY_VALUE = TypedValue()
         }
     }
 }

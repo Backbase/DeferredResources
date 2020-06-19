@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.BoolRes
+import com.backbase.deferredresources.internal.EMPTY_TYPED_VALUE
 import dev.drewhamilton.extracare.DataApi
 
 /**
@@ -60,16 +61,12 @@ interface DeferredBoolean {
             val type = resolvedValue.type
             val data = resolvedValue.data
             // Clear for re-use:
-            resolvedValue.setTo(EMPTY_VALUE)
+            resolvedValue.setTo(EMPTY_TYPED_VALUE)
 
             if (isResolved && type == TypedValue.TYPE_INT_BOOLEAN)
                 return data != 0
             else
                 throw IllegalArgumentException("Attribute <$resId> could not be resolved to a boolean")
-        }
-
-        private companion object {
-            private val EMPTY_VALUE = TypedValue()
         }
     }
 }
