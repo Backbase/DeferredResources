@@ -26,4 +26,19 @@ class DeferredColorTest {
         val deferred = DeferredColor.Attribute(R.attr.colorPrimary)
         assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#212121"))
     }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun attribute_withUnknownAttribute_throwsException() {
+        val deferred = DeferredColor.Attribute(R.attr.colorPrimary)
+
+        // Default-theme context does not have <colorPrimary> attribute:
+        deferred.resolve(context)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun attribute_withWrongAttributeType_throwsException() {
+        val deferred = DeferredColor.Attribute(R.attr.isLightTheme)
+
+        deferred.resolve(AppCompatContext())
+    }
 }

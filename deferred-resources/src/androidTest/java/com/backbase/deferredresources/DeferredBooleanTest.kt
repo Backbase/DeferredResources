@@ -18,9 +18,26 @@ class DeferredBooleanTest {
 
     @Test fun attribute_resolvesWithContext() {
         val deferredDark = DeferredBoolean.Attribute(R.attr.isLightTheme)
-        assertThat(deferredDark.resolve(AppCompatContext(light = false))).isEqualTo(false)
+        val isDark = deferredDark.resolve(AppCompatContext(light = false))
+        assertThat(isDark).isEqualTo(false)
 
         val deferredLight = DeferredBoolean.Attribute(R.attr.isLightTheme)
-        assertThat(deferredLight.resolve(AppCompatContext(light = true))).isEqualTo(true)
+        val isLight = deferredLight.resolve(AppCompatContext(light = true))
+        assertThat(isLight).isEqualTo(true)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun attribute_withUnknownAttribute_throwsException() {
+        val deferred = DeferredBoolean.Attribute(R.attr.isLightTheme)
+
+        // Default-theme context does not have <isLightTheme> attribute:
+        deferred.resolve(context)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun attribute_withWrongAttributeType_throwsException() {
+        val deferred = DeferredBoolean.Attribute(R.attr.colorPrimary)
+
+        deferred.resolve(AppCompatContext())
     }
 }

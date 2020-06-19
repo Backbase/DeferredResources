@@ -1,11 +1,11 @@
 package com.backbase.deferredresources
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.BoolRes
 import com.backbase.deferredresources.internal.EMPTY_TYPED_VALUE
+import com.backbase.deferredresources.internal.createErrorMessage
 import dev.drewhamilton.extracare.DataApi
 
 /**
@@ -54,10 +54,10 @@ interface DeferredBoolean {
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a boolean.
          */
-        override fun resolve(context: Context) = context.theme.resolveBooleanAttribute(resId)
+        override fun resolve(context: Context) = context.resolveBooleanAttribute(resId)
 
-        private fun Resources.Theme.resolveBooleanAttribute(@AttrRes resId: Int): Boolean {
-            val isResolved = resolveAttribute(resId, resolvedValue, true)
+        private fun Context.resolveBooleanAttribute(@AttrRes resId: Int): Boolean {
+            val isResolved = theme.resolveAttribute(resId, resolvedValue, true)
             val type = resolvedValue.type
             val data = resolvedValue.data
             // Clear for re-use:
@@ -66,7 +66,7 @@ interface DeferredBoolean {
             if (isResolved && type == TypedValue.TYPE_INT_BOOLEAN)
                 return data != 0
             else
-                throw IllegalArgumentException("Attribute <$resId> could not be resolved to a boolean")
+                throw IllegalArgumentException(createErrorMessage(resId, "boolean", isResolved))
         }
     }
 }

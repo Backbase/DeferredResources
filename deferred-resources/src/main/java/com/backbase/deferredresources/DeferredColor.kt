@@ -1,7 +1,6 @@
 package com.backbase.deferredresources
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.Color
 import android.util.TypedValue
 import androidx.annotation.AttrRes
@@ -9,6 +8,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.backbase.deferredresources.internal.EMPTY_TYPED_VALUE
+import com.backbase.deferredresources.internal.createErrorMessage
 import dev.drewhamilton.extracare.DataApi
 
 /**
@@ -66,11 +66,11 @@ interface DeferredColor {
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
          */
-        override fun resolve(context: Context) = context.theme.resolveColorAttribute(resId)
+        override fun resolve(context: Context) = context.resolveColorAttribute(resId)
 
         @ColorInt
-        private fun Resources.Theme.resolveColorAttribute(@AttrRes resId: Int): Int {
-            val isResolved = resolveAttribute(resId, resolvedValue, true)
+        private fun Context.resolveColorAttribute(@AttrRes resId: Int): Int {
+            val isResolved = theme.resolveAttribute(resId, resolvedValue, true)
             val type = resolvedValue.type
             val data = resolvedValue.data
             // Clear for re-use:
@@ -79,7 +79,7 @@ interface DeferredColor {
             if (isResolved && COLOR_TYPES.contains(type))
                 return data
             else
-                throw IllegalArgumentException("Attribute <$resId> could not be resolved to a color")
+                throw IllegalArgumentException(createErrorMessage(resId, "color", isResolved))
         }
 
         private companion object {

@@ -1,12 +1,12 @@
 package com.backbase.deferredresources
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.DimenRes
 import androidx.annotation.Px
 import com.backbase.deferredresources.internal.EMPTY_TYPED_VALUE
+import com.backbase.deferredresources.internal.createErrorMessage
 import com.backbase.deferredresources.internal.toSize
 import dev.drewhamilton.extracare.DataApi
 
@@ -122,24 +122,14 @@ interface DeferredDimension {
         private fun Context.resolveDimensionAttribute(@AttrRes resId: Int): Float {
             try {
                 val isResolved = theme.resolveAttribute(resId, resolvedValue, true)
-                if (isResolved && resolvedValue.type == TypedValue.TYPE_DIMENSION) {
+                if (isResolved && resolvedValue.type == TypedValue.TYPE_DIMENSION)
                     return resolvedValue.getDimension(resources.displayMetrics)
-                } else {
-                    val errorMessage = createErrorMessage(resources, isResolved)
-                    throw IllegalArgumentException(errorMessage)
-                }
+                else
+                    throw IllegalArgumentException(createErrorMessage(resId, "dimension", isResolved))
             } finally {
                 // Clear for re-use:
                 resolvedValue.setTo(EMPTY_TYPED_VALUE)
             }
-        }
-
-        private fun createErrorMessage(resources: Resources, isResolved: Boolean) = try {
-            val name = resources.getResourceName(resId)
-            val infix = if (isResolved) " to a dimension" else ""
-            "Attribute <$name> could not be resolved$infix in the given Context's theme"
-        } catch (notFoundException: Resources.NotFoundException) {
-            "Attribute <$resId> could not be found"
         }
     }
 }

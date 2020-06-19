@@ -112,10 +112,18 @@ class DeferredDimensionTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun attributeResolveExact_withInvalidAttribute_throwsException() {
+    fun attributeResolveExact_withUnknownAttribute_throwsException() {
         val deferred = DeferredDimension.Attribute(R.attr.actionBarSize)
 
+        // Default-theme context does not have <actionBarSize> attribute:
         deferred.resolveExact(context)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun attributeResolveExact_withWrongAttributeType_throwsException() {
+        val deferred = DeferredDimension.Attribute(R.attr.isLightTheme)
+
+        deferred.resolveExact(AppCompatContext())
     }
     //endregion
 
