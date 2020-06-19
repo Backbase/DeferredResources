@@ -63,6 +63,17 @@ public abstract interface class com/backbase/deferredresources/DeferredDimension
 	public abstract fun resolveExact (Landroid/content/Context;)F
 }
 
+public final class com/backbase/deferredresources/DeferredDimension$Attribute : com/backbase/deferredresources/DeferredDimension {
+	public static final field Companion Lcom/backbase/deferredresources/DeferredDimension$Attribute$Companion;
+	public fun <init> (I)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolveAsOffset (Landroid/content/Context;)I
+	public fun resolveAsSize (Landroid/content/Context;)I
+	public fun resolveExact (Landroid/content/Context;)F
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/backbase/deferredresources/DeferredDimension$Constant : com/backbase/deferredresources/DeferredDimension {
 	public fun <init> (F)V
 	public fun <init> (I)V

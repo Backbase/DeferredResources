@@ -7,12 +7,26 @@ import android.content.ContextWrapper
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.test.platform.app.InstrumentationRegistry
+import com.backbase.deferredresources.test.R
 
 /**
  * Quick access to the test context.
  */
-internal val context get() = InstrumentationRegistry.getInstrumentation().context
+internal val context: Context
+    get() = InstrumentationRegistry.getInstrumentation().context
+
+/**
+ * Quick access to the test context wrapped in an AppCompat theme.
+ */
+@Suppress("TestFunctionName") // Factory
+internal fun AppCompatContext(
+    light: Boolean = false
+): Context = ContextThemeWrapper(
+    context,
+    if (light) R.style.Theme_AppCompat_Light else R.style.Theme_AppCompat
+)
 
 //region Configuration
 internal fun Context.compatCreateConfigurationContext(overrideConfiguration: Configuration) =
