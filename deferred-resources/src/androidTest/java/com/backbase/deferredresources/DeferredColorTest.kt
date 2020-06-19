@@ -23,8 +23,7 @@ class DeferredColorTest {
     }
 
     @Test fun attribute_resolvesWithContext() {
-        context.setTheme(R.style.Theme_AppCompat)
         val deferred = DeferredColor.Attribute(R.attr.colorPrimary)
-        assertThat(deferred.resolve(context)).isEqualTo(Color.parseColor("#212121"))
+        assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#212121"))
     }
 }
