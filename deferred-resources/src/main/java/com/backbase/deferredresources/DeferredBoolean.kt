@@ -1,10 +1,10 @@
 package com.backbase.deferredresources
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.BoolRes
+import com.backbase.deferredresources.internal.resolveAttribute
 import dev.drewhamilton.extracare.DataApi
 
 /**
@@ -46,30 +46,18 @@ interface DeferredBoolean {
     ) : DeferredBoolean {
 
         // Re-used every time the boolean is resolved, for efficiency
-        private val resolvedValue = TypedValue()
+        private val reusedTypedValue = TypedValue()
 
         /**
          * Resolve [resId] to a boolean with the given [context]'s theme.
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a boolean.
          */
-        override fun resolve(context: Context) = context.theme.resolveBooleanAttribute(resId)
+        override fun resolve(context: Context) = context.resolveBooleanAttribute(resId)
 
-        private fun Resources.Theme.resolveBooleanAttribute(@AttrRes resId: Int): Boolean {
-            val isResolved = resolveAttribute(resId, resolvedValue, true)
-            val type = resolvedValue.type
-            val data = resolvedValue.data
-            // Clear for re-use:
-            resolvedValue.setTo(EMPTY_VALUE)
-
-            if (isResolved && type == TypedValue.TYPE_INT_BOOLEAN)
-                return data != 0
-            else
-                throw IllegalArgumentException("Attribute <$resId> could not be resolved to a boolean")
-        }
-
-        private companion object {
-            private val EMPTY_VALUE = TypedValue()
-        }
+        private fun Context.resolveBooleanAttribute(@AttrRes resId: Int): Boolean =
+            resolveAttribute(resId, "boolean", reusedTypedValue, TypedValue.TYPE_INT_BOOLEAN) {
+                data != 0
+            }
     }
 }

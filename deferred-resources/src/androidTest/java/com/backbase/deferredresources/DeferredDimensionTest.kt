@@ -1,8 +1,10 @@
 package com.backbase.deferredresources
 
+import androidx.annotation.Px
 import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
+import kotlin.math.roundToInt
 
 class DeferredDimensionTest {
 
@@ -89,4 +91,47 @@ class DeferredDimensionTest {
         assertThat(deferred.resolveExact(context)).isEqualTo(oneQuarterDpAsPx)
     }
     //endregion
+
+    //region Attribute
+    @Test fun attributeResolveAsSize_resolvesAsPxSize() {
+        val deferred = DeferredDimension.Attribute(R.attr.actionBarSize)
+
+        assertThat(deferred.resolveAsSize(AppCompatContext())).isEqualTo(56.dp)
+    }
+
+    @Test fun attributeResolveAsOffset_resolvesAsPxInt() {
+        val deferred = DeferredDimension.Attribute(R.attr.actionBarSize)
+
+        assertThat(deferred.resolveAsOffset(AppCompatContext())).isEqualTo(56.dp)
+    }
+
+    @Test fun attributeResolveExact_resolvesExactPixels() {
+        val deferred = DeferredDimension.Attribute(R.attr.actionBarSize)
+
+        assertThat(deferred.resolveExact(AppCompatContext())).isEqualTo(56f.dp)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun attributeResolveExact_withUnknownAttribute_throwsException() {
+        val deferred = DeferredDimension.Attribute(R.attr.actionBarSize)
+
+        // Default-theme context does not have <actionBarSize> attribute:
+        deferred.resolveExact(context)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun attributeResolveExact_withWrongAttributeType_throwsException() {
+        val deferred = DeferredDimension.Attribute(R.attr.isLightTheme)
+
+        deferred.resolveExact(AppCompatContext())
+    }
+    //endregion
+
+    @get:Px
+    private val Int.dp: Int
+        get() = toFloat().dp.roundToInt()
+
+    @get:Px
+    private val Float.dp: Float
+        get() = this * context.resources.displayMetrics.density
 }

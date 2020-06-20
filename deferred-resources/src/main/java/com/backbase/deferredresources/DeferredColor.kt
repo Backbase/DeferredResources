@@ -1,13 +1,13 @@
 package com.backbase.deferredresources
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.Color
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import com.backbase.deferredresources.internal.resolveAttribute
 import dev.drewhamilton.extracare.DataApi
 
 /**
@@ -58,38 +58,23 @@ interface DeferredColor {
     ) : DeferredColor {
 
         // Re-used every time the color is resolved, for efficiency
-        private val resolvedValue = TypedValue()
+        private val reusedTypedValue = TypedValue()
 
         /**
          * Resolve [resId] to a [ColorInt] with the given [context]'s theme.
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
          */
-        override fun resolve(context: Context) = context.theme.resolveColorAttribute(resId)
+        override fun resolve(context: Context) = context.resolveColorAttribute(resId)
 
         @ColorInt
-        private fun Resources.Theme.resolveColorAttribute(@AttrRes resId: Int): Int {
-            val isResolved = resolveAttribute(resId, resolvedValue, true)
-            val type = resolvedValue.type
-            val data = resolvedValue.data
-            // Clear for re-use:
-            resolvedValue.setTo(EMPTY_VALUE)
-
-            if (isResolved && COLOR_TYPES.contains(type))
-                return data
-            else
-                throw IllegalArgumentException("Attribute <$resId> could not be resolved to a color")
-        }
-
-        private companion object {
-            private val COLOR_TYPES = setOf(
-                TypedValue.TYPE_INT_COLOR_RGB8,
-                TypedValue.TYPE_INT_COLOR_ARGB8,
-                TypedValue.TYPE_INT_COLOR_RGB4,
-                TypedValue.TYPE_INT_COLOR_ARGB4
-            )
-
-            private val EMPTY_VALUE = TypedValue()
-        }
+        private fun Context.resolveColorAttribute(@AttrRes resId: Int): Int =
+            resolveAttribute(
+                resId, "color", reusedTypedValue,
+                TypedValue.TYPE_INT_COLOR_RGB8, TypedValue.TYPE_INT_COLOR_ARGB8,
+                TypedValue.TYPE_INT_COLOR_RGB4, TypedValue.TYPE_INT_COLOR_ARGB4
+            ) {
+                data
+            }
     }
 }

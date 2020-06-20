@@ -1,10 +1,13 @@
 package com.backbase.deferredresources
 
 import android.content.Context
+import android.util.TypedValue
+import androidx.annotation.AttrRes
 import androidx.annotation.DimenRes
 import androidx.annotation.Px
+import com.backbase.deferredresources.internal.resolveAttribute
+import com.backbase.deferredresources.internal.toSize
 import dev.drewhamilton.extracare.DataApi
-import kotlin.math.roundToInt
 
 /**
  * A wrapper for resolving an integer dimension on demand.
@@ -43,15 +46,7 @@ interface DeferredDimension {
          * Rounds [pxValue] to an integer. If [pxValue] is non-zero but rounds to zero, returns 1 pixel. [context] is
          * ignored.
          */
-        @Px override fun resolveAsSize(context: Context): Int {
-            val rounded = pxValue.roundToInt()
-            return when {
-                rounded != 0 -> rounded
-                pxValue == 0f -> 0
-                pxValue > 0f -> 1
-                else -> -1
-            }
-        }
+        @Px override fun resolveAsSize(context: Context): Int = pxValue.toSize()
 
         /**
          * Truncates [pxValue] to an integer pixel value. [context] is ignored.
@@ -84,5 +79,48 @@ interface DeferredDimension {
          * Resolve [resId] to a pixel dimension with the given [context].
          */
         @Px override fun resolveExact(context: Context): Float = context.resources.getDimension(resId)
+    }
+
+    /**
+     * A wrapper for an [AttrRes] [resId] reference to a dimension.
+     */
+    @DataApi class Attribute(
+        @AttrRes private val resId: Int
+    ) : DeferredDimension {
+
+        // Re-used every time the dimension is resolved, for efficiency
+        private val reusedTypedValue = TypedValue()
+
+        /**
+         * Resolve [resId] to a [Px] int for use as a size with the given [context]'s theme. The exact value is rounded,
+         * and non-zero exact values are ensured to be at least one pixel in size.
+         *
+         * @throws IllegalArgumentException if [resId] cannot be resolved to a dimension.
+         */
+        @Px
+        override fun resolveAsSize(context: Context): Int = resolveExact(context).toSize()
+
+        /**
+         * Resolve [resId] to a [Px] int for use as an offset with the given [context]'s theme. The exact value is
+         * truncated to an integer.
+         *
+         * @throws IllegalArgumentException if [resId] cannot be resolved to a dimension.
+         */
+        @Px
+        override fun resolveAsOffset(context: Context): Int = resolveExact(context).toInt()
+
+        /**
+         * Resolve [resId] to an exact [Px] value for use as a size with the given [context]'s theme.
+         *
+         * @throws IllegalArgumentException if [resId] cannot be resolved to a dimension.
+         */
+        @Px
+        override fun resolveExact(context: Context): Float = context.resolveDimensionAttribute(resId)
+
+        @Px
+        private fun Context.resolveDimensionAttribute(@AttrRes resId: Int): Float =
+            resolveAttribute(resId, "dimension", reusedTypedValue, TypedValue.TYPE_DIMENSION) {
+                getDimension(resources.displayMetrics)
+            }
     }
 }

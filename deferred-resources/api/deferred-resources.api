@@ -3,7 +3,6 @@ public abstract interface class com/backbase/deferredresources/DeferredBoolean {
 }
 
 public final class com/backbase/deferredresources/DeferredBoolean$Attribute : com/backbase/deferredresources/DeferredBoolean {
-	public static final field Companion Lcom/backbase/deferredresources/DeferredBoolean$Attribute$Companion;
 	public fun <init> (I)V
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
@@ -32,7 +31,6 @@ public abstract interface class com/backbase/deferredresources/DeferredColor {
 }
 
 public final class com/backbase/deferredresources/DeferredColor$Attribute : com/backbase/deferredresources/DeferredColor {
-	public static final field Companion Lcom/backbase/deferredresources/DeferredColor$Attribute$Companion;
 	public fun <init> (I)V
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
@@ -61,6 +59,16 @@ public abstract interface class com/backbase/deferredresources/DeferredDimension
 	public abstract fun resolveAsOffset (Landroid/content/Context;)I
 	public abstract fun resolveAsSize (Landroid/content/Context;)I
 	public abstract fun resolveExact (Landroid/content/Context;)F
+}
+
+public final class com/backbase/deferredresources/DeferredDimension$Attribute : com/backbase/deferredresources/DeferredDimension {
+	public fun <init> (I)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolveAsOffset (Landroid/content/Context;)I
+	public fun resolveAsSize (Landroid/content/Context;)I
+	public fun resolveExact (Landroid/content/Context;)F
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/backbase/deferredresources/DeferredDimension$Constant : com/backbase/deferredresources/DeferredDimension {
