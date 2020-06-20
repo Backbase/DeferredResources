@@ -31,7 +31,6 @@ public abstract interface class com/backbase/deferredresources/DeferredColor {
 }
 
 public final class com/backbase/deferredresources/DeferredColor$Attribute : com/backbase/deferredresources/DeferredColor {
-	public static final field Companion Lcom/backbase/deferredresources/DeferredColor$Attribute$Companion;
 	public fun <init> (I)V
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I

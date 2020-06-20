@@ -2,6 +2,7 @@ package com.backbase.deferredresources.internal
 
 import android.content.Context
 import android.content.res.Resources
+import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.core.os.ConfigurationCompat
 import java.util.Locale
@@ -13,11 +14,39 @@ internal val Context.primaryLocale: Locale
     get() = ConfigurationCompat.getLocales(resources.configuration)[0]
 
 /**
- * Create an error message after failing to resolve an attribute. Uses [context] to attempt to get the name of
- * [resId]. Includes [attributeTypeName] if [isResolved] is true to indicate that [resId] was resolved but was the wrong
- * type.
+ * Use a [Context] to resolve a [resId] attribute. [toTypeSafeResult] can assume the [TypedValue] has been filled and
+ * has been validated as having one of the [expectedTypes].
+ *
+ * [reusedTypedValue] is filled with the resolved attribute information and is cleared after [toTypeSafeResult] returns.
+ * As the name suggests, the same [TypedValue] instance can then be reused for multiple calls to this function.
+ *
+ * Throws [IllegalArgumentException] if the attribute cannot be resolved or if it is resolved as a type other than
+ * [expectedTypes]. [attributeTypeName] is used to create a helpful error message.
  */
-internal fun Context.createErrorMessage(
+internal inline fun <T> Context.resolveAttribute(
+    @AttrRes resId: Int,
+    attributeTypeName: String,
+    reusedTypedValue: TypedValue,
+    vararg expectedTypes: Int,
+    toTypeSafeResult: TypedValue.() -> T
+) : T {
+    try {
+        val isResolved = theme.resolveAttribute(resId, reusedTypedValue, true)
+        if (isResolved && expectedTypes.contains(reusedTypedValue.type))
+            return reusedTypedValue.toTypeSafeResult()
+        else
+            throw IllegalArgumentException(createErrorMessage(resId, attributeTypeName, isResolved))
+    } finally {
+        // Clear for re-use:
+        reusedTypedValue.setTo(EMPTY_TYPED_VALUE)
+    }
+}
+
+/**
+ * Create an error message after failing to resolve a [resId] attribute. Includes [attributeTypeName] if [isResolved] is
+ * true to indicate that [resId] was resolved but was the wrong type.
+ */
+private fun Context.createErrorMessage(
     @AttrRes resId: Int,
     attributeTypeName: String,
     isResolved: Boolean
@@ -32,3 +61,10 @@ internal fun Context.createErrorMessage(
 } catch (notFoundException: Resources.NotFoundException) {
     "Attribute <$resId> could not be found with <$this>"
 }
+
+/**
+ * An empty [TypedValue] used to reset "Attribute" implementations' internal [TypedValue]s after resolution.
+ *
+ * Mutating this value is incorrect behavior and may cause unexpected bugs.
+ */
+private val EMPTY_TYPED_VALUE: TypedValue = TypedValue()

@@ -5,8 +5,7 @@ import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.DimenRes
 import androidx.annotation.Px
-import com.backbase.deferredresources.internal.EMPTY_TYPED_VALUE
-import com.backbase.deferredresources.internal.createErrorMessage
+import com.backbase.deferredresources.internal.resolveAttribute
 import com.backbase.deferredresources.internal.toSize
 import dev.drewhamilton.extracare.DataApi
 
@@ -90,7 +89,7 @@ interface DeferredDimension {
     ) : DeferredDimension {
 
         // Re-used every time the dimension is resolved, for efficiency
-        private val resolvedValue = TypedValue()
+        private val reusedTypedValue = TypedValue()
 
         /**
          * Resolve [resId] to a [Px] int for use as a size with the given [context]'s theme. The exact value is rounded,
@@ -119,17 +118,9 @@ interface DeferredDimension {
         override fun resolveExact(context: Context): Float = context.resolveDimensionAttribute(resId)
 
         @Px
-        private fun Context.resolveDimensionAttribute(@AttrRes resId: Int): Float {
-            try {
-                val isResolved = theme.resolveAttribute(resId, resolvedValue, true)
-                if (isResolved && resolvedValue.type == TypedValue.TYPE_DIMENSION)
-                    return resolvedValue.getDimension(resources.displayMetrics)
-                else
-                    throw IllegalArgumentException(createErrorMessage(resId, "dimension", isResolved))
-            } finally {
-                // Clear for re-use:
-                resolvedValue.setTo(EMPTY_TYPED_VALUE)
+        private fun Context.resolveDimensionAttribute(@AttrRes resId: Int): Float =
+            resolveAttribute(resId, "dimension", reusedTypedValue, TypedValue.TYPE_DIMENSION) {
+                getDimension(resources.displayMetrics)
             }
-        }
     }
 }

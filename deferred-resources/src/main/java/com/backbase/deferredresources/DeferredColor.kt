@@ -7,8 +7,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
-import com.backbase.deferredresources.internal.EMPTY_TYPED_VALUE
-import com.backbase.deferredresources.internal.createErrorMessage
+import com.backbase.deferredresources.internal.resolveAttribute
 import dev.drewhamilton.extracare.DataApi
 
 /**
@@ -59,7 +58,7 @@ interface DeferredColor {
     ) : DeferredColor {
 
         // Re-used every time the color is resolved, for efficiency
-        private val resolvedValue = TypedValue()
+        private val reusedTypedValue = TypedValue()
 
         /**
          * Resolve [resId] to a [ColorInt] with the given [context]'s theme.
@@ -69,26 +68,13 @@ interface DeferredColor {
         override fun resolve(context: Context) = context.resolveColorAttribute(resId)
 
         @ColorInt
-        private fun Context.resolveColorAttribute(@AttrRes resId: Int): Int {
-            val isResolved = theme.resolveAttribute(resId, resolvedValue, true)
-            val type = resolvedValue.type
-            val data = resolvedValue.data
-            // Clear for re-use:
-            resolvedValue.setTo(EMPTY_TYPED_VALUE)
-
-            if (isResolved && COLOR_TYPES.contains(type))
-                return data
-            else
-                throw IllegalArgumentException(createErrorMessage(resId, "color", isResolved))
-        }
-
-        private companion object {
-            private val COLOR_TYPES = setOf(
-                TypedValue.TYPE_INT_COLOR_RGB8,
-                TypedValue.TYPE_INT_COLOR_ARGB8,
-                TypedValue.TYPE_INT_COLOR_RGB4,
-                TypedValue.TYPE_INT_COLOR_ARGB4
-            )
-        }
+        private fun Context.resolveColorAttribute(@AttrRes resId: Int): Int =
+            resolveAttribute(
+                resId, "color", reusedTypedValue,
+                TypedValue.TYPE_INT_COLOR_RGB8, TypedValue.TYPE_INT_COLOR_ARGB8,
+                TypedValue.TYPE_INT_COLOR_RGB4, TypedValue.TYPE_INT_COLOR_ARGB4
+            ) {
+                data
+            }
     }
 }
