@@ -15,6 +15,11 @@ interface DeferredText {
     fun resolve(context: Context): CharSequence
 
     /**
+     * Resolve the text as a string.
+     */
+    fun resolveAsString(context: Context) = resolve(context).toString()
+
+    /**
      * A wrapper for a constant text [value].
      */
     @DataApi class Constant(
