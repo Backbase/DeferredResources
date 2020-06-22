@@ -60,7 +60,7 @@ interface DeferredTypeface {
          * Resolve [id] to a typeface asynchronously with the given [context]. [fontCallback] will be triggered on the
          * [handler]'s thread. If [handler] is null, [fontCallback] will be triggered on the UI thread.
          */
-        override fun resolve(context: Context, fontCallback: ResourcesCompat.FontCallback, handler: Handler?) =
+        override fun resolve(context: Context, fontCallback: ResourcesCompat.FontCallback, handler: Handler?): Unit =
             ResourcesCompat.getFont(context, id, fontCallback, handler)
     }
 

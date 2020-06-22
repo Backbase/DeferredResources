@@ -35,7 +35,7 @@ interface DeferredColor {
         /**
          * Always resolves to [value], ignoring [context].
          */
-        override fun resolve(context: Context) = value
+        @ColorInt override fun resolve(context: Context): Int = value
     }
 
     /**
@@ -47,7 +47,7 @@ interface DeferredColor {
         /**
          * Resolve [resId] to a [ColorInt] with the given [context].
          */
-        override fun resolve(context: Context) = ContextCompat.getColor(context, resId)
+        @ColorInt override fun resolve(context: Context): Int = ContextCompat.getColor(context, resId)
     }
 
     /**
@@ -65,10 +65,9 @@ interface DeferredColor {
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
          */
-        override fun resolve(context: Context) = context.resolveColorAttribute(resId)
+        @ColorInt override fun resolve(context: Context): Int = context.resolveColorAttribute(resId)
 
-        @ColorInt
-        private fun Context.resolveColorAttribute(@AttrRes resId: Int): Int =
+        @ColorInt private fun Context.resolveColorAttribute(@AttrRes resId: Int): Int =
             resolveAttribute(
                 resId, "color", reusedTypedValue,
                 TypedValue.TYPE_INT_COLOR_RGB8, TypedValue.TYPE_INT_COLOR_ARGB8,

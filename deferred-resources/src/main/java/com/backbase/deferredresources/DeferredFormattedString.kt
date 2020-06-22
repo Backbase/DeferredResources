@@ -24,7 +24,7 @@ interface DeferredFormattedString {
         /**
          * Always resolves [format] with the supplied [formatArgs] and the primary locale from [context].
          */
-        override fun resolve(context: Context, vararg formatArgs: Any) =
+        override fun resolve(context: Context, vararg formatArgs: Any): String  =
             String.format(context.primaryLocale, format, *formatArgs)
     }
 
@@ -38,6 +38,6 @@ interface DeferredFormattedString {
         /**
          * Resolve [resId] to a formatted string with the given [context] and [formatArgs].
          */
-        override fun resolve(context: Context, vararg formatArgs: Any) = context.getString(resId, *formatArgs)
+        override fun resolve(context: Context, vararg formatArgs: Any): String  = context.getString(resId, *formatArgs)
     }
 }
