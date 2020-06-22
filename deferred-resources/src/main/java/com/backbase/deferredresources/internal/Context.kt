@@ -29,7 +29,7 @@ internal inline fun <T> Context.resolveAttribute(
     reusedTypedValue: TypedValue,
     vararg expectedTypes: Int,
     toTypeSafeResult: TypedValue.() -> T
-) : T {
+): T {
     try {
         val isResolved = theme.resolveAttribute(resId, reusedTypedValue, true)
         if (isResolved && expectedTypes.contains(reusedTypedValue.type))

@@ -26,7 +26,7 @@ interface DeferredBoolean {
         /**
          * Always resolves to [value], ignoring [context].
          */
-        override fun resolve(context: Context) = value
+        override fun resolve(context: Context): Boolean = value
     }
 
     /**
@@ -38,7 +38,7 @@ interface DeferredBoolean {
         /**
          * Resolve [resId] to a boolean with the given [context].
          */
-        override fun resolve(context: Context) = context.resources.getBoolean(resId)
+        override fun resolve(context: Context): Boolean = context.resources.getBoolean(resId)
     }
 
     @DataApi class Attribute(
@@ -53,7 +53,7 @@ interface DeferredBoolean {
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a boolean.
          */
-        override fun resolve(context: Context) = context.resolveBooleanAttribute(resId)
+        override fun resolve(context: Context): Boolean = context.resolveBooleanAttribute(resId)
 
         private fun Context.resolveBooleanAttribute(@AttrRes resId: Int): Boolean =
             resolveAttribute(resId, "boolean", reusedTypedValue, TypedValue.TYPE_INT_BOOLEAN) {

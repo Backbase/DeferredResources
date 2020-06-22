@@ -25,7 +25,7 @@ interface DeferredDrawable {
         /**
          * Always resolves to [value], ignoring [context].
          */
-        override fun resolve(context: Context) = value
+        override fun resolve(context: Context): Drawable? = value
     }
 
     /**

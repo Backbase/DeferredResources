@@ -86,7 +86,7 @@ interface DeferredPlurals {
          * @see android.content.res.Resources.getQuantityString
          * @see android.content.res.Resources.getQuantityText
          */
-        override fun resolve(context: Context, quantity: Int) = when (type) {
+        override fun resolve(context: Context, quantity: Int): CharSequence = when (type) {
             Type.STRING -> context.resources.getQuantityString(resId, quantity)
             Type.TEXT -> context.resources.getQuantityText(resId, quantity)
         }

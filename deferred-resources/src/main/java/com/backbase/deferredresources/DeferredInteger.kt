@@ -23,7 +23,7 @@ interface DeferredInteger {
         /**
          * Always resolves to [value], ignoring [context].
          */
-        override fun resolve(context: Context) = value
+        override fun resolve(context: Context): Int = value
     }
 
     /**
@@ -35,6 +35,6 @@ interface DeferredInteger {
         /**
          * Resolve [resId] to an integer with the given [context].
          */
-        override fun resolve(context: Context) = context.resources.getInteger(resId)
+        override fun resolve(context: Context): Int = context.resources.getInteger(resId)
     }
 }

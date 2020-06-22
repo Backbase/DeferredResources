@@ -80,7 +80,7 @@ interface DeferredFormattedPlurals {
         /**
          * Resolve [resId] to a formatted string with the given [context], [quantity], and [formatArgs].
          */
-        override fun resolve(context: Context, quantity: Int, vararg formatArgs: Any) =
+        override fun resolve(context: Context, quantity: Int, vararg formatArgs: Any): String =
             context.resources.getQuantityString(resId, quantity, *formatArgs)
     }
 }
