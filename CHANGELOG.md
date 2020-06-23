@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.4.0
+_2020-06-23_
+
+Add `DeferredDimension.Attribute` to support dimension attribute resolution. Add
+`DeferredText.resolveToString` as a convenience for converting the resolve CharSequence to a string.
+
+Update minimum supported Java version to Java 8.
+
 ## 0.3.1
 _2020-06-17_
 
