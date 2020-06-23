@@ -7,7 +7,7 @@ import org.junit.Test
 
 class DeferredTextUtilsTest {
 
-    @Test fun resolveAsString_returnsCharSequenceToString() {
+    @Test fun resolveToString_returnsCharSequenceToString() {
         val deferred = DeferredText.Constant(FakeCharSequence("Test string"))
 
         assertThat(deferred.resolveToString(context)).isEqualTo(FakeCharSequence.TO_STRING)
