@@ -338,6 +338,10 @@ public final class com/backbase/deferredresources/drawable/DeferredColorDrawable
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/backbase/deferredresources/text/DeferredTextUtils {
+	public static final fun resolveToString (Lcom/backbase/deferredresources/DeferredText;Landroid/content/Context;)Ljava/lang/String;
+}
+
 public final class com/backbase/deferredresources/text/FormattedDeferredPlurals : com/backbase/deferredresources/DeferredPlurals {
 	public fun <init> (Lcom/backbase/deferredresources/DeferredFormattedPlurals;[Ljava/lang/Object;)V
 	public fun equals (Ljava/lang/Object;)Z
