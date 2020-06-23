@@ -39,7 +39,7 @@ buildscript {
 
 ext {
     publishGroup = 'com.backbase.oss.deferredresources'
-    libraryVersion = '0.4.0'
+    libraryVersion = '0.5.0-SNAPSHOT'
     minSdk = 14
     targetSdk = 29
 }
