@@ -1,3 +1,5 @@
+@file:JvmName("ViewDeferredUtils")
+
 package com.backbase.deferredresources.extensions
 
 import android.view.View

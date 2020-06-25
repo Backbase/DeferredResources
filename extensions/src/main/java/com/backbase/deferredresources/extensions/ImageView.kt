@@ -1,3 +1,5 @@
+@file:JvmName("ImageViewDeferredUtils")
+
 package com.backbase.deferredresources.extensions
 
 import android.graphics.PorterDuff

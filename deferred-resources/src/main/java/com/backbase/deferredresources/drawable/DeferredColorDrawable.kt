@@ -10,8 +10,7 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * Convert a [DeferredColor] to a [DeferredDrawable] by wrapping the resolved color in a [ColorDrawable].
  */
-@JvmSynthetic
-fun DeferredColor.asDrawable() = DeferredColorDrawable(this)
+@JvmSynthetic fun DeferredColor.asDrawable() = DeferredColorDrawable(this)
 
 /**
  * Convert a [DeferredColor] to a [DeferredDrawable] by wrapping the resolved color in a [ColorDrawable].

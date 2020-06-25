@@ -1,3 +1,5 @@
+@file:JvmName("TextViewDeferredUtils")
+
 package com.backbase.deferredresources.extensions
 
 import android.util.TypedValue

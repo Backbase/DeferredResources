@@ -1,0 +1,54 @@
+public final class com/backbase/deferredresources/extensions/ImageViewDeferredUtils {
+	public static final fun setColorFilter (Landroid/widget/ImageView;Lcom/backbase/deferredresources/DeferredColor;)V
+	public static final fun setColorFilter (Landroid/widget/ImageView;Lcom/backbase/deferredresources/DeferredColor;Landroid/graphics/PorterDuff$Mode;)V
+	public static final fun setImageDrawable (Landroid/widget/ImageView;Lcom/backbase/deferredresources/DeferredDrawable;)V
+}
+
+public final class com/backbase/deferredresources/extensions/TextViewDeferredUtils {
+	public static final fun setAutoSizeTextTypeUniformWithConfiguration (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setFirstBaselineToTopHeight (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setHeight (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setHint (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredText;)V
+	public static final fun setHintTextColor (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredColor;)V
+	public static final fun setLastBaselineToBottomHeight (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setLineHeight (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setMaxHeight (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setMaxWidth (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setMinHeight (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setMinWidth (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setText (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredText;)V
+	public static final fun setText (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredText;Landroid/widget/TextView$BufferType;)V
+	public static final fun setTextColor (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredColor;)V
+	public static final fun setTextSize (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setTypeface (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredTypeface;)V
+	public static final fun setTypeface (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredTypeface;I)V
+	public static final fun setWidth (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
+}
+
+public final class com/backbase/deferredresources/extensions/ViewDeferredUtils {
+	public static final fun offsetLeftAndRight (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun offsetTopAndBottom (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun scrollBy (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static synthetic fun scrollBy$default (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;ILjava/lang/Object;)V
+	public static final fun setBackground (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDrawable;)V
+	public static final fun setBackgroundColor (Landroid/view/View;Lcom/backbase/deferredresources/DeferredColor;)V
+	public static final fun setCameraDistance (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setElevation (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setFadingEdgeLength (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setMinimumHeight (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setMinimumWidth (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setPadding (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static synthetic fun setPadding$default (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;ILjava/lang/Object;)V
+	public static final fun setPaddingRelative (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static synthetic fun setPaddingRelative$default (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;ILjava/lang/Object;)V
+	public static final fun setScrollX (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setScrollY (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setTranslationX (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setTranslationY (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setTranslationZ (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setX (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setY (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setZ (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun showContextMenu (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;)Z
+}
+
