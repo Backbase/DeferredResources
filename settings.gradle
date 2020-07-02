@@ -1,4 +1,4 @@
 rootProject.name='Deferred Resources'
 
-include ':deferred-resources', ':extensions'
+include ':deferred-resources', ':view-extensions'
 include ':demo'
