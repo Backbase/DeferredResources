@@ -121,6 +121,7 @@ class TextViewTest {
         val deferred = DeferredDimension.Constant(pxValue = 21)
         setMinHeight(deferred)
 
+        assumeFalse("Cannot verify min height on API < 16", Build.VERSION.SDK_INT < 16)
         assertThat(minHeight).isEqualTo(21)
     }
 
@@ -128,6 +129,7 @@ class TextViewTest {
         val deferred = DeferredDimension.Constant(pxValue = 23)
         setMaxHeight(deferred)
 
+        assumeFalse("Cannot verify max height on API < 16", Build.VERSION.SDK_INT < 16)
         assertThat(maxHeight).isEqualTo(23)
     }
 
@@ -145,6 +147,7 @@ class TextViewTest {
         val deferred = DeferredDimension.Constant(pxValue = 27)
         setMinWidth(deferred)
 
+        assumeFalse("Cannot verify min width on API < 16", Build.VERSION.SDK_INT < 16)
         assertThat(minWidth).isEqualTo(27)
     }
 
@@ -152,6 +155,7 @@ class TextViewTest {
         val deferred = DeferredDimension.Constant(pxValue = 29)
         setMaxWidth(deferred)
 
+        assumeFalse("Cannot verify max width on API < 16", Build.VERSION.SDK_INT < 16)
         assertThat(maxWidth).isEqualTo(29)
     }
 
@@ -169,6 +173,7 @@ class TextViewTest {
         val deferredAdd = DeferredDimension.Constant(pxValue = 32.1f)
         setLineSpacing(deferredAdd, 2f)
 
+        assumeFalse("Cannot verify line spacing on API < 16", Build.VERSION.SDK_INT < 16)
         assertThat(lineSpacingExtra).isEqualTo(32.1f)
         assertThat(lineSpacingMultiplier).isEqualTo(2f)
     }

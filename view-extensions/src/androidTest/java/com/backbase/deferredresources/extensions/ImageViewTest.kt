@@ -4,11 +4,13 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.drawable.asDrawable
 import com.google.common.truth.Truth.assertThat
+import org.junit.Assume.assumeFalse
 import org.junit.Test
 
 class ImageViewTest {
@@ -25,6 +27,7 @@ class ImageViewTest {
         val deferred = DeferredColor.Constant(Color.YELLOW)
         setColorFilter(deferred)
 
+        assumeFalse("Cannot verify color filter on API < 16", Build.VERSION.SDK_INT < 16)
         val colorFilter = colorFilter as PorterDuffColorFilter
         assertThat(colorFilter.getMode()).isEqualTo(PorterDuff.Mode.SRC_ATOP)
         assertThat(colorFilter.getColor()).isEqualTo(Color.YELLOW)
@@ -34,6 +37,7 @@ class ImageViewTest {
         val deferred = DeferredColor.Constant(Color.GREEN)
         setColorFilter(deferred, PorterDuff.Mode.ADD)
 
+        assumeFalse("Cannot verify color filter on API < 16", Build.VERSION.SDK_INT < 16)
         val colorFilter = colorFilter as PorterDuffColorFilter
         assertThat(colorFilter.getMode()).isEqualTo(PorterDuff.Mode.ADD)
         assertThat(colorFilter.getColor()).isEqualTo(Color.GREEN)

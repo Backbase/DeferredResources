@@ -2,11 +2,14 @@ package com.backbase.deferredresources.extensions
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.view.View
+import androidx.core.view.ViewCompat
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDimension
 import com.backbase.deferredresources.drawable.asDrawable
 import com.google.common.truth.Truth.assertThat
+import org.junit.Assume.assumeFalse
 import org.junit.Test
 
 class ViewTest {
@@ -33,6 +36,7 @@ class ViewTest {
         val deferred = DeferredDimension.Constant(14.6f)
         setMinimumWidth(deferred)
 
+        assumeFalse("Cannot verify minimum width on API < 16", Build.VERSION.SDK_INT < 16)
         assertThat(minimumWidth).isEqualTo(15)
     }
 
@@ -40,6 +44,7 @@ class ViewTest {
         val deferred = DeferredDimension.Constant(14.6f)
         setMinimumHeight(deferred)
 
+        assumeFalse("Cannot verify minimum height on API < 16", Build.VERSION.SDK_INT < 16)
         assertThat(minimumHeight).isEqualTo(15)
     }
 
@@ -118,7 +123,8 @@ class ViewTest {
         val deferred = DeferredDimension.Constant(14.6f)
         setTranslationZ(deferred)
 
-        assertThat(translationZ).isEqualTo(14.6f)
+        val expected = if (Build.VERSION.SDK_INT < 21) 0f else 14.6f
+        assertThat(ViewCompat.getTranslationZ(this)).isEqualTo(expected)
     }
 
     @Test fun offsetLeftAndRight_setsResolvedOffsets() = onView<View> {
@@ -158,6 +164,7 @@ class ViewTest {
         val deferred = DeferredDimension.Constant(16.9f)
         setCameraDistance(deferred)
 
+        assumeFalse("Cannot verify camera distance on API < 16", Build.VERSION.SDK_INT < 16)
         assertThat(cameraDistance).isEqualTo(16.9f)
     }
 
@@ -182,13 +189,15 @@ class ViewTest {
         val deferred = DeferredDimension.Constant(16.9f)
         setZ(deferred)
 
-        assertThat(z).isEqualTo(16.9f)
+        val expected = if (Build.VERSION.SDK_INT < 21) 0f else 16.9f
+        assertThat(ViewCompat.getZ(this)).isEqualTo(expected)
     }
 
     @Test fun setElevation_setsExactResolvedElevation() = onView<View> {
         val deferred = DeferredDimension.Constant(16.9f)
         setElevation(deferred)
 
-        assertThat(elevation).isEqualTo(16.9f)
+        val expected = if (Build.VERSION.SDK_INT < 21) 0f else 16.9f
+        assertThat(ViewCompat.getElevation(this)).isEqualTo(expected)
     }
 }
