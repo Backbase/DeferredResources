@@ -2,7 +2,6 @@ package com.backbase.deferredresources.drawable
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import dev.drewhamilton.extracare.DataApi
@@ -20,7 +19,7 @@ import dev.drewhamilton.extracare.DataApi
 ) : DeferredDrawable {
 
     /**
-     * Use [context] to resolve the color and create a new [Drawable] displaying that color.
+     * Use [context] to resolve the color and create a new [ColorDrawable] displaying that color.
      */
     override fun resolve(context: Context): ColorDrawable = ColorDrawable(deferredColor.resolve(context))
 }
