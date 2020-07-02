@@ -1,10 +1,10 @@
-public final class com/backbase/deferredresources/extensions/ImageViewDeferredUtils {
+public final class com/backbase/deferredresources/extensions/DeferredResourcesImageViewUtils {
 	public static final fun setColorFilter (Landroid/widget/ImageView;Lcom/backbase/deferredresources/DeferredColor;)V
 	public static final fun setColorFilter (Landroid/widget/ImageView;Lcom/backbase/deferredresources/DeferredColor;Landroid/graphics/PorterDuff$Mode;)V
 	public static final fun setImageDrawable (Landroid/widget/ImageView;Lcom/backbase/deferredresources/DeferredDrawable;)V
 }
 
-public final class com/backbase/deferredresources/extensions/TextViewDeferredUtils {
+public final class com/backbase/deferredresources/extensions/DeferredResourcesTextViewUtils {
 	public static final fun setAutoSizeTextTypeUniformWithConfiguration (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setFirstBaselineToTopHeight (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setHeight (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
@@ -25,7 +25,7 @@ public final class com/backbase/deferredresources/extensions/TextViewDeferredUti
 	public static final fun setWidth (Landroid/widget/TextView;Lcom/backbase/deferredresources/DeferredDimension;)V
 }
 
-public final class com/backbase/deferredresources/extensions/ViewDeferredUtils {
+public final class com/backbase/deferredresources/extensions/DeferredResourcesViewUtils {
 	public static final fun offsetLeftAndRight (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun offsetTopAndBottom (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setBackground (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDrawable;)V

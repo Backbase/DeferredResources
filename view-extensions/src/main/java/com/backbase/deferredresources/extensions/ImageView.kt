@@ -1,4 +1,4 @@
-@file:JvmName("ImageViewDeferredUtils")
+@file:JvmName("DeferredResourcesImageViewUtils")
 
 package com.backbase.deferredresources.extensions
 

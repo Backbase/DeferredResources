@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
 
 ext {
-    artifactName = 'deferred-resources-extensions'
-    publishedDescription = 'Extensions for using Deferred Resources with Android APIs.'
+    artifactName = 'deferred-resources-view-extensions'
+    publishedDescription = 'Extensions for using Deferred Resources with Android Views.'
 }
 // TODO: apply from: '../publish.gradle'
 

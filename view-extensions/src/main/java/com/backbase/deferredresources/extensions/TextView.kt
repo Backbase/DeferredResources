@@ -1,4 +1,4 @@
-@file:JvmName("TextViewDeferredUtils")
+@file:JvmName("DeferredResourcesTextViewUtils")
 
 package com.backbase.deferredresources.extensions
 
