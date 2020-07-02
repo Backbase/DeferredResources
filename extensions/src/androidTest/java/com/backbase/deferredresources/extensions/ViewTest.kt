@@ -2,12 +2,7 @@ package com.backbase.deferredresources.extensions
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import androidx.test.core.app.ActivityScenario
-import androidx.test.platform.app.InstrumentationRegistry
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDimension
 import com.backbase.deferredresources.drawable.asDrawable
@@ -16,7 +11,7 @@ import org.junit.Test
 
 class ViewTest {
 
-    @Test fun setBackground_setsResolvedBackground() = onView {
+    @Test fun setBackground_setsResolvedBackground() = onView<View> {
         val deferred = DeferredColor.Constant(Color.BLUE).asDrawable()
         setBackground(deferred)
 
@@ -24,7 +19,7 @@ class ViewTest {
         assertThat(background.color).isEqualTo(Color.BLUE)
     }
 
-    @Test fun setBackgroundColor_setsResolvedBackgroundColor() = onView {
+    @Test fun setBackgroundColor_setsResolvedBackgroundColor() = onView<View> {
         val deferred = DeferredColor.Constant(Color.GREEN)
         setBackgroundColor(deferred)
 
@@ -34,21 +29,21 @@ class ViewTest {
         assertThat(background.color).isEqualTo(Color.GREEN)
     }
 
-    @Test fun setMinimumWidth_setsResolvedAsSizeMinimumWidth() = onView {
+    @Test fun setMinimumWidth_setsResolvedAsSizeMinimumWidth() = onView<View> {
         val deferred = DeferredDimension.Constant(14.6f)
         setMinimumWidth(deferred)
 
         assertThat(minimumWidth).isEqualTo(15)
     }
 
-    @Test fun setMinimumHeight_setsResolvedAsSizeMinimumHeight() = onView {
+    @Test fun setMinimumHeight_setsResolvedAsSizeMinimumHeight() = onView<View> {
         val deferred = DeferredDimension.Constant(14.6f)
         setMinimumHeight(deferred)
 
         assertThat(minimumHeight).isEqualTo(15)
     }
 
-    @Test fun setPadding_allArguments_setsAllPaddingResolvedAsSize() = onView {
+    @Test fun setPadding_allArguments_setsAllPaddingResolvedAsSize() = onView<View> {
         val left = DeferredDimension.Constant(0.3f)
         val top = DeferredDimension.Constant(1.7f)
         val right = DeferredDimension.Constant(2.7f)
@@ -61,7 +56,7 @@ class ViewTest {
         assertThat(paddingBottom).isEqualTo(4)
     }
 
-    @Test fun setPadding_noArguments_leavesAllPaddingInPlace() = onView {
+    @Test fun setPadding_noArguments_leavesAllPaddingInPlace() = onView<View> {
         // Set up:
         setPadding(1, 2, 3, 4)
 
@@ -75,7 +70,7 @@ class ViewTest {
         assertThat(paddingBottom).isEqualTo(4)
     }
 
-    @Test fun setPaddingRelative_allArguments_setsAllPaddingResolvedAsSize() = onView {
+    @Test fun setPaddingRelative_allArguments_setsAllPaddingResolvedAsSize() = onView<View> {
         layoutDirection = View.LAYOUT_DIRECTION_RTL
 
         val start = DeferredDimension.Constant(0.3f)
@@ -90,7 +85,7 @@ class ViewTest {
         assertThat(paddingBottom).isEqualTo(4)
     }
 
-    @Test fun setPaddingRelative_noArguments_leavesAllPaddingInPlace() = onView {
+    @Test fun setPaddingRelative_noArguments_leavesAllPaddingInPlace() = onView<View> {
         // Set up:
         layoutDirection = View.LAYOUT_DIRECTION_RTL
         setPadding(1, 2, 3, 4)
@@ -105,28 +100,28 @@ class ViewTest {
         assertThat(paddingBottom).isEqualTo(4)
     }
 
-    @Test fun setTranslationX_setsExactTranslationX() = onView {
+    @Test fun setTranslationX_setsExactTranslationX() = onView<View> {
         val deferred = DeferredDimension.Constant(14.6f)
         setTranslationX(deferred)
 
         assertThat(translationX).isEqualTo(14.6f)
     }
 
-    @Test fun setTranslationY_setsExactTranslationY() = onView {
+    @Test fun setTranslationY_setsExactTranslationY() = onView<View> {
         val deferred = DeferredDimension.Constant(14.6f)
         setTranslationY(deferred)
 
         assertThat(translationY).isEqualTo(14.6f)
     }
 
-    @Test fun setTranslationZ_setsExactTranslationZ() = onView {
+    @Test fun setTranslationZ_setsExactTranslationZ() = onView<View> {
         val deferred = DeferredDimension.Constant(14.6f)
         setTranslationZ(deferred)
 
         assertThat(translationZ).isEqualTo(14.6f)
     }
 
-    @Test fun offsetLeftAndRight_setsResolvedOffsets() = onView {
+    @Test fun offsetLeftAndRight_setsResolvedOffsets() = onView<View> {
         val originalLeft = left
         val originalRight = right
 
@@ -137,7 +132,7 @@ class ViewTest {
         assertThat(right).isEqualTo(originalRight + 14)
     }
 
-    @Test fun offsetTopAndBottom_setsResolvedOffsets() = onView {
+    @Test fun offsetTopAndBottom_setsResolvedOffsets() = onView<View> {
         val originalTop = top
         val originalBottom = bottom
 
@@ -148,7 +143,7 @@ class ViewTest {
         assertThat(bottom).isEqualTo(originalBottom + 14)
     }
 
-    @Test fun setFadingEdgeLength_setsResolvedSizeEdgeLength() = onView {
+    @Test fun setFadingEdgeLength_setsResolvedSizeEdgeLength() = onView<View> {
         isHorizontalFadingEdgeEnabled = true
         isVerticalFadingEdgeEnabled = true
 
@@ -159,14 +154,14 @@ class ViewTest {
         assertThat(verticalFadingEdgeLength).isEqualTo(15)
     }
 
-    @Test fun setCameraDistance_setsExactResolvedDistance() = onView {
+    @Test fun setCameraDistance_setsExactResolvedDistance() = onView<View> {
         val deferred = DeferredDimension.Constant(16.9f)
         setCameraDistance(deferred)
 
         assertThat(cameraDistance).isEqualTo(16.9f)
     }
 
-    @Test fun setX_setsExactResolvedPosition() = onView {
+    @Test fun setX_setsExactResolvedPosition() = onView<View> {
         translationX = 12.3f
         val deferred = DeferredDimension.Constant(16.9f)
         setX(deferred)
@@ -174,7 +169,7 @@ class ViewTest {
         assertThat(x).isEqualTo(16.9f)
     }
 
-    @Test fun setY_setsExactResolvedPosition() = onView {
+    @Test fun setY_setsExactResolvedPosition() = onView<View> {
         translationY = 12.3f
         val deferred = DeferredDimension.Constant(16.9f)
         setY(deferred)
@@ -182,7 +177,7 @@ class ViewTest {
         assertThat(y).isEqualTo(16.9f)
     }
 
-    @Test fun setZ_setsExactResolvedPosition() = onView {
+    @Test fun setZ_setsExactResolvedPosition() = onView<View> {
         translationZ = 12.3f
         val deferred = DeferredDimension.Constant(16.9f)
         setZ(deferred)
@@ -190,44 +185,10 @@ class ViewTest {
         assertThat(z).isEqualTo(16.9f)
     }
 
-    @Test fun setElevation_setsExactResolvedElevation() = onView {
+    @Test fun setElevation_setsExactResolvedElevation() = onView<View> {
         val deferred = DeferredDimension.Constant(16.9f)
         setElevation(deferred)
 
         assertThat(elevation).isEqualTo(16.9f)
-    }
-
-    private fun onView(
-        afterIdleSync: (View.() -> Unit)? = null,
-        test: View.() -> Unit
-    ) {
-        val scenario = ActivityScenario.launch(Activity::class.java)
-        scenario.onActivity { it.view.test() }
-
-        if (afterIdleSync != null) {
-            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
-            scenario.onActivity { it.view.afterIdleSync() }
-        }
-    }
-
-    class Activity : android.app.Activity() {
-
-        lateinit var view: View
-            private set
-
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-
-            view = View(this).apply {
-                layoutParams = FrameLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            }
-            val container = FrameLayout(this).apply {
-                addView(view)
-            }
-            setContentView(container)
-        }
     }
 }
