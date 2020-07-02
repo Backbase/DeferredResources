@@ -22,5 +22,5 @@ import dev.drewhamilton.extracare.DataApi
     /**
      * Use [context] to resolve the color and create a new [Drawable] displaying that color.
      */
-    override fun resolve(context: Context): Drawable = ColorDrawable(deferredColor.resolve(context))
+    override fun resolve(context: Context): ColorDrawable = ColorDrawable(deferredColor.resolve(context))
 }

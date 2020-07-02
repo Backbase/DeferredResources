@@ -334,7 +334,8 @@ public final class com/backbase/deferredresources/drawable/DeferredColorDrawable
 	public fun <init> (Lcom/backbase/deferredresources/DeferredColor;)V
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
-	public fun resolve (Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
+	public fun resolve (Landroid/content/Context;)Landroid/graphics/drawable/ColorDrawable;
+	public synthetic fun resolve (Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
 	public fun toString ()Ljava/lang/String;
 }
 

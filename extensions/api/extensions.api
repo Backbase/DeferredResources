@@ -28,8 +28,6 @@ public final class com/backbase/deferredresources/extensions/TextViewDeferredUti
 public final class com/backbase/deferredresources/extensions/ViewDeferredUtils {
 	public static final fun offsetLeftAndRight (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun offsetTopAndBottom (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
-	public static final fun scrollBy (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;)V
-	public static synthetic fun scrollBy$default (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;ILjava/lang/Object;)V
 	public static final fun setBackground (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDrawable;)V
 	public static final fun setBackgroundColor (Landroid/view/View;Lcom/backbase/deferredresources/DeferredColor;)V
 	public static final fun setCameraDistance (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
@@ -41,14 +39,11 @@ public final class com/backbase/deferredresources/extensions/ViewDeferredUtils {
 	public static synthetic fun setPadding$default (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;ILjava/lang/Object;)V
 	public static final fun setPaddingRelative (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static synthetic fun setPaddingRelative$default (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;ILjava/lang/Object;)V
-	public static final fun setScrollX (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
-	public static final fun setScrollY (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setTranslationX (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setTranslationY (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setTranslationZ (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setX (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setY (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setZ (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
-	public static final fun showContextMenu (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;)Z
 }
 
