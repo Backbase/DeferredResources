@@ -27,7 +27,7 @@ class ImageViewTest {
         val deferred = DeferredColor.Constant(Color.YELLOW)
         setColorFilter(deferred)
 
-        assumeFalse("Cannot verify color filter on API < 16", Build.VERSION.SDK_INT < 16)
+        assumeFalse("Cannot verify color filter on API < 21", Build.VERSION.SDK_INT < 21)
         val colorFilter = colorFilter as PorterDuffColorFilter
         assertThat(colorFilter.getMode()).isEqualTo(PorterDuff.Mode.SRC_ATOP)
         assertThat(colorFilter.getColor()).isEqualTo(Color.YELLOW)
@@ -37,7 +37,7 @@ class ImageViewTest {
         val deferred = DeferredColor.Constant(Color.GREEN)
         setColorFilter(deferred, PorterDuff.Mode.ADD)
 
-        assumeFalse("Cannot verify color filter on API < 16", Build.VERSION.SDK_INT < 16)
+        assumeFalse("Cannot verify color filter on API < 21", Build.VERSION.SDK_INT < 21)
         val colorFilter = colorFilter as PorterDuffColorFilter
         assertThat(colorFilter.getMode()).isEqualTo(PorterDuff.Mode.ADD)
         assertThat(colorFilter.getColor()).isEqualTo(Color.GREEN)

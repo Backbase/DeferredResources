@@ -70,6 +70,7 @@ class TextViewTest {
         val deferred = DeferredTypeface.Resource(R.font.merriweather_light_italic)
         setTypeface(deferred, Typeface.BOLD)
 
+        assumeFalse("Typeface style is not changed on API < 21", Build.VERSION.SDK_INT < 21)
         assumeFalse("https://issuetracker.google.com/issues/156853883", Build.VERSION.SDK_INT == 29)
         if (Build.VERSION.SDK_INT >= 28)
             assertThat(typeface.weight).isEqualTo(600)

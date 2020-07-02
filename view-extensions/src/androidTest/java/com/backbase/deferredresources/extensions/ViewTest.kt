@@ -185,7 +185,7 @@ class ViewTest {
     }
 
     @Test fun setZ_setsExactResolvedPosition() = onView<View> {
-        translationZ = 12.3f
+        ViewCompat.setTranslationZ(this, 12.3f)
         val deferred = DeferredDimension.Constant(16.9f)
         setZ(deferred)
 
