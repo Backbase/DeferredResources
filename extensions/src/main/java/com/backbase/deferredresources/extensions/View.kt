@@ -3,7 +3,6 @@
 package com.backbase.deferredresources.extensions
 
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDimension
@@ -122,38 +121,6 @@ fun View.offsetTopAndBottom(deferredOffset: DeferredDimension): Unit =
  */
 fun View.setFadingEdgeLength(deferredLength: DeferredDimension): Unit =
     setFadingEdgeLength(deferredLength.resolveAsSize(context))
-
-/**
- * Shows the context menu for this view anchored to the resolved coordinates of [deferredX] and [deferredY].
- */
-@RequiresApi(24)
-fun View.showContextMenu(deferredX: DeferredDimension, deferredY: DeferredDimension) =
-    showContextMenu(deferredX.resolveExact(context), deferredY.resolveExact(context))
-
-/**
- * Resolve [deferredValue] and set the horizontal scrolled position of your view. This will cause a call to
- * [View.onScrollChanged] and the view will be invalidated.
- */
-fun View.setScrollX(deferredValue: DeferredDimension) {
-    scrollX = deferredValue.resolveAsOffset(context)
-}
-
-/**
- * Resolve [deferredValue] and set the vertical scrolled position of your view. This will cause a call to
- * [View.onScrollChanged] and the view will be invalidated.
- */
-fun View.setScrollY(deferredValue: DeferredDimension) {
-    scrollY = deferredValue.resolveAsOffset(context)
-}
-
-/**
- * Resolve [deferredX] and [deferredY] and move the scrolled position of your view. This will cause a call to
- * [View.onScrollChanged] and the view will be invalidated.
- */
-fun View.scrollBy(
-    deferredX: DeferredDimension = DeferredDimension.Constant(0),
-    deferredY: DeferredDimension = DeferredDimension.Constant(0)
-) = scrollBy(deferredX.resolveAsOffset(context), deferredY.resolveAsOffset(context))
 
 /**
  * Resolves [deferredDistance] and sets the distance along the Z axis from the camera to this view.
