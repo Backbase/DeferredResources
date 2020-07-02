@@ -4,6 +4,7 @@
 
   <application>
     <activity android:name="com.backbase.deferredresources.extensions.TextViewTest$Activity" />
+    <activity android:name="com.backbase.deferredresources.extensions.ViewTest$Activity" />
   </application>
 
 </manifest>

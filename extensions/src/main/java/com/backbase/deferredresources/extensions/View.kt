@@ -24,7 +24,7 @@ fun View.setBackground(deferredBackground: DeferredDrawable) {
 /**
  * Resolves [deferredColor] and sets the background color for this view.
  */
-fun View.setBackgroundColor(deferredColor: DeferredColor) = setBackgroundColor(deferredColor.resolve(context))
+fun View.setBackgroundColor(deferredColor: DeferredColor): Unit = setBackgroundColor(deferredColor.resolve(context))
 
 /**
  * Resolves [deferredMinWidth] and sets the minimum width of the view.
@@ -54,8 +54,8 @@ fun View.setPadding(
     deferredTop: DeferredDimension = DeferredDimension.Constant(paddingTop),
     deferredRight: DeferredDimension = DeferredDimension.Constant(paddingRight),
     deferredBottom: DeferredDimension = DeferredDimension.Constant(paddingBottom)
-) = setPadding(
-    deferredLeft.resolveAsOffset(context),
+): Unit = setPadding(
+    deferredLeft.resolveAsSize(context),
     deferredTop.resolveAsSize(context),
     deferredRight.resolveAsSize(context),
     deferredBottom.resolveAsSize(context)
@@ -69,7 +69,7 @@ fun View.setPaddingRelative(
     deferredTop: DeferredDimension = DeferredDimension.Constant(paddingTop),
     deferredEnd: DeferredDimension = DeferredDimension.Constant(ViewCompat.getPaddingEnd(this)),
     deferredBottom: DeferredDimension = DeferredDimension.Constant(paddingBottom)
-) = ViewCompat.setPaddingRelative(
+): Unit = ViewCompat.setPaddingRelative(
     this,
     deferredStart.resolveAsSize(context),
     deferredTop.resolveAsSize(context),
@@ -104,13 +104,13 @@ fun View.setTranslationZ(deferredTranslationZ: DeferredDimension) {
 /**
  * Resolve [deferredOffset] and offset this view's horizontal location by the resolved amount.
  */
-fun View.offsetLeftAndRight(deferredOffset: DeferredDimension) =
+fun View.offsetLeftAndRight(deferredOffset: DeferredDimension): Unit =
     offsetLeftAndRight(deferredOffset.resolveAsOffset(context))
 
 /**
  * Resolve [deferredOffset] and offset this view's vertical location by the resolved amount.
  */
-fun View.offsetTopAndBottom(deferredOffset: DeferredDimension) =
+fun View.offsetTopAndBottom(deferredOffset: DeferredDimension): Unit =
     offsetTopAndBottom(deferredOffset.resolveAsOffset(context))
 
 /**
@@ -120,7 +120,7 @@ fun View.offsetTopAndBottom(deferredOffset: DeferredDimension) =
  * Will not change whether the fading edge is enabled; use [View.setVerticalFadingEdgeEnabled] or
  * [View.setHorizontalFadingEdgeEnabled] to enable the fading edge for the vertical or horizontal fading edges.
  */
-fun View.setFadingEdgeLength(deferredLength: DeferredDimension) =
+fun View.setFadingEdgeLength(deferredLength: DeferredDimension): Unit =
     setFadingEdgeLength(deferredLength.resolveAsSize(context))
 
 /**
@@ -189,11 +189,11 @@ fun View.setY(deferredY: DeferredDimension) {
  *
  * On API < 21, this is a no-op.
  */
-fun View.setZ(deferredZ: DeferredDimension) =
+fun View.setZ(deferredZ: DeferredDimension): Unit =
     ViewCompat.setZ(this, deferredZ.resolveExact(context))
 
 /**
  * Resolves [deferredElevation] and sets the base elevation of this view.
  */
-fun View.setElevation(deferredElevation: DeferredDimension) =
+fun View.setElevation(deferredElevation: DeferredDimension): Unit =
     ViewCompat.setElevation(this, deferredElevation.resolveExact(context))
