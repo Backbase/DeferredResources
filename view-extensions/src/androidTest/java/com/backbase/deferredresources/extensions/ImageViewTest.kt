@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.widget.ImageView
 import androidx.annotation.ColorInt
+import androidx.annotation.RequiresApi
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.drawable.asDrawable
 import com.google.common.truth.Truth.assertThat
@@ -43,12 +44,13 @@ class ImageViewTest {
         assertThat(colorFilter.getColor()).isEqualTo(Color.GREEN)
     }
 
+    @RequiresApi(21)
     private fun PorterDuffColorFilter.getMode(): PorterDuff.Mode {
         return PorterDuffColorFilter::class.java.getDeclaredMethod("getMode").invoke(this) as PorterDuff.Mode
     }
 
-    @ColorInt
-    private fun PorterDuffColorFilter.getColor(): Int {
+    @RequiresApi(21)
+    @ColorInt private fun PorterDuffColorFilter.getColor(): Int {
         return PorterDuffColorFilter::class.java.getDeclaredMethod("getColor").invoke(this) as Int
     }
 }
