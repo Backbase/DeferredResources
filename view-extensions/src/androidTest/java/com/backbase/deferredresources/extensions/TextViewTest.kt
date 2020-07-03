@@ -24,7 +24,7 @@ class TextViewTest {
         assertThat(text).isEqualTo("Deferred")
     }
 
-    @Test fun setText_withBufferType_displaysResolvedText() = onView<TextView> {
+    @Test fun setText_withBufferType_displaysResolvedText() = onViewInActivity<TextView> {
         assertThat(editableText).isNull()
 
         val deferred = DeferredText.Constant("Deferred")
