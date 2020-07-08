@@ -1,4 +1,4 @@
-package com.backbase.deferredresources.extensions
+package com.backbase.deferredresources.viewx
 
 import android.app.Activity
 import android.view.View

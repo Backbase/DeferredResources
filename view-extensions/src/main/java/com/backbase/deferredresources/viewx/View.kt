@@ -1,6 +1,6 @@
 @file:JvmName("DeferredResourcesViewUtils")
 
-package com.backbase.deferredresources.extensions
+package com.backbase.deferredresources.viewx
 
 import android.view.View
 import androidx.core.view.ViewCompat

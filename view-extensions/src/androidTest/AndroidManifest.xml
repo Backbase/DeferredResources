@@ -1,9 +1,9 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.backbase.deferredresources.extensions.test">
+    package="com.backbase.deferredresources.viewx.test">
 
   <application>
-    <activity android:name="com.backbase.deferredresources.extensions.ViewTestActivity" />
+    <activity android:name="com.backbase.deferredresources.viewx.ViewTestActivity" />
   </application>
 
 </manifest>
