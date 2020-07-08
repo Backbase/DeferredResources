@@ -78,14 +78,18 @@ class DeferredDrawableTest {
         assertThat(resolved.gradientRadiusCompat).isEqualTo(0.3f)
     }
 
-    private val GradientDrawable.gradientRadiusCompat: Float
-        get() = if (Build.VERSION.SDK_INT >= 21) gradientRadius else {
-            getPrivateField<Any>("mGradientState").getPrivateField("mGradientRadius")
-        }
+    internal companion object {
 
-    @Suppress("UNCHECKED_CAST")
-    private fun <T : Any> Any.getPrivateField(name: String): T =
-        javaClass.getDeclaredField(name)
-            .apply { isAccessible = true }
-            .get(this) as T
+        @JvmStatic internal val GradientDrawable.gradientRadiusCompat: Float
+            @JvmName("getGradientRadiusCompat")
+            get() = if (Build.VERSION.SDK_INT >= 21) gradientRadius else {
+                getPrivateField<Any>("mGradientState").getPrivateField("mGradientRadius")
+            }
+
+        @Suppress("UNCHECKED_CAST")
+        private fun <T : Any> Any.getPrivateField(name: String): T =
+            javaClass.getDeclaredField(name)
+                .apply { isAccessible = true }
+                .get(this) as T
+    }
 }
