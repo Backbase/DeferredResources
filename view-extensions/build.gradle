@@ -5,7 +5,7 @@ ext {
     artifactName = 'deferred-resources-view-extensions'
     publishedDescription = 'Extensions for using Deferred Resources with Android Views.'
 }
-// TODO: apply from: '../publish.gradle'
+apply from: '../publish.gradle'
 
 android {
     compileSdkVersion rootProject.ext.targetSdk
