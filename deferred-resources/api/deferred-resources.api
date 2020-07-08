@@ -106,10 +106,10 @@ public final class com/backbase/deferredresources/DeferredDrawable$Constant : co
 
 public final class com/backbase/deferredresources/DeferredDrawable$Resource : com/backbase/deferredresources/DeferredDrawable {
 	public fun <init> (I)V
-	public fun <init> (ILkotlin/jvm/functions/Function1;)V
+	public fun <init> (ILkotlin/jvm/functions/Function2;)V
 	public fun <init> (IZ)V
-	public fun <init> (IZLkotlin/jvm/functions/Function1;)V
-	public synthetic fun <init> (IZLkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (IZLkotlin/jvm/functions/Function2;)V
+	public synthetic fun <init> (IZLkotlin/jvm/functions/Function2;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Landroid/graphics/drawable/Drawable;

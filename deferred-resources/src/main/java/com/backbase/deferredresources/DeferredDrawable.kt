@@ -37,7 +37,7 @@ interface DeferredDrawable {
     @DataApi class Resource @JvmOverloads constructor(
         @DrawableRes private val resId: Int,
         private val mutate: Boolean = true,
-        private val transformations: Drawable.() -> Unit = {}
+        private val transformations: Drawable.(Context) -> Unit = {}
     ) : DeferredDrawable {
 
         /**
@@ -45,7 +45,7 @@ interface DeferredDrawable {
          */
         constructor(
             @DrawableRes resId: Int,
-            transformations: Drawable.() -> Unit
+            transformations: Drawable.(Context) -> Unit
         ) : this(resId, mutate = true, transformations = transformations)
 
         /**
@@ -55,7 +55,7 @@ interface DeferredDrawable {
         override fun resolve(context: Context): Drawable? {
             val original = ContextCompat.getDrawable(context, resId)
             val drawable = if (mutate) original?.mutate() else original
-            return drawable?.apply(transformations)
+            return drawable?.apply { transformations(context) }
         }
     }
 }

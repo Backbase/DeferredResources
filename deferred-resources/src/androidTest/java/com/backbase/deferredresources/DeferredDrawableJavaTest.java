@@ -12,7 +12,7 @@ public class DeferredDrawableJavaTest {
 
     @Test
     public void resourceConstructor_withTransformationFunction_syntaxWorks() {
-        DeferredDrawable deferred = new DeferredDrawable.Resource(R.drawable.oval, drawable -> {
+        DeferredDrawable deferred = new DeferredDrawable.Resource(R.drawable.oval, (drawable, context) -> {
             GradientDrawable gradientDrawable = (GradientDrawable) drawable;
             gradientDrawable.setGradientRadius(0.4f);
             return Unit.INSTANCE;
