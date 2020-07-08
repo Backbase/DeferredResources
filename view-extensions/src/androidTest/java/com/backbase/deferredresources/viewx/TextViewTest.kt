@@ -10,7 +10,7 @@ import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDimension
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.DeferredTypeface
-import com.backbase.deferredresources.extensions.test.R
+import com.backbase.deferredresources.viewx.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assume.assumeFalse
 import org.junit.Test
