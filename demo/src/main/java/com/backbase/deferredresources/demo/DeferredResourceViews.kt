@@ -7,7 +7,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.ScrollView
-import android.widget.TextView
 import androidx.annotation.Px
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.setMargins
@@ -19,6 +18,7 @@ import com.backbase.deferredresources.DeferredPlurals
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.demo.databinding.ColorsBinding
 import com.backbase.deferredresources.demo.databinding.PluralsBinding
+import com.backbase.deferredresources.extensions.setText
 import com.google.android.material.textview.MaterialTextView
 import kotlin.math.roundToInt
 
@@ -51,10 +51,6 @@ class DeferredColorsView(context: Context) : DeferredResourceView(context) {
             elevation = 2f.dp
         setPadding(16.dp)
         TextViewCompat.setTextAppearance(this, R.style.TextAppearance_MaterialComponents_Headline4)
-    }
-
-    private fun TextView.setText(deferredText: DeferredText) {
-        text = deferredText.resolve(context)
     }
 
     @get:Px
