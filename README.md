@@ -17,20 +17,13 @@ repository](https://oss.sonatype.org/#view-repositories;snapshots~browsestorage)
 
 ```groovy
 implementation "com.backbase.oss.deferredresources:deferred-resources:$version"
+implementation "com.backbase.oss.deferredresources:deferred-resources-view-extensions:$version"
 ```
 
 ## Use
 
-In the view layer, resolve a deferred resource to display it:
-```kotlin
-val text: DeferredText = viewModel.getText()
-val textColor: DeferredColor = viewModel.getTextColor()
-textView.text = text.resolve(context)
-textView.setTextColor(textColor.resolve(context))
-```
-
 In the logic layer, declare the resource values however you like, without worrying about their
-resolution:
+resolution or about Context:
 ```kotlin
 class LocalViewModel : MyViewModel {
     override fun getText(): DeferredText = DeferredText.Resource(R.string.someText)
@@ -41,6 +34,20 @@ class RemoteViewModel(private val api: Api) : MyViewModel {
     override fun getText(): DeferredText = DeferredText.Constant(api.fetchText())
     override fun getTextColor(): DeferredColor = DeferredColor.Constant(api.fetchTextColor())
 }
+```
+
+In the view layer, resolve a deferred resource to display it:
+```kotlin
+val text: DeferredText = viewModel.getText()
+val textColor: DeferredColor = viewModel.getTextColor()
+textView.text = text.resolve(context)
+textView.setTextColor(textColor.resolve(context))
+```
+
+With view extensions, this is even simpler:
+```kotlin
+textView.setText(viewModel.getText())
+textView.setTextColor(viewModel.getTextColor())
 ```
 
 ## License

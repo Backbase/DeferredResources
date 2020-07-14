@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.5.0
+_2020-07-14_
+
+**Breaking change**: Update DeferredDrawable.Resource's `transformations` constructor parameter to
+receive the resolving Context as a parameter. This breaks binary compatibility by removing
+constructors with a Function1 parameter in their signature (replaced by a Function2 parameter). This
+also breaks source compatibility for Java consumers but not for Kotlin consumers.
+
+Add `deferred-resources-view-extensions` to simplify use of Deferred Resources with Views. Basic
+extensions are provided for View, TextView, and ImageView.
+
+Add `DeferredColorWithAlpha` along with a corresponding `withAlpha` extension on `DeferredColor`, to
+make alpha transformations on unresolved `DeferredColor`s simple.
+
 ## 0.4.0
 _2020-06-23_
 

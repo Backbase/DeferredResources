@@ -8,7 +8,7 @@ repository/configuration layers to remain ignorant of Android's Context.
 ## Example
 
 In the logic layer, declare the resource values however you like, without worrying about their
-resolution:
+resolution or about Context:
 ```kotlin
 // Resource/attribute-based text and color:
 class LocalViewModel : MyViewModel {
@@ -31,6 +31,13 @@ textView.text = text.resolve(context)
 textView.setTextColor(textColor.resolve(context))
 ```
 
+With view extensions, this is even simpler. The View's own Context is used to resolve any deferred
+resource types:
+```kotlin
+textView.setText(viewModel.getText())
+textView.setTextColor(viewModel.getTextColor())
+```
+
 ### Import
 
 To use Deferred Resources, add the library as a dependency to your Android module:
@@ -38,5 +45,6 @@ To use Deferred Resources, add the library as a dependency to your Android modul
 ```groovy
 dependencies {
     implementation "com.backbase.oss.deferredresources:deferred-resources:$version"
+    implementation "com.backbase.oss.deferredresources:deferred-resources-view-extensions:$version"
 }
 ```
