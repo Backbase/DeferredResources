@@ -18,7 +18,7 @@ import com.backbase.deferredresources.DeferredPlurals
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.demo.databinding.ColorsBinding
 import com.backbase.deferredresources.demo.databinding.PluralsBinding
-import com.backbase.deferredresources.extensions.setText
+import com.backbase.deferredresources.viewx.setText
 import com.google.android.material.textview.MaterialTextView
 import kotlin.math.roundToInt
 

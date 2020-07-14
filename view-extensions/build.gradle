@@ -5,11 +5,11 @@ ext {
     artifactName = 'deferred-resources-view-extensions'
     publishedDescription = 'Extensions for using Deferred Resources with Android Views.'
 }
-// TODO: apply from: '../publish.gradle'
+apply from: '../publish.gradle'
 
 android {
     compileSdkVersion rootProject.ext.targetSdk
-    buildToolsVersion "29.0.3"
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdk
@@ -25,6 +25,15 @@ android {
         release {
             minifyEnabled false
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 }
 

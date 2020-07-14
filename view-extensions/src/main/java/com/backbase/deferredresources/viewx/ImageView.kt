@@ -1,6 +1,6 @@
 @file:JvmName("DeferredResourcesImageViewUtils")
 
-package com.backbase.deferredresources.extensions
+package com.backbase.deferredresources.viewx
 
 import android.graphics.PorterDuff
 import android.widget.ImageView
