@@ -70,6 +70,11 @@ class DeferredColorTest {
         assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#212121"))
     }
 
+    @Test fun attributeResolve_withSelectorColor_resolvesColor() {
+        val deferred = DeferredColor.Attribute(android.R.attr.textColorPrimary)
+        assertThat(deferred.resolve(context)).isEqualTo(Color.parseColor("#de000000"))
+    }
+
     @Test(expected = IllegalArgumentException::class)
     fun attributeResolve_withUnknownAttribute_throwsException() {
         val deferred = DeferredColor.Attribute(R.attr.colorPrimary)
@@ -83,6 +88,41 @@ class DeferredColorTest {
         val deferred = DeferredColor.Attribute(R.attr.isLightTheme)
 
         deferred.resolve(AppCompatContext())
+    }
+
+    @Test fun attributeResolveToStateList_withSelectorColor_resolvesExpectedStateList() {
+        val deferred = DeferredColor.Attribute(android.R.attr.textColorPrimary)
+
+        val resolved = deferred.resolveToStateList(context)
+        assertThat(resolved.isStateful).isTrue()
+        assertThat(resolved.getColorForState(disabledState, Color.BLACK)).isEqualTo(Color.parseColor("#42000000"))
+        assertThat(resolved.getColorForState(enabledState, Color.BLACK)).isEqualTo(Color.parseColor("#de000000"))
+        assertThat(resolved.defaultColor).isEqualTo(Color.parseColor("#de000000"))
+    }
+
+    @Test fun attributeResolveToStateList_withStandardColor_resolvesExpectedStateList() {
+        val deferred = DeferredColor.Attribute(R.attr.colorPrimary)
+
+        val resolved = deferred.resolveToStateList(AppCompatContext())
+        assertThat(resolved.isStateful).isFalse()
+        assertThat(resolved.getColorForState(disabledState, Color.BLACK)).isEqualTo(Color.parseColor("#212121"))
+        assertThat(resolved.getColorForState(enabledState, Color.BLACK)).isEqualTo(Color.parseColor("#212121"))
+        assertThat(resolved.defaultColor).isEqualTo(Color.parseColor("#212121"))
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun attributeResolveToStateList_withUnknownAttribute_throwsException() {
+        val deferred = DeferredColor.Attribute(R.attr.colorPrimary)
+
+        // Default-theme context does not have <colorPrimary> attribute:
+        deferred.resolveToStateList(context)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun attributeResolveToStateList_withWrongAttributeType_throwsException() {
+        val deferred = DeferredColor.Attribute(R.attr.isLightTheme)
+
+        deferred.resolveToStateList(AppCompatContext())
     }
     //endregion
 }

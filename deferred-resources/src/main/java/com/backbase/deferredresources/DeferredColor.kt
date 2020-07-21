@@ -81,25 +81,56 @@ interface DeferredColor {
         private val reusedTypedValue = TypedValue()
 
         /**
-         * Resolve [resId] to a [ColorInt] with the given [context]'s theme.
+         * Resolve [resId] to a [ColorInt] with the given [context]'s theme. If [resId] would resolve a color selector,
+         * resolves to the default color of that selector.
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
          */
-        @ColorInt override fun resolve(context: Context): Int = context.resolveColorAttribute(resId)
-
-        override fun resolveToStateList(context: Context): ColorStateList =
-            context.resolveAttribute(resId, "color list", reusedTypedValue, TypedValue.TYPE_STRING) {
-                // TODO:
-                return ColorStateList.valueOf(resolve(context))
-            }
-
-        @ColorInt private fun Context.resolveColorAttribute(@AttrRes resId: Int): Int =
-            resolveAttribute(
-                resId, "color", reusedTypedValue,
-                TypedValue.TYPE_INT_COLOR_RGB8, TypedValue.TYPE_INT_COLOR_ARGB8,
-                TypedValue.TYPE_INT_COLOR_RGB4, TypedValue.TYPE_INT_COLOR_ARGB4
-            ) {
+        @ColorInt override fun resolve(context: Context): Int = context.resolveColorAttribute {
+            if (type == TypedValue.TYPE_STRING)
+                extractColorStateList(context).defaultColor
+            else
                 data
+        }
+
+        /**
+         * Resolve [resId] to a [ColorStateList] with the given [context].
+         *
+         * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
+         */
+        override fun resolveToStateList(context: Context): ColorStateList = context.resolveColorAttribute {
+            if (type == TypedValue.TYPE_STRING)
+                extractColorStateList(context)
+            else
+                ColorStateList.valueOf(data)
+        }
+
+        private fun TypedValue.extractColorStateList(context: Context): ColorStateList {
+            check(type == TypedValue.TYPE_STRING) {
+                "extractColorStateList can only be called on TYPE_STRING, not type $type"
             }
+            check(string.endsWith(".xml")) {
+                "Color selector attribute file must end with .xml; <$string> is not valid"
+            }
+
+            return context.resolveAttribute(
+                resId, "color reference", reusedTypedValue,
+                TypedValue.TYPE_REFERENCE,
+                resolveRefs = false
+            ) {
+                val colorSelectorResId = data
+                ContextCompat.getColorStateList(context, colorSelectorResId)!!
+            }
+        }
+
+        private inline fun <T> Context.resolveColorAttribute(
+            toTypeSafeResult: TypedValue.() -> T
+        ): T = resolveAttribute(
+            resId, "color", reusedTypedValue,
+            TypedValue.TYPE_INT_COLOR_RGB8, TypedValue.TYPE_INT_COLOR_ARGB8,
+            TypedValue.TYPE_INT_COLOR_RGB4, TypedValue.TYPE_INT_COLOR_ARGB4,
+            TypedValue.TYPE_STRING,
+            toTypeSafeResult = toTypeSafeResult
+        )
     }
 }
