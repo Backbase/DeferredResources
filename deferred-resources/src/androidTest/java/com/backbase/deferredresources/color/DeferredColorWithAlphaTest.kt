@@ -5,6 +5,7 @@ import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.alpha
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.context
+import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -12,6 +13,9 @@ class DeferredColorWithAlphaTest {
 
     private val baseColor = ColorUtils.setAlphaComponent(Color.YELLOW, 0x33)
     private val baseDeferred = DeferredColor.Constant(baseColor)
+
+    private val enabledState = intArrayOf(android.R.attr.state_enabled)
+    private val disabledState = intArrayOf(-android.R.attr.state_enabled)
 
     //region withAlpha
     @Test fun withAlpha_withInt_resolvesWithSpecifiedAlpha() {
@@ -80,4 +84,14 @@ class DeferredColorWithAlphaTest {
         assertThat(ColorUtils.setAlphaComponent(resolved, 0xFF)).isEqualTo(Color.YELLOW)
     }
     //endregion
+
+    @Test fun resourceResolveToStateList_withSelectorColor_resolvesExpectedStateList() {
+        val deferred = DeferredColor.Resource(R.color.stateful_color).withAlpha(0.5f)
+
+        val resolved = deferred.resolveToStateList(context)
+        assertThat(resolved.isStateful).isTrue()
+        assertThat(resolved.getColorForState(disabledState, Color.BLACK)).isEqualTo(Color.parseColor("#80AAAAAA"))
+        assertThat(resolved.getColorForState(enabledState, Color.BLACK)).isEqualTo(Color.parseColor("#8000FF00"))
+        assertThat(resolved.defaultColor).isEqualTo(Color.parseColor("#8000FF00"))
+    }
 }
