@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="TestTheme" parent="Theme.AppCompat">
+    <item name="colorPrimary">#987654</item>
+    <item name="titleTextColor">@color/stateful_color</item>
+  </style>
+
+  <style name="TestTheme.Light" parent="Theme.AppCompat.Light">
+    <item name="colorPrimary">#987654</item>
+    <item name="titleTextColor">@color/stateful_color</item>
+  </style>
+</resources>

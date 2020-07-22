@@ -69,10 +69,10 @@ interface DeferredColor {
          * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
          */
         @ColorInt override fun resolve(context: Context): Int = context.resolveColorAttribute {
-            if (type < TypedValue.TYPE_FIRST_INT || type > TypedValue.TYPE_LAST_INT)
-                context.resolveColorStateList().defaultColor
-            else
+            if (type >= TypedValue.TYPE_FIRST_INT && type <= TypedValue.TYPE_LAST_INT)
                 data
+            else
+                context.resolveColorStateList().defaultColor
         }
 
         private inline fun <T> Context.resolveColorAttribute(
