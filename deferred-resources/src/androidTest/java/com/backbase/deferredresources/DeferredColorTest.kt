@@ -39,7 +39,7 @@ class DeferredColorTest {
 
     @Test fun attributeResolve_withSelectorColor_resolvesDefaultColor() {
         val deferred = DeferredColor.Attribute(android.R.attr.textColorPrimary)
-        assertThat(deferred.resolve(context)).isEqualTo(Color.parseColor("#de000000"))
+        assertThat(deferred.resolve(AppCompatContext(light = true))).isEqualTo(Color.parseColor("#de000000"))
     }
 
     @Test fun attributeResolve_withSelectorColorWithAttributeDefault_resolvesDefaultColor() {
