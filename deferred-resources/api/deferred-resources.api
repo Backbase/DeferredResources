@@ -28,7 +28,6 @@ public final class com/backbase/deferredresources/DeferredBoolean$Resource : com
 
 public abstract interface class com/backbase/deferredresources/DeferredColor {
 	public abstract fun resolve (Landroid/content/Context;)I
-	public abstract fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 }
 
 public final class com/backbase/deferredresources/DeferredColor$Attribute : com/backbase/deferredresources/DeferredColor {
@@ -36,7 +35,6 @@ public final class com/backbase/deferredresources/DeferredColor$Attribute : com/
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
-	public fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -46,7 +44,6 @@ public final class com/backbase/deferredresources/DeferredColor$Constant : com/b
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
-	public fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -55,7 +52,6 @@ public final class com/backbase/deferredresources/DeferredColor$Resource : com/b
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
-	public fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -340,7 +336,6 @@ public final class com/backbase/deferredresources/color/DeferredColorWithAlpha :
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
-	public fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 	public fun toString ()Ljava/lang/String;
 }
 

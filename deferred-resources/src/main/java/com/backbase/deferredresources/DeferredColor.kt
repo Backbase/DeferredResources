@@ -23,11 +23,6 @@ interface DeferredColor {
     @ColorInt fun resolve(context: Context): Int
 
     /**
-     * Resolve the color to a [ColorStateList].
-     */
-    fun resolveToStateList(context: Context): ColorStateList
-
-    /**
      * A wrapper for a constant color [value].
      */
     @DataApi class Constant(
@@ -43,11 +38,6 @@ interface DeferredColor {
          * Always resolves to [value], ignoring [context].
          */
         @ColorInt override fun resolve(context: Context): Int = value
-
-        /**
-         * Always resolves to [value] wrapped in a new [ColorStateList].
-         */
-        override fun resolveToStateList(context: Context): ColorStateList =  ColorStateList.valueOf(value)
     }
 
     /**
@@ -60,14 +50,6 @@ interface DeferredColor {
          * Resolve [resId] to a [ColorInt] with the given [context].
          */
         @ColorInt override fun resolve(context: Context): Int = ContextCompat.getColor(context, resId)
-
-        /**
-         * Resolve [resId] to a [ColorStateList] with the given [context].
-         */
-        override fun resolveToStateList(context: Context): ColorStateList =
-            requireNotNull(ContextCompat.getColorStateList(context, resId)) {
-                "Could not resolve ${context.resources.getResourceName(resId)} to a ColorStateList with $context."
-            }
     }
 
     /**
@@ -87,40 +69,10 @@ interface DeferredColor {
          * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
          */
         @ColorInt override fun resolve(context: Context): Int = context.resolveColorAttribute {
-            if (type == TypedValue.TYPE_STRING)
-                extractColorStateList(context).defaultColor
+            if (type < TypedValue.TYPE_FIRST_INT || type > TypedValue.TYPE_LAST_INT)
+                context.resolveColorStateList().defaultColor
             else
                 data
-        }
-
-        /**
-         * Resolve [resId] to a [ColorStateList] with the given [context].
-         *
-         * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
-         */
-        override fun resolveToStateList(context: Context): ColorStateList = context.resolveColorAttribute {
-            if (type == TypedValue.TYPE_STRING)
-                extractColorStateList(context)
-            else
-                ColorStateList.valueOf(data)
-        }
-
-        private fun TypedValue.extractColorStateList(context: Context): ColorStateList {
-            check(type == TypedValue.TYPE_STRING) {
-                "extractColorStateList can only be called on TYPE_STRING, not type $type"
-            }
-            check(string.endsWith(".xml")) {
-                "Color selector attribute file must end with .xml; <$string> is not valid"
-            }
-
-            return context.resolveAttribute(
-                resId, "color reference", reusedTypedValue,
-                TypedValue.TYPE_REFERENCE,
-                resolveRefs = false
-            ) {
-                val colorSelectorResId = data
-                ContextCompat.getColorStateList(context, colorSelectorResId)!!
-            }
         }
 
         private inline fun <T> Context.resolveColorAttribute(
@@ -132,5 +84,14 @@ interface DeferredColor {
             TypedValue.TYPE_STRING,
             toTypeSafeResult = toTypeSafeResult
         )
+
+        private fun Context.resolveColorStateList(): ColorStateList = resolveAttribute(
+            resId, "reference", reusedTypedValue,
+            TypedValue.TYPE_REFERENCE,
+            resolveRefs = false
+        ) {
+            val colorSelectorResId = data
+            ContextCompat.getColorStateList(this@resolveColorStateList, colorSelectorResId)!!
+        }
     }
 }

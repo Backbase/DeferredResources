@@ -1,7 +1,6 @@
 package com.backbase.deferredresources.color
 
 import android.content.Context
-import android.content.res.ColorStateList
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
@@ -44,10 +43,5 @@ fun DeferredColor.withAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float) = De
     @ColorInt override fun resolve(context: Context): Int {
         val baseColor = base.resolve(context)
         return ColorUtils.setAlphaComponent(baseColor, alpha)
-    }
-
-    override fun resolveToStateList(context: Context): ColorStateList {
-        val baseColor = base.resolveToStateList(context)
-        return baseColor.withAlpha(alpha)
     }
 }
