@@ -17,8 +17,7 @@ import dev.drewhamilton.extracare.DataApi
 interface DeferredColor {
 
     /**
-     * Resolve the [ColorInt] color. If the underlying color is represented by a [ColorStateList], returns the default
-     * color from that list.
+     * Resolve the [ColorInt] color.
      */
     @ColorInt fun resolve(context: Context): Int
 
