@@ -25,7 +25,7 @@ internal fun AppCompatContext(
     light: Boolean = false
 ): Context = ContextThemeWrapper(
     context,
-    if (light) R.style.Theme_AppCompat_Light else R.style.Theme_AppCompat
+    if (light) R.style.TestTheme_Light else R.style.TestTheme
 )
 
 //region Configuration

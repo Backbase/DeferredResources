@@ -1,6 +1,7 @@
 package com.backbase.deferredresources
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.TypedValue
 import androidx.annotation.AttrRes
@@ -45,7 +46,12 @@ interface DeferredColor {
         @ColorRes private val resId: Int
     ) : DeferredColor {
         /**
-         * Resolve [resId] to a [ColorInt] with the given [context].
+         * Resolve [resId] to a [ColorInt] with the given [context]. If [resId] resolves to a color selector resource,
+         * resolves the default color of that selector.
+         *
+         * Warning: On API < 23, resolving a color selector with [context]'s theme is unsupported. Thus, a color
+         * selector with an attribute reference as its default color will not resolve to the correct color on API 22 and
+         * below. A color selector with a resource reference as its default color will resolve correctly.
          */
         @ColorInt override fun resolve(context: Context): Int = ContextCompat.getColor(context, resId)
     }
@@ -61,19 +67,39 @@ interface DeferredColor {
         private val reusedTypedValue = TypedValue()
 
         /**
-         * Resolve [resId] to a [ColorInt] with the given [context]'s theme.
+         * Resolve [resId] to a [ColorInt] with the given [context]'s theme. If [resId] would resolve a color selector,
+         * resolves to the default color of that selector.
+         *
+         * Warning: On API < 23, resolving a color selector with [context]'s theme is unsupported. Thus, a color
+         * selector with an attribute reference as its default color will not resolve to the correct color on API 22 and
+         * below. A color selector with a resource reference as its default color will resolve correctly.
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
          */
-        @ColorInt override fun resolve(context: Context): Int = context.resolveColorAttribute(resId)
-
-        @ColorInt private fun Context.resolveColorAttribute(@AttrRes resId: Int): Int =
-            resolveAttribute(
-                resId, "color", reusedTypedValue,
-                TypedValue.TYPE_INT_COLOR_RGB8, TypedValue.TYPE_INT_COLOR_ARGB8,
-                TypedValue.TYPE_INT_COLOR_RGB4, TypedValue.TYPE_INT_COLOR_ARGB4
-            ) {
+        @ColorInt override fun resolve(context: Context): Int = context.resolveColorAttribute {
+            if (type == TypedValue.TYPE_STRING)
+                context.resolveColorStateList().defaultColor
+            else
                 data
-            }
+        }
+
+        private inline fun <T> Context.resolveColorAttribute(
+            toTypeSafeResult: TypedValue.() -> T
+        ): T = resolveAttribute(
+            resId, "color", reusedTypedValue,
+            TypedValue.TYPE_INT_COLOR_RGB8, TypedValue.TYPE_INT_COLOR_ARGB8,
+            TypedValue.TYPE_INT_COLOR_RGB4, TypedValue.TYPE_INT_COLOR_ARGB4,
+            TypedValue.TYPE_STRING,
+            toTypeSafeResult = toTypeSafeResult
+        )
+
+        private fun Context.resolveColorStateList(): ColorStateList = resolveAttribute(
+            resId, "reference", reusedTypedValue,
+            TypedValue.TYPE_REFERENCE,
+            resolveRefs = false
+        ) {
+            val colorSelectorResId = data
+            ContextCompat.getColorStateList(this@resolveColorStateList, colorSelectorResId)!!
+        }
     }
 }

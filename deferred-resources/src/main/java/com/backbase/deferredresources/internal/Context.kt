@@ -28,10 +28,11 @@ internal inline fun <T> Context.resolveAttribute(
     attributeTypeName: String,
     reusedTypedValue: TypedValue,
     vararg expectedTypes: Int,
+    resolveRefs: Boolean = true,
     toTypeSafeResult: TypedValue.() -> T
 ): T {
     try {
-        val isResolved = theme.resolveAttribute(resId, reusedTypedValue, true)
+        val isResolved = theme.resolveAttribute(resId, reusedTypedValue, resolveRefs)
         if (isResolved && expectedTypes.contains(reusedTypedValue.type))
             return reusedTypedValue.toTypeSafeResult()
         else
@@ -53,13 +54,13 @@ private fun Context.createErrorMessage(
 ) = try {
     val name = resources.getResourceEntryName(resId)
     val couldNotResolve = "Could not resolve attribute <$name>"
-    val withContext = "with <$this>"
+    val withContext = "with context <$this>"
     if (isResolved)
         "$couldNotResolve to a $attributeTypeName $withContext"
     else
         "$couldNotResolve $withContext"
 } catch (notFoundException: Resources.NotFoundException) {
-    "Attribute <$resId> could not be found with <$this>"
+    "Attribute <$resId> could not be found with context <$this>"
 }
 
 /**
