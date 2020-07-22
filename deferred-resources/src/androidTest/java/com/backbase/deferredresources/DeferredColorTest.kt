@@ -26,8 +26,8 @@ class DeferredColorTest {
     }
 
     @Test fun resourceResolve_withSelectorColor_resolvesDefaultColor() {
-        val deferred = DeferredColor.Resource(R.color.stateful_color)
-        assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#987654"))
+        val deferred = DeferredColor.Resource(R.color.stateful_color_without_attr)
+        assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#aaaaaa"))
     }
     //endregion
 
@@ -38,13 +38,8 @@ class DeferredColorTest {
     }
 
     @Test fun attributeResolve_withSelectorColor_resolvesDefaultColor() {
-        val deferred = DeferredColor.Attribute(android.R.attr.textColorPrimary)
-        assertThat(deferred.resolve(AppCompatContext(light = true))).isEqualTo(Color.parseColor("#de000000"))
-    }
-
-    @Test fun attributeResolve_withSelectorColorWithAttributeDefault_resolvesDefaultColor() {
-        val deferred = DeferredColor.Attribute(R.attr.titleTextColor)
-        assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#987654"))
+        val deferred = DeferredColor.Attribute(R.attr.subtitleTextColor)
+        assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#aaaaaa"))
     }
 
     @Test(expected = IllegalArgumentException::class)
