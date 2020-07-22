@@ -1,6 +1,7 @@
 package com.backbase.deferredresources
 
 import android.graphics.Color
+import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
@@ -29,6 +30,12 @@ class DeferredColorTest {
         val deferred = DeferredColor.Resource(R.color.stateful_color_without_attr)
         assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#aaaaaa"))
     }
+
+    @SdkSuppress(minSdkVersion = 23)
+    @Test fun resourceResolve_withSelectorColorWithAttribute_resolvesDefaultColor() {
+        val deferred = DeferredColor.Resource(R.color.stateful_color_with_attr)
+        assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#987654"))
+    }
     //endregion
 
     //region Attribute
@@ -40,6 +47,12 @@ class DeferredColorTest {
     @Test fun attributeResolve_withSelectorColor_resolvesDefaultColor() {
         val deferred = DeferredColor.Attribute(R.attr.subtitleTextColor)
         assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#aaaaaa"))
+    }
+
+    @SdkSuppress(minSdkVersion = 23)
+    @Test fun attributeResolve_withSelectorColorWithAttributeDefault_resolvesDefaultColor() {
+        val deferred = DeferredColor.Attribute(R.attr.titleTextColor)
+        assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#987654"))
     }
 
     @Test(expected = IllegalArgumentException::class)

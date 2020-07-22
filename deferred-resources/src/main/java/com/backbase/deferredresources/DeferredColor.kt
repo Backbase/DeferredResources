@@ -47,7 +47,12 @@ interface DeferredColor {
         @ColorRes private val resId: Int
     ) : DeferredColor {
         /**
-         * Resolve [resId] to a [ColorInt] with the given [context].
+         * Resolve [resId] to a [ColorInt] with the given [context]. If [resId] resolves to a color selector resource,
+         * resolves the default color of that selector.
+         *
+         * Warning: On API < 23, resolving a color selector with [context]'s theme is unsupported. Thus, a color
+         * selector with an attribute reference as its default color will not resolve to the correct color on API 22 and
+         * below. A color selector with a resource reference as its default color will resolve correctly.
          */
         @ColorInt override fun resolve(context: Context): Int = ContextCompat.getColor(context, resId)
     }
@@ -65,6 +70,10 @@ interface DeferredColor {
         /**
          * Resolve [resId] to a [ColorInt] with the given [context]'s theme. If [resId] would resolve a color selector,
          * resolves to the default color of that selector.
+         *
+         * Warning: On API < 23, resolving a color selector with [context]'s theme is unsupported. Thus, a color
+         * selector with an attribute reference as its default color will not resolve to the correct color on API 22 and
+         * below. A color selector with a resource reference as its default color will resolve correctly.
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
          */
