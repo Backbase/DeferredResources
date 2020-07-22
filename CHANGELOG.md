@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.5.1
+_2020-07-22_
+
+Update internal `DeferredColor.Resource` and `DeferredColor.Attribute` logic to resolve the default
+color of color selector resources instead of crashing.
+
 ## 0.5.0
 _2020-07-14_
 
