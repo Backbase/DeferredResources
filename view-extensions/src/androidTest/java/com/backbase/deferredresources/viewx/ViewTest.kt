@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.view.View
 import androidx.core.view.ViewCompat
+import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDimension
 import com.backbase.deferredresources.drawable.asDrawable
@@ -33,6 +34,34 @@ class ViewTest {
             background as ColorDrawable
             assertThat(background.color).isEqualTo(Color.GREEN)
         }
+
+    @Test fun setBackgroundTintList_setsResolvedBackgroundColor() = onView<View> {
+        val deferred = DeferredColor.Constant(Color.RED)
+        setBackgroundTintList(deferred)
+
+        val backgroundTintList = backgroundTintList!!
+        assertThat(backgroundTintList.isStateful).isFalse()
+        assertThat(backgroundTintList.defaultColor).isEqualTo(Color.RED)
+    }
+
+    @SdkSuppress(minSdkVersion = 23)
+    @Test fun setForeground_setsResolvedForeground() = onView<View> {
+        val deferred = DeferredColor.Constant(Color.GREEN).asDrawable()
+        setForeground(deferred)
+
+        val foreground = foreground as ColorDrawable
+        assertThat(foreground.color).isEqualTo(Color.GREEN)
+    }
+
+    @SdkSuppress(minSdkVersion = 23)
+    @Test fun setForegroundTintList_setsResolvedForegroundColor() = onView<View> {
+        val deferred = DeferredColor.Constant(Color.CYAN)
+        setForegroundTintList(deferred)
+
+        val foregroundTintList = foregroundTintList!!
+        assertThat(foregroundTintList.isStateful).isFalse()
+        assertThat(foregroundTintList.defaultColor).isEqualTo(Color.CYAN)
+    }
 
     @Test fun setMinimumWidth_setsResolvedAsSizeMinimumWidth() =
         onView<View> {

@@ -3,6 +3,7 @@
 package com.backbase.deferredresources.viewx
 
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDimension
@@ -24,6 +25,36 @@ fun View.setBackground(deferredBackground: DeferredDrawable) {
  * Resolves [deferredColor] and sets the background color for this view.
  */
 fun View.setBackgroundColor(deferredColor: DeferredColor): Unit = setBackgroundColor(deferredColor.resolve(context))
+
+/**
+ * Resolves [deferredTintList] and applies the resolved color as a tint to the background drawable.
+ *
+ * This will always take effect when running on API v21 or newer. When running on platforms previous to API v21, it will
+ * only take effect if the view implements the [androidx.core.view.TintableBackgroundView] interface.
+ */
+fun View.setBackgroundTintList(deferredTintList: DeferredColor): Unit =
+    ViewCompat.setBackgroundTintList(this, deferredTintList.resolveToStateList(context))
+
+/**
+ * Resolve [deferredForeground] and supply the resolved Drawable to be rendered on top of all of the content in the
+ * view.
+ */
+@RequiresApi(23)
+fun View.setForeground(deferredForeground: DeferredDrawable) {
+    foreground = deferredForeground.resolve(context)
+}
+
+/**
+ * Resolves [deferredTint] and applies the resolved color as a tint to the foreground drawable. Does not modify the
+ * current tint mode, which is [android.graphics.PorterDuff.Mode.SRC_IN] by default.
+ *
+ * Subsequent calls to [setForeground] will automatically mutate the resolved drawable and apply the specified tint and
+ * tint mode using [android.graphics.drawable.Drawable.setTintList].
+ */
+@RequiresApi(23)
+fun View.setForegroundTintList(deferredTint: DeferredColor) {
+    foregroundTintList = deferredTint.resolveToStateList(context)
+}
 
 /**
  * Resolves [deferredMinWidth] and sets the minimum width of the view.
