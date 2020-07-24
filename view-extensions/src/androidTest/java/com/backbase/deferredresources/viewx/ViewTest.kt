@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.view.View
+import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.view.ViewCompat
 import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.DeferredColor
@@ -35,11 +36,11 @@ class ViewTest {
             assertThat(background.color).isEqualTo(Color.GREEN)
         }
 
-    @Test fun setBackgroundTintList_setsResolvedBackgroundColor() = onView<View> {
+    @Test fun setBackgroundTintList_setsResolvedBackgroundColor() = onView<AppCompatCheckBox> {
         val deferred = DeferredColor.Constant(Color.RED)
         setBackgroundTintList(deferred)
 
-        val backgroundTintList = backgroundTintList!!
+        val backgroundTintList = supportBackgroundTintList!!
         assertThat(backgroundTintList.isStateful).isFalse()
         assertThat(backgroundTintList.defaultColor).isEqualTo(Color.RED)
     }
