@@ -40,7 +40,7 @@ class ViewTest {
         val deferred = DeferredColor.Constant(Color.RED)
         setBackgroundTintList(deferred)
 
-        val backgroundTintList = supportBackgroundTintList!!
+        val backgroundTintList = if (Build.VERSION.SDK_INT < 21) supportBackgroundTintList!! else backgroundTintList!!
         assertThat(backgroundTintList.isStateful).isFalse()
         assertThat(backgroundTintList.defaultColor).isEqualTo(Color.RED)
     }
