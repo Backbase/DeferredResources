@@ -30,9 +30,12 @@ public final class com/backbase/deferredresources/viewx/DeferredResourcesViewUti
 	public static final fun offsetTopAndBottom (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setBackground (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDrawable;)V
 	public static final fun setBackgroundColor (Landroid/view/View;Lcom/backbase/deferredresources/DeferredColor;)V
+	public static final fun setBackgroundTintList (Landroid/view/View;Lcom/backbase/deferredresources/DeferredColor;)V
 	public static final fun setCameraDistance (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setElevation (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setFadingEdgeLength (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setForeground (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDrawable;)V
+	public static final fun setForegroundTintList (Landroid/view/View;Lcom/backbase/deferredresources/DeferredColor;)V
 	public static final fun setMinimumHeight (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setMinimumWidth (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setPadding (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;Lcom/backbase/deferredresources/DeferredDimension;)V

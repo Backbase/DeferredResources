@@ -33,12 +33,13 @@ fun TextView.setHint(deferredHint: DeferredText) {
 /**
  * Resolves [deferredColor] and sets the text color for all the states to be the resolved color.
  */
-fun TextView.setTextColor(deferredColor: DeferredColor) = setTextColor(deferredColor.resolve(context))
+fun TextView.setTextColor(deferredColor: DeferredColor) = setTextColor(deferredColor.resolveToStateList(context))
 
 /**
  * Resolves [deferredColor] and sets the color of the hint text for all the states of this TextView.
  */
-fun TextView.setHintTextColor(deferredColor: DeferredColor) = setHintTextColor(deferredColor.resolve(context))
+fun TextView.setHintTextColor(deferredColor: DeferredColor) =
+    setHintTextColor(deferredColor.resolveToStateList(context))
 
 /**
  * Resolves the [deferredTypeface] and sets the typeface and style in which the text should be displayed.
