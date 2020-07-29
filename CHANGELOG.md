@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.0.0
+_2020-07-29_
+
+🚀 Official stable release!
+
+Add `DeferredColor.resolveToStateList` to support resolving color `<selector>` elements from XML
+resources and attributes.
+
 ## 0.5.1
 _2020-07-22_
 

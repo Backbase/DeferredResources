@@ -11,7 +11,7 @@ task sourcesJar(type: Jar) {
 
 apply plugin: 'org.jetbrains.dokka'
 dokka {
-    outputDirectory = "$rootDir/docs/0.x"
+    outputDirectory = "$rootDir/docs/1.x"
     outputFormat = 'gfm'
     inputs.dir 'src/main/java'
 }
