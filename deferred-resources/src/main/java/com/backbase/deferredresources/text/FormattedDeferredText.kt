@@ -10,7 +10,7 @@ import dev.drewhamilton.extracare.DataApi
  * resolved.
  */
 @JvmSynthetic fun DeferredFormattedString.withFormatArgs(vararg formatArgs: Any): DeferredText =
-    FormattedDeferredText(wrapped = this, formatArgs = *formatArgs)
+    FormattedDeferredText(wrapped = this, formatArgs = formatArgs)
 
 /**
  * A [DeferredText] implementation that wraps a [DeferredFormattedString] along with its [formatArgs]. Designed for use

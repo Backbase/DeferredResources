@@ -12,7 +12,7 @@ import dev.drewhamilton.extracare.DataApi
 @JvmSynthetic fun DeferredFormattedPlurals.withQuantityAndFormatArgs(
     quantity: Int,
     vararg formatArgs: Any = arrayOf(quantity)
-): DeferredText = QuantifiedFormattedDeferredText(wrapped = this, quantity = quantity, formatArgs = *formatArgs)
+): DeferredText = QuantifiedFormattedDeferredText(wrapped = this, quantity = quantity, formatArgs = formatArgs)
 
 /**
  * A [DeferredText] implementation that wraps a [DeferredFormattedPlurals] along with its [quantity] and [formatArgs].

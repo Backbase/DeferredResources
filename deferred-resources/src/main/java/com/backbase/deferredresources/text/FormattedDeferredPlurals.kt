@@ -10,7 +10,7 @@ import dev.drewhamilton.extracare.DataApi
  * A quantity must still be provided when resolved.
  */
 @JvmSynthetic fun DeferredFormattedPlurals.withFormatArgs(vararg formatArgs: Any): DeferredPlurals =
-    FormattedDeferredPlurals(wrapped = this, formatArgs = *formatArgs)
+    FormattedDeferredPlurals(wrapped = this, formatArgs = formatArgs)
 
 /**
  * A [DeferredPlurals] implementation that wraps a [DeferredFormattedPlurals] along with its [formatArgs]. Designed for
