@@ -9,7 +9,7 @@ import dev.drewhamilton.extracare.DataApi
  * Convert a [DeferredFormattedPlurals] to a normal [DeferredText] by providing a [quantity] and [formatArgs] to be used
  * when resolved.
  */
-@JvmSynthetic fun DeferredFormattedPlurals.withQuantityAndFormatArgs(
+@JvmSynthetic public fun DeferredFormattedPlurals.withQuantityAndFormatArgs(
     quantity: Int,
     vararg formatArgs: Any = arrayOf(quantity)
 ): DeferredText = QuantifiedFormattedDeferredText(wrapped = this, quantity = quantity, formatArgs = formatArgs)
@@ -21,7 +21,7 @@ import dev.drewhamilton.extracare.DataApi
  *
  * If the quantity and format args are to be determined at the resolving site, stick with [DeferredFormattedPlurals].
  */
-@DataApi class QuantifiedFormattedDeferredText private constructor(
+@DataApi public class QuantifiedFormattedDeferredText private constructor(
     // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
     @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
     private val wrapped: DeferredFormattedPlurals,
@@ -34,7 +34,7 @@ import dev.drewhamilton.extracare.DataApi
      *
      * This constructor protects against array mutability by making a copy of [formatArgs].
      */
-    constructor(
+    public constructor(
         wrapped: DeferredFormattedPlurals,
         quantity: Int,
         vararg formatArgs: Any = arrayOf(quantity)

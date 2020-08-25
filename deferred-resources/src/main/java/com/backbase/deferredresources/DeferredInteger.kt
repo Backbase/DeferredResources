@@ -7,17 +7,17 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving an integer on demand.
  */
-interface DeferredInteger {
+public interface DeferredInteger {
 
     /**
      * Resolve the integer.
      */
-    fun resolve(context: Context): Int
+    public fun resolve(context: Context): Int
 
     /**
      * A wrapper for a constant integer [value].
      */
-    @DataApi class Constant(
+    @DataApi public class Constant(
         private val value: Int
     ) : DeferredInteger {
         /**
@@ -29,7 +29,7 @@ interface DeferredInteger {
     /**
      * A wrapper for a [IntegerRes] [resId].
      */
-    @DataApi class Resource(
+    @DataApi public class Resource(
         @IntegerRes private val resId: Int
     ) : DeferredInteger {
         /**

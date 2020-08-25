@@ -9,7 +9,7 @@ import dev.drewhamilton.extracare.DataApi
  * Convert a [DeferredFormattedPlurals] to a [DeferredFormattedString] by providing its [quantity] to be used when
  * resolved. Format arguments must still be provided when resolved.
  */
-@JvmSynthetic fun DeferredFormattedPlurals.withQuantity(quantity: Int): DeferredFormattedString =
+@JvmSynthetic public fun DeferredFormattedPlurals.withQuantity(quantity: Int): DeferredFormattedString =
     QuantifiedDeferredFormattedString(wrapped = this, quantity = quantity)
 
 /**
@@ -20,7 +20,7 @@ import dev.drewhamilton.extracare.DataApi
  * If the quantity is to be determined at the resolving site, stick with [DeferredFormattedPlurals]. If the format args
  * are to be determined at the declaring site, see [QuantifiedFormattedDeferredText].
  */
-@DataApi class QuantifiedDeferredFormattedString(
+@DataApi public class QuantifiedDeferredFormattedString(
     private val wrapped: DeferredFormattedPlurals,
     private val quantity: Int
 ) : DeferredFormattedString {

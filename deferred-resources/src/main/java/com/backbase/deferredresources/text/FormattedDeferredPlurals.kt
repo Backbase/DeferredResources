@@ -9,7 +9,7 @@ import dev.drewhamilton.extracare.DataApi
  * Convert a [DeferredFormattedPlurals] to a [DeferredPlurals] by providing its [formatArgs] to be used when resolved.
  * A quantity must still be provided when resolved.
  */
-@JvmSynthetic fun DeferredFormattedPlurals.withFormatArgs(vararg formatArgs: Any): DeferredPlurals =
+@JvmSynthetic public fun DeferredFormattedPlurals.withFormatArgs(vararg formatArgs: Any): DeferredPlurals =
     FormattedDeferredPlurals(wrapped = this, formatArgs = formatArgs)
 
 /**
@@ -20,7 +20,7 @@ import dev.drewhamilton.extracare.DataApi
  * If the format args are to be determined at the resolving site, stick with [DeferredFormattedPlurals]. If the
  * quantity is to be determined at the declaring site, see [QuantifiedFormattedDeferredText].
  */
-@DataApi class FormattedDeferredPlurals private constructor(
+@DataApi public class FormattedDeferredPlurals private constructor(
     // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
     @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
     private val wrapped: DeferredFormattedPlurals,
@@ -32,7 +32,7 @@ import dev.drewhamilton.extracare.DataApi
      *
      * This constructor protects against array mutability by making a copy of [formatArgs].
      */
-    constructor(
+    public constructor(
         wrapped: DeferredFormattedPlurals,
         vararg formatArgs: Any
     ) : this(1, wrapped, arrayOf(*formatArgs))

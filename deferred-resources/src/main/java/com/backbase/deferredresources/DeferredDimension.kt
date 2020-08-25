@@ -12,35 +12,35 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving an integer dimension on demand.
  */
-interface DeferredDimension {
+public interface DeferredDimension {
 
     /**
      * Resolve the dimension as an integer pixel value for use as a size. The exact value is rounded, and non-zero exact
      * values are ensured to be at least one pixel in size.
      */
-    @Px fun resolveAsSize(context: Context): Int
+    @Px public fun resolveAsSize(context: Context): Int
 
     /**
      * Resolve the dimension as an integer pixel value. The exact value is truncated to an integer.
      */
-    @Px fun resolveAsOffset(context: Context): Int
+    @Px public fun resolveAsOffset(context: Context): Int
 
     /**
      * Resolve the dimension's exact value.
      */
-    @Px fun resolveExact(context: Context): Float
+    @Px public fun resolveExact(context: Context): Float
 
     /**
      * A wrapper for a constant integer [pxValue].
      */
-    @DataApi class Constant(
+    @DataApi public class Constant(
         @Px private val pxValue: Float
     ) : DeferredDimension {
 
         /**
          * Convenience for initializing with an integer [pxValue].
          */
-        constructor(@Px pxValue: Int) : this(pxValue.toFloat())
+        public constructor(@Px pxValue: Int) : this(pxValue.toFloat())
 
         /**
          * Rounds [pxValue] to an integer. If [pxValue] is non-zero but rounds to zero, returns 1 pixel. [context] is
@@ -62,7 +62,7 @@ interface DeferredDimension {
     /**
      * A wrapper for a [DimenRes] [resId].
      */
-    @DataApi class Resource(
+    @DataApi public class Resource(
         @DimenRes private val resId: Int
     ) : DeferredDimension {
         /**
@@ -84,7 +84,7 @@ interface DeferredDimension {
     /**
      * A wrapper for an [AttrRes] [resId] reference to a dimension.
      */
-    @DataApi class Attribute(
+    @DataApi public class Attribute(
         @AttrRes private val resId: Int
     ) : DeferredDimension {
 

@@ -12,12 +12,12 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving format-able pluralized text on demand.
  */
-interface DeferredFormattedPlurals {
+public interface DeferredFormattedPlurals {
 
     /**
      * Resolve the string for the given [quantity] with the given [formatArgs].
      */
-    fun resolve(context: Context, quantity: Int, vararg formatArgs: Any = arrayOf(quantity)): String
+    public fun resolve(context: Context, quantity: Int, vararg formatArgs: Any = arrayOf(quantity)): String
 
     /**
      * A wrapper for constant format-able pluralized text. [zero], [one], [two], [few], and [many] are locale-specific,
@@ -26,7 +26,7 @@ interface DeferredFormattedPlurals {
      * [type] can be supplied to choose between [PluralRules.PluralType.CARDINAL] and [PluralRules.PluralType.ORDINAL].
      * If null, the system default of [PluralRules.PluralType.CARDINAL] is used implicitly.
      */
-    @DataApi class Constant @RequiresApi(24) constructor(
+    @DataApi public class Constant @RequiresApi(24) constructor(
         private val other: String,
         private val zero: String = other,
         private val one: String = other,
@@ -39,7 +39,7 @@ interface DeferredFormattedPlurals {
          * Constructor for API < 24. "CARDINAL" plural type will be used implicitly.
          */
         @SuppressLint("NewApi") // Safely calls API 24 constructor with null
-        constructor(
+        public constructor(
             other: String,
             zero: String = other,
             one: String = other,
@@ -74,7 +74,7 @@ interface DeferredFormattedPlurals {
     /**
      * A wrapper for a format-able [PluralsRes] [resId].
      */
-    @DataApi class Resource(
+    @DataApi public class Resource(
         @PluralsRes private val resId: Int
     ) : DeferredFormattedPlurals {
         /**

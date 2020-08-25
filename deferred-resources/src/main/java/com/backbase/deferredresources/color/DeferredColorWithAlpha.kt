@@ -14,18 +14,20 @@ import kotlin.math.roundToInt
  * Create a [DeferredColor] that resolves with the given [alpha], regardless of the base color's original alpha.
  */
 @JvmSynthetic
-fun DeferredColor.withAlpha(@IntRange(from = 0x00, to = 0xFF) alpha: Int) = DeferredColorWithAlpha(this, alpha)
+public fun DeferredColor.withAlpha(@IntRange(from = 0x00, to = 0xFF) alpha: Int): DeferredColorWithAlpha =
+    DeferredColorWithAlpha(this, alpha)
 
 /**
  * Create a [DeferredColor] that resolves with the given [alpha], regardless of the base color's original alpha.
  */
 @JvmSynthetic
-fun DeferredColor.withAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float) = DeferredColorWithAlpha(this, alpha)
+public fun DeferredColor.withAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float): DeferredColorWithAlpha =
+    DeferredColorWithAlpha(this, alpha)
 
 /**
  * A [DeferredColor] that always resolves with a specific [alpha] value, ignoring the [base] color's alpha.
  */
-@DataApi class DeferredColorWithAlpha(
+@DataApi public class DeferredColorWithAlpha(
     private val base: DeferredColor,
     @IntRange(from = 0x00, to = 0xFF) private val alpha: Int
 ) : DeferredColor {
@@ -33,7 +35,7 @@ fun DeferredColor.withAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float) = De
     /**
      * Convenience constructor to specify a float [alpha] value to apply on the [base] color.
      */
-    constructor(
+    public constructor(
         base: DeferredColor,
         @FloatRange(from = 0.0, to = 1.0) alpha: Float
     ) : this(base, (alpha * 0xFF).roundToInt())

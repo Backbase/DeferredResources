@@ -14,29 +14,29 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving a [ColorInt] color on demand.
  */
-interface DeferredColor {
+public interface DeferredColor {
 
     /**
      * Resolve the [ColorInt] color.
      */
-    @ColorInt fun resolve(context: Context): Int
+    @ColorInt public fun resolve(context: Context): Int
 
     /**
      * Resolve the color to a [ColorStateList].
      */
-    fun resolveToStateList(context: Context): ColorStateList
+    public fun resolveToStateList(context: Context): ColorStateList
 
     /**
      * A wrapper for a constant color [value].
      */
-    @DataApi class Constant(
+    @DataApi public class Constant(
         @ColorInt private val value: Int
     ) : DeferredColor {
 
         /**
          * Convenience for wrapping a constant color value parsed from the given [colorString].
          */
-        constructor(colorString: String) : this(Color.parseColor(colorString))
+        public constructor(colorString: String) : this(Color.parseColor(colorString))
 
         /**
          * Always resolves to [value], ignoring [context].
@@ -52,7 +52,7 @@ interface DeferredColor {
     /**
      * A wrapper for a [ColorRes] [resId].
      */
-    @DataApi class Resource(
+    @DataApi public class Resource(
         @ColorRes private val resId: Int
     ) : DeferredColor {
         /**
@@ -77,7 +77,7 @@ interface DeferredColor {
     /**
      * A wrapper for a [AttrRes] [resId] reference to a color.
      */
-    @DataApi class Attribute(
+    @DataApi public class Attribute(
         @AttrRes private val resId: Int
     ) : DeferredColor {
 

@@ -8,7 +8,7 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * Convert a [DeferredPlurals] to a normal [DeferredText] by providing its [quantity] to be used when resolved.
  */
-@JvmSynthetic fun DeferredPlurals.withQuantity(quantity: Int): DeferredText =
+@JvmSynthetic public fun DeferredPlurals.withQuantity(quantity: Int): DeferredText =
     QuantifiedDeferredText(wrapped = this, quantity = quantity)
 
 /**
@@ -17,7 +17,7 @@ import dev.drewhamilton.extracare.DataApi
  *
  * If the quantity is to be determined at the resolving site, stick with [DeferredPlurals].
  */
-@DataApi class QuantifiedDeferredText(
+@DataApi public class QuantifiedDeferredText(
     private val wrapped: DeferredPlurals,
     private val quantity: Int
 ) : DeferredText {

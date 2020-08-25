@@ -11,12 +11,12 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving pluralized text on demand.
  */
-interface DeferredPlurals {
+public interface DeferredPlurals {
 
     /**
      * Resolve the text for the given [quantity].
      */
-    fun resolve(context: Context, quantity: Int): CharSequence
+    public fun resolve(context: Context, quantity: Int): CharSequence
 
     /**
      * A wrapper for constant pluralized text. [zero], [one], [two], [few], and [many] are locale-specific,
@@ -25,7 +25,7 @@ interface DeferredPlurals {
      * [type] can be supplied to choose between [PluralRules.PluralType.CARDINAL] and [PluralRules.PluralType.ORDINAL].
      * If null, the system default of [PluralRules.PluralType.CARDINAL] is used implicitly.
      */
-    @DataApi class Constant @RequiresApi(24) constructor(
+    @DataApi public class Constant @RequiresApi(24) constructor(
         private val other: CharSequence,
         private val zero: CharSequence = other,
         private val one: CharSequence = other,
@@ -39,7 +39,7 @@ interface DeferredPlurals {
          * Constructor for APIs < 24. "CARDINAL" plural type will be used implicitly.
          */
         @SuppressLint("NewApi") // Safely calls API 24 constructor with null
-        constructor(
+        public constructor(
             other: CharSequence,
             zero: CharSequence = other,
             one: CharSequence = other,
@@ -73,7 +73,7 @@ interface DeferredPlurals {
     /**
      * A wrapper for a [PluralsRes] [resId].
      */
-    @DataApi class Resource(
+    @DataApi public class Resource(
         @PluralsRes private val resId: Int,
         private val type: Type = Type.STRING
     ) : DeferredPlurals {
@@ -94,7 +94,7 @@ interface DeferredPlurals {
         /**
          * The type of text resource to resolve.
          */
-        enum class Type {
+        public enum class Type {
             STRING, TEXT
         }
     }
