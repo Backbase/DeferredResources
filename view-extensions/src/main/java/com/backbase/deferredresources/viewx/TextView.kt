@@ -13,32 +13,33 @@ import com.backbase.deferredresources.DeferredTypeface
 /**
  * Resolves [deferredText] and sets it as the text to be displayed.
  */
-fun TextView.setText(deferredText: DeferredText) {
+public fun TextView.setText(deferredText: DeferredText) {
     text = deferredText.resolve(context)
 }
 
 /**
  * Resolves [deferredText] and sets it as the text to be displayed with the given [type].
  */
-fun TextView.setText(deferredText: DeferredText, type: TextView.BufferType) =
+public fun TextView.setText(deferredText: DeferredText, type: TextView.BufferType): Unit =
     setText(deferredText.resolve(context), type)
 
 /**
  * Resolves [deferredHint] and sets the text to be displayed when the text of the TextView is empty.
  */
-fun TextView.setHint(deferredHint: DeferredText) {
+public fun TextView.setHint(deferredHint: DeferredText) {
     hint = deferredHint.resolve(context)
 }
 
 /**
  * Resolves [deferredColor] and sets the text color for all the states to be the resolved color.
  */
-fun TextView.setTextColor(deferredColor: DeferredColor) = setTextColor(deferredColor.resolveToStateList(context))
+public fun TextView.setTextColor(deferredColor: DeferredColor): Unit =
+    setTextColor(deferredColor.resolveToStateList(context))
 
 /**
  * Resolves [deferredColor] and sets the color of the hint text for all the states of this TextView.
  */
-fun TextView.setHintTextColor(deferredColor: DeferredColor) =
+public fun TextView.setHintTextColor(deferredColor: DeferredColor): Unit =
     setHintTextColor(deferredColor.resolveToStateList(context))
 
 /**
@@ -47,7 +48,7 @@ fun TextView.setHintTextColor(deferredColor: DeferredColor) =
  * Note that not all Typeface families actually have bold and italic variants, so you may need to use [setTypeface] with
  * an explicit style to get the desired appearance.
  */
-fun TextView.setTypeface(deferredTypeface: DeferredTypeface) {
+public fun TextView.setTypeface(deferredTypeface: DeferredTypeface) {
     typeface = deferredTypeface.resolve(context)
 }
 
@@ -57,7 +58,7 @@ fun TextView.setTypeface(deferredTypeface: DeferredTypeface) {
  * Turns on the fake bold and italic bits in the Paint if the resolved Typeface does not have all the bits in the
  * specified [style].
  */
-fun TextView.setTypeface(deferredTypeface: DeferredTypeface, style: Int) =
+public fun TextView.setTypeface(deferredTypeface: DeferredTypeface, style: Int): Unit =
     setTypeface(deferredTypeface.resolve(context), style)
 
 /**
@@ -65,7 +66,7 @@ fun TextView.setTypeface(deferredTypeface: DeferredTypeface, style: Int) =
  *
  * Note: if this TextView has the auto-size feature enabled than this function is no-op.
  */
-fun TextView.setTextSize(deferredSize: DeferredDimension) =
+public fun TextView.setTextSize(deferredSize: DeferredDimension): Unit =
     setTextSize(TypedValue.COMPLEX_UNIT_PX, deferredSize.resolveExact(context))
 
 /**
@@ -75,10 +76,10 @@ fun TextView.setTextSize(deferredSize: DeferredDimension) =
  *
  * @throws IllegalArgumentException if any of the configuration params are invalid.
  */
-fun TextView.setAutoSizeTextTypeUniformWithConfiguration(
+public fun TextView.setAutoSizeTextTypeUniformWithConfiguration(
     deferredMinTextSize: DeferredDimension, deferredMaxTextSize: DeferredDimension,
     deferredStepGranularity: DeferredDimension
-) = TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
+): Unit = TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
     this,
     deferredMinTextSize.resolveAsSize(context), deferredMaxTextSize.resolveAsSize(context),
     deferredStepGranularity.resolveAsSize(context),
@@ -89,7 +90,7 @@ fun TextView.setAutoSizeTextTypeUniformWithConfiguration(
  * Resolves [deferredLineHeight] and sets an explicit line height for this TextView. This is equivalent to the vertical
  * distance between subsequent baselines in the TextView.
  */
-fun TextView.setLineHeight(deferredLineHeight: DeferredDimension) =
+public fun TextView.setLineHeight(deferredLineHeight: DeferredDimension): Unit =
     TextViewCompat.setLineHeight(this, deferredLineHeight.resolveAsSize(context))
 
 /**
@@ -99,7 +100,7 @@ fun TextView.setLineHeight(deferredLineHeight: DeferredDimension) =
  * Note: If `FontMetrics.top` or `FontMetrics.ascent` was already greater than the resolved height, the top padding is
  * not updated.
  */
-fun TextView.setFirstBaselineToTopHeight(deferredFirstBaselineToTopHeight: DeferredDimension) =
+public fun TextView.setFirstBaselineToTopHeight(deferredFirstBaselineToTopHeight: DeferredDimension): Unit =
     TextViewCompat.setFirstBaselineToTopHeight(this, deferredFirstBaselineToTopHeight.resolveAsSize(context))
 
 /**
@@ -109,7 +110,7 @@ fun TextView.setFirstBaselineToTopHeight(deferredFirstBaselineToTopHeight: Defer
  * Note: If `FontMetrics.bottom` or `FontMetrics.descent` was already greater than the resolved height, the bottom
  * padding is not updated.
  */
-fun TextView.setLastBaselineToBottomHeight(deferredLastBaselineToBottomHeight: DeferredDimension) =
+public fun TextView.setLastBaselineToBottomHeight(deferredLastBaselineToBottomHeight: DeferredDimension): Unit =
     TextViewCompat.setLastBaselineToBottomHeight(this, deferredLastBaselineToBottomHeight.resolveAsSize(context))
 
 /**
@@ -121,7 +122,7 @@ fun TextView.setLastBaselineToBottomHeight(deferredLastBaselineToBottomHeight: D
  * The value given here is different than [setMinimumHeight]. Between this and the value set in [setMinimumHeight], the
  * greater one is used to decide the final height.
  */
-fun TextView.setMinHeight(deferredMinHeight: DeferredDimension) {
+public fun TextView.setMinHeight(deferredMinHeight: DeferredDimension) {
     minHeight = deferredMinHeight.resolveAsSize(context)
 }
 
@@ -131,7 +132,7 @@ fun TextView.setMinHeight(deferredMinHeight: DeferredDimension) {
  * This value is used for height calculation if LayoutParams does not force TextView to have an exact height. Setting
  * this value overrides previous maximum height configurations such as [TextView.setMaxLines] or [TextView.setLines].
  */
-fun TextView.setMaxHeight(deferredMaxHeight: DeferredDimension) {
+public fun TextView.setMaxHeight(deferredMaxHeight: DeferredDimension) {
     maxHeight = deferredMaxHeight.resolveAsSize(context)
 }
 
@@ -141,7 +142,7 @@ fun TextView.setMaxHeight(deferredMaxHeight: DeferredDimension) {
  * This value is used for height calculation if LayoutParams does not force TextView to have an exact height. Setting
  * this value overrides previous minimum/maximum height configurations such as [setMinHeight] or [setMaxHeight].
  */
-fun TextView.setHeight(deferredHeight: DeferredDimension) {
+public fun TextView.setHeight(deferredHeight: DeferredDimension) {
     height = deferredHeight.resolveAsSize(context)
 }
 
@@ -154,7 +155,7 @@ fun TextView.setHeight(deferredHeight: DeferredDimension) {
  * The value given here is different than [setMinimumWidth]. Between this and the value set in [setMinimumWidth], the
  * greater one is used to decide the final width.
  */
-fun TextView.setMinWidth(deferredMinWidth: DeferredDimension) {
+public fun TextView.setMinWidth(deferredMinWidth: DeferredDimension) {
     minWidth = deferredMinWidth.resolveAsSize(context)
 }
 
@@ -164,7 +165,7 @@ fun TextView.setMinWidth(deferredMinWidth: DeferredDimension) {
  * This value is used for width calculation if LayoutParams does not force TextView to have an exact width. Setting
  * this value overrides previous maximum width configurations such as [TextView.setMaxEms] or [TextView.setEms].
  */
-fun TextView.setMaxWidth(deferredMaxWidth: DeferredDimension) {
+public fun TextView.setMaxWidth(deferredMaxWidth: DeferredDimension) {
     maxWidth = deferredMaxWidth.resolveAsSize(context)
 }
 
@@ -174,7 +175,7 @@ fun TextView.setMaxWidth(deferredMaxWidth: DeferredDimension) {
  * This value is used for width calculation if LayoutParams does not force TextView to have an exact width. Setting
  * this value overrides previous minimum/maximum width configurations such as [setMinWidth] or [setMaxWidth].
  */
-fun TextView.setWidth(deferredWidth: DeferredDimension) {
+public fun TextView.setWidth(deferredWidth: DeferredDimension) {
     width = deferredWidth.resolveAsSize(context)
 }
 
@@ -182,6 +183,6 @@ fun TextView.setWidth(deferredWidth: DeferredDimension) {
  * Resolves [add] and sets line spacing for this TextView. Each line other than the last line will have its height
  * multiplied by [mult] and have [add] added to it.
  */
-// TODO: Add and use a DeferredFloat, then remove `internal` keyword
-internal
-fun TextView.setLineSpacing(add: DeferredDimension, mult: Float) = setLineSpacing(add.resolveExact(context), mult)
+// TODO: Add and use a DeferredFloat, then make this public
+internal fun TextView.setLineSpacing(add: DeferredDimension, mult: Float): Unit =
+    setLineSpacing(add.resolveExact(context), mult)

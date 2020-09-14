@@ -15,7 +15,7 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Assume.assumeFalse
 import org.junit.Test
 
-class TextViewTest {
+internal class TextViewTest {
 
     @Test fun setText_displaysResolvedText() =
         onView<TextView> {

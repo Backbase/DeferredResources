@@ -14,7 +14,7 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Assume.assumeFalse
 import org.junit.Test
 
-class ViewTest {
+internal class ViewTest {
 
     @Test fun setBackground_setsResolvedBackground() =
         onView<View> {

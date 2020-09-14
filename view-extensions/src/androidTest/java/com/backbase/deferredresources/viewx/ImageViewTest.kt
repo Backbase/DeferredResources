@@ -14,7 +14,7 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Assume.assumeFalse
 import org.junit.Test
 
-class ImageViewTest {
+internal class ImageViewTest {
 
     @Test fun setImageDrawable_setsResolvedDrawable() =
         onView<ImageView> {
