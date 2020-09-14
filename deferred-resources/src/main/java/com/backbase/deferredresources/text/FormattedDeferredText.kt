@@ -9,7 +9,7 @@ import dev.drewhamilton.extracare.DataApi
  * Convert a [DeferredFormattedString] to a normal [DeferredText] by providing its [formatArgs] to be used when
  * resolved.
  */
-@JvmSynthetic fun DeferredFormattedString.withFormatArgs(vararg formatArgs: Any): DeferredText =
+@JvmSynthetic public fun DeferredFormattedString.withFormatArgs(vararg formatArgs: Any): DeferredText =
     FormattedDeferredText(wrapped = this, formatArgs = formatArgs)
 
 /**
@@ -18,7 +18,7 @@ import dev.drewhamilton.extracare.DataApi
  *
  * If the format args are to be determined at the resolving site, stick with [DeferredFormattedString].
  */
-@DataApi class FormattedDeferredText private constructor(
+@DataApi public class FormattedDeferredText private constructor(
     // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
     @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
     private val wrapped: DeferredFormattedString,
@@ -30,7 +30,7 @@ import dev.drewhamilton.extracare.DataApi
      *
      * This constructor protects against array mutability by making a copy of [formatArgs].
      */
-    constructor(
+    public constructor(
         wrapped: DeferredFormattedString,
         vararg formatArgs: Any
     ) : this(1, wrapped, arrayOf(*formatArgs))

@@ -6,7 +6,7 @@ import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-class DeferredColorTest {
+internal class DeferredColorTest {
 
     private val disabledState = intArrayOf(-android.R.attr.state_enabled)
     private val checkedState = intArrayOf(android.R.attr.state_enabled, android.R.attr.state_checked)

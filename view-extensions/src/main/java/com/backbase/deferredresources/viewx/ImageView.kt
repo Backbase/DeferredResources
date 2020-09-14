@@ -10,16 +10,18 @@ import com.backbase.deferredresources.DeferredDrawable
 /**
  * Resolves [deferredDrawable] and sets the resolved drawable as the content of this ImageView.
  */
-fun ImageView.setImageDrawable(deferredDrawable: DeferredDrawable) = setImageDrawable(deferredDrawable.resolve(context))
+public fun ImageView.setImageDrawable(deferredDrawable: DeferredDrawable): Unit =
+    setImageDrawable(deferredDrawable.resolve(context))
 
 /**
  * Resolve [deferredColor] and set the resolved color as a tinting option for the image. Assumes
  * [PorterDuff.Mode.SRC_ATOP] blending mode.
  */
-fun ImageView.setColorFilter(deferredColor: DeferredColor) = setColorFilter(deferredColor.resolve(context))
+public fun ImageView.setColorFilter(deferredColor: DeferredColor): Unit =
+    setColorFilter(deferredColor.resolve(context))
 
 /**
  * Resolve [deferredColor] and set the resolved color as a tinting option for the image and the given blending [mode].
  */
-fun ImageView.setColorFilter(deferredColor: DeferredColor, mode: PorterDuff.Mode) =
+public fun ImageView.setColorFilter(deferredColor: DeferredColor, mode: PorterDuff.Mode): Unit =
     setColorFilter(deferredColor.resolve(context), mode)

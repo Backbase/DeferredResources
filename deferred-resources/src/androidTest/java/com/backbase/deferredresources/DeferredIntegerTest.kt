@@ -4,7 +4,7 @@ import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-class DeferredIntegerTest {
+internal class DeferredIntegerTest {
 
     @Test fun constant_returnsConstantValue() {
         val deferred = DeferredInteger.Constant(8723)

@@ -8,17 +8,17 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving a formatted string on demand.
  */
-interface DeferredFormattedString {
+public interface DeferredFormattedString {
 
     /**
      * Resolve the string with the supplied [formatArgs].
      */
-    fun resolve(context: Context, vararg formatArgs: Any): String
+    public fun resolve(context: Context, vararg formatArgs: Any): String
 
     /**
      * A wrapper for a constant format-able [format] string.
      */
-    @DataApi class Constant(
+    @DataApi public class Constant(
         private val format: String
     ) : DeferredFormattedString {
         /**
@@ -31,7 +31,7 @@ interface DeferredFormattedString {
     /**
      * A wrapper for a format-able [StringRes] [resId].
      */
-    @DataApi class Resource(
+    @DataApi public class Resource(
         @StringRes private val resId: Int
     ) : DeferredFormattedString {
 

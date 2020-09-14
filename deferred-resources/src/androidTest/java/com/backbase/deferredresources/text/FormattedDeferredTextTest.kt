@@ -5,7 +5,7 @@ import com.backbase.deferredresources.context
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-class FormattedDeferredTextTest {
+internal class FormattedDeferredTextTest {
 
     @Test fun withFormatArgs_producesInstanceEqualsToNormalConstructor() {
         val formattedString = DeferredFormattedString.Constant("%s and %s")

@@ -12,23 +12,23 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving a typeface on demand.
  */
-interface DeferredTypeface {
+public interface DeferredTypeface {
 
     /**
      * Resolve the typeface synchronously.
      */
-    fun resolve(context: Context): Typeface?
+    public fun resolve(context: Context): Typeface?
 
     /**
      * Resolve the typeface asynchronously. [fontCallback] will be triggered on the [handler]'s thread. If [handler] is
      * null, [fontCallback] will be triggered on the UI thread.
      */
-    fun resolve(context: Context, fontCallback: ResourcesCompat.FontCallback, handler: Handler? = null)
+    public fun resolve(context: Context, fontCallback: ResourcesCompat.FontCallback, handler: Handler? = null)
 
     /**
      * A wrapper for a constant typeface [value].
      */
-    @DataApi class Constant(
+    @DataApi public class Constant(
         private val value: Typeface
     ) : DeferredTypeface {
         /**
@@ -48,7 +48,7 @@ interface DeferredTypeface {
     /**
      * A wrapper for a [FontRes] [id].
      */
-    @DataApi class Resource(
+    @DataApi public class Resource(
         @FontRes private val id: Int
     ) : DeferredTypeface {
         /**
@@ -64,7 +64,7 @@ interface DeferredTypeface {
             ResourcesCompat.getFont(context, id, fontCallback, handler)
     }
 
-    @DataApi class Asset(
+    @DataApi public class Asset(
         private val path: String
     ) : DeferredTypeface {
         /**

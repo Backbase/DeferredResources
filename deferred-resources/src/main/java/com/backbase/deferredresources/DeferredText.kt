@@ -7,17 +7,17 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving text on demand.
  */
-interface DeferredText {
+public interface DeferredText {
 
     /**
      * Resolve the text.
      */
-    fun resolve(context: Context): CharSequence
+    public fun resolve(context: Context): CharSequence
 
     /**
      * A wrapper for a constant text [value].
      */
-    @DataApi class Constant(
+    @DataApi public class Constant(
         private val value: CharSequence
     ) : DeferredText {
         /**
@@ -29,7 +29,7 @@ interface DeferredText {
     /**
      * A wrapper for a text [resId].
      */
-    @DataApi class Resource @JvmOverloads constructor(
+    @DataApi public class Resource @JvmOverloads constructor(
         @StringRes private val resId: Int,
         private val type: Type = Type.STRING
     ) : DeferredText {
@@ -51,7 +51,7 @@ interface DeferredText {
         /**
          * The type of text resource to resolve.
          */
-        enum class Type {
+        public enum class Type {
             STRING, TEXT
         }
     }

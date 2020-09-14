@@ -9,7 +9,7 @@ import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-class DeferredColorWithAlphaTest {
+internal class DeferredColorWithAlphaTest {
 
     private val baseColor = ColorUtils.setAlphaComponent(Color.YELLOW, 0x33)
     private val baseDeferred = DeferredColor.Constant(baseColor)

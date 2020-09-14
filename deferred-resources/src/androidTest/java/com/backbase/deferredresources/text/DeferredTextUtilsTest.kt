@@ -5,7 +5,7 @@ import com.backbase.deferredresources.context
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-class DeferredTextUtilsTest {
+internal class DeferredTextUtilsTest {
 
     @Test fun resolveToString_returnsCharSequenceToString() {
         val deferred = DeferredText.Constant(FakeCharSequence("Test string"))

@@ -6,7 +6,7 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 import kotlin.math.roundToInt
 
-class DeferredDimensionTest {
+internal class DeferredDimensionTest {
 
     //region Constant
     @Test fun constantResolveAsSize_normalPxValue_returnsRoundedValue() {

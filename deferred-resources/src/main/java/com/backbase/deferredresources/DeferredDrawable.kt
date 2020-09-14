@@ -9,17 +9,17 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A wrapper for resolving a [Drawable] on demand.
  */
-interface DeferredDrawable {
+public interface DeferredDrawable {
 
     /**
      * Resolve the [Drawable].
      */
-    fun resolve(context: Context): Drawable?
+    public fun resolve(context: Context): Drawable?
 
     /**
      * A wrapper for a constant Drawable [value].
      */
-    @DataApi class Constant(
+    @DataApi public class Constant(
         private val value: Drawable?
     ) : DeferredDrawable {
         /**
@@ -34,7 +34,7 @@ interface DeferredDrawable {
      *
      * If [transformations] are supplied, [mutate] should be true.
      */
-    @DataApi class Resource @JvmOverloads constructor(
+    @DataApi public class Resource @JvmOverloads constructor(
         @DrawableRes private val resId: Int,
         private val mutate: Boolean = true,
         private val transformations: Drawable.(Context) -> Unit = {}
@@ -43,7 +43,7 @@ interface DeferredDrawable {
         /**
          * Convenience constructor that sets [mutate] to true when [transformations] are supplied.
          */
-        constructor(
+        public constructor(
             @DrawableRes resId: Int,
             transformations: Drawable.(Context) -> Unit
         ) : this(resId, mutate = true, transformations = transformations)
