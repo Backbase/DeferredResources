@@ -35,13 +35,7 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
-    }
-}
-
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) { task ->
-    if (!task.toString().contains('Test')) {
-        logger.lifecycle "Applying explicit mode to $task"
-        task.kotlinOptions.freeCompilerArgs += ['-Xexplicit-api=strict']
+        freeCompilerArgs += ['-Xexplicit-api=strict']
     }
 }
 

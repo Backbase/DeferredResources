@@ -71,7 +71,7 @@ private class ConfigurationContext(
  * Creates a Context that always returns true from [Context.isRestricted]. If the receiver is already restricted,
  * returns itself.
  */
-fun Context.createRestrictedContext() = if (isRestricted) this else object : ContextWrapper(this) {
+internal fun Context.createRestrictedContext() = if (isRestricted) this else object : ContextWrapper(this) {
     override fun isRestricted() = true
 }
 //endregion

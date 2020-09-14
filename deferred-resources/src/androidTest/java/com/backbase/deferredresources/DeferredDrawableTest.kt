@@ -10,7 +10,7 @@ import org.junit.After
 import org.junit.Assume.assumeFalse
 import org.junit.Test
 
-class DeferredDrawableTest {
+internal class DeferredDrawableTest {
 
     private val defaultOvalGradientFraction = 0.8f
 

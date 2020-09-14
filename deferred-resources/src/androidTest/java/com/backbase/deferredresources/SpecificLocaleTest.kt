@@ -8,7 +8,7 @@ import androidx.core.os.LocaleListCompat
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Before
 
-abstract class SpecificLocaleTest {
+internal abstract class SpecificLocaleTest {
 
     protected var context: Context = InstrumentationRegistry.getInstrumentation().context
         private set

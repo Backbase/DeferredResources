@@ -6,7 +6,7 @@ import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-class DeferredFormattedPluralsTest : SpecificLocaleTest() {
+internal class DeferredFormattedPluralsTest : SpecificLocaleTest() {
 
     @Test fun constant_defaultTypeAndUsLocale_resolvesOneAndOther() {
         setTestLanguage("en-US")

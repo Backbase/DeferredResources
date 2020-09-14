@@ -7,7 +7,7 @@ import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-class DeferredTextTest {
+internal class DeferredTextTest {
 
     private val richTextWithoutTags = "Rich text"
 

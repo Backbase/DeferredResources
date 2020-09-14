@@ -12,6 +12,8 @@ import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry
 import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.cancel
@@ -21,10 +23,8 @@ import org.junit.After
 import org.junit.Assume.assumeFalse
 import org.junit.Before
 import org.junit.Test
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
-class DeferredTypefaceTest {
+internal class DeferredTypefaceTest {
 
     private lateinit var otherThreadExecutor: ExecutorService
     private lateinit var otherThreadScope: CoroutineScope

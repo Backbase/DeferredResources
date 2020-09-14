@@ -7,7 +7,7 @@ import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-class DeferredTextArrayTest {
+internal class DeferredTextArrayTest {
 
     private val expectedStringArray = arrayOf("Bold one", "Regular one")
 

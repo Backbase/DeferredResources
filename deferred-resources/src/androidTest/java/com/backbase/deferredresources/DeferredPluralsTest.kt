@@ -9,7 +9,7 @@ import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-class DeferredPluralsTest : SpecificLocaleTest() {
+internal class DeferredPluralsTest : SpecificLocaleTest() {
 
     @Test fun constant_defaultTypeAndUsLocale_resolvesOneAndOther() {
         setTestLanguage("en-US")

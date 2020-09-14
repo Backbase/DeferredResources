@@ -5,7 +5,7 @@ import com.backbase.deferredresources.SpecificLocaleTest
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-class FormattedDeferredPluralsTest : SpecificLocaleTest() {
+internal class FormattedDeferredPluralsTest : SpecificLocaleTest() {
 
     @Test fun withFormatArgs_producesInstanceEqualsToNormalConstructor() {
         val formattedPlurals = DeferredFormattedPlurals.Constant("%s and %s")
