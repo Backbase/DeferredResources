@@ -24,7 +24,7 @@ buildscript {
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         // TODO WORKAROUND: Update to 0.10.x after https://github.com/Kotlin/dokka/issues/879
-        classpath 'org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.18'
+        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.4.10'
         classpath 'org.jetbrains.kotlinx:binary-compatibility-validator:0.2.3'
 
         classpath 'dev.drewhamilton.extracare:extracare-gradle-plugin:0.3.1'

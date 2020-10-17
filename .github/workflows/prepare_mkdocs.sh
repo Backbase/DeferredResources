@@ -14,7 +14,7 @@ cp CHANGELOG.md docs/changelog.md
 cp CONTRIBUTING.md docs/contributing.md
 
 # Generate the API docs
-./gradlew dokka
+./gradlew dokkaGfm
 
 # Dokka filenames like `-http-url/index.md` don't work well with MkDocs <title> tags.
 # Assign metadata to the file's first Markdown heading.

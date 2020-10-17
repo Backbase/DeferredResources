@@ -10,22 +10,13 @@ task sourcesJar(type: Jar) {
 }
 
 apply plugin: 'org.jetbrains.dokka'
-dokka {
-    outputDirectory = "$rootDir/docs/1.x"
-    outputFormat = 'gfm'
-    inputs.dir 'src/main/java'
-}
-
-def javadocDestinationDir = "$buildDir/docs/javadoc"
-task dokkaJavadoc(type: dokka.class) {
-    outputFormat = 'javadoc'
-    outputDirectory = javadocDestinationDir
-    inputs.dir 'src/main/java'
+dokkaGfm {
+    outputDirectory.set new File("$rootDir/docs/1.x")
 }
 
 task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
     archiveClassifier.set 'javadoc'
-    from javadocDestinationDir
+    from dokkaJavadoc.outputDirectory
 }
 
 artifacts {
