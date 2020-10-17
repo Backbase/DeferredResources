@@ -349,6 +349,16 @@ public final class com/backbase/deferredresources/color/DeferredColorWithAlphaKt
 	public static final synthetic fun withAlpha (Lcom/backbase/deferredresources/DeferredColor;I)Lcom/backbase/deferredresources/color/DeferredColorWithAlpha;
 }
 
+public final class com/backbase/deferredresources/color/SdkIntDeferredColor : com/backbase/deferredresources/DeferredColor {
+	public fun <init> (Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;)V
+	public synthetic fun <init> (Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)I
+	public fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/backbase/deferredresources/drawable/DeferredColorDrawable : com/backbase/deferredresources/DeferredDrawable {
 	public fun <init> (Lcom/backbase/deferredresources/DeferredColor;)V
 	public fun equals (Ljava/lang/Object;)Z
