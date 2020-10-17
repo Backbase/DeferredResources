@@ -2,7 +2,7 @@ buildscript {
     //region Dependency declarations
     ext.versions = [
         jaCoCo: '0.8.4',
-        kotlin: '1.4.0',
+        kotlin: '1.4.10',
     ]
 
     ext.deps = [
