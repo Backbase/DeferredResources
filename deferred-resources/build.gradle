@@ -43,7 +43,6 @@ dependencies {
     implementation deps.androidAnnotations
 
     implementation deps.coreKtx
-    implementation deps.kotlinStdLib
 
     // TODO WORKAROUND: Instrumented tests won't run without this
     debugImplementation deps.appCompat
