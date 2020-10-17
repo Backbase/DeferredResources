@@ -41,8 +41,8 @@ ext {
     publishGroup = 'com.backbase.oss.deferredresources'
     libraryVersion = '1.1.0-SNAPSHOT'
     minSdk = 14
-    targetSdk = 29
-    buildToolsVersion = '29.0.3'
+    targetSdk = 30
+    buildToolsVersion = '30.0.2'
 }
 
 apply plugin: 'binary-compatibility-validator'
