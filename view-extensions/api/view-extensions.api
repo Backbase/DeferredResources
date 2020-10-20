@@ -26,12 +26,15 @@ public final class com/backbase/deferredresources/viewx/DeferredResourcesTextVie
 }
 
 public final class com/backbase/deferredresources/viewx/DeferredResourcesViewUtils {
+	public static final fun announceForAccessibility (Landroid/view/View;Lcom/backbase/deferredresources/DeferredText;)V
 	public static final fun offsetLeftAndRight (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun offsetTopAndBottom (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setAccessibilityPaneTitle (Landroid/view/View;Lcom/backbase/deferredresources/DeferredText;)V
 	public static final fun setBackground (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDrawable;)V
 	public static final fun setBackgroundColor (Landroid/view/View;Lcom/backbase/deferredresources/DeferredColor;)V
 	public static final fun setBackgroundTintList (Landroid/view/View;Lcom/backbase/deferredresources/DeferredColor;)V
 	public static final fun setCameraDistance (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
+	public static final fun setContentDescription (Landroid/view/View;Lcom/backbase/deferredresources/DeferredText;)V
 	public static final fun setElevation (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setFadingEdgeLength (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDimension;)V
 	public static final fun setForeground (Landroid/view/View;Lcom/backbase/deferredresources/DeferredDrawable;)V
