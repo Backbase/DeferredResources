@@ -1,5 +1,6 @@
 package com.backbase.deferredresources.viewx
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -9,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDimension
+import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.drawable.asDrawable
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assume.assumeFalse
@@ -249,4 +251,49 @@ internal class ViewTest {
             val expected = if (Build.VERSION.SDK_INT < 21) 0f else 16.9f
             assertThat(ViewCompat.getElevation(this)).isEqualTo(expected)
         }
+
+    @Test fun setContentDescription_setsResolvedContentDescription() =
+        onView<View> {
+            val deferred = DeferredText.Constant("Deferred")
+            setContentDescription(deferred)
+
+            assertThat(contentDescription).isEqualTo("Deferred")
+        }
+
+    @SdkSuppress(minSdkVersion = 16)
+    @Test fun announceForAccessibility_announcesResolvedText() =
+        onView<AccessibilityAnnouncementCapturingView> {
+            val deferred = DeferredText.Constant("Deferred")
+            announceForAccessibility(deferred)
+
+            assertThat(lastAnnouncement).isEqualTo("Deferred")
+        }
+
+    @SdkSuppress(minSdkVersion = 19)
+    @Test fun setAccessibilityPaneTitle_withDeferredText_setsResolvedPaneTitle() =
+        onView<View> {
+            val deferred = DeferredText.Constant("Deferred")
+            setAccessibilityPaneTitle(deferred)
+
+            assertThat(ViewCompat.getAccessibilityPaneTitle(this)).isEqualTo("Deferred")
+        }
+
+    @SdkSuppress(minSdkVersion = 19)
+    @Test fun setAccessibilityPaneTitle_withNull_setsNoPaneTitle() =
+        onView<View> {
+            setAccessibilityPaneTitle(null as DeferredText?)
+
+            assertThat(ViewCompat.getAccessibilityPaneTitle(this)).isNull()
+        }
+
+    private class AccessibilityAnnouncementCapturingView(context: Context) : View(context) {
+
+        var lastAnnouncement: CharSequence? = null
+            private set
+
+        override fun announceForAccessibility(text: CharSequence) {
+            super.announceForAccessibility(text)
+            lastAnnouncement = text
+        }
+    }
 }
