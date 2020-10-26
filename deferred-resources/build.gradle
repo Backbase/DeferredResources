@@ -42,10 +42,8 @@ android {
 dependencies {
     implementation deps.androidAnnotations
 
+    implementation deps.appCompat
     implementation deps.coreKtx
-
-    // TODO WORKAROUND: Instrumented tests won't run without this
-    debugImplementation deps.appCompat
 
     androidTestImplementation deps.junitAndroidX
     androidTestImplementation deps.androidTestRules
