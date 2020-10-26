@@ -1,5 +1,17 @@
 # CHANGELOG
 
+### Snapshot
+_Not yet released in a stable build_
+
+* Introduce `SdkIntDeferredColor`, a `DeferredColor` implementation that delegates to different `DeferredColor` sources
+  depending on the Android OS runtime version.
+* Add a few extension functions for accessibility to the view extensions library, including `setContentDescription`.
+* Use AppCompat to improve DeferredColor and DeferredDrawable implementations on Android OS versions < 23. In
+  particular, default DeferredColor implementations can resolve attribute-backed color selectors, and default
+  DeferredDrawable implementations can resolve vector drawables and tints correctly.
+* Compile with Kotlin 1.4.10 and publish the source code in explicit mode.
+* Target Android SDK 30.
+
 ## 1.0.0
 _2020-07-29_
 
