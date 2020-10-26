@@ -3,7 +3,7 @@ package com.backbase.deferredresources
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
-import androidx.core.content.ContextCompat
+import androidx.appcompat.content.res.AppCompatResources
 import dev.drewhamilton.extracare.DataApi
 
 /**
@@ -53,7 +53,7 @@ public interface DeferredDrawable {
          * [Drawable.mutate] instead of the original Drawable. Applies [transformations] before returning.
          */
         override fun resolve(context: Context): Drawable? {
-            val original = ContextCompat.getDrawable(context, resId)
+            val original = AppCompatResources.getDrawable(context, resId)
             val drawable = if (mutate) original?.mutate() else original
             return drawable?.apply { transformations(context) }
         }

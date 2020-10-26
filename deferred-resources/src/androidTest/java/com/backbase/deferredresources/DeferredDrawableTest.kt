@@ -3,7 +3,7 @@ package com.backbase.deferredresources
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
-import androidx.core.content.ContextCompat
+import androidx.appcompat.content.res.AppCompatResources
 import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.After
@@ -22,7 +22,7 @@ internal class DeferredDrawableTest {
         // Radius XML is not honored on API 21, so mutate=false tests are skipped
         if (Build.VERSION.SDK_INT == 21) return
 
-        val loadedAgain = ContextCompat.getDrawable(context, R.drawable.oval) as GradientDrawable
+        val loadedAgain = AppCompatResources.getDrawable(context, R.drawable.oval) as GradientDrawable
         loadedAgain.gradientRadius = defaultOvalGradientFraction
     }
 
@@ -45,7 +45,7 @@ internal class DeferredDrawableTest {
         resolved.gradientRadius = 0.5f
 
         // Since it's not mutated, transformations SHOULD apply to re-loaded instances:
-        val loadedAgain = ContextCompat.getDrawable(context, R.drawable.oval) as GradientDrawable
+        val loadedAgain = AppCompatResources.getDrawable(context, R.drawable.oval) as GradientDrawable
         assertThat(loadedAgain.gradientRadiusCompat).isEqualTo(0.5f)
     }
 
@@ -62,7 +62,7 @@ internal class DeferredDrawableTest {
         resolved.gradientRadius = 0.4f
 
         // Since it's mutated, transformations SHOULD NOT apply to re-loaded instances:
-        val loadedAgain = ContextCompat.getDrawable(context, R.drawable.oval) as GradientDrawable
+        val loadedAgain = AppCompatResources.getDrawable(context, R.drawable.oval) as GradientDrawable
         assertThat(loadedAgain.gradientRadiusCompat).isEqualTo(defaultOvalGradientFraction)
     }
 
