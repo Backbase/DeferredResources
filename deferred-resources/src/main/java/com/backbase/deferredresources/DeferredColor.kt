@@ -7,7 +7,7 @@ import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
+import androidx.appcompat.content.res.AppCompatResources
 import com.backbase.deferredresources.internal.resolveAttribute
 import dev.drewhamilton.extracare.DataApi
 
@@ -46,7 +46,7 @@ public interface DeferredColor {
         /**
          * Always resolves to [value] wrapped in a new [ColorStateList].
          */
-        override fun resolveToStateList(context: Context): ColorStateList =  ColorStateList.valueOf(value)
+        override fun resolveToStateList(context: Context): ColorStateList = ColorStateList.valueOf(value)
     }
 
     /**
@@ -58,18 +58,16 @@ public interface DeferredColor {
         /**
          * Resolve [resId] to a [ColorInt] with the given [context]. If [resId] resolves to a color selector resource,
          * resolves the default color of that selector.
-         *
-         * Warning: On API < 23, resolving a color selector with [context]'s theme is unsupported. Thus, a color
-         * selector with an attribute reference as its default color will not resolve to the correct color on API 22 and
-         * below. A color selector with a resource reference as its default color will resolve correctly.
          */
-        @ColorInt override fun resolve(context: Context): Int = ContextCompat.getColor(context, resId)
+        @ColorInt override fun resolve(context: Context): Int =
+            // Forward to `resolveToStateList` to ensure attribute-backed selectors resolve correctly:
+            resolveToStateList(context).defaultColor
 
         /**
          * Resolve [resId] to a [ColorStateList] with the given [context].
          */
         override fun resolveToStateList(context: Context): ColorStateList =
-            requireNotNull(ContextCompat.getColorStateList(context, resId)) {
+            requireNotNull(AppCompatResources.getColorStateList(context, resId)) {
                 "Could not resolve ${context.resources.getResourceName(resId)} to a ColorStateList with $context."
             }
     }
@@ -87,10 +85,6 @@ public interface DeferredColor {
         /**
          * Resolve [resId] to a [ColorInt] with the given [context]'s theme. If [resId] would resolve a color selector,
          * resolves to the default color of that selector.
-         *
-         * Warning: On API < 23, resolving a color selector with [context]'s theme is unsupported. Thus, a color
-         * selector with an attribute reference as its default color will not resolve to the correct color on API 22 and
-         * below. A color selector with a resource reference as its default color will resolve correctly.
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a color.
          */
@@ -124,7 +118,7 @@ public interface DeferredColor {
             resolveRefs = false
         ) {
             val colorSelectorResId = data
-            ContextCompat.getColorStateList(this@resolveColorStateList, colorSelectorResId)!!
+            AppCompatResources.getColorStateList(this@resolveColorStateList, colorSelectorResId)
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.backbase.deferredresources
 
 import android.graphics.Color
-import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.test.R
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
@@ -45,7 +44,6 @@ internal class DeferredColorTest {
         assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#aaaaaa"))
     }
 
-    @SdkSuppress(minSdkVersion = 23)
     @Test fun resourceResolve_withSelectorColorWithAttribute_resolvesDefaultColor() {
         val deferred = DeferredColor.Resource(R.color.stateful_color_with_attr)
         assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#987654"))
@@ -71,7 +69,6 @@ internal class DeferredColorTest {
         assertThat(resolved.defaultColor).isEqualTo(Color.parseColor("#aaaaaa"))
     }
 
-    @SdkSuppress(minSdkVersion = 23)
     @Test fun resourceResolveToStateList_withSelectorColorWithAttribute_resolvesExpectedStateList() {
         val deferred = DeferredColor.Resource(R.color.stateful_color_with_attr)
 
@@ -95,7 +92,6 @@ internal class DeferredColorTest {
         assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#aaaaaa"))
     }
 
-    @SdkSuppress(minSdkVersion = 23)
     @Test fun attributeResolve_withSelectorColorWithAttributeDefault_resolvesDefaultColor() {
         val deferred = DeferredColor.Attribute(R.attr.titleTextColor)
         assertThat(deferred.resolve(AppCompatContext())).isEqualTo(Color.parseColor("#987654"))
@@ -127,7 +123,6 @@ internal class DeferredColorTest {
         assertThat(resolved.defaultColor).isEqualTo(Color.parseColor("#aaaaaa"))
     }
 
-    @SdkSuppress(minSdkVersion = 23)
     @Test fun attributeResolveToStateList_withSelectorColorWithAttribute_resolvesExpectedStateList() {
         val deferred = DeferredColor.Attribute(R.attr.titleTextColor)
 
