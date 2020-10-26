@@ -10,8 +10,8 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * A [DeferredColor] with a different source depending on the runtime Android SDK version.
  *
- * This is useful because different SDK levels treat colors differently in some contexts. For example, SDK 23+ can
- * resolve color selectors backed by color attributes, but lower SDKs cannot.
+ * This is useful because different SDK levels treat colors differently in some contexts. For example, SDK 27+ can
+ * support light system navigation bar colors, but lower SDKs cannot.
  */
 @DataApi public class SdkIntDeferredColor private constructor(
     private val source: DeferredColor
