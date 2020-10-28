@@ -22,7 +22,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:4.1.0'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-        // TODO WORKAROUND: Update to 0.10.x after https://github.com/Kotlin/dokka/issues/879
         classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.4.10'
         classpath 'org.jetbrains.kotlinx:binary-compatibility-validator:0.2.3'
 
@@ -38,7 +37,7 @@ buildscript {
 
 ext {
     publishGroup = 'com.backbase.oss.deferredresources'
-    libraryVersion = '1.1.0-SNAPSHOT'
+    libraryVersion = '1.1.0'
     minSdk = 14
     targetSdk = 30
     buildToolsVersion = '30.0.2'

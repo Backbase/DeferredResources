@@ -1,7 +1,7 @@
 # CHANGELOG
 
-### Snapshot
-_Not yet released in a stable build_
+## 1.1.0
+_2020-10-28_
 
 Introduce `SdkIntDeferredColor`, a `DeferredColor` implementation that delegates to different `DeferredColor` sources
 depending on the Android OS runtime version.
