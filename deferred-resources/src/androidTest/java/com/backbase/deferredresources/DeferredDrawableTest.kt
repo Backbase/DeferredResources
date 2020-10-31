@@ -78,6 +78,58 @@ internal class DeferredDrawableTest {
         assertThat(resolved.gradientRadiusCompat).isEqualTo(0.3f)
     }
 
+    @Test fun attribute_withMutateFalse_resolvesWithContext() {
+        assumeFalse("XML drawable does not have correct radius on API 21", Build.VERSION.SDK_INT == 21)
+
+        context.setTheme(R.style.TestTheme)
+
+        val deferred = DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator, mutate = false)
+
+        val resolved = deferred.resolve(context)
+        assertThat(resolved).isInstanceOf(GradientDrawable::class.java)
+        resolved as GradientDrawable
+        assertThat(resolved.gradientRadiusCompat).isEqualTo(defaultOvalGradientFraction)
+
+        resolved.gradientRadius = 0.5f
+
+        // Since it's not mutated, transformations SHOULD apply to re-loaded instances:
+        val loadedAgain = AppCompatResources.getDrawable(context, R.drawable.oval) as GradientDrawable
+        assertThat(loadedAgain.gradientRadiusCompat).isEqualTo(0.5f)
+    }
+
+    @Test fun attribute_withMutateTrue_resolvesWithContextAndMutates() {
+        assumeFalse("XML drawable does not have correct radius on API 21", Build.VERSION.SDK_INT == 21)
+
+        context.setTheme(R.style.TestTheme)
+
+        val deferred = DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator)
+
+        val resolved = deferred.resolve(context)
+        assertThat(resolved).isInstanceOf(GradientDrawable::class.java)
+        resolved as GradientDrawable
+        assertThat(resolved.gradientRadiusCompat).isEqualTo(defaultOvalGradientFraction)
+
+        resolved.gradientRadius = 0.4f
+
+        // Since it's mutated, transformations SHOULD NOT apply to re-loaded instances:
+        val loadedAgain = AppCompatResources.getDrawable(context, R.drawable.oval) as GradientDrawable
+        assertThat(loadedAgain.gradientRadiusCompat).isEqualTo(defaultOvalGradientFraction)
+    }
+
+    @Test fun attribute_withTransformations_resolvesWithContextAndMutatesAndAppliesTransformation() {
+        context.setTheme(R.style.TestTheme)
+
+        val deferred = DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator) {
+            require(this is GradientDrawable)
+            gradientRadius = 0.3f
+        }
+
+        val resolved = deferred.resolve(context)
+        assertThat(resolved).isInstanceOf(GradientDrawable::class.java)
+        resolved as GradientDrawable
+        assertThat(resolved.gradientRadiusCompat).isEqualTo(0.3f)
+    }
+
     internal companion object {
 
         @JvmStatic internal val GradientDrawable.gradientRadiusCompat: Float

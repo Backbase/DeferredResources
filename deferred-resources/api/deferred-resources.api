@@ -100,6 +100,18 @@ public abstract interface class com/backbase/deferredresources/DeferredDrawable 
 	public abstract fun resolve (Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
 }
 
+public final class com/backbase/deferredresources/DeferredDrawable$Attribute : com/backbase/deferredresources/DeferredDrawable {
+	public fun <init> (I)V
+	public fun <init> (ILkotlin/jvm/functions/Function2;)V
+	public fun <init> (IZ)V
+	public fun <init> (IZLkotlin/jvm/functions/Function2;)V
+	public synthetic fun <init> (IZLkotlin/jvm/functions/Function2;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun resolve (Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/backbase/deferredresources/DeferredDrawable$Constant : com/backbase/deferredresources/DeferredDrawable {
 	public fun <init> (Landroid/graphics/drawable/Drawable;)V
 	public fun equals (Ljava/lang/Object;)Z

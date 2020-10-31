@@ -2,6 +2,8 @@ package com.backbase.deferredresources
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.util.TypedValue
+import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import dev.drewhamilton.extracare.DataApi
@@ -54,6 +56,39 @@ public interface DeferredDrawable {
          */
         override fun resolve(context: Context): Drawable? {
             val original = AppCompatResources.getDrawable(context, resId)
+            val drawable = if (mutate) original?.mutate() else original
+            return drawable?.apply { transformations(context) }
+        }
+    }
+
+    /**
+     * A wrapper for a [Drawable] [attrId]. Optionally [mutate]s each resolved Drawable. Optionally provide
+     * [transformations] (such as [Drawable.setTint]) to apply each time the Drawable is resolved.
+     *
+     * If [transformations] are supplied, [mutate] should be true.
+     */
+    @DataApi public class Attribute @JvmOverloads constructor(
+        @AttrRes private val attrId: Int,
+        private val mutate: Boolean = true,
+        private val transformations: Drawable.(Context) -> Unit = {}
+    ) : DeferredDrawable {
+
+        /**
+         * Convenience constructor that sets [mutate] to true when [transformations] are supplied.
+         */
+        public constructor(
+            @AttrRes attrId: Int,
+            transformations: Drawable.(Context) -> Unit
+        ) : this(attrId, mutate = true, transformations = transformations)
+
+        /**
+         * Resolve [attrId] to a [Drawable] with the given [context]. If [mutate] is true, returns the result of
+         * [Drawable.mutate] instead of the original Drawable. Applies [transformations] before returning.
+         */
+        override fun resolve(context: Context): Drawable? {
+            val original = AppCompatResources.getDrawable(context, TypedValue().apply {
+                context.theme.resolveAttribute(attrId, this, true)
+            }.resourceId)
             val drawable = if (mutate) original?.mutate() else original
             return drawable?.apply { transformations(context) }
         }
