@@ -77,9 +77,9 @@ public interface DeferredDrawable {
          * Convenience constructor that sets [mutate] to true when [transformations] are supplied.
          */
         public constructor(
-            @AttrRes attrId: Int,
+            @AttrRes resId: Int,
             transformations: Drawable.(Context) -> Unit
-        ) : this(attrId, mutate = true, transformations = transformations)
+        ) : this(resId, mutate = true, transformations = transformations)
 
         /**
          * Resolve [resId] to a [Drawable] with the given [context]. If [mutate] is true, returns the result of
