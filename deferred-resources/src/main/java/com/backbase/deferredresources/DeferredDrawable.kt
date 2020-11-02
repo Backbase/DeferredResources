@@ -62,13 +62,13 @@ public interface DeferredDrawable {
     }
 
     /**
-     * A wrapper for a [Drawable] [attrId]. Optionally [mutate]s each resolved Drawable. Optionally provide
+     * A wrapper for a [Drawable] [resId]. Optionally [mutate]s each resolved Drawable. Optionally provide
      * [transformations] (such as [Drawable.setTint]) to apply each time the Drawable is resolved.
      *
      * If [transformations] are supplied, [mutate] should be true.
      */
     @DataApi public class Attribute @JvmOverloads constructor(
-        @AttrRes private val attrId: Int,
+        @AttrRes private val resId: Int,
         private val mutate: Boolean = true,
         private val transformations: Drawable.(Context) -> Unit = {}
     ) : DeferredDrawable {
@@ -82,12 +82,12 @@ public interface DeferredDrawable {
         ) : this(attrId, mutate = true, transformations = transformations)
 
         /**
-         * Resolve [attrId] to a [Drawable] with the given [context]. If [mutate] is true, returns the result of
+         * Resolve [resId] to a [Drawable] with the given [context]. If [mutate] is true, returns the result of
          * [Drawable.mutate] instead of the original Drawable. Applies [transformations] before returning.
          */
         override fun resolve(context: Context): Drawable? {
             val original = AppCompatResources.getDrawable(context, TypedValue().apply {
-                context.theme.resolveAttribute(attrId, this, true)
+                context.theme.resolveAttribute(resId, this, true)
             }.resourceId)
             val drawable = if (mutate) original?.mutate() else original
             return drawable?.apply { transformations(context) }
