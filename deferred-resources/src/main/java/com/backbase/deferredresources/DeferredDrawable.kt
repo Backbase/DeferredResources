@@ -6,6 +6,7 @@ import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
+import com.backbase.deferredresources.internal.resolveAttribute
 import dev.drewhamilton.extracare.DataApi
 
 /**
@@ -73,6 +74,8 @@ public interface DeferredDrawable {
         private val transformations: Drawable.(Context) -> Unit = {}
     ) : DeferredDrawable {
 
+        private val drawableTypeValue = TypedValue()
+
         /**
          * Convenience constructor that sets [mutate] to true when [transformations] are supplied.
          */
@@ -86,9 +89,18 @@ public interface DeferredDrawable {
          * [Drawable.mutate] instead of the original Drawable. Applies [transformations] before returning.
          */
         override fun resolve(context: Context): Drawable? {
-            val original = AppCompatResources.getDrawable(context, TypedValue().apply {
-                context.theme.resolveAttribute(resId, this, true)
-            }.resourceId)
+            val original = AppCompatResources.getDrawable(context, context.resolveAttribute(
+                resId = resId,
+                attributeTypeName = "drawable resource id",
+                reusedTypedValue = drawableTypeValue,
+                expectedTypes = intArrayOf(
+                    TypedValue.TYPE_REFERENCE, // could be a direct reference to a drawable resource by id
+                    TypedValue.TYPE_ATTRIBUTE, // could be a reference to another attribute, e.g. myFancyIcon
+                    TypedValue.TYPE_STRING // could be initially interpreted a string, e.g. "res/drawable/oval.xml"
+                )
+            ) {
+                resourceId
+            })
             val drawable = if (mutate) original?.mutate() else original
             return drawable?.apply { transformations(context) }
         }

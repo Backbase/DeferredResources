@@ -28,8 +28,6 @@ public class DeferredDrawableJavaTest {
 
     @Test
     public void attributeConstructor_withTransformationFunction_syntaxWorks() {
-        TestContext.getContext().setTheme(R.style.TestTheme);
-
         DeferredDrawable deferred =
                 new DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator, (drawable, context) -> {
                     GradientDrawable gradientDrawable = (GradientDrawable) drawable;
