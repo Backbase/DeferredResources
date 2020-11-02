@@ -79,7 +79,10 @@ internal class DeferredDrawableTest {
     }
 
     @Test fun attribute_withMutateFalse_resolvesWithContext() {
-        assumeFalse("XML drawable does not have correct radius on API 21", Build.VERSION.SDK_INT == 21)
+        assumeFalse(
+            "XML drawable does not have correct radius on API 21 and 22",
+            Build.VERSION.SDK_INT == 21 || Build.VERSION.SDK_INT == 22
+        )
 
         val deferred = DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator, mutate = false)
 
