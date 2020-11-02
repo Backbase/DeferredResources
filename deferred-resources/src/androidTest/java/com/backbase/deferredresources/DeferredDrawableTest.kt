@@ -81,11 +81,9 @@ internal class DeferredDrawableTest {
     @Test fun attribute_withMutateFalse_resolvesWithContext() {
         assumeFalse("XML drawable does not have correct radius on API 21", Build.VERSION.SDK_INT == 21)
 
-        context.setTheme(R.style.TestTheme)
-
         val deferred = DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator, mutate = false)
 
-        val resolved = deferred.resolve(context)
+        val resolved = deferred.resolve(AppCompatContext())
         assertThat(resolved).isInstanceOf(GradientDrawable::class.java)
         resolved as GradientDrawable
         assertThat(resolved.gradientRadiusCompat).isEqualTo(defaultOvalGradientFraction)
@@ -100,11 +98,9 @@ internal class DeferredDrawableTest {
     @Test fun attribute_withMutateTrue_resolvesWithContextAndMutates() {
         assumeFalse("XML drawable does not have correct radius on API 21", Build.VERSION.SDK_INT == 21)
 
-        context.setTheme(R.style.TestTheme)
-
         val deferred = DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator)
 
-        val resolved = deferred.resolve(context)
+        val resolved = deferred.resolve(AppCompatContext())
         assertThat(resolved).isInstanceOf(GradientDrawable::class.java)
         resolved as GradientDrawable
         assertThat(resolved.gradientRadiusCompat).isEqualTo(defaultOvalGradientFraction)
@@ -117,14 +113,12 @@ internal class DeferredDrawableTest {
     }
 
     @Test fun attribute_withTransformations_resolvesWithContextAndMutatesAndAppliesTransformation() {
-        context.setTheme(R.style.TestTheme)
-
         val deferred = DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator) {
             require(this is GradientDrawable)
             gradientRadius = 0.3f
         }
 
-        val resolved = deferred.resolve(context)
+        val resolved = deferred.resolve(AppCompatContext())
         assertThat(resolved).isInstanceOf(GradientDrawable::class.java)
         resolved as GradientDrawable
         assertThat(resolved.gradientRadiusCompat).isEqualTo(0.3f)

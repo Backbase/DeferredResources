@@ -37,7 +37,7 @@ public class DeferredDrawableJavaTest {
                     return Unit.INSTANCE;
                 });
 
-        Drawable resolved = deferred.resolve(TestContext.getContext());
+        Drawable resolved = deferred.resolve(TestContext.AppCompatContext(true));
         assertThat(resolved).isInstanceOf(GradientDrawable.class);
         GradientDrawable resolvedGradient = (GradientDrawable) resolved;
         Preconditions.checkNotNull(resolvedGradient);
