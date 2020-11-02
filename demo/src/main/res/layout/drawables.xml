@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:layout_height="match_parent"
+    tools:layout_width="match_parent"
+
+    tools:parentTag="android.widget.ScrollView">
+
+  <LinearLayout
+      android:id="@+id/container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+
+      android:clipToPadding="false"
+      android:orientation="vertical"
+      android:padding="8dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/constantLabel"
+        android:labelFor="@id/constant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/constant"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/resourceLabel"
+        android:labelFor="@id/resource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/resource"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/attributeLabel"
+        android:labelFor="@id/attribute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/attribute"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        tools:ignore="ContentDescription" />
+  </LinearLayout>
+
+</merge>
