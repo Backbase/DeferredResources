@@ -4,11 +4,13 @@
     <item name="colorPrimary">#987654</item>
     <item name="titleTextColor">@color/stateful_color_with_attr</item>
     <item name="subtitleTextColor">@color/stateful_color_without_attr</item>
+    <item name="android:homeAsUpIndicator">@drawable/oval</item>
   </style>
 
   <style name="TestTheme.Light" parent="Theme.AppCompat.Light">
     <item name="colorPrimary">#987654</item>
     <item name="titleTextColor">@color/stateful_color_with_attr</item>
     <item name="subtitleTextColor">@color/stateful_color_without_attr</item>
+    <item name="android:homeAsUpIndicator">@drawable/oval</item>
   </style>
 </resources>

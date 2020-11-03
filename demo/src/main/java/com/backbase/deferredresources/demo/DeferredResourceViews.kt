@@ -13,10 +13,12 @@ import androidx.core.view.setMargins
 import androidx.core.view.setPadding
 import androidx.core.widget.TextViewCompat
 import com.backbase.deferredresources.DeferredColor
+import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.DeferredPlurals
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.demo.databinding.ColorsBinding
+import com.backbase.deferredresources.demo.databinding.DrawablesBinding
 import com.backbase.deferredresources.demo.databinding.PluralsBinding
 import com.backbase.deferredresources.viewx.setText
 import com.google.android.material.textview.MaterialTextView
@@ -81,5 +83,24 @@ class DeferredPluralsView(context: Context) : DeferredResourceView(context) {
         few.text = plurals.resolve(context, 3)
         many.text = plurals.resolve(context, 14)
         other.text = plurals.resolve(context, 100)
+    }
+}
+
+class DeferredDrawablesView(context: Context) : DeferredResourceView(context) {
+    private val binding = DrawablesBinding.inflate(LayoutInflater.from(context), this)
+
+    fun display(deferredDrawable: DeferredDrawable.Constant, text: DeferredText) {
+        binding.constantLabel.text = text.resolve(context)
+        binding.constant.setImageDrawable(deferredDrawable.resolve(context))
+    }
+
+    fun display(deferredDrawable: DeferredDrawable.Resource, text: DeferredText) {
+        binding.resourceLabel.text = text.resolve(context)
+        binding.resource.setImageDrawable(deferredDrawable.resolve(context))
+    }
+
+    fun display(deferredDrawable: DeferredDrawable.Attribute, text: DeferredText) {
+        binding.attributeLabel.text = text.resolve(context)
+        binding.attribute.setImageDrawable(deferredDrawable.resolve(context))
     }
 }
