@@ -95,7 +95,6 @@ public interface DeferredDrawable {
                 reusedTypedValue = drawableTypeValue,
                 expectedTypes = intArrayOf(
                     TypedValue.TYPE_REFERENCE, // could be a direct reference to a drawable resource by id
-                    TypedValue.TYPE_ATTRIBUTE, // could be a reference to another attribute, e.g. myFancyIcon
                     TypedValue.TYPE_STRING // could be initially interpreted a string, e.g. "res/drawable/oval.xml"
                 )
             ) {
