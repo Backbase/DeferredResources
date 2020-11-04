@@ -1,9 +1,9 @@
 # CHANGELOG
 
-### Snapshot
-_Not yet released in a stable build_
+## 1.2.0
+_2020-11-04_
 
-No snapshot updates since release 1.1.0.
+Introduce `DeferredDrawable.Attribute` to support drawable attribute resolution.
 
 ## 1.1.0
 _2020-10-28_
