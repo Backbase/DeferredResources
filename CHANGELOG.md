@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### Snapshot
+_Not yet released in a stable build_
+
+No snapshot updates since release 1.2.0.
+
 ## 1.2.0
 _2020-11-04_
 
