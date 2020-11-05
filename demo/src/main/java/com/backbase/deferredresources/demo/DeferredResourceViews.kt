@@ -18,8 +18,10 @@ import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.DeferredPlurals
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.demo.databinding.ColorsBinding
+import com.backbase.deferredresources.demo.databinding.DrawableListItemBinding
 import com.backbase.deferredresources.demo.databinding.DrawablesBinding
 import com.backbase.deferredresources.demo.databinding.PluralsBinding
+import com.backbase.deferredresources.viewx.setImageDrawable
 import com.backbase.deferredresources.viewx.setText
 import com.google.android.material.textview.MaterialTextView
 import kotlin.math.roundToInt
@@ -29,7 +31,7 @@ sealed class DeferredResourceView(context: Context) : ScrollView(context)
 class DeferredColorsView(context: Context) : DeferredResourceView(context) {
     private val binding = ColorsBinding.inflate(LayoutInflater.from(context), this)
 
-    fun display(color: DeferredColor, text: DeferredText) = with (binding.container) {
+    fun display(color: DeferredColor, text: DeferredText) = with(binding.container) {
         val colorView = newColorView().apply {
             val backgroundColor = color.resolve(context)
             setBackgroundColor(backgroundColor)
@@ -89,18 +91,16 @@ class DeferredPluralsView(context: Context) : DeferredResourceView(context) {
 class DeferredDrawablesView(context: Context) : DeferredResourceView(context) {
     private val binding = DrawablesBinding.inflate(LayoutInflater.from(context), this)
 
-    fun display(deferredDrawable: DeferredDrawable.Constant, text: DeferredText) {
-        binding.constantLabel.text = text.resolve(context)
-        binding.constant.setImageDrawable(deferredDrawable.resolve(context))
-    }
-
-    fun display(deferredDrawable: DeferredDrawable.Resource, text: DeferredText) {
-        binding.resourceLabel.text = text.resolve(context)
-        binding.resource.setImageDrawable(deferredDrawable.resolve(context))
-    }
-
-    fun display(deferredDrawable: DeferredDrawable.Attribute, text: DeferredText) {
-        binding.attributeLabel.text = text.resolve(context)
-        binding.attribute.setImageDrawable(deferredDrawable.resolve(context))
+    fun display(deferredDrawable: DeferredDrawable) = with(binding.container) {
+        val text = when (deferredDrawable) {
+            is DeferredDrawable.Constant -> DeferredText.Constant("Constant")
+            is DeferredDrawable.Resource -> DeferredText.Constant("Resource")
+            is DeferredDrawable.Attribute -> DeferredText.Constant("Attribute")
+            else -> DeferredText.Constant(deferredDrawable.javaClass.simpleName)
+        }
+        with(DrawableListItemBinding.inflate(LayoutInflater.from(context), this, true)) {
+            drawableLabel.setText(text)
+            drawableView.setImageDrawable(deferredDrawable)
+        }
     }
 }
