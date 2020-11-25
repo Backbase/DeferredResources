@@ -78,6 +78,14 @@ internal class DeferredDrawableTest {
         assertThat(resolved.gradientRadiusCompat).isEqualTo(0.3f)
     }
 
+    @Test fun resource_withDefaultTransformations_isEquals() {
+        val deferred1 = DeferredDrawable.Resource(R.drawable.oval)
+        val deferred2 = DeferredDrawable.Resource(R.drawable.oval)
+        assertThat(deferred1).isEqualTo(deferred2)
+        assertThat(deferred2).isEqualTo(deferred1)
+        assertThat(deferred1.hashCode()).isEqualTo(deferred2.hashCode())
+    }
+
     @Test fun attribute_withMutateFalse_resolvesWithContext() {
         assumeFalse(
             "XML drawable does not have correct radius on API 21 and 22",
@@ -125,6 +133,14 @@ internal class DeferredDrawableTest {
         assertThat(resolved).isInstanceOf(GradientDrawable::class.java)
         resolved as GradientDrawable
         assertThat(resolved.gradientRadiusCompat).isEqualTo(0.3f)
+    }
+
+    @Test fun attribute_withDefaultTransformations_isEquals() {
+        val deferred1 = DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator)
+        val deferred2 = DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator)
+        assertThat(deferred1).isEqualTo(deferred2)
+        assertThat(deferred2).isEqualTo(deferred1)
+        assertThat(deferred1.hashCode()).isEqualTo(deferred2.hashCode())
     }
 
     internal companion object {
