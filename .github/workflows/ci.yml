@@ -25,3 +25,12 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           script: ./gradlew connectedCheck --stacktrace
+      - name: Publish test results
+        uses: mikepenz/action-junit-report@v1
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          report_paths: |
+            "**/build/test-results/testDebugUnitTest/TEST-*.xml"
+            "**/build/test-results/test/TEST-*.xml"
+            "**/build/outputs/androidTest-results/connected/flavors/debugAndroidTest/TEST-*.xml"
