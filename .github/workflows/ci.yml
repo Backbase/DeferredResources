@@ -21,12 +21,12 @@ jobs:
       - name: Build
         run: ./gradlew clean build --stacktrace
       - name: Instrumented tests
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@v2.14.2
         with:
           api-level: ${{ matrix.api-level }}
           script: ./gradlew connectedCheck --stacktrace
       - name: Publish test results
-        uses: mikepenz/action-junit-report@v1
+        uses: mikepenz/action-junit-report@v1.2.1
         if: success() || failure()
         with:
           check_name: Android test report for API ${{ matrix.api-level }}
