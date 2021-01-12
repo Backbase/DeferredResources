@@ -1,9 +1,12 @@
 package com.backbase.deferredresources.demo
 
+import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
@@ -13,16 +16,6 @@ import com.backbase.deferredresources.DeferredText
 class DemoPagerAdapter : RecyclerView.Adapter<DemoPagerAdapter.DeferredResourceViewHolder>() {
 
     private val formattedPluralsResource = DeferredFormattedPlurals.Resource(R.plurals.horses)
-    private val oval by lazy {
-        GradientDrawable(
-            GradientDrawable.Orientation.BL_TR,
-            intArrayOf(Color.parseColor("#00ff00"), Color.parseColor("#000fff"))
-        ).apply {
-            gradientType = GradientDrawable.RADIAL_GRADIENT
-            cornerRadius = 0.8f
-            shape = GradientDrawable.OVAL
-        }
-    }
 
     fun getPageName(position: Int): CharSequence = when (position) {
         0 -> "Colors"
@@ -74,14 +67,36 @@ class DemoPagerAdapter : RecyclerView.Adapter<DemoPagerAdapter.DeferredResourceV
                 1 -> view.display(formattedPluralsResource)
             }
             is DeferredDrawablesView -> {
-                view.display(DeferredDrawable.Constant(oval), DeferredText.Constant("Constant: "))
-                view.display(DeferredDrawable.Resource(R.drawable.oval), DeferredText.Constant("Resource: "))
+                val context = holder.root.context
                 view.display(
-                    DeferredDrawable.Attribute(android.R.attr.homeAsUpIndicator),
-                    DeferredText.Constant("Attribute: ")
+                    DeferredDrawable.Constant(RoundedSquare(context).apply {
+                        setTint(DeferredColor.Attribute(R.attr.colorPrimary), context)
+                    })
+                )
+                view.display(
+                    DeferredDrawable.Resource(R.drawable.ic_flower_24) {
+                        setTint(DeferredColor.Resource(R.color.green), context)
+                    }
+                )
+                view.display(
+                    DeferredDrawable.Attribute(R.attr.demoIcon) {
+                        setTint(DeferredColor.Attribute(R.attr.colorSecondary), context)
+                    }
                 )
             }
         }
+    }
+
+    private fun Drawable.setTint(color: DeferredColor, context: Context) {
+        DrawableCompat.setTint(this, color.resolve(context))
+    }
+
+    @Suppress("FunctionName") // Factory
+    private fun RoundedSquare(context: Context): Drawable = GradientDrawable().apply {
+        shape = GradientDrawable.RECTANGLE
+        cornerRadius = 4f
+        val size = 16
+        setSize(size, size)
     }
 
     class DeferredResourceViewHolder(

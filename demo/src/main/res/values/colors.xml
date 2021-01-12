@@ -18,4 +18,6 @@
   <color name="onError">#000000</color>
 
   <color name="backbase_red">#C22327</color>
+
+  <color name="green">#669900</color>
 </resources>

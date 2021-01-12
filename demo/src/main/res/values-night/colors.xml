@@ -9,4 +9,6 @@
 
   <color name="surface">#181E41</color>
   <color name="onSurface">#ffffff</color>
+
+  <color name="green">#99cc00</color>
 </resources>
