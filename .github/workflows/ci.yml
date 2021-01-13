@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: ./gradlew clean build --stacktrace
       - name: Instrumented tests
-        uses: reactivecircus/android-emulator-runner@v2.14.2
+        uses: reactivecircus/android-emulator-runner@v2.14.3
         with:
           api-level: ${{ matrix.api-level }}
           script: ./gradlew connectedCheck --stacktrace
