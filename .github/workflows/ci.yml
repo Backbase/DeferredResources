@@ -11,7 +11,8 @@ jobs:
 
     strategy:
       matrix:
-        api-level: [15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+        # TODO: Investigate flaky SecurityException during tests on API 18
+        api-level: [15, 16, 17, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29]
 
     steps:
       - name: Check out the repo
@@ -21,7 +22,14 @@ jobs:
       - name: Build
         run: ./gradlew clean build --stacktrace
       - name: Instrumented tests
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@v2.14.3
         with:
           api-level: ${{ matrix.api-level }}
           script: ./gradlew connectedCheck --stacktrace
+      - name: Publish test results
+        uses: mikepenz/action-junit-report@v1.2.1
+        if: success() || failure()
+        with:
+          check_name: Android test report for API ${{ matrix.api-level }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          report_paths: "**/build/outputs/androidTest-results/connected/flavors/debugAndroidTest/TEST-*.xml"
