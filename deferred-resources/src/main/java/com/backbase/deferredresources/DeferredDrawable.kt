@@ -90,8 +90,7 @@ public interface DeferredDrawable {
          */
         override fun resolve(context: Context): Drawable? {
             @DrawableRes val drawableResId = context.resolveAttribute(
-                resId, "drawable resource id",
-                reusedTypedValue,
+                resId, "drawable resource id", reusedTypedValue,
                 TypedValue.TYPE_REFERENCE, // could be a direct reference to a drawable resource by id
                 TypedValue.TYPE_STRING // could be initially interpreted a string, e.g. "res/drawable/oval.xml"
             ) {
