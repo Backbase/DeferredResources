@@ -74,7 +74,7 @@ public interface DeferredDrawable {
         private val transformations: Drawable.(Context) -> Unit = {}
     ) : DeferredDrawable {
 
-        private val drawableTypeValue = TypedValue()
+        private val reusedTypedValue = TypedValue()
 
         /**
          * Convenience constructor that sets [mutate] to true when [transformations] are supplied.
@@ -89,17 +89,14 @@ public interface DeferredDrawable {
          * [Drawable.mutate] instead of the original Drawable. Applies [transformations] before returning.
          */
         override fun resolve(context: Context): Drawable? {
-            val original = AppCompatResources.getDrawable(context, context.resolveAttribute(
-                resId = resId,
-                attributeTypeName = "drawable resource id",
-                reusedTypedValue = drawableTypeValue,
-                expectedTypes = intArrayOf(
-                    TypedValue.TYPE_REFERENCE, // could be a direct reference to a drawable resource by id
-                    TypedValue.TYPE_STRING // could be initially interpreted a string, e.g. "res/drawable/oval.xml"
-                )
+            @DrawableRes val drawableResId = context.resolveAttribute(
+                resId, "drawable resource id", reusedTypedValue,
+                TypedValue.TYPE_REFERENCE, // could be a direct reference to a drawable resource by id
+                TypedValue.TYPE_STRING // could be initially interpreted a string, e.g. "res/drawable/oval.xml"
             ) {
                 resourceId
-            })
+            }
+            val original = AppCompatResources.getDrawable(context, drawableResId)
             val drawable = if (mutate) original?.mutate() else original
             return drawable?.apply { transformations(context) }
         }
