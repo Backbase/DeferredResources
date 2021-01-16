@@ -35,7 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
         useIR = true
-        freeCompilerArgs += ['-Xexplicit-api=strict']
+        freeCompilerArgs += ['-Xexplicit-api=strict', '-Xopt-in=kotlin.RequiresOptIn']
     }
 
     buildFeatures {
@@ -48,7 +48,9 @@ android {
 }
 
 dependencies {
+    api(libs.androidx.compose.runtime)
     api(project(':deferred-resources'))
 
     implementation(libs.androidx.appCompat)
+    implementation(libs.androidx.compose.ui)
 }

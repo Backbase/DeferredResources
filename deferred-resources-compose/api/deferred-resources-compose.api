@@ -1,0 +1,13 @@
+public final class com/backbase/deferredresources/compose/ComposeResolveUtils {
+	public static final fun resolve (Lcom/backbase/deferredresources/DeferredBoolean;Landroidx/compose/runtime/Composer;I)Z
+	public static final fun resolve (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;Landroidx/compose/runtime/Composer;II)Ljava/lang/String;
+	public static final fun resolve (Lcom/backbase/deferredresources/DeferredFormattedString;[Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public static final fun resolve (Lcom/backbase/deferredresources/DeferredInteger;Landroidx/compose/runtime/Composer;I)I
+	public static final fun resolve (Lcom/backbase/deferredresources/DeferredPlurals;ILandroidx/compose/runtime/Composer;I)Ljava/lang/CharSequence;
+	public static final fun resolve (Lcom/backbase/deferredresources/DeferredText;Landroidx/compose/runtime/Composer;I)Ljava/lang/CharSequence;
+	public static final fun resolveToString (Lcom/backbase/deferredresources/DeferredText;Landroidx/compose/runtime/Composer;I)Ljava/lang/CharSequence;
+}
+
+public abstract interface annotation class com/backbase/deferredresources/compose/ExperimentalDeferredResourcesComposeSupport : java/lang/annotation/Annotation {
+}
+
