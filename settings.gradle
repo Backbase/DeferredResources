@@ -17,6 +17,7 @@
 rootProject.name='Deferred Resources'
 
 include ':deferred-resources', ':view-extensions'
+include ':deferred-resources-compose'
 include ':demo'
 
 enableFeaturePreview('VERSION_CATALOGS')
