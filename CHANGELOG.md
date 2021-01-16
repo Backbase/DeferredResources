@@ -1,9 +1,9 @@
 # CHANGELOG
 
-### Snapshot
-_Not yet released in a stable build_
+## 1.2.1
+_2021-01-16_
 
-No snapshot updates since release 1.2.0.
+Compiled with Kotlin 1.4.21.
 
 ## 1.2.0
 _2020-11-04_
@@ -13,14 +13,16 @@ Introduce `DeferredDrawable.Attribute` to support drawable attribute resolution.
 ## 1.1.0
 _2020-10-28_
 
-Introduce `SdkIntDeferredColor`, a `DeferredColor` implementation that delegates to different `DeferredColor` sources
-depending on the Android OS runtime version.
+Introduce `SdkIntDeferredColor`, a `DeferredColor` implementation that delegates to different
+`DeferredColor` sources depending on the Android OS runtime version.
 
-Add a few extension functions for accessibility to the view extensions library, including `setContentDescription`.
+Add a few extension functions for accessibility to the view extensions library, including
+`setContentDescription`.
 
-Use AppCompat to improve DeferredColor and DeferredDrawable implementations on Android OS versions < 23. In particular,
-default DeferredColor implementations can resolve attribute-backed color selectors, and default DeferredDrawable
-implementations can resolve vector drawables and tints correctly.
+Use AppCompat to improve DeferredColor and DeferredDrawable implementations on Android OS
+versions < 23. In particular, default DeferredColor implementations can resolve attribute-backed
+color selectors, and default DeferredDrawable implementations can resolve vector drawables and tints
+correctly.
 
 Compile with Kotlin 1.4.10 and publish the source code in
 [explicit mode](https://kotlinlang.org/docs/reference/whatsnew14.html#explicit-api-mode-for-library-authors).
