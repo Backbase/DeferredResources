@@ -2,7 +2,7 @@ buildscript {
     //region Dependency declarations
     ext.versions = [
         jaCoCo: '0.8.4',
-        kotlin: '1.4.10',
+        kotlin: '1.4.21',
     ]
 
     ext.deps = [
@@ -14,18 +14,18 @@ buildscript {
         coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6',
         junit: 'junit:junit:4.13',
         junitAndroidX: 'androidx.test.ext:junit-ktx:1.1.2',
-        truth: 'com.google.truth:truth:1.0.1',
+        truth: 'com.google.truth:truth:1.1',
     ]
     //endregion
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:4.1.1'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.4.10'
-        classpath 'org.jetbrains.kotlinx:binary-compatibility-validator:0.2.3'
+        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.4.20'
+        classpath 'org.jetbrains.kotlinx:binary-compatibility-validator:0.3.0'
 
-        classpath 'dev.drewhamilton.extracare:extracare-gradle-plugin:0.3.1'
+        classpath 'dev.drewhamilton.extracare:extracare-gradle-plugin:0.5.0'
     }
 
     repositories {
@@ -58,7 +58,6 @@ allprojects { project ->
     project.plugins.withType(com.android.build.gradle.LibraryPlugin) {
         //region Disable BuildConfig for libraries
         project.android.libraryVariants.all { variant ->
-            // TODO WORKAROUND: Replace with https://issuetracker.google.com/issues/72050365 once released.
             variant.generateBuildConfigProvider.get().enabled = false
         }
         //endregion
