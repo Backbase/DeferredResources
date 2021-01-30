@@ -50,6 +50,29 @@ textView.setText(viewModel.getText())
 textView.setTextColor(viewModel.getTextColor())
 ```
 
+### Text types
+
+Various types of text are supported: `DeferredText` for basic text, `DeferredFormattedString` for
+formatted text, `DeferredPlurals` for pluralized text, and `DeferredFormattedPlurals` for formatted,
+pluralized text. Additionally, it's possible to "partially resolve" these more complex text types to
+be more basic without yet having a `Context`.
+
+```kotlin
+val deferredFormattedPlurals = DeferredFormattedPlurals.Resource(R.plurals.formatted_plurals)
+
+// If you have the format args, quantity, and Context:
+val string: String = deferredFormattedPlurals.resolve(context, 5, "million")
+
+// If you have the format args and quantity, but no Context:
+val deferredText: DeferredText = deferredFormattedPlurals.withQuantityAndFormatArgs(5, "million")
+
+// If you have only the quantity:
+val deferredFormattedString: DeferredFormattedString = deferredFormattedPlurals.withQuantity(5)
+
+// If you have only the format args:
+val deferredPlurals: DeferredPlurals = deferredFormattedPlurals.withFormatArgs("million")
+```
+
 ## License
 ```
 Copyright 2020 Backbase R&D, B.V.
