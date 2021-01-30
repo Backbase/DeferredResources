@@ -7,6 +7,7 @@ import android.text.style.StyleSpan
 import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.safeargs.sendAndReceiveWithSafeArgs
 import com.backbase.deferredresources.text.ParcelableDeferredText
 import com.google.common.truth.Truth.assertThat
 import org.junit.After
@@ -33,6 +34,12 @@ internal class DeferredTextTest {
     @Test fun constant_parcelsThroughBundle() {
         parcelableTester.testParcelableThroughBundle<ParcelableDeferredText>(DeferredText.Constant("Parcelable"))
     }
+
+    @Test fun constant_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
+        construct = { DeferredText.Constant("Safe args") },
+        send = { send(it) },
+        receive = { getDeferredTextArg() },
+    )
 
     @Test fun resource_withTypeString_resolvesStringWithContext() {
         val deferred = DeferredText.Resource(R.string.richText)
@@ -65,4 +72,10 @@ internal class DeferredTextTest {
     @Test fun resource_parcelsThroughBundle() {
         parcelableTester.testParcelableThroughBundle<ParcelableDeferredText>(DeferredText.Resource(R.string.plainString))
     }
+
+    @Test fun resource_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
+        construct = { DeferredText.Resource(R.string.richText, type = DeferredText.Resource.Type.TEXT) },
+        send = { send(it) },
+        receive = { getDeferredTextArg() },
+    )
 }
