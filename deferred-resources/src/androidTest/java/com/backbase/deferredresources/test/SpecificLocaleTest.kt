@@ -1,4 +1,4 @@
-package com.backbase.deferredresources
+package com.backbase.deferredresources.test
 
 import android.content.Context
 import android.content.res.Configuration

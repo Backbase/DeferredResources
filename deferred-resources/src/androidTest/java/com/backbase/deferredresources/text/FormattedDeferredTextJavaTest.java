@@ -4,7 +4,7 @@ import com.backbase.deferredresources.DeferredFormattedString;
 import com.backbase.deferredresources.DeferredText;
 import org.junit.Test;
 
-import static com.backbase.deferredresources.TestContext.getContext;
+import static com.backbase.deferredresources.test.TestContext.getContext;
 import static com.google.common.truth.Truth.assertThat;
 
 public final class FormattedDeferredTextJavaTest {

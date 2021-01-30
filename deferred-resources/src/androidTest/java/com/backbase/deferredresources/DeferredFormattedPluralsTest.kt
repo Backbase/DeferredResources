@@ -3,6 +3,7 @@ package com.backbase.deferredresources
 import android.icu.text.PluralRules
 import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.test.R
+import com.backbase.deferredresources.test.SpecificLocaleTest
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 

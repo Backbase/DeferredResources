@@ -1,6 +1,6 @@
 @file:JvmName("TestContext")
 
-package com.backbase.deferredresources
+package com.backbase.deferredresources.test
 
 import android.content.Context
 import android.content.ContextWrapper
@@ -9,7 +9,6 @@ import android.content.res.Resources
 import android.os.Build
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.test.platform.app.InstrumentationRegistry
-import com.backbase.deferredresources.test.R
 
 /**
  * Quick access to the test context.

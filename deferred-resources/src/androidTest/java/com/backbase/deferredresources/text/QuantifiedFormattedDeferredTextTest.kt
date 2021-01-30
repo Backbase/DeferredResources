@@ -1,7 +1,7 @@
 package com.backbase.deferredresources.text
 
 import com.backbase.deferredresources.DeferredFormattedPlurals
-import com.backbase.deferredresources.SpecificLocaleTest
+import com.backbase.deferredresources.test.SpecificLocaleTest
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 

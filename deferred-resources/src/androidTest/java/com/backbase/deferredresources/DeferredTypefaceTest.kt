@@ -11,6 +11,8 @@ import androidx.core.provider.FontsContractCompat
 import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry
 import com.backbase.deferredresources.test.R
+import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.createRestrictedContext
 import com.google.common.truth.Truth.assertThat
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

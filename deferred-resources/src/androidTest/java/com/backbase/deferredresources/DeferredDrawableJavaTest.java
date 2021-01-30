@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import androidx.core.util.Preconditions;
 import com.backbase.deferredresources.test.R;
+import com.backbase.deferredresources.test.TestContext;
 import kotlin.Unit;
 import org.junit.Test;
 

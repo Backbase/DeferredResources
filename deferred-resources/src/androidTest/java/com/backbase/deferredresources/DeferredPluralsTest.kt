@@ -6,6 +6,7 @@ import android.text.SpannedString
 import android.text.style.StyleSpan
 import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.test.R
+import com.backbase.deferredresources.test.SpecificLocaleTest
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 

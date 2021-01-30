@@ -56,7 +56,7 @@ public interface DeferredDimension {
         /**
          * Returns [pxValue]. [context] is ignored.
          */
-        override fun resolveExact(context: Context): Float = pxValue
+        @Px override fun resolveExact(context: Context): Float = pxValue
     }
 
     /**
@@ -97,8 +97,7 @@ public interface DeferredDimension {
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a dimension.
          */
-        @Px
-        override fun resolveAsSize(context: Context): Int = resolveExact(context).toSize()
+        @Px override fun resolveAsSize(context: Context): Int = resolveExact(context).toSize()
 
         /**
          * Resolve [resId] to a [Px] int for use as an offset with the given [context]'s theme. The exact value is
@@ -106,19 +105,16 @@ public interface DeferredDimension {
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a dimension.
          */
-        @Px
-        override fun resolveAsOffset(context: Context): Int = resolveExact(context).toInt()
+        @Px override fun resolveAsOffset(context: Context): Int = resolveExact(context).toInt()
 
         /**
          * Resolve [resId] to an exact [Px] value for use as a size with the given [context]'s theme.
          *
          * @throws IllegalArgumentException if [resId] cannot be resolved to a dimension.
          */
-        @Px
-        override fun resolveExact(context: Context): Float = context.resolveDimensionAttribute(resId)
+        @Px override fun resolveExact(context: Context): Float = context.resolveDimensionAttribute(resId)
 
-        @Px
-        private fun Context.resolveDimensionAttribute(@AttrRes resId: Int): Float =
+        @Px private fun Context.resolveDimensionAttribute(@AttrRes resId: Int): Float =
             resolveAttribute(resId, "dimension", reusedTypedValue, TypedValue.TYPE_DIMENSION) {
                 getDimension(resources.displayMetrics)
             }

@@ -4,6 +4,7 @@ import android.graphics.Typeface
 import android.text.SpannedString
 import android.text.style.StyleSpan
 import com.backbase.deferredresources.test.R
+import com.backbase.deferredresources.test.context
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 

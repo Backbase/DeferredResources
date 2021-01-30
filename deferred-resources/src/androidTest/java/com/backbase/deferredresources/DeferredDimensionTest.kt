@@ -1,10 +1,12 @@
 package com.backbase.deferredresources
 
 import androidx.annotation.Px
+import com.backbase.deferredresources.test.AppCompatContext
 import com.backbase.deferredresources.test.R
+import com.backbase.deferredresources.test.context
 import com.google.common.truth.Truth.assertThat
-import org.junit.Test
 import kotlin.math.roundToInt
+import org.junit.Test
 
 internal class DeferredDimensionTest {
 

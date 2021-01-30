@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.os.Build
 import androidx.annotation.ColorInt
 import com.backbase.deferredresources.DeferredColor
-import com.backbase.deferredresources.context
+import com.backbase.deferredresources.test.context
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 

@@ -1,7 +1,7 @@
 package com.backbase.deferredresources.text
 
 import com.backbase.deferredresources.DeferredFormattedString
-import com.backbase.deferredresources.context
+import com.backbase.deferredresources.test.context
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 

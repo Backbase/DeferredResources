@@ -1,6 +1,8 @@
 package com.backbase.deferredresources
 
+import com.backbase.deferredresources.test.AppCompatContext
 import com.backbase.deferredresources.test.R
+import com.backbase.deferredresources.test.context
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
