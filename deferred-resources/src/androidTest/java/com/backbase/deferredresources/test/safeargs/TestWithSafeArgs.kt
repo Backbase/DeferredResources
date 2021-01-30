@@ -1,6 +1,6 @@
 package com.backbase.deferredresources.test.safeargs
 
-import com.backbase.deferredresources.test.launchActivity
+import androidx.test.core.app.ActivityScenario
 import com.google.common.truth.Truth.assertThat
 
 internal fun <T : Any> sendAndReceiveWithSafeArgs(
@@ -8,7 +8,7 @@ internal fun <T : Any> sendAndReceiveWithSafeArgs(
     send: SendFragment.(T) -> Unit,
     receive: ReceiveFragment.() -> T?,
 ) {
-    val scenario = launchActivity<SendReceiveActivity>()
+    val scenario = ActivityScenario.launch(SendReceiveActivity::class.java)
 
     val sent: T = construct()
     scenario.onActivity { activity ->
