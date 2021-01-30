@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--TODO WORKAROUND: This should be in androidTest/ instead of debug/, but SafeArgs doesn't work there-->
 <navigation
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,6 +19,14 @@
 
   <fragment
       android:id="@+id/receiveDestination"
-      android:name="com.backbase.deferredresources.test.safeargs.ReceiveFragment" />
+      android:name="com.backbase.deferredresources.test.safeargs.ReceiveFragment">
+
+    <argument
+        android:defaultValue="@null"
+        android:name="deferredText"
+        app:nullable="true"
+        app:argType="com.backbase.deferredresources.text.ParcelableDeferredText" />
+
+  </fragment>
 
 </navigation>

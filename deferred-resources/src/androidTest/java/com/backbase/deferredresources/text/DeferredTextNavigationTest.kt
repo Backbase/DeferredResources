@@ -21,7 +21,7 @@ internal class DeferredTextNavigationTest {
 
         scenario.onActivity { activity ->
             val receiveFragment = activity.currentFragment<ReceiveFragment>()
-            val received: ParcelableDeferredText = receiveFragment.getValue()
+            val received = receiveFragment.getDeferredTextArg()
 
             assertThat(received).isEqualTo(sent)
         }
