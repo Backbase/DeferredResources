@@ -1,10 +1,9 @@
 package com.backbase.deferredresources.test.safeargs
 
-import android.os.Parcelable
 import com.backbase.deferredresources.test.launchActivity
 import com.google.common.truth.Truth.assertThat
 
-internal fun <T : Parcelable> sendAndReceiveWithSafeArgs(
+internal fun <T : Any> sendAndReceiveWithSafeArgs(
     construct: () -> T,
     send: SendFragment.(T) -> Unit,
     receive: ReceiveFragment.() -> T?,
