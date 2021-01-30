@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parcelable_test"
+
+    app:startDestination="@id/sendDestination">
+
+  <fragment
+      android:id="@+id/sendDestination"
+      android:name="com.backbase.deferredresources.test.safeargs.SendFragment">
+
+    <action
+        android:id="@+id/action_sendDestination_to_receiveDestination"
+        app:destination="@id/receiveDestination" />
+
+  </fragment>
+
+  <fragment
+      android:id="@+id/receiveDestination"
+      android:name="com.backbase.deferredresources.test.safeargs.ReceiveFragment" />
+
+</navigation>

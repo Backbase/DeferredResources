@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.backbase.deferredresources">
+
+  <application>
+
+    <activity android:name=".test.safeargs.SendReceiveActivity" />
+
+  </application>
+
+</manifest>
