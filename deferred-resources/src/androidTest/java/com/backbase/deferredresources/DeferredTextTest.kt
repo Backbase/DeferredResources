@@ -1,7 +1,6 @@
 package com.backbase.deferredresources
 
 import android.graphics.Typeface
-import android.os.Parcel
 import android.text.SpannedString
 import android.text.style.StyleSpan
 import com.backbase.deferredresources.test.ParcelableTester
@@ -10,7 +9,6 @@ import com.backbase.deferredresources.test.context
 import com.backbase.deferredresources.test.safeargs.sendAndReceiveWithSafeArgs
 import com.backbase.deferredresources.text.ParcelableDeferredText
 import com.google.common.truth.Truth.assertThat
-import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 
@@ -19,12 +17,6 @@ internal class DeferredTextTest {
     @get:Rule val parcelableTester = ParcelableTester()
 
     private val richTextWithoutTags = "Rich text"
-
-    private var parcel: Parcel? = null
-
-    @After fun recycleParcel() {
-        parcel?.recycle()
-    }
 
     @Test fun constant_returnsConstantValue() {
         val deferred = DeferredText.Constant("Some text")
