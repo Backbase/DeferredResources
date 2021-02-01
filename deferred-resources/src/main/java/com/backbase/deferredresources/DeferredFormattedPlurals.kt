@@ -7,7 +7,9 @@ import androidx.annotation.PluralsRes
 import androidx.annotation.RequiresApi
 import com.backbase.deferredresources.internal.PluralRulesCompat
 import com.backbase.deferredresources.internal.primaryLocale
+import com.backbase.deferredresources.text.ParcelableDeferredFormattedPlurals
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.Parcelize
 
 /**
  * A wrapper for resolving format-able pluralized text on demand.
@@ -26,6 +28,7 @@ public interface DeferredFormattedPlurals {
      * [type] can be supplied to choose between [PluralRules.PluralType.CARDINAL] and [PluralRules.PluralType.ORDINAL].
      * If null, the system default of [PluralRules.PluralType.CARDINAL] is used implicitly.
      */
+    @Parcelize
     @DataApi public class Constant @RequiresApi(24) constructor(
         private val other: String,
         private val zero: String = other,
@@ -34,7 +37,7 @@ public interface DeferredFormattedPlurals {
         private val few: String = other,
         private val many: String = other,
         private val type: PluralRules.PluralType? = null
-    ) : DeferredFormattedPlurals {
+    ) : ParcelableDeferredFormattedPlurals {
         /**
          * Constructor for API < 24. "CARDINAL" plural type will be used implicitly.
          */
@@ -74,9 +77,10 @@ public interface DeferredFormattedPlurals {
     /**
      * A wrapper for a format-able [PluralsRes] [resId].
      */
+    @Parcelize
     @DataApi public class Resource(
         @PluralsRes private val resId: Int
-    ) : DeferredFormattedPlurals {
+    ) : ParcelableDeferredFormattedPlurals {
         /**
          * Resolve [resId] to a formatted string with the given [context], [quantity], and [formatArgs].
          */

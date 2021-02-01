@@ -23,6 +23,12 @@
 
     <argument
         android:defaultValue="@null"
+        android:name="deferredFormattedPlurals"
+        app:nullable="true"
+        app:argType="com.backbase.deferredresources.text.ParcelableDeferredFormattedPlurals" />
+
+    <argument
+        android:defaultValue="@null"
         android:name="deferredText"
         app:nullable="true"
         app:argType="com.backbase.deferredresources.text.ParcelableDeferredText" />
