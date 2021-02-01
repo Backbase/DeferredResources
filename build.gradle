@@ -3,6 +3,7 @@ buildscript {
     ext.versions = [
         jaCoCo: '0.8.4',
         kotlin: '1.4.21',
+        overloadReturn: '0.1.0-SNAPSHOT',
     ]
 
     ext.deps = [
@@ -26,12 +27,14 @@ buildscript {
         classpath 'org.jetbrains.kotlinx:binary-compatibility-validator:0.3.0'
 
         classpath 'dev.drewhamilton.extracare:extracare-gradle-plugin:0.5.0'
+        classpath "com.jakewharton.overloadreturn:overload-return-gradle-plugin:$versions.overloadReturn"
     }
 
     repositories {
         mavenCentral()
         google()
         jcenter()
+        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 }
 
@@ -53,6 +56,7 @@ allprojects { project ->
         mavenCentral()
         google()
         jcenter()
+        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 
     project.plugins.withType(com.android.build.gradle.LibraryPlugin) {

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'dev.drewhamilton.extracare'
+apply plugin: 'com.jakewharton.overloadreturn'
 
 ext {
     artifactName = 'deferred-resources'
@@ -40,6 +41,8 @@ android {
 }
 
 dependencies {
+//    compileOnly "com.jakewharton.overloadreturn:overload-return-annotations:$versions.overloadReturn"
+
     implementation deps.androidAnnotations
 
     implementation deps.appCompat
