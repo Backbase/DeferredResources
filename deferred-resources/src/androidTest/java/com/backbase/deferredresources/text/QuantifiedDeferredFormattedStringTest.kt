@@ -39,7 +39,7 @@ internal class QuantifiedDeferredFormattedStringTest : SpecificLocaleTest() {
         )
     }
 
-    @Test fun quantified_withNonParcelablePlurals_throwsWhenParceled() {
+    @Test fun quantified_withNonParcelablePlurals_throwsWhenMarshalled() {
         val nonParcelablePlurals = object : DeferredFormattedPlurals {
             override fun resolve(context: Context, quantity: Int, vararg formatArgs: Any): String =
                 "$quantity ${formatArgs.toList()}"
@@ -49,7 +49,7 @@ internal class QuantifiedDeferredFormattedStringTest : SpecificLocaleTest() {
         val quantified = QuantifiedDeferredFormattedString(nonParcelablePlurals, 9)
         assertThat(quantified.resolve(context, "Arg")).isEqualTo("9 [Arg]")
 
-        // Only parceling does not work:
+        // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
             parcelableTester.testParcelableThroughBundle<ParcelableDeferredFormattedString>(quantified)
         }
@@ -57,9 +57,7 @@ internal class QuantifiedDeferredFormattedStringTest : SpecificLocaleTest() {
     }
 
     @Test fun quantified_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = {
-            QuantifiedDeferredFormattedString(DeferredFormattedPlurals.Resource(R.string.formattedString), 8)
-        },
+        construct = { QuantifiedDeferredFormattedString(DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals), 8) },
         send = { send(it) },
         receive = { getDeferredFormattedStringArg() },
     )

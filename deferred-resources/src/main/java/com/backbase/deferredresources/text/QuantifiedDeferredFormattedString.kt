@@ -22,8 +22,7 @@ import kotlinx.parcelize.RawValue
  * If the quantity is to be determined at the resolving site, stick with [DeferredFormattedPlurals]. If the format args
  * are to be determined at the declaring site, see [QuantifiedFormattedDeferredText].
  *
- * This class implements [android.os.Parcelable], but will crash at runtime if it is parceled and [wrapped] does not
- * implement [android.os.Parcelable].
+ * This class implements [android.os.Parcelable]. It will throw at runtime if [wrapped] cannot be marshalled.
  */
 @Parcelize
 @DataApi public class QuantifiedDeferredFormattedString(

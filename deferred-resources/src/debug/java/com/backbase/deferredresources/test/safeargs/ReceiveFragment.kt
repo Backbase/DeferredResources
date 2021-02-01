@@ -12,11 +12,11 @@ internal class ReceiveFragment : Fragment() {
 
     private val args: ReceiveFragmentArgs by navArgs()
 
-    fun getDeferredFormattedPlurals(): ParcelableDeferredFormattedPlurals? = args.deferredFormattedPlurals
+    fun getDeferredFormattedPluralsArg(): ParcelableDeferredFormattedPlurals? = args.deferredFormattedPlurals
 
     fun getDeferredFormattedStringArg(): ParcelableDeferredFormattedString? = args.deferredFormattedString
 
-    fun getDeferredPlurals(): ParcelableDeferredPlurals? = args.deferredPlurals
+    fun getDeferredPluralsArg(): ParcelableDeferredPlurals? = args.deferredPlurals
 
     fun getDeferredTextArg(): ParcelableDeferredText? = args.deferredText
 }

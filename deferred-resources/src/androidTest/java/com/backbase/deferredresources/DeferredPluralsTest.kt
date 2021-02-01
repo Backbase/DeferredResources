@@ -120,7 +120,7 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
             )
         },
         send = { send(it) },
-        receive = { getDeferredPlurals() },
+        receive = { getDeferredPluralsArg() },
     )
 
     @SdkSuppress(minSdkVersion = 24)
@@ -137,7 +137,7 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
             )
         },
         send = { send(it) },
-        receive = { getDeferredPlurals() },
+        receive = { getDeferredPluralsArg() },
     )
 
     @Test fun resource_withTypeString_resolvesStringWithContext() {
@@ -178,6 +178,6 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
     @Test fun resource_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
         construct = { DeferredPlurals.Resource(R.plurals.richPlurals, type = DeferredPlurals.Resource.Type.TEXT) },
         send = { send(it) },
-        receive = { getDeferredPlurals() },
+        receive = { getDeferredPluralsArg() },
     )
 }
