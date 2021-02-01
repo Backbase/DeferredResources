@@ -4,6 +4,8 @@ import android.content.Context
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.DeferredFormattedString
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 /**
  * Convert a [DeferredFormattedPlurals] to a [DeferredFormattedString] by providing its [quantity] to be used when
@@ -19,11 +21,15 @@ import dev.drewhamilton.extracare.DataApi
  *
  * If the quantity is to be determined at the resolving site, stick with [DeferredFormattedPlurals]. If the format args
  * are to be determined at the declaring site, see [QuantifiedFormattedDeferredText].
+ *
+ * This class implements [android.os.Parcelable], but will crash at runtime if it is parceled and [wrapped] does not
+ * implement [android.os.Parcelable].
  */
+@Parcelize
 @DataApi public class QuantifiedDeferredFormattedString(
-    private val wrapped: DeferredFormattedPlurals,
+    private val wrapped: @RawValue DeferredFormattedPlurals,
     private val quantity: Int
-) : DeferredFormattedString {
+) : ParcelableDeferredFormattedString {
     /**
      * Resolve [wrapped] with [quantity] and [formatArgs] using the given [context].
      */

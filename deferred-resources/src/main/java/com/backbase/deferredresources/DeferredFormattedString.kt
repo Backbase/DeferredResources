@@ -3,7 +3,9 @@ package com.backbase.deferredresources
 import android.content.Context
 import androidx.annotation.StringRes
 import com.backbase.deferredresources.internal.primaryLocale
+import com.backbase.deferredresources.text.ParcelableDeferredFormattedString
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.Parcelize
 
 /**
  * A wrapper for resolving a formatted string on demand.
@@ -18,9 +20,10 @@ public interface DeferredFormattedString {
     /**
      * A wrapper for a constant format-able [format] string.
      */
+    @Parcelize
     @DataApi public class Constant(
         private val format: String
-    ) : DeferredFormattedString {
+    ) : ParcelableDeferredFormattedString {
         /**
          * Always resolves [format] with the supplied [formatArgs] and the primary locale from [context].
          */
@@ -31,9 +34,10 @@ public interface DeferredFormattedString {
     /**
      * A wrapper for a format-able [StringRes] [resId].
      */
+    @Parcelize
     @DataApi public class Resource(
         @StringRes private val resId: Int
-    ) : DeferredFormattedString {
+    ) : ParcelableDeferredFormattedString {
 
         /**
          * Resolve [resId] to a formatted string with the given [context] and [formatArgs].
