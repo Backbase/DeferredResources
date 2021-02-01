@@ -5,12 +5,18 @@ import android.icu.text.PluralRules
 import android.text.SpannedString
 import android.text.style.StyleSpan
 import androidx.test.filters.SdkSuppress
+import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
+import com.backbase.deferredresources.test.safeargs.sendAndReceiveWithSafeArgs
+import com.backbase.deferredresources.text.ParcelableDeferredPlurals
 import com.google.common.truth.Truth.assertThat
+import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredPluralsTest : SpecificLocaleTest() {
+
+    @get:Rule val parcelableTester = ParcelableTester()
 
     @Test fun constant_defaultTypeAndUsLocale_resolvesOneAndOther() {
         setTestLanguage("en-US")
@@ -74,6 +80,66 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
         assertThat(deferred.resolve(context, 100)).isEqualTo("Some")
     }
 
+    @Test fun constant_defaultType_parcelsThroughBundle() {
+        parcelableTester.testParcelableThroughBundle<ParcelableDeferredPlurals>(
+            DeferredPlurals.Constant(
+                zero = "No",
+                one = "A single",
+                two = "A couple",
+                few = "Not that many",
+                many = "A bunch of",
+                other = "Some"
+            )
+        )
+    }
+
+    @SdkSuppress(minSdkVersion = 24)
+    @Test fun constant_ordinalType_parcelsThroughBundle() {
+        parcelableTester.testParcelableThroughBundle<ParcelableDeferredPlurals>(
+            DeferredPlurals.Constant(
+                zero = "No",
+                one = "A single",
+                two = "A couple",
+                few = "Not that many",
+                many = "A bunch of",
+                other = "Some",
+                type = PluralRules.PluralType.ORDINAL
+            )
+        )
+    }
+
+    @Test fun constant_defaultType_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
+        construct = {
+            DeferredPlurals.Constant(
+                zero = "No",
+                one = "A single",
+                two = "A couple",
+                few = "Not that many",
+                many = "A bunch of",
+                other = "Some"
+            )
+        },
+        send = { send(it) },
+        receive = { getDeferredPlurals() },
+    )
+
+    @SdkSuppress(minSdkVersion = 24)
+    @Test fun constant_ordinalType_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
+        construct = {
+            DeferredPlurals.Constant(
+                zero = "No",
+                one = "A single",
+                two = "A couple",
+                few = "Not that many",
+                many = "A bunch of",
+                other = "Some",
+                type = PluralRules.PluralType.ORDINAL
+            )
+        },
+        send = { send(it) },
+        receive = { getDeferredPlurals() },
+    )
+
     @Test fun resource_withTypeString_resolvesStringWithContext() {
         setTestLanguage("en-US")
 
@@ -102,4 +168,16 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
         span as StyleSpan
         assertThat(span.style).isEqualTo(Typeface.ITALIC)
     }
+
+    @Test fun resource_parcelsThroughBundle() {
+        parcelableTester.testParcelableThroughBundle<ParcelableDeferredPlurals>(
+            DeferredPlurals.Resource(R.plurals.plainPlurals)
+        )
+    }
+
+    @Test fun resource_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
+        construct = { DeferredPlurals.Resource(R.plurals.richPlurals, type = DeferredPlurals.Resource.Type.TEXT) },
+        send = { send(it) },
+        receive = { getDeferredPlurals() },
+    )
 }
