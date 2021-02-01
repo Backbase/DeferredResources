@@ -10,8 +10,10 @@
  8. Commit the SNAPSHOT change.
  9. Push the 2 commits + 1 tag to origin/main.
 10. Wait for the "release" Action to complete.
-11. Visit [Sonatype Nexus](https://oss.sonatype.org/#stagingRepositories). Verify the artifacts,
-    close the staging repository, and release the closed staging repository.
+11. `startship release -u backbase -p backbaseOssSonatypePassword -c com.backbase.oss.deferredresources:deferred-resources,deferred-resources-view-extensions:x.y.z`
 12. Create the release on GitHub with release notes copied from the changelog.
 
-If step 9 fails, drop the Sonatype repo, fix the problem, commit, and start again at step 6.
+If step 10 fails, drop the Sonatype repo, fix the problem, commit, and start again at step 6.
+
+[`startship`](https://github.com/saket/startship) can be installed via Homebrew. You must have
+`backbaseOssSonatypePassword` defined in your machine's gradle.properties file to release.
