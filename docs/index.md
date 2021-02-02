@@ -61,6 +61,8 @@ val deferredFormattedString: DeferredFormattedString = deferredFormattedPlurals.
 val deferredPlurals: DeferredPlurals = deferredFormattedPlurals.withFormatArgs("million")
 ```
 
+All text-related types can eventually be converted to `DeferredText` through similar extensions.
+
 ## Import
 
 To use Deferred Resources, add the library as a dependency to your Android module:

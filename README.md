@@ -73,6 +73,8 @@ val deferredFormattedString: DeferredFormattedString = deferredFormattedPlurals.
 val deferredPlurals: DeferredPlurals = deferredFormattedPlurals.withFormatArgs("million")
 ```
 
+All text-related types can eventually be converted to `DeferredText` through similar extensions.
+
 ## License
 ```
 Copyright 2020 Backbase R&D, B.V.
