@@ -14,6 +14,22 @@ import kotlinx.parcelize.RawValue
 @JvmSynthetic public fun DeferredFormattedPlurals.withQuantityAndFormatArgs(
     quantity: Int,
     vararg formatArgs: Any = arrayOf(quantity)
+): QuantifiedFormattedDeferredText = QuantifiedFormattedDeferredText(
+    wrapped = this,
+    quantity = quantity,
+    formatArgs = formatArgs
+)
+
+/**
+ * Convert a [DeferredFormattedPlurals] to a normal [DeferredText] by providing a [quantity] and [formatArgs] to be used
+ * when resolved.
+ */
+@Suppress("unused")
+@Deprecated("Covariant return type introduced", level = DeprecationLevel.HIDDEN)
+// Unused generic is added to allow return-type overload
+@JvmSynthetic public fun <T> DeferredFormattedPlurals.withQuantityAndFormatArgs(
+    quantity: Int,
+    vararg formatArgs: Any = arrayOf(quantity)
 ): DeferredText = QuantifiedFormattedDeferredText(wrapped = this, quantity = quantity, formatArgs = formatArgs)
 
 /**

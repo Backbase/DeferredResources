@@ -497,6 +497,7 @@ public class com/backbase/deferredresources/text/FormattedDeferredPlurals$Creato
 
 public final class com/backbase/deferredresources/text/FormattedDeferredPluralsKt {
 	public static final synthetic fun withFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedPlurals;[Ljava/lang/Object;)Lcom/backbase/deferredresources/DeferredPlurals;
+	public static final synthetic fun withFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedPlurals;[Ljava/lang/Object;)Lcom/backbase/deferredresources/text/FormattedDeferredPlurals;
 }
 
 public final class com/backbase/deferredresources/text/FormattedDeferredText : com/backbase/deferredresources/text/ParcelableDeferredText {
@@ -520,6 +521,7 @@ public class com/backbase/deferredresources/text/FormattedDeferredText$Creator :
 
 public final class com/backbase/deferredresources/text/FormattedDeferredTextKt {
 	public static final synthetic fun withFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedString;[Ljava/lang/Object;)Lcom/backbase/deferredresources/DeferredText;
+	public static final synthetic fun withFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedString;[Ljava/lang/Object;)Lcom/backbase/deferredresources/text/FormattedDeferredText;
 }
 
 public abstract interface class com/backbase/deferredresources/text/ParcelableDeferredFormattedPlurals : android/os/Parcelable, com/backbase/deferredresources/DeferredFormattedPlurals {
@@ -555,6 +557,7 @@ public class com/backbase/deferredresources/text/QuantifiedDeferredFormattedStri
 
 public final class com/backbase/deferredresources/text/QuantifiedDeferredFormattedStringKt {
 	public static final synthetic fun withQuantity (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I)Lcom/backbase/deferredresources/DeferredFormattedString;
+	public static final synthetic fun withQuantity (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I)Lcom/backbase/deferredresources/text/QuantifiedDeferredFormattedString;
 }
 
 public final class com/backbase/deferredresources/text/QuantifiedDeferredText : com/backbase/deferredresources/text/ParcelableDeferredText {
@@ -578,6 +581,7 @@ public class com/backbase/deferredresources/text/QuantifiedDeferredText$Creator 
 
 public final class com/backbase/deferredresources/text/QuantifiedDeferredTextKt {
 	public static final synthetic fun withQuantity (Lcom/backbase/deferredresources/DeferredPlurals;I)Lcom/backbase/deferredresources/DeferredText;
+	public static final synthetic fun withQuantity (Lcom/backbase/deferredresources/DeferredPlurals;I)Lcom/backbase/deferredresources/text/QuantifiedDeferredText;
 }
 
 public final class com/backbase/deferredresources/text/QuantifiedFormattedDeferredText : com/backbase/deferredresources/text/ParcelableDeferredText {
@@ -602,6 +606,8 @@ public class com/backbase/deferredresources/text/QuantifiedFormattedDeferredText
 
 public final class com/backbase/deferredresources/text/QuantifiedFormattedDeferredTextKt {
 	public static final synthetic fun withQuantityAndFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;)Lcom/backbase/deferredresources/DeferredText;
+	public static final synthetic fun withQuantityAndFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;)Lcom/backbase/deferredresources/text/QuantifiedFormattedDeferredText;
 	public static synthetic fun withQuantityAndFormatArgs$default (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;ILjava/lang/Object;)Lcom/backbase/deferredresources/DeferredText;
+	public static synthetic fun withQuantityAndFormatArgs$default (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;ILjava/lang/Object;)Lcom/backbase/deferredresources/text/QuantifiedFormattedDeferredText;
 }
 

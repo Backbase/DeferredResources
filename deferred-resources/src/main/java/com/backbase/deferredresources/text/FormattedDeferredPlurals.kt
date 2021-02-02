@@ -8,10 +8,20 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
 /**
+ * Convert a [DeferredFormattedPlurals] to a [DeferredPlurals] by providing [formatArgs] to be used when resolved.
+ * A quantity must still be provided when resolved.
+ */
+@JvmSynthetic public fun DeferredFormattedPlurals.withFormatArgs(vararg formatArgs: Any): FormattedDeferredPlurals =
+    FormattedDeferredPlurals(wrapped = this, formatArgs = formatArgs)
+
+/**
  * Convert a [DeferredFormattedPlurals] to a [DeferredPlurals] by providing its [formatArgs] to be used when resolved.
  * A quantity must still be provided when resolved.
  */
-@JvmSynthetic public fun DeferredFormattedPlurals.withFormatArgs(vararg formatArgs: Any): DeferredPlurals =
+@Suppress("unused")
+@Deprecated("Covariant return type introduced", level = DeprecationLevel.HIDDEN)
+// Unused generic is added to allow return-type overload
+@JvmSynthetic public fun <T> DeferredFormattedPlurals.withFormatArgs(vararg formatArgs: Any): DeferredPlurals =
     FormattedDeferredPlurals(wrapped = this, formatArgs = formatArgs)
 
 /**
