@@ -2,6 +2,7 @@ package com.backbase.deferredresources.test.safeargs
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.backbase.deferredresources.boolean.ParcelableDeferredBoolean
 import com.backbase.deferredresources.text.ParcelableDeferredFormattedPlurals
 import com.backbase.deferredresources.text.ParcelableDeferredFormattedString
 import com.backbase.deferredresources.text.ParcelableDeferredPlurals
@@ -11,6 +12,8 @@ import com.backbase.deferredresources.text.ParcelableDeferredText
 internal class ReceiveFragment : Fragment() {
 
     private val args: ReceiveFragmentArgs by navArgs()
+
+    fun getDeferredBooleanArg(): ParcelableDeferredBoolean? = args.deferredBoolean
 
     fun getDeferredFormattedPluralsArg(): ParcelableDeferredFormattedPlurals? = args.deferredFormattedPlurals
 

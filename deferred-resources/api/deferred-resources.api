@@ -2,28 +2,61 @@ public abstract interface class com/backbase/deferredresources/DeferredBoolean {
 	public abstract fun resolve (Landroid/content/Context;)Z
 }
 
-public final class com/backbase/deferredresources/DeferredBoolean$Attribute : com/backbase/deferredresources/DeferredBoolean {
+public final class com/backbase/deferredresources/DeferredBoolean$Attribute : com/backbase/deferredresources/boolean/ParcelableDeferredBoolean {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Z
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredBoolean$Constant : com/backbase/deferredresources/DeferredBoolean {
+public class com/backbase/deferredresources/DeferredBoolean$Attribute$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredBoolean$Attribute;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredBoolean$Attribute;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredBoolean$Constant : com/backbase/deferredresources/boolean/ParcelableDeferredBoolean {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Z)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Z
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredBoolean$Resource : com/backbase/deferredresources/DeferredBoolean {
+public class com/backbase/deferredresources/DeferredBoolean$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredBoolean$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredBoolean$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredBoolean$Resource : com/backbase/deferredresources/boolean/ParcelableDeferredBoolean {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Z
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredBoolean$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredBoolean$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredBoolean$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredColor {
@@ -432,6 +465,9 @@ public final class com/backbase/deferredresources/DeferredTypeface$Resource : co
 	public fun resolve (Landroid/content/Context;)Landroid/graphics/Typeface;
 	public fun resolve (Landroid/content/Context;Landroidx/core/content/res/ResourcesCompat$FontCallback;Landroid/os/Handler;)V
 	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/backbase/deferredresources/boolean/ParcelableDeferredBoolean : android/os/Parcelable, com/backbase/deferredresources/DeferredBoolean {
 }
 
 public final class com/backbase/deferredresources/color/DeferredColorWithAlpha : com/backbase/deferredresources/DeferredColor {
