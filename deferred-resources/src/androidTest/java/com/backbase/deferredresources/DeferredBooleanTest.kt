@@ -1,6 +1,6 @@
 package com.backbase.deferredresources
 
-import com.backbase.deferredresources.boolean.ParcelableDeferredBoolean
+import com.backbase.deferredresources.bool.ParcelableDeferredBoolean
 import com.backbase.deferredresources.test.AppCompatContext
 import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R

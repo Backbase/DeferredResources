@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.BoolRes
-import com.backbase.deferredresources.boolean.ParcelableDeferredBoolean
+import com.backbase.deferredresources.bool.ParcelableDeferredBoolean
 import com.backbase.deferredresources.internal.resolveAttribute
 import dev.drewhamilton.extracare.DataApi
 import kotlinx.parcelize.IgnoredOnParcel

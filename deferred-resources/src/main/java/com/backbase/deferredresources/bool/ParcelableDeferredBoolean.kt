@@ -1,4 +1,4 @@
-package com.backbase.deferredresources.boolean
+package com.backbase.deferredresources.bool
 
 import android.os.Parcelable
 import com.backbase.deferredresources.DeferredBoolean
