@@ -5,7 +5,6 @@ import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
-import com.backbase.deferredresources.test.safeargs.sendAndReceiveWithSafeArgs
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertThrows
 import org.junit.Rule
@@ -55,10 +54,4 @@ internal class QuantifiedDeferredFormattedStringTest : SpecificLocaleTest() {
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelablePlurals")
     }
-
-    @Test fun quantified_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = { QuantifiedDeferredFormattedString(DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals), 8) },
-        send = { send(it) },
-        receive = { getDeferredFormattedStringArg() },
-    )
 }

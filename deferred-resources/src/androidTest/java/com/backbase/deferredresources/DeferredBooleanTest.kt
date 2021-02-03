@@ -5,7 +5,6 @@ import com.backbase.deferredresources.test.AppCompatContext
 import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
-import com.backbase.deferredresources.test.safeargs.sendAndReceiveWithSafeArgs
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule
 import org.junit.Test
@@ -23,12 +22,6 @@ internal class DeferredBooleanTest {
         parcelableTester.testParcelableThroughBundle<ParcelableDeferredBoolean>(DeferredBoolean.Constant(true))
     }
 
-    @Test fun constant_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = { DeferredBoolean.Constant(false) },
-        send = { send(it) },
-        receive = { getDeferredBooleanArg() },
-    )
-
     @Test fun resource_resolvesWithContext() {
         val deferred = DeferredBoolean.Resource(R.bool.testBool)
         assertThat(deferred.resolve(context)).isEqualTo(true)
@@ -39,12 +32,6 @@ internal class DeferredBooleanTest {
             DeferredBoolean.Resource(R.bool.testBool)
         )
     }
-
-    @Test fun resource_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = { DeferredBoolean.Resource(R.bool.testBool) },
-        send = { send(it) },
-        receive = { getDeferredBooleanArg() },
-    )
 
     @Test fun attribute_resolvesWithContext() {
         val deferredDark = DeferredBoolean.Attribute(R.attr.isLightTheme)
@@ -76,10 +63,4 @@ internal class DeferredBooleanTest {
             DeferredBoolean.Attribute(R.attr.isLightTheme)
         )
     }
-
-    @Test fun attribute_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = { DeferredBoolean.Attribute(R.attr.isLightTheme) },
-        send = { send(it) },
-        receive = { getDeferredBooleanArg() },
-    )
 }

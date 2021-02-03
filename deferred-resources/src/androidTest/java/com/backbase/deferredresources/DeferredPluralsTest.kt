@@ -8,7 +8,6 @@ import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
-import com.backbase.deferredresources.test.safeargs.sendAndReceiveWithSafeArgs
 import com.backbase.deferredresources.text.ParcelableDeferredPlurals
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule
@@ -108,38 +107,6 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
         )
     }
 
-    @Test fun constant_defaultType_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = {
-            DeferredPlurals.Constant(
-                zero = "No",
-                one = "A single",
-                two = "A couple",
-                few = "Not that many",
-                many = "A bunch of",
-                other = "Some"
-            )
-        },
-        send = { send(it) },
-        receive = { getDeferredPluralsArg() },
-    )
-
-    @SdkSuppress(minSdkVersion = 24)
-    @Test fun constant_ordinalType_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = {
-            DeferredPlurals.Constant(
-                zero = "No",
-                one = "A single",
-                two = "A couple",
-                few = "Not that many",
-                many = "A bunch of",
-                other = "Some",
-                type = PluralRules.PluralType.ORDINAL
-            )
-        },
-        send = { send(it) },
-        receive = { getDeferredPluralsArg() },
-    )
-
     @Test fun resource_withTypeString_resolvesStringWithContext() {
         setTestLanguage("en-US")
 
@@ -174,10 +141,4 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
             DeferredPlurals.Resource(R.plurals.plainPlurals)
         )
     }
-
-    @Test fun resource_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = { DeferredPlurals.Resource(R.plurals.richPlurals, type = DeferredPlurals.Resource.Type.TEXT) },
-        send = { send(it) },
-        receive = { getDeferredPluralsArg() },
-    )
 }

@@ -5,7 +5,6 @@ import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
-import com.backbase.deferredresources.test.safeargs.sendAndReceiveWithSafeArgs
 import com.backbase.deferredresources.text.ParcelableDeferredFormattedPlurals
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule
@@ -108,38 +107,6 @@ internal class DeferredFormattedPluralsTest : SpecificLocaleTest() {
         )
     }
 
-    @Test fun constant_defaultType_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = {
-            DeferredFormattedPlurals.Constant(
-                zero = "No %s",
-                one = "A single %s",
-                two = "A couple %s",
-                few = "Not that many %s",
-                many = "A herd of %s",
-                other = "Some %s",
-            )
-        },
-        send = { send(it) },
-        receive = { getDeferredFormattedPluralsArg() },
-    )
-
-    @SdkSuppress(minSdkVersion = 24)
-    @Test fun constant_ordinalType_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = {
-            DeferredFormattedPlurals.Constant(
-                zero = "No %s",
-                one = "A single %s",
-                two = "A couple %s",
-                few = "Not that many %s",
-                many = "A herd of %s",
-                other = "Some %s",
-                type = PluralRules.PluralType.ORDINAL
-            )
-        },
-        send = { send(it) },
-        receive = { getDeferredFormattedPluralsArg() },
-    )
-
     @Test fun resource_resolvesAndFormatsStringWithContext() {
         setTestLanguage("en-US")
 
@@ -154,10 +121,4 @@ internal class DeferredFormattedPluralsTest : SpecificLocaleTest() {
             DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals)
         )
     }
-
-    @Test fun resource_sendAndReceiveWithSafeArgs() = sendAndReceiveWithSafeArgs(
-        construct = { DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals) },
-        send = { send(it) },
-        receive = { getDeferredFormattedPluralsArg() },
-    )
 }
