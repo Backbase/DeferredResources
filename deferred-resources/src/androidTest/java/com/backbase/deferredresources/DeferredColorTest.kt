@@ -1,13 +1,18 @@
 package com.backbase.deferredresources
 
 import android.graphics.Color
+import com.backbase.deferredresources.color.ParcelableDeferredColor
 import com.backbase.deferredresources.test.AppCompatContext
+import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
 import com.google.common.truth.Truth.assertThat
+import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredColorTest {
+
+    @get:Rule val parcelableTester = ParcelableTester()
 
     private val disabledState = intArrayOf(-android.R.attr.state_enabled)
     private val checkedState = intArrayOf(android.R.attr.state_enabled, android.R.attr.state_checked)
@@ -32,6 +37,10 @@ internal class DeferredColorTest {
         assertThat(resolved.getColorForState(disabledState, Color.BLACK)).isEqualTo(Color.MAGENTA)
         assertThat(resolved.getColorForState(defaultState, Color.BLACK)).isEqualTo(Color.MAGENTA)
         assertThat(resolved.defaultColor).isEqualTo(Color.MAGENTA)
+    }
+
+    @Test fun constant_parcelsThroughBundle() {
+        parcelableTester.testParcelableThroughBundle<ParcelableDeferredColor>(DeferredColor.Constant(Color.GREEN))
     }
     //endregion
 
@@ -80,6 +89,12 @@ internal class DeferredColorTest {
         assertThat(resolved.getColorForState(checkedState, Color.BLACK)).isEqualTo(Color.parseColor("#aaaaaa"))
         assertThat(resolved.getColorForState(defaultState, Color.BLACK)).isEqualTo(Color.parseColor("#987654"))
         assertThat(resolved.defaultColor).isEqualTo(Color.parseColor("#987654"))
+    }
+
+    @Test fun resource_parcelsThroughBundle() {
+        parcelableTester.testParcelableThroughBundle<ParcelableDeferredColor>(
+            DeferredColor.Resource(R.color.stateful_color_without_attr)
+        )
     }
     //endregion
 
@@ -159,6 +174,12 @@ internal class DeferredColorTest {
         val deferred = DeferredColor.Attribute(R.attr.isLightTheme)
 
         deferred.resolveToStateList(AppCompatContext())
+    }
+
+    @Test fun attribute_parcelsThroughBundle() {
+        parcelableTester.testParcelableThroughBundle<ParcelableDeferredColor>(
+            DeferredColor.Attribute(R.attr.colorPrimary)
+        )
     }
     //endregion
 }

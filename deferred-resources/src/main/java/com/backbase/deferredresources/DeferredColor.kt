@@ -8,8 +8,11 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.appcompat.content.res.AppCompatResources
+import com.backbase.deferredresources.color.ParcelableDeferredColor
 import com.backbase.deferredresources.internal.resolveAttribute
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 
 /**
  * A wrapper for resolving a [ColorInt] color on demand.
@@ -29,9 +32,10 @@ public interface DeferredColor {
     /**
      * A wrapper for a constant color [value].
      */
+    @Parcelize
     @DataApi public class Constant(
         @ColorInt private val value: Int
-    ) : DeferredColor {
+    ) : ParcelableDeferredColor {
 
         /**
          * Convenience for wrapping a constant color value parsed from the given [colorString].
@@ -52,9 +56,10 @@ public interface DeferredColor {
     /**
      * A wrapper for a [ColorRes] [resId].
      */
+    @Parcelize
     @DataApi public class Resource(
         @ColorRes private val resId: Int
-    ) : DeferredColor {
+    ) : ParcelableDeferredColor {
         /**
          * Resolve [resId] to a [ColorInt] with the given [context]. If [resId] resolves to a color selector resource,
          * resolves the default color of that selector.
@@ -75,11 +80,13 @@ public interface DeferredColor {
     /**
      * A wrapper for a [AttrRes] [resId] reference to a color.
      */
+    @Parcelize
     @DataApi public class Attribute(
         @AttrRes private val resId: Int
-    ) : DeferredColor {
+    ) : ParcelableDeferredColor {
 
         // Re-used every time the color is resolved, for efficiency
+        @IgnoredOnParcel
         private val reusedTypedValue = TypedValue()
 
         /**
