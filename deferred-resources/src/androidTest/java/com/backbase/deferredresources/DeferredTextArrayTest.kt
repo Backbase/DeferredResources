@@ -3,12 +3,17 @@ package com.backbase.deferredresources
 import android.graphics.Typeface
 import android.text.SpannedString
 import android.text.style.StyleSpan
+import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.text.ParcelableDeferredTextArray
 import com.google.common.truth.Truth.assertThat
+import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredTextArrayTest {
+
+    @get:Rule val parcelableTester = ParcelableTester()
 
     private val expectedStringArray = arrayOf("Bold one", "Regular one")
 
@@ -19,7 +24,7 @@ internal class DeferredTextArrayTest {
 
     @Test fun constant_initializedWithList_returnsConstantValues() {
         val originalList = mutableListOf("A")
-        val deferred = DeferredTextArray.Constant(originalList)
+        val deferred = DeferredTextArray.Constant(originalList as Collection<String>)
         originalList[0] = "Z"
 
         assertThat(deferred.resolve(context).asList()).isEqualTo(listOf("A"))
@@ -49,6 +54,12 @@ internal class DeferredTextArrayTest {
     @Test fun constant_toString_includesContents() {
         val deferred = DeferredTextArray.Constant("Yes", "No")
         assertThat(deferred.toString()).isEqualTo("Constant(values=[Yes, No])")
+    }
+
+    @Test fun constant_parcelsThroughBundle() {
+        parcelableTester.testParcelableThroughBundle<ParcelableDeferredTextArray>(
+            DeferredTextArray.Constant("A", "B", "See", "D")
+        )
     }
 
     @Test fun resource_withTypeString_resolvesStringsWithContext() {
@@ -85,5 +96,11 @@ internal class DeferredTextArrayTest {
 
         val regularItem = resolved[1]
         assertThat(regularItem).isInstanceOf(String::class.java)
+    }
+
+    @Test fun resource_parcelsThroughBundle() {
+        parcelableTester.testParcelableThroughBundle<ParcelableDeferredTextArray>(
+            DeferredTextArray.Resource(R.array.stringArray)
+        )
     }
 }

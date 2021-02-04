@@ -3,7 +3,9 @@ package com.backbase.deferredresources
 import android.content.Context
 import androidx.annotation.ArrayRes
 import com.backbase.deferredresources.DeferredTextArray.Resource.Type
+import com.backbase.deferredresources.text.ParcelableDeferredTextArray
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.Parcelize
 
 /**
  * A wrapper for resolving a text array on demand.
@@ -21,11 +23,11 @@ public interface DeferredTextArray {
      * This class protects against array mutability by holding a copy of the input [values] and by always returning a
      * new copy of those [values] when resolved.
      */
-    @DataApi public class Constant private constructor(
-        // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
-        @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
-        private val values: Array<out CharSequence>
-    ) : DeferredTextArray {
+    // Primary constructor is internal rather than private so the generated Creator can access it
+    @Parcelize
+    @DataApi public class Constant internal constructor(
+        private val values: List<CharSequence>
+    ) : ParcelableDeferredTextArray {
 
         /**
          * Initialize with the given text [values].
@@ -33,39 +35,29 @@ public interface DeferredTextArray {
          * The given [values] array is copied on construction, so later external changes to the original will not be
          * reflected in this [DeferredTextArray].
          */
-        public constructor(vararg values: CharSequence) : this(1, arrayOf(*values))
+        public constructor(vararg values: CharSequence) : this(values.toList())
 
         /**
          * Convenience for initializing with a [Collection] of text [values].
          */
-        public constructor(values: Collection<CharSequence>) : this(1, values.toTypedArray())
+        public constructor(values: Collection<CharSequence>) : this(values.toList())
 
         /**
          * Always resolves to a new array copied from [values]. Changes to the returned array will not be reflected in
          * future calls to resolve this [DeferredTextArray].
          */
-        override fun resolve(context: Context): Array<out CharSequence> = values.copyOf()
-
-        /**
-         * Two instances of [DeferredTextArray.Constant] are considered equals if they hold the same number of text
-         * values and each text value in this instance is equal to the corresponding text value in [other].
-         */
-        override fun equals(other: Any?): Boolean = other is Constant && values.contentEquals(other.values)
-
-        /**
-         * Equal to the hash code of this instance's text values plus an offset.
-         */
-        override fun hashCode(): Int = 101 + values.contentHashCode()
+        override fun resolve(context: Context): Array<out CharSequence> = values.toTypedArray()
     }
 
     /**
      * A wrapper for a text [ArrayRes] [id]. Optionally set [type] to [Type.TEXT] to retain style information in each
      * resource.
      */
+    @Parcelize
     @DataApi public class Resource @JvmOverloads constructor(
         @ArrayRes private val id: Int,
         private val type: Type = Type.STRING
-    ) : DeferredTextArray {
+    ) : ParcelableDeferredTextArray {
         /**
          * Resolve [id] to a text array with the given [context].
          *
