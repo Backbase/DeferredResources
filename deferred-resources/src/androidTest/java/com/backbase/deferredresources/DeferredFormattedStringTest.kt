@@ -1,16 +1,13 @@
 package com.backbase.deferredresources
 
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.backbase.deferredresources.text.ParcelableDeferredFormattedString
 import com.google.common.truth.Truth.assertThat
-import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredFormattedStringTest {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     @Test fun constant_returnsConstantValue() {
         val deferred = DeferredFormattedString.Constant("This is %s text.")
@@ -18,7 +15,7 @@ internal class DeferredFormattedStringTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredFormattedString>(
+        testParcelableThroughBundle<ParcelableDeferredFormattedString>(
             DeferredFormattedString.Constant("Parcelable %d")
         )
     }
@@ -29,7 +26,7 @@ internal class DeferredFormattedStringTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredFormattedString>(
+        testParcelableThroughBundle<ParcelableDeferredFormattedString>(
             DeferredFormattedString.Resource(R.string.formattedString)
         )
     }

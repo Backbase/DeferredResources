@@ -3,17 +3,14 @@ package com.backbase.deferredresources
 import androidx.annotation.Px
 import com.backbase.deferredresources.dimension.ParcelableDeferredDimension
 import com.backbase.deferredresources.test.AppCompatContext
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
 import kotlin.math.roundToInt
-import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredDimensionTest {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     //region Constant
     @Test fun constantResolveAsSize_normalPxValue_returnsRoundedValue() {
@@ -77,7 +74,7 @@ internal class DeferredDimensionTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredDimension>(DeferredDimension.Constant(5.5f))
+        testParcelableThroughBundle<ParcelableDeferredDimension>(DeferredDimension.Constant(5.5f))
     }
     //endregion
 
@@ -103,9 +100,7 @@ internal class DeferredDimensionTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredDimension>(
-            DeferredDimension.Resource(R.dimen.testDimen)
-        )
+        testParcelableThroughBundle<ParcelableDeferredDimension>(DeferredDimension.Resource(R.dimen.testDimen))
     }
     //endregion
 
@@ -144,9 +139,7 @@ internal class DeferredDimensionTest {
     }
 
     @Test fun attribute_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredDimension>(
-            DeferredDimension.Attribute(R.attr.actionBarSize)
-        )
+        testParcelableThroughBundle<ParcelableDeferredDimension>(DeferredDimension.Attribute(R.attr.actionBarSize))
     }
     //endregion
 

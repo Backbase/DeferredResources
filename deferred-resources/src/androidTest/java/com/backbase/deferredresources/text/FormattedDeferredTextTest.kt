@@ -3,16 +3,13 @@ package com.backbase.deferredresources.text
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import com.backbase.deferredresources.DeferredFormattedString
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertThrows
-import org.junit.Rule
 import org.junit.Test
 
 internal class FormattedDeferredTextTest {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     @Test fun withFormatArgs_producesInstanceEqualsToNormalConstructor() {
         val formattedString = DeferredFormattedString.Constant("%s and %s")
@@ -64,7 +61,7 @@ internal class FormattedDeferredTextTest {
     }
 
     @Test fun formatted_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredText>(
+        testParcelableThroughBundle<ParcelableDeferredText>(
             FormattedDeferredText(DeferredFormattedString.Constant("%s"), "Cool")
         )
     }
@@ -80,7 +77,7 @@ internal class FormattedDeferredTextTest {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            parcelableTester.testParcelableThroughBundle<ParcelableDeferredText>(formatted)
+            testParcelableThroughBundle<ParcelableDeferredText>(formatted)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $wrapped")
     }
@@ -95,7 +92,7 @@ internal class FormattedDeferredTextTest {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            parcelableTester.testParcelableThroughBundle<ParcelableDeferredText>(formatted)
+            testParcelableThroughBundle<ParcelableDeferredText>(formatted)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelableArg")
     }

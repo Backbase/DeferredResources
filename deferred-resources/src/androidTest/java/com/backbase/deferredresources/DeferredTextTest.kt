@@ -3,17 +3,14 @@ package com.backbase.deferredresources
 import android.graphics.Typeface
 import android.text.SpannedString
 import android.text.style.StyleSpan
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.backbase.deferredresources.text.ParcelableDeferredText
 import com.google.common.truth.Truth.assertThat
-import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredTextTest {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     private val richTextWithoutTags = "Rich text"
 
@@ -23,7 +20,7 @@ internal class DeferredTextTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredText>(DeferredText.Constant("Parcelable"))
+        testParcelableThroughBundle<ParcelableDeferredText>(DeferredText.Constant("Parcelable"))
     }
 
     @Test fun resource_withTypeString_resolvesStringWithContext() {
@@ -55,6 +52,6 @@ internal class DeferredTextTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredText>(DeferredText.Resource(R.string.plainString))
+        testParcelableThroughBundle<ParcelableDeferredText>(DeferredText.Resource(R.string.plainString))
     }
 }

@@ -3,17 +3,14 @@ package com.backbase.deferredresources.text
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertThrows
-import org.junit.Rule
 import org.junit.Test
 
 internal class QuantifiedFormattedDeferredTextTest : SpecificLocaleTest() {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     @Test fun withQuantityAndFormatArgs_producesInstanceEqualsToNormalConstructor() {
         val formattedPlurals = DeferredFormattedPlurals.Constant("%d things")
@@ -77,7 +74,7 @@ internal class QuantifiedFormattedDeferredTextTest : SpecificLocaleTest() {
     }
 
     @Test fun quantifiedAndFormatted_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredText>(
+        testParcelableThroughBundle<ParcelableDeferredText>(
             QuantifiedFormattedDeferredText(DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals), 42)
         )
     }
@@ -94,7 +91,7 @@ internal class QuantifiedFormattedDeferredTextTest : SpecificLocaleTest() {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            parcelableTester.testParcelableThroughBundle<ParcelableDeferredText>(quantifiedAndFormatted)
+            testParcelableThroughBundle<ParcelableDeferredText>(quantifiedAndFormatted)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelablePlurals")
     }
@@ -109,7 +106,7 @@ internal class QuantifiedFormattedDeferredTextTest : SpecificLocaleTest() {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            parcelableTester.testParcelableThroughBundle<ParcelableDeferredText>(quantifiedAndFormatted)
+            testParcelableThroughBundle<ParcelableDeferredText>(quantifiedAndFormatted)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelableArg")
     }

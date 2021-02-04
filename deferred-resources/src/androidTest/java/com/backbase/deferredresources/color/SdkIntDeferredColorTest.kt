@@ -6,16 +6,13 @@ import android.graphics.Color
 import android.os.Build
 import androidx.annotation.ColorInt
 import com.backbase.deferredresources.DeferredColor
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertThrows
-import org.junit.Rule
 import org.junit.Test
 
 internal class SdkIntDeferredColorTest {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     @ColorInt private val sdk14 = Color.parseColor("#000014")
     @ColorInt private val sdk15 = Color.parseColor("#000015")
@@ -104,7 +101,7 @@ internal class SdkIntDeferredColorTest {
     }
 
     @Test fun withParcelableSource_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredColor>(
+        testParcelableThroughBundle<ParcelableDeferredColor>(
             SdkIntDeferredColor(
                 minSdk = sdk14.asDeferredColor(),
                 sdk15 = sdk15.asDeferredColor(),
@@ -139,7 +136,7 @@ internal class SdkIntDeferredColorTest {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            parcelableTester.testParcelableThroughBundle<ParcelableDeferredColor>(sdkIntWrapper)
+            testParcelableThroughBundle<ParcelableDeferredColor>(sdkIntWrapper)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $source")
     }

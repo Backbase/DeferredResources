@@ -3,16 +3,13 @@ package com.backbase.deferredresources
 import android.graphics.Color
 import com.backbase.deferredresources.color.ParcelableDeferredColor
 import com.backbase.deferredresources.test.AppCompatContext
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
-import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredColorTest {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     private val disabledState = intArrayOf(-android.R.attr.state_enabled)
     private val checkedState = intArrayOf(android.R.attr.state_enabled, android.R.attr.state_checked)
@@ -40,7 +37,7 @@ internal class DeferredColorTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredColor>(DeferredColor.Constant(Color.GREEN))
+        testParcelableThroughBundle<ParcelableDeferredColor>(DeferredColor.Constant(Color.GREEN))
     }
     //endregion
 
@@ -92,7 +89,7 @@ internal class DeferredColorTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredColor>(
+        testParcelableThroughBundle<ParcelableDeferredColor>(
             DeferredColor.Resource(R.color.stateful_color_without_attr)
         )
     }
@@ -177,9 +174,7 @@ internal class DeferredColorTest {
     }
 
     @Test fun attribute_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredColor>(
-            DeferredColor.Attribute(R.attr.colorPrimary)
-        )
+        testParcelableThroughBundle<ParcelableDeferredColor>(DeferredColor.Attribute(R.attr.colorPrimary))
     }
     //endregion
 }

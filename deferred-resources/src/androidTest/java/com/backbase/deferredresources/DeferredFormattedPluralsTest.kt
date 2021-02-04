@@ -2,17 +2,14 @@ package com.backbase.deferredresources
 
 import android.icu.text.PluralRules
 import androidx.test.filters.SdkSuppress
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.backbase.deferredresources.text.ParcelableDeferredFormattedPlurals
 import com.google.common.truth.Truth.assertThat
-import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredFormattedPluralsTest : SpecificLocaleTest() {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     @Test fun constant_defaultTypeAndUsLocale_resolvesOneAndOther() {
         setTestLanguage("en-US")
@@ -80,7 +77,7 @@ internal class DeferredFormattedPluralsTest : SpecificLocaleTest() {
     }
 
     @Test fun constant_defaultType_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredFormattedPlurals>(
+        testParcelableThroughBundle<ParcelableDeferredFormattedPlurals>(
             DeferredFormattedPlurals.Constant(
                 zero = "No %s",
                 one = "A single %s",
@@ -94,7 +91,7 @@ internal class DeferredFormattedPluralsTest : SpecificLocaleTest() {
 
     @SdkSuppress(minSdkVersion = 24)
     @Test fun constant_ordinalType_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredFormattedPlurals>(
+        testParcelableThroughBundle<ParcelableDeferredFormattedPlurals>(
             DeferredFormattedPlurals.Constant(
                 zero = "No %s",
                 one = "A single %s",
@@ -117,7 +114,7 @@ internal class DeferredFormattedPluralsTest : SpecificLocaleTest() {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredFormattedPlurals>(
+        testParcelableThroughBundle<ParcelableDeferredFormattedPlurals>(
             DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals)
         )
     }

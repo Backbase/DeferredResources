@@ -2,16 +2,13 @@ package com.backbase.deferredresources
 
 import com.backbase.deferredresources.bool.ParcelableDeferredBoolean
 import com.backbase.deferredresources.test.AppCompatContext
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
-import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredBooleanTest {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     @Test fun constant_returnsConstantValue() {
         val deferred = DeferredBoolean.Constant(false)
@@ -19,7 +16,7 @@ internal class DeferredBooleanTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredBoolean>(DeferredBoolean.Constant(true))
+        testParcelableThroughBundle<ParcelableDeferredBoolean>(DeferredBoolean.Constant(true))
     }
 
     @Test fun resource_resolvesWithContext() {
@@ -28,9 +25,7 @@ internal class DeferredBooleanTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredBoolean>(
-            DeferredBoolean.Resource(R.bool.testBool)
-        )
+        testParcelableThroughBundle<ParcelableDeferredBoolean>(DeferredBoolean.Resource(R.bool.testBool))
     }
 
     @Test fun attribute_resolvesWithContext() {
@@ -59,8 +54,6 @@ internal class DeferredBooleanTest {
     }
 
     @Test fun attribute_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredBoolean>(
-            DeferredBoolean.Attribute(R.attr.isLightTheme)
-        )
+        testParcelableThroughBundle<ParcelableDeferredBoolean>(DeferredBoolean.Attribute(R.attr.isLightTheme))
     }
 }

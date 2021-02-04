@@ -1,16 +1,13 @@
 package com.backbase.deferredresources
 
 import com.backbase.deferredresources.integer.ParcelableDeferredIntegerArray
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
-import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredIntegerArrayTest {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     private val expectedIntArray = intArrayOf(101, 103)
 
@@ -64,9 +61,7 @@ internal class DeferredIntegerArrayTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredIntegerArray>(
-            DeferredIntegerArray.Constant(1, 1, 2, 3, 5, 8)
-        )
+        testParcelableThroughBundle<ParcelableDeferredIntegerArray>(DeferredIntegerArray.Constant(1, 1, 2, 3, 5, 8))
     }
 
     @Test fun resource_resolvesIntegersWithContext() {
@@ -87,8 +82,6 @@ internal class DeferredIntegerArrayTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredIntegerArray>(
-            DeferredIntegerArray.Resource(R.array.integerArray)
-        )
+        testParcelableThroughBundle<ParcelableDeferredIntegerArray>(DeferredIntegerArray.Resource(R.array.integerArray))
     }
 }

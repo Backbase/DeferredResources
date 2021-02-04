@@ -5,17 +5,14 @@ import android.icu.text.PluralRules
 import android.text.SpannedString
 import android.text.style.StyleSpan
 import androidx.test.filters.SdkSuppress
-import com.backbase.deferredresources.test.ParcelableTester
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.backbase.deferredresources.text.ParcelableDeferredPlurals
 import com.google.common.truth.Truth.assertThat
-import org.junit.Rule
 import org.junit.Test
 
 internal class DeferredPluralsTest : SpecificLocaleTest() {
-
-    @get:Rule val parcelableTester = ParcelableTester()
 
     @Test fun constant_defaultTypeAndUsLocale_resolvesOneAndOther() {
         setTestLanguage("en-US")
@@ -80,7 +77,7 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
     }
 
     @Test fun constant_defaultType_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredPlurals>(
+        testParcelableThroughBundle<ParcelableDeferredPlurals>(
             DeferredPlurals.Constant(
                 zero = "No",
                 one = "A single",
@@ -94,7 +91,7 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
 
     @SdkSuppress(minSdkVersion = 24)
     @Test fun constant_ordinalType_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredPlurals>(
+        testParcelableThroughBundle<ParcelableDeferredPlurals>(
             DeferredPlurals.Constant(
                 zero = "No",
                 one = "A single",
@@ -137,8 +134,6 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        parcelableTester.testParcelableThroughBundle<ParcelableDeferredPlurals>(
-            DeferredPlurals.Resource(R.plurals.plainPlurals)
-        )
+        testParcelableThroughBundle<ParcelableDeferredPlurals>(DeferredPlurals.Resource(R.plurals.plainPlurals))
     }
 }
