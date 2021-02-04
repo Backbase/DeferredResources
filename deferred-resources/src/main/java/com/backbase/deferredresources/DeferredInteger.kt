@@ -2,7 +2,9 @@ package com.backbase.deferredresources
 
 import android.content.Context
 import androidx.annotation.IntegerRes
+import com.backbase.deferredresources.integer.ParcelableDeferredInteger
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.Parcelize
 
 /**
  * A wrapper for resolving an integer on demand.
@@ -17,9 +19,10 @@ public interface DeferredInteger {
     /**
      * A wrapper for a constant integer [value].
      */
+    @Parcelize
     @DataApi public class Constant(
         private val value: Int
-    ) : DeferredInteger {
+    ) : ParcelableDeferredInteger {
         /**
          * Always resolves to [value], ignoring [context].
          */
@@ -29,9 +32,10 @@ public interface DeferredInteger {
     /**
      * A wrapper for a [IntegerRes] [resId].
      */
+    @Parcelize
     @DataApi public class Resource(
         @IntegerRes private val resId: Int
-    ) : DeferredInteger {
+    ) : ParcelableDeferredInteger {
         /**
          * Resolve [resId] to an integer with the given [context].
          */
