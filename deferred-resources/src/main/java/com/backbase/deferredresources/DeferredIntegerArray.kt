@@ -2,7 +2,9 @@ package com.backbase.deferredresources
 
 import android.content.Context
 import androidx.annotation.ArrayRes
+import com.backbase.deferredresources.integer.ParcelableDeferredIntegerArray
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.Parcelize
 
 /**
  * A wrapper for resolving an integer array on demand.
@@ -20,11 +22,11 @@ public interface DeferredIntegerArray {
      * This class protects against array mutability by holding a copy of the input [values] and by always returning a
      * new copy of those [values] when resolved.
      */
-    @DataApi public class Constant private constructor(
-        // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
-        @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Char,
-        private val values: IntArray
-    ) : DeferredIntegerArray {
+    // Primary constructor is internal rather than private so the generated Creator can access it
+    @Parcelize
+    @DataApi public class Constant internal constructor(
+        private val values: List<Int>
+    ) : ParcelableDeferredIntegerArray {
 
         /**
          * Initialize with the given integer [values].
@@ -32,38 +34,27 @@ public interface DeferredIntegerArray {
          * The given [values] array is copied on construction, so later external changes to the original will not be
          * reflected in this [DeferredIntegerArray].
          */
-        public constructor(vararg values: Int) : this('x', intArrayOf(*values))
+        public constructor(vararg values: Int) : this(values.toList())
 
         /**
          * Convenience for initializing with a [Collection] of integer [values].
          */
-        public constructor(values: Collection<Int>) : this('x', values.toIntArray())
+        public constructor(values: Collection<Int>) : this(values.toList())
 
         /**
          * Always resolves to a new array copied from [values]. Changes to the returned array will not be reflected in
          * future calls to resolve this [DeferredIntegerArray].
          */
-        override fun resolve(context: Context): IntArray = values.copyOf()
-
-        /**
-         * Two instances of [DeferredIntegerArray.Constant] are considered equals if they hold the same number of
-         * integer values and each integer value in this instance is equal to the corresponding integer value in
-         * [other].
-         */
-        override fun equals(other: Any?): Boolean = other is Constant && values.contentEquals(other.values)
-
-        /**
-         * Equal to the hash code of this instance's integer values plus an offset.
-         */
-        override fun hashCode(): Int = 103 + values.contentHashCode()
+        override fun resolve(context: Context): IntArray = values.toIntArray()
     }
 
     /**
      * A wrapper for an integer [ArrayRes] [id].
      */
+    @Parcelize
     @DataApi public class Resource(
         @ArrayRes private val id: Int
-    ) : DeferredIntegerArray {
+    ) : ParcelableDeferredIntegerArray {
         /**
          * Resolve [id] to an integer array with the given [context].
          */
