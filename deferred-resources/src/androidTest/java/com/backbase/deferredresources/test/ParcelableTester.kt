@@ -14,7 +14,7 @@ internal class ParcelableTester : ExternalResource() {
     private val parcel: Parcel get() = checkNotNull(_parcel) { "Can only access parcel during a test." }
 
     fun <T : Parcelable> testParcelableThroughBundle(parcelable: T) {
-        val key = "testParcelsThroughBundle"
+        val key = "testParcelableThroughBundle"
 
         val beforeBundle = Bundle()
         beforeBundle.putParcelable(key, parcelable)
