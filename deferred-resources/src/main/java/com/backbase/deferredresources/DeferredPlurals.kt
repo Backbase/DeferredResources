@@ -1,6 +1,5 @@
 package com.backbase.deferredresources
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.icu.text.PluralRules
 import android.os.Build
@@ -34,7 +33,7 @@ public interface DeferredPlurals {
         private val two: CharSequence = other,
         private val few: CharSequence = other,
         private val many: CharSequence = other,
-        private val typeName: String?
+        private val typeOrdinal: Int?
     ) : ParcelableDeferredPlurals {
 
         /**
@@ -51,12 +50,11 @@ public interface DeferredPlurals {
             few: CharSequence = other,
             many: CharSequence = other,
             type: PluralRules.PluralType?
-        ) : this(other, zero, one, two, few, many, typeName = type?.name)
+        ) : this(other, zero, one, two, few, many, typeOrdinal = type?.ordinal)
 
         /**
          * Constructor for APIs < 24. "CARDINAL" plural type will be used implicitly.
          */
-        @SuppressLint("NewApi") // Safely calls API 24 constructor with null
         public constructor(
             other: CharSequence,
             zero: CharSequence = other,
@@ -64,17 +62,17 @@ public interface DeferredPlurals {
             two: CharSequence = other,
             few: CharSequence = other,
             many: CharSequence = other
-        ) : this(other, zero, one, two, few, many, typeName = null)
+        ) : this(other, zero, one, two, few, many, typeOrdinal = null)
 
         /**
          * Resolves to one of [zero], [one], [two], [few], [many], or [other] depending on the device's primary locale
          * and the given [quantity].
          */
         override fun resolve(context: Context, quantity: Int): CharSequence {
-            val pluralRules = if (typeName == null || Build.VERSION.SDK_INT < 24)
+            val pluralRules = if (Build.VERSION.SDK_INT < 24 || typeOrdinal == null)
                 PluralRulesCompat.forContext(context)
             else
-                PluralRulesCompat.forContext(context, PluralRules.PluralType.valueOf(typeName))
+                PluralRulesCompat.forContext(context, PluralRules.PluralType.values()[typeOrdinal])
 
             return when (pluralRules.select(quantity)) {
                 PluralRulesCompat.KEYWORD_ZERO -> zero

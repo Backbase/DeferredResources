@@ -1,6 +1,5 @@
 package com.backbase.deferredresources
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.icu.text.PluralRules
 import androidx.annotation.PluralsRes
@@ -48,7 +47,6 @@ public interface DeferredFormattedPlurals {
         /**
          * Constructor for API < 24. "CARDINAL" plural type will be used implicitly.
          */
-        @SuppressLint("NewApi") // Safely calls API 24 constructor with null
         public constructor(
             other: String,
             zero: String = other,
