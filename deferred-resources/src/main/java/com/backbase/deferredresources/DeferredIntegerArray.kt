@@ -3,7 +3,7 @@ package com.backbase.deferredresources
 import android.content.Context
 import androidx.annotation.ArrayRes
 import com.backbase.deferredresources.integer.ParcelableDeferredIntegerArray
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -24,7 +24,7 @@ public interface DeferredIntegerArray {
      */
     // Primary constructor is internal rather than private so the generated Creator can access it
     @Parcelize
-    @DataApi public class Constant internal constructor(
+    @Poko public class Constant internal constructor(
         private val values: List<Int>
     ) : ParcelableDeferredIntegerArray {
 
@@ -52,7 +52,7 @@ public interface DeferredIntegerArray {
      * A wrapper for an integer [ArrayRes] [id].
      */
     @Parcelize
-    @DataApi public class Resource(
+    @Poko public class Resource(
         @ArrayRes private val id: Int
     ) : ParcelableDeferredIntegerArray {
         /**

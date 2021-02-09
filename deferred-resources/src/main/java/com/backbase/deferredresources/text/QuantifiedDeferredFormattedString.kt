@@ -3,7 +3,7 @@ package com.backbase.deferredresources.text
 import android.content.Context
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.DeferredFormattedString
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
@@ -35,7 +35,7 @@ import kotlinx.parcelize.RawValue
  * This class implements [android.os.Parcelable]. It will throw at runtime if [wrapped] cannot be marshalled.
  */
 @Parcelize
-@DataApi public class QuantifiedDeferredFormattedString(
+@Poko public class QuantifiedDeferredFormattedString(
     private val wrapped: @RawValue DeferredFormattedPlurals,
     private val quantity: Int
 ) : ParcelableDeferredFormattedString {

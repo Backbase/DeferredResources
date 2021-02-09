@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'org.jetbrains.kotlin.plugin.parcelize'
-apply plugin: 'dev.drewhamilton.extracare'
+apply plugin: 'dev.drewhamilton.poko'
 
 ext {
     artifactName = 'deferred-resources'
@@ -50,6 +50,8 @@ dependencies {
     implementation(deps.coreKtx) {
         exclude group: 'androidx.lifecycle'
     }
+
+    implementation 'dev.drewhamilton.poko:poko-annotations:0.7.0-SNAPSHOT'
 
     androidTestImplementation deps.junitAndroidX
     androidTestImplementation deps.androidTestRules

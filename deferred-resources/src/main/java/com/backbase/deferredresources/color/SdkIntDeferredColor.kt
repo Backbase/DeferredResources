@@ -5,7 +5,7 @@ import android.content.res.ColorStateList
 import android.os.Build
 import androidx.annotation.ColorInt
 import com.backbase.deferredresources.DeferredColor
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
@@ -20,7 +20,7 @@ import kotlinx.parcelize.RawValue
  */
 // Primary constructor is internal rather than private so the generated Creator can access it
 @Parcelize
-@DataApi public class SdkIntDeferredColor internal constructor(
+@Poko public class SdkIntDeferredColor internal constructor(
     private val source: @RawValue DeferredColor
 ) : ParcelableDeferredColor {
 

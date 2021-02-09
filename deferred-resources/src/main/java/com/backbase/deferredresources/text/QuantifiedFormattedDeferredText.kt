@@ -3,7 +3,7 @@ package com.backbase.deferredresources.text
 import android.content.Context
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.DeferredText
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
@@ -44,7 +44,7 @@ import kotlinx.parcelize.RawValue
  */
 // Primary constructor is internal rather than private so the generated Creator can access it
 @Parcelize
-@DataApi public class QuantifiedFormattedDeferredText internal constructor(
+@Poko public class QuantifiedFormattedDeferredText internal constructor(
     private val wrapped: @RawValue DeferredFormattedPlurals,
     private val quantity: Int,
     private val formatArgs: @RawValue List<Any>
