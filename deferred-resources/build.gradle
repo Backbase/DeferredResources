@@ -51,8 +51,6 @@ dependencies {
         exclude group: 'androidx.lifecycle'
     }
 
-    implementation 'dev.drewhamilton.poko:poko-annotations:0.7.0-SNAPSHOT'
-
     androidTestImplementation deps.junitAndroidX
     androidTestImplementation deps.androidTestRules
     androidTestImplementation deps.androidTestRunner
