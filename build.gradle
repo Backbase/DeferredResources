@@ -23,7 +23,7 @@ buildscript {
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.4.20'
-        classpath 'org.jetbrains.kotlinx:binary-compatibility-validator:0.3.0'
+        classpath 'org.jetbrains.kotlinx:binary-compatibility-validator:0.4.0'
 
         classpath 'dev.drewhamilton.poko:poko-gradle-plugin:0.7.0'
 
