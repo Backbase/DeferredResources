@@ -1,13 +1,13 @@
 package com.backbase.deferredresources
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.icu.text.PluralRules
 import androidx.annotation.PluralsRes
 import androidx.annotation.RequiresApi
-import com.backbase.deferredresources.internal.PluralRulesCompat
 import com.backbase.deferredresources.internal.primaryLocale
+import com.backbase.deferredresources.text.ParcelableDeferredFormattedPlurals
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.Parcelize
 
 /**
  * A wrapper for resolving format-able pluralized text on demand.
@@ -20,25 +20,33 @@ public interface DeferredFormattedPlurals {
     public fun resolve(context: Context, quantity: Int, vararg formatArgs: Any = arrayOf(quantity)): String
 
     /**
-     * A wrapper for constant format-able pluralized text. [zero], [one], [two], [few], and [many] are locale-specific,
-     * quantity-specific text values, while [other] is the fallback.
-     *
-     * [type] can be supplied to choose between [PluralRules.PluralType.CARDINAL] and [PluralRules.PluralType.ORDINAL].
-     * If null, the system default of [PluralRules.PluralType.CARDINAL] is used implicitly.
+     * A wrapper for constant format-able pluralized text.
      */
-    @DataApi public class Constant @RequiresApi(24) constructor(
-        private val other: String,
-        private val zero: String = other,
-        private val one: String = other,
-        private val two: String = other,
-        private val few: String = other,
-        private val many: String = other,
-        private val type: PluralRules.PluralType? = null
-    ) : DeferredFormattedPlurals {
+    // Primary constructor is internal rather than private so the generated Creator can access it
+    @Parcelize
+    @DataApi public class Constant internal constructor(
+        private val delegate: DeferredPlurals.Constant
+    ) : ParcelableDeferredFormattedPlurals {
+
+        /**
+         * Constructor for API 24+. [type] can be supplied to choose between [PluralRules.PluralType.CARDINAL] and
+         * [PluralRules.PluralType.ORDINAL]. If null, the system default of [PluralRules.PluralType.CARDINAL] is used
+         * implicitly.
+         */
+        @RequiresApi(24)
+        public constructor(
+            other: String,
+            zero: String = other,
+            one: String = other,
+            two: String = other,
+            few: String = other,
+            many: String = other,
+            type: PluralRules.PluralType?
+        ) : this(delegate = DeferredPlurals.Constant(other, zero, one, two, few, many, type))
+
         /**
          * Constructor for API < 24. "CARDINAL" plural type will be used implicitly.
          */
-        @SuppressLint("NewApi") // Safely calls API 24 constructor with null
         public constructor(
             other: String,
             zero: String = other,
@@ -46,27 +54,14 @@ public interface DeferredFormattedPlurals {
             two: String = other,
             few: String = other,
             many: String = other
-        ) : this(other, zero, one, two, few, many, null)
+        ) : this(delegate = DeferredPlurals.Constant(other, zero, one, two, few, many))
 
         /**
-         * Resolves and formats one of [zero], [one], [two], [few], [many], or [other] depending on the primary locale
+         * Resolves and formats one of the constructor-provided pluralized values depending on the primary locale
          * from [context], the given [quantity], and [formatArgs].
          */
-        @SuppressLint("NewApi") // `type` is known to be safely null on API < 24
         override fun resolve(context: Context, quantity: Int, vararg formatArgs: Any): String {
-            val pluralRules = if (type == null)
-                PluralRulesCompat.forContext(context)
-            else
-                PluralRulesCompat.forContext(context, type)
-
-            val unformatted = when (pluralRules.select(quantity)) {
-                PluralRulesCompat.KEYWORD_ZERO -> zero
-                PluralRulesCompat.KEYWORD_ONE -> one
-                PluralRulesCompat.KEYWORD_TWO -> two
-                PluralRulesCompat.KEYWORD_FEW -> few
-                PluralRulesCompat.KEYWORD_MANY -> many
-                else -> other
-            }
+            val unformatted = delegate.resolve(context, quantity).toString()
             return String.format(context.primaryLocale, unformatted, *formatArgs)
         }
     }
@@ -74,9 +69,10 @@ public interface DeferredFormattedPlurals {
     /**
      * A wrapper for a format-able [PluralsRes] [resId].
      */
+    @Parcelize
     @DataApi public class Resource(
         @PluralsRes private val resId: Int
-    ) : DeferredFormattedPlurals {
+    ) : ParcelableDeferredFormattedPlurals {
         /**
          * Resolve [resId] to a formatted string with the given [context], [quantity], and [formatArgs].
          */

@@ -9,6 +9,8 @@ import androidx.core.graphics.ColorUtils
 import com.backbase.deferredresources.DeferredColor
 import dev.drewhamilton.extracare.DataApi
 import kotlin.math.roundToInt
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 /**
  * Create a [DeferredColor] that resolves with the given [alpha], regardless of the base color's original alpha.
@@ -26,11 +28,14 @@ public fun DeferredColor.withAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Floa
 
 /**
  * A [DeferredColor] that always resolves with a specific [alpha] value, ignoring the [base] color's alpha.
+ *
+ * This class implements [android.os.Parcelable]. It will throw at runtime if [base] cannot be marshalled.
  */
+@Parcelize
 @DataApi public class DeferredColorWithAlpha(
-    private val base: DeferredColor,
+    private val base: @RawValue DeferredColor,
     @IntRange(from = 0x00, to = 0xFF) private val alpha: Int
-) : DeferredColor {
+) : ParcelableDeferredColor {
 
     /**
      * Convenience constructor to specify a float [alpha] value to apply on the [base] color.

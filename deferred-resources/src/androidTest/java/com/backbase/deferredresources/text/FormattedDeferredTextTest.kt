@@ -1,8 +1,12 @@
 package com.backbase.deferredresources.text
 
+import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import com.backbase.deferredresources.DeferredFormattedString
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
+import org.junit.Assert.assertThrows
 import org.junit.Test
 
 internal class FormattedDeferredTextTest {
@@ -54,5 +58,42 @@ internal class FormattedDeferredTextTest {
         val deferred = FormattedDeferredText(DeferredFormattedString.Constant("%s"), "Yes")
         assertThat(deferred.toString())
             .isEqualTo("FormattedDeferredText(wrapped=Constant(format=%s), formatArgs=[Yes])")
+    }
+
+    @Test fun formatted_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredText>(
+            FormattedDeferredText(DeferredFormattedString.Constant("%s"), "Cool")
+        )
+    }
+
+    @Test fun formatted_wrappingNonParcelable_throwsWhenMarshalled() {
+        val wrapped = object : DeferredFormattedString {
+            override fun resolve(context: Context, vararg formatArgs: Any): String = "${formatArgs.toList()}"
+        }
+
+        // Construction and resolution work normally:
+        val formatted = FormattedDeferredText(wrapped, "Arg", "Another arg")
+        assertThat(formatted.resolve(context)).isEqualTo("[Arg, Another arg]")
+
+        // Only marshalling does not work:
+        val exception = assertThrows(RuntimeException::class.java) {
+            testParcelableThroughBundle<ParcelableDeferredText>(formatted)
+        }
+        assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $wrapped")
+    }
+
+    @Test fun formatted_withNonParcelableArg_throwsWhenMarshalled() {
+        val wrapped = DeferredFormattedString.Constant("%d %s")
+        val nonParcelableArg = ColorDrawable()
+
+        // Construction and resolution work normally:
+        val formatted = FormattedDeferredText(wrapped, -3, nonParcelableArg)
+        assertThat(formatted.resolve(context)).isEqualTo("-3 $nonParcelableArg")
+
+        // Only marshalling does not work:
+        val exception = assertThrows(RuntimeException::class.java) {
+            testParcelableThroughBundle<ParcelableDeferredText>(formatted)
+        }
+        assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelableArg")
     }
 }

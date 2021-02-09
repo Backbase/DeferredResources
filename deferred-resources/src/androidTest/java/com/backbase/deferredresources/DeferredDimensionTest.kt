@@ -1,9 +1,11 @@
 package com.backbase.deferredresources
 
 import androidx.annotation.Px
+import com.backbase.deferredresources.dimension.ParcelableDeferredDimension
 import com.backbase.deferredresources.test.AppCompatContext
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
 import kotlin.math.roundToInt
 import org.junit.Test
@@ -70,6 +72,10 @@ internal class DeferredDimensionTest {
         val deferred = DeferredDimension.Constant(-0.49f)
         assertThat(deferred.resolveExact(context)).isEqualTo(-0.49f)
     }
+
+    @Test fun constant_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredDimension>(DeferredDimension.Constant(5.5f))
+    }
     //endregion
 
     //region Resource
@@ -91,6 +97,10 @@ internal class DeferredDimensionTest {
         val oneQuarterDpAsPx = 0.25f * context.resources.displayMetrics.density
 
         assertThat(deferred.resolveExact(context)).isEqualTo(oneQuarterDpAsPx)
+    }
+
+    @Test fun resource_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredDimension>(DeferredDimension.Resource(R.dimen.testDimen))
     }
     //endregion
 
@@ -126,6 +136,10 @@ internal class DeferredDimensionTest {
         val deferred = DeferredDimension.Attribute(R.attr.isLightTheme)
 
         deferred.resolveExact(AppCompatContext())
+    }
+
+    @Test fun attribute_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredDimension>(DeferredDimension.Attribute(R.attr.actionBarSize))
     }
     //endregion
 

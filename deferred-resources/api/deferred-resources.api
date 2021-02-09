@@ -2,28 +2,61 @@ public abstract interface class com/backbase/deferredresources/DeferredBoolean {
 	public abstract fun resolve (Landroid/content/Context;)Z
 }
 
-public final class com/backbase/deferredresources/DeferredBoolean$Attribute : com/backbase/deferredresources/DeferredBoolean {
+public final class com/backbase/deferredresources/DeferredBoolean$Attribute : com/backbase/deferredresources/bool/ParcelableDeferredBoolean {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Z
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredBoolean$Constant : com/backbase/deferredresources/DeferredBoolean {
+public class com/backbase/deferredresources/DeferredBoolean$Attribute$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredBoolean$Attribute;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredBoolean$Attribute;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredBoolean$Constant : com/backbase/deferredresources/bool/ParcelableDeferredBoolean {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Z)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Z
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredBoolean$Resource : com/backbase/deferredresources/DeferredBoolean {
+public class com/backbase/deferredresources/DeferredBoolean$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredBoolean$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredBoolean$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredBoolean$Resource : com/backbase/deferredresources/bool/ParcelableDeferredBoolean {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Z
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredBoolean$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredBoolean$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredBoolean$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredColor {
@@ -31,32 +64,65 @@ public abstract interface class com/backbase/deferredresources/DeferredColor {
 	public abstract fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 }
 
-public final class com/backbase/deferredresources/DeferredColor$Attribute : com/backbase/deferredresources/DeferredColor {
+public final class com/backbase/deferredresources/DeferredColor$Attribute : com/backbase/deferredresources/color/ParcelableDeferredColor {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
 	public fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredColor$Constant : com/backbase/deferredresources/DeferredColor {
+public class com/backbase/deferredresources/DeferredColor$Attribute$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredColor$Attribute;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredColor$Attribute;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredColor$Constant : com/backbase/deferredresources/color/ParcelableDeferredColor {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
 	public fun <init> (Ljava/lang/String;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
 	public fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredColor$Resource : com/backbase/deferredresources/DeferredColor {
+public class com/backbase/deferredresources/DeferredColor$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredColor$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredColor$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredColor$Resource : com/backbase/deferredresources/color/ParcelableDeferredColor {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
 	public fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredColor$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredColor$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredColor$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredDimension {
@@ -65,35 +131,68 @@ public abstract interface class com/backbase/deferredresources/DeferredDimension
 	public abstract fun resolveExact (Landroid/content/Context;)F
 }
 
-public final class com/backbase/deferredresources/DeferredDimension$Attribute : com/backbase/deferredresources/DeferredDimension {
+public final class com/backbase/deferredresources/DeferredDimension$Attribute : com/backbase/deferredresources/dimension/ParcelableDeferredDimension {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolveAsOffset (Landroid/content/Context;)I
 	public fun resolveAsSize (Landroid/content/Context;)I
 	public fun resolveExact (Landroid/content/Context;)F
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredDimension$Constant : com/backbase/deferredresources/DeferredDimension {
+public class com/backbase/deferredresources/DeferredDimension$Attribute$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredDimension$Attribute;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredDimension$Attribute;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredDimension$Constant : com/backbase/deferredresources/dimension/ParcelableDeferredDimension {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (F)V
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolveAsOffset (Landroid/content/Context;)I
 	public fun resolveAsSize (Landroid/content/Context;)I
 	public fun resolveExact (Landroid/content/Context;)F
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredDimension$Resource : com/backbase/deferredresources/DeferredDimension {
+public class com/backbase/deferredresources/DeferredDimension$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredDimension$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredDimension$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredDimension$Resource : com/backbase/deferredresources/dimension/ParcelableDeferredDimension {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolveAsOffset (Landroid/content/Context;)I
 	public fun resolveAsSize (Landroid/content/Context;)I
 	public fun resolveExact (Landroid/content/Context;)F
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredDimension$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredDimension$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredDimension$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredDrawable {
@@ -136,112 +235,222 @@ public abstract interface class com/backbase/deferredresources/DeferredFormatted
 	public abstract fun resolve (Landroid/content/Context;I[Ljava/lang/Object;)Ljava/lang/String;
 }
 
-public final class com/backbase/deferredresources/DeferredFormattedPlurals$Constant : com/backbase/deferredresources/DeferredFormattedPlurals {
+public final class com/backbase/deferredresources/DeferredFormattedPlurals$Constant : com/backbase/deferredresources/text/ParcelableDeferredFormattedPlurals {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/icu/text/PluralRules$PluralType;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/icu/text/PluralRules$PluralType;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;I[Ljava/lang/Object;)Ljava/lang/String;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredFormattedPlurals$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredFormattedPlurals$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredFormattedPlurals$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/backbase/deferredresources/DeferredFormattedPlurals$DefaultImpls {
 	public static synthetic fun resolve$default (Lcom/backbase/deferredresources/DeferredFormattedPlurals;Landroid/content/Context;I[Ljava/lang/Object;ILjava/lang/Object;)Ljava/lang/String;
 }
 
-public final class com/backbase/deferredresources/DeferredFormattedPlurals$Resource : com/backbase/deferredresources/DeferredFormattedPlurals {
+public final class com/backbase/deferredresources/DeferredFormattedPlurals$Resource : com/backbase/deferredresources/text/ParcelableDeferredFormattedPlurals {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;I[Ljava/lang/Object;)Ljava/lang/String;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredFormattedPlurals$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredFormattedPlurals$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredFormattedPlurals$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredFormattedString {
 	public abstract fun resolve (Landroid/content/Context;[Ljava/lang/Object;)Ljava/lang/String;
 }
 
-public final class com/backbase/deferredresources/DeferredFormattedString$Constant : com/backbase/deferredresources/DeferredFormattedString {
+public final class com/backbase/deferredresources/DeferredFormattedString$Constant : com/backbase/deferredresources/text/ParcelableDeferredFormattedString {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Ljava/lang/String;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;[Ljava/lang/Object;)Ljava/lang/String;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredFormattedString$Resource : com/backbase/deferredresources/DeferredFormattedString {
+public class com/backbase/deferredresources/DeferredFormattedString$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredFormattedString$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredFormattedString$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredFormattedString$Resource : com/backbase/deferredresources/text/ParcelableDeferredFormattedString {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;[Ljava/lang/Object;)Ljava/lang/String;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredFormattedString$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredFormattedString$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredFormattedString$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredInteger {
 	public abstract fun resolve (Landroid/content/Context;)I
 }
 
-public final class com/backbase/deferredresources/DeferredInteger$Constant : com/backbase/deferredresources/DeferredInteger {
+public final class com/backbase/deferredresources/DeferredInteger$Constant : com/backbase/deferredresources/integer/ParcelableDeferredInteger {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredInteger$Resource : com/backbase/deferredresources/DeferredInteger {
+public class com/backbase/deferredresources/DeferredInteger$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredInteger$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredInteger$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredInteger$Resource : com/backbase/deferredresources/integer/ParcelableDeferredInteger {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredInteger$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredInteger$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredInteger$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredIntegerArray {
 	public abstract fun resolve (Landroid/content/Context;)[I
 }
 
-public final class com/backbase/deferredresources/DeferredIntegerArray$Constant : com/backbase/deferredresources/DeferredIntegerArray {
+public final class com/backbase/deferredresources/DeferredIntegerArray$Constant : com/backbase/deferredresources/integer/ParcelableDeferredIntegerArray {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Ljava/util/Collection;)V
 	public fun <init> ([I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)[I
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredIntegerArray$Resource : com/backbase/deferredresources/DeferredIntegerArray {
+public class com/backbase/deferredresources/DeferredIntegerArray$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredIntegerArray$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredIntegerArray$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredIntegerArray$Resource : com/backbase/deferredresources/integer/ParcelableDeferredIntegerArray {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)[I
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredIntegerArray$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredIntegerArray$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredIntegerArray$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredPlurals {
 	public abstract fun resolve (Landroid/content/Context;I)Ljava/lang/CharSequence;
 }
 
-public final class com/backbase/deferredresources/DeferredPlurals$Constant : com/backbase/deferredresources/DeferredPlurals {
+public final class com/backbase/deferredresources/DeferredPlurals$Constant : com/backbase/deferredresources/text/ParcelableDeferredPlurals {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;)V
 	public synthetic fun <init> (Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/icu/text/PluralRules$PluralType;)V
 	public synthetic fun <init> (Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/icu/text/PluralRules$PluralType;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;I)Ljava/lang/CharSequence;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredPlurals$Resource : com/backbase/deferredresources/DeferredPlurals {
+public class com/backbase/deferredresources/DeferredPlurals$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredPlurals$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredPlurals$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredPlurals$Resource : com/backbase/deferredresources/text/ParcelableDeferredPlurals {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (ILcom/backbase/deferredresources/DeferredPlurals$Resource$Type;)V
 	public synthetic fun <init> (ILcom/backbase/deferredresources/DeferredPlurals$Resource$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;I)Ljava/lang/CharSequence;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredPlurals$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredPlurals$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredPlurals$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/backbase/deferredresources/DeferredPlurals$Resource$Type : java/lang/Enum {
@@ -255,22 +464,44 @@ public abstract interface class com/backbase/deferredresources/DeferredText {
 	public abstract fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
 }
 
-public final class com/backbase/deferredresources/DeferredText$Constant : com/backbase/deferredresources/DeferredText {
+public final class com/backbase/deferredresources/DeferredText$Constant : com/backbase/deferredresources/text/ParcelableDeferredText {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Ljava/lang/CharSequence;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredText$Resource : com/backbase/deferredresources/DeferredText {
+public class com/backbase/deferredresources/DeferredText$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredText$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredText$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredText$Resource : com/backbase/deferredresources/text/ParcelableDeferredText {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
 	public fun <init> (ILcom/backbase/deferredresources/DeferredText$Resource$Type;)V
 	public synthetic fun <init> (ILcom/backbase/deferredresources/DeferredText$Resource$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredText$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredText$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredText$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/backbase/deferredresources/DeferredText$Resource$Type : java/lang/Enum {
@@ -284,23 +515,45 @@ public abstract interface class com/backbase/deferredresources/DeferredTextArray
 	public abstract fun resolve (Landroid/content/Context;)[Ljava/lang/CharSequence;
 }
 
-public final class com/backbase/deferredresources/DeferredTextArray$Constant : com/backbase/deferredresources/DeferredTextArray {
+public final class com/backbase/deferredresources/DeferredTextArray$Constant : com/backbase/deferredresources/text/ParcelableDeferredTextArray {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Ljava/util/Collection;)V
 	public fun <init> ([Ljava/lang/CharSequence;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)[Ljava/lang/CharSequence;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public final class com/backbase/deferredresources/DeferredTextArray$Resource : com/backbase/deferredresources/DeferredTextArray {
+public class com/backbase/deferredresources/DeferredTextArray$Constant$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredTextArray$Constant;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredTextArray$Constant;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredTextArray$Resource : com/backbase/deferredresources/text/ParcelableDeferredTextArray {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (I)V
 	public fun <init> (ILcom/backbase/deferredresources/DeferredTextArray$Resource$Type;)V
 	public synthetic fun <init> (ILcom/backbase/deferredresources/DeferredTextArray$Resource$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)[Ljava/lang/CharSequence;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/DeferredTextArray$Resource$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredTextArray$Resource;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredTextArray$Resource;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/backbase/deferredresources/DeferredTextArray$Resource$Type : java/lang/Enum {
@@ -346,14 +599,28 @@ public final class com/backbase/deferredresources/DeferredTypeface$Resource : co
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/backbase/deferredresources/color/DeferredColorWithAlpha : com/backbase/deferredresources/DeferredColor {
+public abstract interface class com/backbase/deferredresources/bool/ParcelableDeferredBoolean : android/os/Parcelable, com/backbase/deferredresources/DeferredBoolean {
+}
+
+public final class com/backbase/deferredresources/color/DeferredColorWithAlpha : com/backbase/deferredresources/color/ParcelableDeferredColor {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Lcom/backbase/deferredresources/DeferredColor;F)V
 	public fun <init> (Lcom/backbase/deferredresources/DeferredColor;I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
 	public fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/color/DeferredColorWithAlpha$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/color/DeferredColorWithAlpha;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/color/DeferredColorWithAlpha;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/backbase/deferredresources/color/DeferredColorWithAlphaKt {
@@ -361,14 +628,31 @@ public final class com/backbase/deferredresources/color/DeferredColorWithAlphaKt
 	public static final synthetic fun withAlpha (Lcom/backbase/deferredresources/DeferredColor;I)Lcom/backbase/deferredresources/color/DeferredColorWithAlpha;
 }
 
-public final class com/backbase/deferredresources/color/SdkIntDeferredColor : com/backbase/deferredresources/DeferredColor {
+public abstract interface class com/backbase/deferredresources/color/ParcelableDeferredColor : android/os/Parcelable, com/backbase/deferredresources/DeferredColor {
+}
+
+public final class com/backbase/deferredresources/color/SdkIntDeferredColor : com/backbase/deferredresources/color/ParcelableDeferredColor {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;)V
 	public synthetic fun <init> (Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;Lcom/backbase/deferredresources/DeferredColor;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)I
 	public fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/color/SdkIntDeferredColor$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/color/SdkIntDeferredColor;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/color/SdkIntDeferredColor;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public abstract interface class com/backbase/deferredresources/dimension/ParcelableDeferredDimension : android/os/Parcelable, com/backbase/deferredresources/DeferredDimension {
 }
 
 public final class com/backbase/deferredresources/drawable/DeferredColorDrawable : com/backbase/deferredresources/DeferredDrawable {
@@ -384,69 +668,151 @@ public final class com/backbase/deferredresources/drawable/DeferredColorDrawable
 	public static final synthetic fun asDrawable (Lcom/backbase/deferredresources/DeferredColor;)Lcom/backbase/deferredresources/drawable/DeferredColorDrawable;
 }
 
+public abstract interface class com/backbase/deferredresources/integer/ParcelableDeferredInteger : android/os/Parcelable, com/backbase/deferredresources/DeferredInteger {
+}
+
+public abstract interface class com/backbase/deferredresources/integer/ParcelableDeferredIntegerArray : android/os/Parcelable, com/backbase/deferredresources/DeferredIntegerArray {
+}
+
 public final class com/backbase/deferredresources/text/DeferredTextUtils {
 	public static final fun resolveToString (Lcom/backbase/deferredresources/DeferredText;Landroid/content/Context;)Ljava/lang/String;
 }
 
-public final class com/backbase/deferredresources/text/FormattedDeferredPlurals : com/backbase/deferredresources/DeferredPlurals {
+public final class com/backbase/deferredresources/text/FormattedDeferredPlurals : com/backbase/deferredresources/text/ParcelableDeferredPlurals {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Lcom/backbase/deferredresources/DeferredFormattedPlurals;[Ljava/lang/Object;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;I)Ljava/lang/CharSequence;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/text/FormattedDeferredPlurals$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/text/FormattedDeferredPlurals;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/text/FormattedDeferredPlurals;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/backbase/deferredresources/text/FormattedDeferredPluralsKt {
 	public static final synthetic fun withFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedPlurals;[Ljava/lang/Object;)Lcom/backbase/deferredresources/DeferredPlurals;
+	public static final synthetic fun withFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedPlurals;[Ljava/lang/Object;)Lcom/backbase/deferredresources/text/FormattedDeferredPlurals;
 }
 
-public final class com/backbase/deferredresources/text/FormattedDeferredText : com/backbase/deferredresources/DeferredText {
+public final class com/backbase/deferredresources/text/FormattedDeferredText : com/backbase/deferredresources/text/ParcelableDeferredText {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Lcom/backbase/deferredresources/DeferredFormattedString;[Ljava/lang/Object;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/text/FormattedDeferredText$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/text/FormattedDeferredText;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/text/FormattedDeferredText;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/backbase/deferredresources/text/FormattedDeferredTextKt {
 	public static final synthetic fun withFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedString;[Ljava/lang/Object;)Lcom/backbase/deferredresources/DeferredText;
+	public static final synthetic fun withFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedString;[Ljava/lang/Object;)Lcom/backbase/deferredresources/text/FormattedDeferredText;
 }
 
-public final class com/backbase/deferredresources/text/QuantifiedDeferredFormattedString : com/backbase/deferredresources/DeferredFormattedString {
+public abstract interface class com/backbase/deferredresources/text/ParcelableDeferredFormattedPlurals : android/os/Parcelable, com/backbase/deferredresources/DeferredFormattedPlurals {
+}
+
+public abstract interface class com/backbase/deferredresources/text/ParcelableDeferredFormattedString : android/os/Parcelable, com/backbase/deferredresources/DeferredFormattedString {
+}
+
+public abstract interface class com/backbase/deferredresources/text/ParcelableDeferredPlurals : android/os/Parcelable, com/backbase/deferredresources/DeferredPlurals {
+}
+
+public abstract interface class com/backbase/deferredresources/text/ParcelableDeferredText : android/os/Parcelable, com/backbase/deferredresources/DeferredText {
+}
+
+public abstract interface class com/backbase/deferredresources/text/ParcelableDeferredTextArray : android/os/Parcelable, com/backbase/deferredresources/DeferredTextArray {
+}
+
+public final class com/backbase/deferredresources/text/QuantifiedDeferredFormattedString : com/backbase/deferredresources/text/ParcelableDeferredFormattedString {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;[Ljava/lang/Object;)Ljava/lang/String;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/text/QuantifiedDeferredFormattedString$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/text/QuantifiedDeferredFormattedString;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/text/QuantifiedDeferredFormattedString;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/backbase/deferredresources/text/QuantifiedDeferredFormattedStringKt {
 	public static final synthetic fun withQuantity (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I)Lcom/backbase/deferredresources/DeferredFormattedString;
+	public static final synthetic fun withQuantity (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I)Lcom/backbase/deferredresources/text/QuantifiedDeferredFormattedString;
 }
 
-public final class com/backbase/deferredresources/text/QuantifiedDeferredText : com/backbase/deferredresources/DeferredText {
+public final class com/backbase/deferredresources/text/QuantifiedDeferredText : com/backbase/deferredresources/text/ParcelableDeferredText {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Lcom/backbase/deferredresources/DeferredPlurals;I)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/text/QuantifiedDeferredText$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/text/QuantifiedDeferredText;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/text/QuantifiedDeferredText;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/backbase/deferredresources/text/QuantifiedDeferredTextKt {
 	public static final synthetic fun withQuantity (Lcom/backbase/deferredresources/DeferredPlurals;I)Lcom/backbase/deferredresources/DeferredText;
+	public static final synthetic fun withQuantity (Lcom/backbase/deferredresources/DeferredPlurals;I)Lcom/backbase/deferredresources/text/QuantifiedDeferredText;
 }
 
-public final class com/backbase/deferredresources/text/QuantifiedFormattedDeferredText : com/backbase/deferredresources/DeferredText {
+public final class com/backbase/deferredresources/text/QuantifiedFormattedDeferredText : com/backbase/deferredresources/text/ParcelableDeferredText {
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;)V
 	public synthetic fun <init> (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun resolve (Landroid/content/Context;)Ljava/lang/CharSequence;
 	public fun toString ()Ljava/lang/String;
+	public fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public class com/backbase/deferredresources/text/QuantifiedFormattedDeferredText$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/text/QuantifiedFormattedDeferredText;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/backbase/deferredresources/text/QuantifiedFormattedDeferredText;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/backbase/deferredresources/text/QuantifiedFormattedDeferredTextKt {
 	public static final synthetic fun withQuantityAndFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;)Lcom/backbase/deferredresources/DeferredText;
+	public static final synthetic fun withQuantityAndFormatArgs (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;)Lcom/backbase/deferredresources/text/QuantifiedFormattedDeferredText;
 	public static synthetic fun withQuantityAndFormatArgs$default (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;ILjava/lang/Object;)Lcom/backbase/deferredresources/DeferredText;
+	public static synthetic fun withQuantityAndFormatArgs$default (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;ILjava/lang/Object;)Lcom/backbase/deferredresources/text/QuantifiedFormattedDeferredText;
 }
 

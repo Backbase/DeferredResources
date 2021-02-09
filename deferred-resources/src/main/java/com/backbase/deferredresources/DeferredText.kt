@@ -2,7 +2,9 @@ package com.backbase.deferredresources
 
 import android.content.Context
 import androidx.annotation.StringRes
+import com.backbase.deferredresources.text.ParcelableDeferredText
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.Parcelize
 
 /**
  * A wrapper for resolving text on demand.
@@ -17,9 +19,10 @@ public interface DeferredText {
     /**
      * A wrapper for a constant text [value].
      */
+    @Parcelize
     @DataApi public class Constant(
         private val value: CharSequence
-    ) : DeferredText {
+    ) : ParcelableDeferredText {
         /**
          * Always resolves to [value], ignoring [context].
          */
@@ -29,10 +32,11 @@ public interface DeferredText {
     /**
      * A wrapper for a text [resId].
      */
+    @Parcelize
     @DataApi public class Resource @JvmOverloads constructor(
         @StringRes private val resId: Int,
         private val type: Type = Type.STRING
-    ) : DeferredText {
+    ) : ParcelableDeferredText {
 
         /**
          * Resolve [resId] to text with the given [context].

@@ -1,9 +1,11 @@
 package com.backbase.deferredresources
 
 import android.graphics.Color
+import com.backbase.deferredresources.color.ParcelableDeferredColor
 import com.backbase.deferredresources.test.AppCompatContext
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -32,6 +34,10 @@ internal class DeferredColorTest {
         assertThat(resolved.getColorForState(disabledState, Color.BLACK)).isEqualTo(Color.MAGENTA)
         assertThat(resolved.getColorForState(defaultState, Color.BLACK)).isEqualTo(Color.MAGENTA)
         assertThat(resolved.defaultColor).isEqualTo(Color.MAGENTA)
+    }
+
+    @Test fun constant_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredColor>(DeferredColor.Constant(Color.GREEN))
     }
     //endregion
 
@@ -80,6 +86,12 @@ internal class DeferredColorTest {
         assertThat(resolved.getColorForState(checkedState, Color.BLACK)).isEqualTo(Color.parseColor("#aaaaaa"))
         assertThat(resolved.getColorForState(defaultState, Color.BLACK)).isEqualTo(Color.parseColor("#987654"))
         assertThat(resolved.defaultColor).isEqualTo(Color.parseColor("#987654"))
+    }
+
+    @Test fun resource_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredColor>(
+            DeferredColor.Resource(R.color.stateful_color_without_attr)
+        )
     }
     //endregion
 
@@ -159,6 +171,10 @@ internal class DeferredColorTest {
         val deferred = DeferredColor.Attribute(R.attr.isLightTheme)
 
         deferred.resolveToStateList(AppCompatContext())
+    }
+
+    @Test fun attribute_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredColor>(DeferredColor.Attribute(R.attr.colorPrimary))
     }
     //endregion
 }

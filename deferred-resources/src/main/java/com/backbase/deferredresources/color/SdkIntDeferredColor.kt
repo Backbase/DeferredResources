@@ -6,19 +6,26 @@ import android.os.Build
 import androidx.annotation.ColorInt
 import com.backbase.deferredresources.DeferredColor
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 /**
  * A [DeferredColor] with a different source depending on the runtime Android SDK version.
  *
  * This is useful because different SDK levels treat colors differently in some contexts. For example, SDK 27+ can
  * support light system navigation bar colors, but lower SDKs cannot.
+ *
+ * This class implements [android.os.Parcelable]. It will throw at runtime if the SDK-specific source [DeferredColor]
+ * instance cannot be marshalled.
  */
-@DataApi public class SdkIntDeferredColor private constructor(
-    private val source: DeferredColor
-) : DeferredColor {
+// Primary constructor is internal rather than private so the generated Creator can access it
+@Parcelize
+@DataApi public class SdkIntDeferredColor internal constructor(
+    private val source: @RawValue DeferredColor
+) : ParcelableDeferredColor {
 
     /**
-     * Construct an [DeferredColor] instance that resolves to a color specific to the runtime Android SDK version.
+     * Construct a [DeferredColor] instance that resolves to a color specific to the runtime Android SDK version.
      *
      * Each constructor parameter has a default value of the next-lowest value, allowing Kotlin consumers to provide
      * only each unique source once. For example, the following would resolve to GREEN on SDKs 14-22 and BLUE on SDKs

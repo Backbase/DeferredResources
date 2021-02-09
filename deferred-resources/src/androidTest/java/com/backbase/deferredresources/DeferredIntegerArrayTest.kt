@@ -1,7 +1,9 @@
 package com.backbase.deferredresources
 
+import com.backbase.deferredresources.integer.ParcelableDeferredIntegerArray
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -16,7 +18,7 @@ internal class DeferredIntegerArrayTest {
 
     @Test fun constant_initializedWithList_returnsConstantValues() {
         val originalList = mutableListOf(1)
-        val deferred = DeferredIntegerArray.Constant(originalList)
+        val deferred = DeferredIntegerArray.Constant(originalList as Collection<Int>)
         originalList[0] = 99
 
         assertThat(deferred.resolve(context)).asList().isEqualTo(listOf(1))
@@ -58,6 +60,10 @@ internal class DeferredIntegerArrayTest {
         assertThat(deferred.toString()).isEqualTo("Constant(values=[1, 0])")
     }
 
+    @Test fun constant_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredIntegerArray>(DeferredIntegerArray.Constant(1, 1, 2, 3, 5, 8))
+    }
+
     @Test fun resource_resolvesIntegersWithContext() {
         val deferred = DeferredIntegerArray.Resource(R.array.integerArray)
 
@@ -73,5 +79,9 @@ internal class DeferredIntegerArrayTest {
 
         val resolved2 = deferred.resolve(context)
         assertThat(resolved2[0]).isEqualTo(101)
+    }
+
+    @Test fun resource_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredIntegerArray>(DeferredIntegerArray.Resource(R.array.integerArray))
     }
 }

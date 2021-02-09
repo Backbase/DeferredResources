@@ -5,6 +5,8 @@ import android.text.SpannedString
 import android.text.style.StyleSpan
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.text.ParcelableDeferredText
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -15,6 +17,10 @@ internal class DeferredTextTest {
     @Test fun constant_returnsConstantValue() {
         val deferred = DeferredText.Constant("Some text")
         assertThat(deferred.resolve(context)).isEqualTo("Some text")
+    }
+
+    @Test fun constant_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredText>(DeferredText.Constant("Parcelable"))
     }
 
     @Test fun resource_withTypeString_resolvesStringWithContext() {
@@ -43,5 +49,9 @@ internal class DeferredTextTest {
         assertThat(span).isInstanceOf(StyleSpan::class.java)
         span as StyleSpan
         assertThat(span.style).isEqualTo(Typeface.BOLD)
+    }
+
+    @Test fun resource_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredText>(DeferredText.Resource(R.string.plainString))
     }
 }

@@ -5,9 +5,12 @@ import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.DimenRes
 import androidx.annotation.Px
+import com.backbase.deferredresources.dimension.ParcelableDeferredDimension
 import com.backbase.deferredresources.internal.resolveAttribute
 import com.backbase.deferredresources.internal.toSize
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 
 /**
  * A wrapper for resolving an integer dimension on demand.
@@ -33,9 +36,10 @@ public interface DeferredDimension {
     /**
      * A wrapper for a constant integer [pxValue].
      */
+    @Parcelize
     @DataApi public class Constant(
         @Px private val pxValue: Float
-    ) : DeferredDimension {
+    ) : ParcelableDeferredDimension {
 
         /**
          * Convenience for initializing with an integer [pxValue].
@@ -62,9 +66,10 @@ public interface DeferredDimension {
     /**
      * A wrapper for a [DimenRes] [resId].
      */
+    @Parcelize
     @DataApi public class Resource(
         @DimenRes private val resId: Int
-    ) : DeferredDimension {
+    ) : ParcelableDeferredDimension {
         /**
          * Resolve [resId] to a pixel dimension size with the given [context].
          */
@@ -84,11 +89,13 @@ public interface DeferredDimension {
     /**
      * A wrapper for an [AttrRes] [resId] reference to a dimension.
      */
+    @Parcelize
     @DataApi public class Attribute(
         @AttrRes private val resId: Int
-    ) : DeferredDimension {
+    ) : ParcelableDeferredDimension {
 
         // Re-used every time the dimension is resolved, for efficiency
+        @IgnoredOnParcel
         private val reusedTypedValue = TypedValue()
 
         /**

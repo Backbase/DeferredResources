@@ -1,12 +1,15 @@
 package com.backbase.deferredresources.color
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Build
 import androidx.annotation.ColorInt
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.test.context
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
+import org.junit.Assert.assertThrows
 import org.junit.Test
 
 internal class SdkIntDeferredColorTest {
@@ -95,6 +98,47 @@ internal class SdkIntDeferredColorTest {
 
         assertThat(resolvedColor).isEqualTo(expectedColor)
         assertThat(resolvedStateList.defaultColor).isEqualTo(ColorStateList.valueOf(expectedColor).defaultColor)
+    }
+
+    @Test fun withParcelableSource_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredColor>(
+            SdkIntDeferredColor(
+                minSdk = sdk14.asDeferredColor(),
+                sdk15 = sdk15.asDeferredColor(),
+                sdk16 = sdk16.asDeferredColor(),
+                sdk17 = sdk17.asDeferredColor(),
+                sdk18 = sdk18.asDeferredColor(),
+                sdk19 = sdk19.asDeferredColor(),
+                sdk20 = sdk20.asDeferredColor(),
+                sdk21 = sdk21.asDeferredColor(),
+                sdk22 = sdk22.asDeferredColor(),
+                sdk23 = sdk23.asDeferredColor(),
+                sdk24 = sdk24.asDeferredColor(),
+                sdk25 = sdk25.asDeferredColor(),
+                sdk26 = sdk26.asDeferredColor(),
+                sdk27 = sdk27.asDeferredColor(),
+                sdk28 = sdk28.asDeferredColor(),
+                sdk29 = sdk29.asDeferredColor(),
+                sdk30 = sdk30.asDeferredColor(),
+            )
+        )
+    }
+
+    @Test fun withNonParcelableSource_throwsWhenMarshalled() {
+        val source = object : DeferredColor {
+            @ColorInt override fun resolve(context: Context): Int = Color.parseColor("#101010")
+            override fun resolveToStateList(context: Context): ColorStateList = ColorStateList.valueOf(resolve(context))
+        }
+
+        // Construction and resolution work normally:
+        val sdkIntWrapper = SdkIntDeferredColor(minSdk = source)
+        assertThat(sdkIntWrapper.resolve(context)).isEqualTo(Color.parseColor("#101010"))
+
+        // Only marshalling does not work:
+        val exception = assertThrows(RuntimeException::class.java) {
+            testParcelableThroughBundle<ParcelableDeferredColor>(sdkIntWrapper)
+        }
+        assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $source")
     }
 
     private fun Int.asDeferredColor() = DeferredColor.Constant(this)

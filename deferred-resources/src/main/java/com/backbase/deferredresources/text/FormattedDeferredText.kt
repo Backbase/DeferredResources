@@ -4,12 +4,22 @@ import android.content.Context
 import com.backbase.deferredresources.DeferredFormattedString
 import com.backbase.deferredresources.DeferredText
 import dev.drewhamilton.extracare.DataApi
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 /**
- * Convert a [DeferredFormattedString] to a normal [DeferredText] by providing its [formatArgs] to be used when
- * resolved.
+ * Convert a [DeferredFormattedString] to a normal [DeferredText] by providing [formatArgs] to be used when resolved.
  */
-@JvmSynthetic public fun DeferredFormattedString.withFormatArgs(vararg formatArgs: Any): DeferredText =
+@JvmSynthetic public fun DeferredFormattedString.withFormatArgs(vararg formatArgs: Any): FormattedDeferredText =
+    FormattedDeferredText(wrapped = this, formatArgs = formatArgs)
+
+/**
+ * Convert a [DeferredFormattedString] to a normal [DeferredText] by providing [formatArgs] to be used when resolved.
+ */
+@Suppress("unused")
+@Deprecated("Covariant return type introduced", level = DeprecationLevel.HIDDEN)
+// Unused generic is added to allow return-type overload
+@JvmSynthetic public fun <T> DeferredFormattedString.withFormatArgs(vararg formatArgs: Any): DeferredText =
     FormattedDeferredText(wrapped = this, formatArgs = formatArgs)
 
 /**
@@ -17,13 +27,16 @@ import dev.drewhamilton.extracare.DataApi
  * cases where the format args are determined at the declaring site rather than the resolving site.
  *
  * If the format args are to be determined at the resolving site, stick with [DeferredFormattedString].
+ *
+ * This class implements [android.os.Parcelable]. It will throw at runtime if [wrapped] or any of [formatArgs] cannot be
+ * marshalled.
  */
-@DataApi public class FormattedDeferredText private constructor(
-    // Private constructor marker allows vararg constructor overload while retaining DataApi toString generation
-    @Suppress("UNUSED_PARAMETER") privateConstructorMarker: Int,
-    private val wrapped: DeferredFormattedString,
-    private val formatArgs: Array<out Any>
-) : DeferredText {
+// Primary constructor is internal rather than private so the generated Creator can access it
+@Parcelize
+@DataApi public class FormattedDeferredText internal constructor(
+    private val wrapped: @RawValue DeferredFormattedString,
+    private val formatArgs: @RawValue List<Any>,
+) : ParcelableDeferredText {
 
     /**
      * Initialize with the given [wrapped] [DeferredFormattedString] and [formatArgs].
@@ -33,24 +46,10 @@ import dev.drewhamilton.extracare.DataApi
     public constructor(
         wrapped: DeferredFormattedString,
         vararg formatArgs: Any
-    ) : this(1, wrapped, arrayOf(*formatArgs))
+    ) : this(wrapped, formatArgs.toList())
 
     /**
      * Resolve [wrapped] with [formatArgs] using the given [context].
      */
-    override fun resolve(context: Context): CharSequence = wrapped.resolve(context, *formatArgs)
-
-    /**
-     * Two instances of [FormattedDeferredText] are considered equals if they wrap equals [DeferredFormattedString]s,
-     * they hold the same number of [formatArgs], and each format arg in this instance is equals to the corresponding
-     * format arg in [other].
-     */
-    override fun equals(other: Any?): Boolean = other is FormattedDeferredText &&
-            this.wrapped == other.wrapped &&
-            this.formatArgs.contentEquals(other.formatArgs)
-
-    /**
-     * A hash of the formatted string and its format arguments.
-     */
-    override fun hashCode(): Int = 31 * wrapped.hashCode() + formatArgs.contentHashCode()
+    override fun resolve(context: Context): CharSequence = wrapped.resolve(context, *formatArgs.toTypedArray())
 }

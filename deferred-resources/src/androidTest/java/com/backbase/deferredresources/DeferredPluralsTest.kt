@@ -7,6 +7,8 @@ import android.text.style.StyleSpan
 import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
+import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.text.ParcelableDeferredPlurals
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -74,6 +76,34 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
         assertThat(deferred.resolve(context, 100)).isEqualTo("Some")
     }
 
+    @Test fun constant_defaultType_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredPlurals>(
+            DeferredPlurals.Constant(
+                zero = "No",
+                one = "A single",
+                two = "A couple",
+                few = "Not that many",
+                many = "A bunch of",
+                other = "Some"
+            )
+        )
+    }
+
+    @SdkSuppress(minSdkVersion = 24)
+    @Test fun constant_ordinalType_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredPlurals>(
+            DeferredPlurals.Constant(
+                zero = "No",
+                one = "A single",
+                two = "A couple",
+                few = "Not that many",
+                many = "A bunch of",
+                other = "Some",
+                type = PluralRules.PluralType.ORDINAL
+            )
+        )
+    }
+
     @Test fun resource_withTypeString_resolvesStringWithContext() {
         setTestLanguage("en-US")
 
@@ -101,5 +131,9 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
         assertThat(span).isInstanceOf(StyleSpan::class.java)
         span as StyleSpan
         assertThat(span.style).isEqualTo(Typeface.ITALIC)
+    }
+
+    @Test fun resource_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredPlurals>(DeferredPlurals.Resource(R.plurals.plainPlurals))
     }
 }

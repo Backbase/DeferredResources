@@ -1,8 +1,12 @@
 package com.backbase.deferredresources.text
 
+import android.content.Context
 import com.backbase.deferredresources.DeferredFormattedPlurals
+import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
+import org.junit.Assert.assertThrows
 import org.junit.Test
 
 internal class QuantifiedDeferredFormattedStringTest : SpecificLocaleTest() {
@@ -23,5 +27,28 @@ internal class QuantifiedDeferredFormattedStringTest : SpecificLocaleTest() {
         val deferred = QuantifiedDeferredFormattedString(formattedPlurals, 2)
         assertThat(deferred.resolve(context, "Large")).isEqualTo("Large pizzas")
         assertThat(deferred.resolve(context, "Small")).isEqualTo("Small pizzas")
+    }
+
+    @Test fun quantified_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredFormattedString>(
+            QuantifiedDeferredFormattedString(DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals), 7)
+        )
+    }
+
+    @Test fun quantified_withNonParcelablePlurals_throwsWhenMarshalled() {
+        val nonParcelablePlurals = object : DeferredFormattedPlurals {
+            override fun resolve(context: Context, quantity: Int, vararg formatArgs: Any): String =
+                "$quantity ${formatArgs.toList()}"
+        }
+
+        // Construction and resolution work normally:
+        val quantified = QuantifiedDeferredFormattedString(nonParcelablePlurals, 9)
+        assertThat(quantified.resolve(context, "Arg")).isEqualTo("9 [Arg]")
+
+        // Only marshalling does not work:
+        val exception = assertThrows(RuntimeException::class.java) {
+            testParcelableThroughBundle<ParcelableDeferredFormattedString>(quantified)
+        }
+        assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelablePlurals")
     }
 }

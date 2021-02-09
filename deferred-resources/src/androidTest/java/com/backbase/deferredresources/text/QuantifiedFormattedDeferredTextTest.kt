@@ -1,8 +1,13 @@
 package com.backbase.deferredresources.text
 
+import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
+import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
+import com.backbase.deferredresources.test.testParcelableThroughBundle
 import com.google.common.truth.Truth.assertThat
+import org.junit.Assert.assertThrows
 import org.junit.Test
 
 internal class QuantifiedFormattedDeferredTextTest : SpecificLocaleTest() {
@@ -67,5 +72,42 @@ internal class QuantifiedFormattedDeferredTextTest : SpecificLocaleTest() {
             "QuantifiedFormattedDeferredText(wrapped=$formattedPlurals, quantity=1, formatArgs=[Yes])"
         )
     }
-    //endregion
+
+    @Test fun quantifiedAndFormatted_parcelsThroughBundle() {
+        testParcelableThroughBundle<ParcelableDeferredText>(
+            QuantifiedFormattedDeferredText(DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals), 42)
+        )
+    }
+
+    @Test fun quantifiedAndFormatted_withNonParcelablePlurals_throwsWhenMarshalled() {
+        val nonParcelablePlurals = object : DeferredFormattedPlurals {
+            override fun resolve(context: Context, quantity: Int, vararg formatArgs: Any): String =
+                "$quantity ${formatArgs.toList()}"
+        }
+
+        // Construction and resolution work normally:
+        val quantifiedAndFormatted = QuantifiedFormattedDeferredText(nonParcelablePlurals, 1, "Arg")
+        assertThat(quantifiedAndFormatted.resolve(context)).isEqualTo("1 [Arg]")
+
+        // Only marshalling does not work:
+        val exception = assertThrows(RuntimeException::class.java) {
+            testParcelableThroughBundle<ParcelableDeferredText>(quantifiedAndFormatted)
+        }
+        assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelablePlurals")
+    }
+
+    @Test fun quantifiedAndFormatted_withNonParcelableArg_throwsWhenMarshalled() {
+        val plurals = DeferredFormattedPlurals.Constant("%d %s")
+        val nonParcelableArg = ColorDrawable()
+
+        // Construction and resolution work normally:
+        val quantifiedAndFormatted = QuantifiedFormattedDeferredText(plurals, 44, 44, nonParcelableArg)
+        assertThat(quantifiedAndFormatted.resolve(context)).isEqualTo("44 $nonParcelableArg")
+
+        // Only marshalling does not work:
+        val exception = assertThrows(RuntimeException::class.java) {
+            testParcelableThroughBundle<ParcelableDeferredText>(quantifiedAndFormatted)
+        }
+        assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelableArg")
+    }
 }

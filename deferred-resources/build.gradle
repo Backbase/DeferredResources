@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'org.jetbrains.kotlin.plugin.parcelize'
 apply plugin: 'dev.drewhamilton.extracare'
 
 ext {
@@ -42,8 +43,13 @@ android {
 dependencies {
     implementation deps.androidAnnotations
 
-    implementation deps.appCompat
-    implementation deps.coreKtx
+    implementation(deps.appCompat) {
+        exclude group: 'androidx.fragment'
+        exclude group: 'androidx.lifecycle'
+    }
+    implementation(deps.coreKtx) {
+        exclude group: 'androidx.lifecycle'
+    }
 
     androidTestImplementation deps.junitAndroidX
     androidTestImplementation deps.androidTestRules
