@@ -9,6 +9,7 @@ detekt {
     reports {
         html.enabled = true
         sarif.enabled = true
+        sarif.destination = new File("$rootProject.projectDir/build/detekt/sarif/${project.name}.sarif.json")
     }
     config = objects.fileCollection().from "${rootProject.projectDir}/detekt.yml"
 }

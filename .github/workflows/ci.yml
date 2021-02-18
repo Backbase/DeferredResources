@@ -32,6 +32,11 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
       - name: Build
         run: ./gradlew clean build --stacktrace
+      - name: Report Detekt results
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ${{ github.workspace }}/build/detekt/sarif/
+          checkout_path: ${{ github.workspace }}
       - name: Instrumented tests
         uses: reactivecircus/android-emulator-runner@v2.14.3
         with:
