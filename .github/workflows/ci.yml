@@ -39,7 +39,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           report_paths: "**/build/outputs/androidTest-results/connected/flavors/debugAndroidTest/TEST-*.xml"
 
-  scan for secrets:
+  scan_for_secrets:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
