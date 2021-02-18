@@ -17,6 +17,17 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+        with:
+          # Allows Gitleaks to scan the commit history of a whole PR:
+          fetch-depth: '0'
+      - name: Get Gitleaks rules
+        uses: wei/wget@v1
+        with:
+          args: -O .rules.toml https://raw.githubusercontent.com/fnxpt/gitleaks-action/rules/.rules.toml
+      - name: Check for leaked secrets
+        uses: zricethezav/gitleaks-action@v1.3.0
+        with:
+          config-path: .rules.toml
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
       - name: Build
