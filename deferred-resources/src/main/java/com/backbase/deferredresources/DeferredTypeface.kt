@@ -79,7 +79,9 @@ public interface DeferredTypeface {
         override fun resolve(context: Context, fontCallback: ResourcesCompat.FontCallback, handler: Handler?) {
             val value = try {
                 resolve(context)
-            } catch (runtimeException: RuntimeException) {
+            } catch (@Suppress("Detekt.TooGenericExceptionCaught") runtimeException: RuntimeException) {
+                // Generic RuntimeException is thrown by Typeface.createFromAsset. We use that to call
+                //  `fontCallback.onFontRetrievalFailed(FAIL_REASON_FONT_NOT_FOUND)` below
                 null
             }
 

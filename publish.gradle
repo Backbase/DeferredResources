@@ -4,6 +4,17 @@
 group = rootProject.ext.publishGroup
 version = rootProject.ext.libraryVersion
 
+apply plugin: 'io.gitlab.arturbosch.detekt'
+detekt {
+    reports {
+        html.enabled = true
+        sarif.enabled = true
+        sarif.destination = new File("$rootProject.projectDir/build/detekt/sarif/${project.name}.sarif")
+    }
+    config = objects.fileCollection().from "${rootProject.projectDir}/detekt.yml"
+}
+tasks.detekt.jvmTarget = JavaVersion.VERSION_1_8
+
 task sourcesJar(type: Jar) {
     archiveClassifier.set 'sources'
     from android.sourceSets.main.java.srcDirs

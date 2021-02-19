@@ -21,6 +21,11 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
       - name: Build
         run: ./gradlew clean build --stacktrace
+      - name: Report Detekt results
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ${{ github.workspace }}/build/detekt/sarif
+          checkout_path: ${{ github.workspace }}
       - name: Instrumented tests
         uses: reactivecircus/android-emulator-runner@v2.14.3
         with:
@@ -33,3 +38,20 @@ jobs:
           check_name: Android test report for API ${{ matrix.api-level }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           report_paths: "**/build/outputs/androidTest-results/connected/flavors/debugAndroidTest/TEST-*.xml"
+
+  scan_for_secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+        with:
+          # Allows Gitleaks to scan the commit history of a whole PR:
+          fetch-depth: '0'
+      - name: Fetch Gitleaks rules
+        uses: wei/wget@v1
+        with:
+          args: -O .rules.toml https://raw.githubusercontent.com/fnxpt/gitleaks-action/rules/.rules.toml
+      - name: Gitleaks
+        uses: zricethezav/gitleaks-action@v1.3.0
+        with:
+          config-path: .rules.toml
