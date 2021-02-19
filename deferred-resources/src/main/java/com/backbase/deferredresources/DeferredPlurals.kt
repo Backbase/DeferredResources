@@ -7,7 +7,7 @@ import androidx.annotation.PluralsRes
 import androidx.annotation.RequiresApi
 import com.backbase.deferredresources.internal.PluralRulesCompat
 import com.backbase.deferredresources.text.ParcelableDeferredPlurals
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -26,7 +26,7 @@ public interface DeferredPlurals {
      */
     // Primary constructor is internal rather than private so the generated Creator can access it
     @Parcelize
-    @DataApi public class Constant internal constructor(
+    @Poko public class Constant internal constructor(
         private val other: CharSequence,
         private val zero: CharSequence = other,
         private val one: CharSequence = other,
@@ -89,7 +89,7 @@ public interface DeferredPlurals {
      * A wrapper for a [PluralsRes] [resId].
      */
     @Parcelize
-    @DataApi public class Resource(
+    @Poko public class Resource(
         @PluralsRes private val resId: Int,
         private val type: Type = Type.STRING
     ) : ParcelableDeferredPlurals {

@@ -7,7 +7,7 @@ import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
 import androidx.core.graphics.ColorUtils
 import com.backbase.deferredresources.DeferredColor
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlin.math.roundToInt
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
@@ -32,7 +32,7 @@ public fun DeferredColor.withAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Floa
  * This class implements [android.os.Parcelable]. It will throw at runtime if [base] cannot be marshalled.
  */
 @Parcelize
-@DataApi public class DeferredColorWithAlpha(
+@Poko public class DeferredColorWithAlpha(
     private val base: @RawValue DeferredColor,
     @IntRange(from = 0x00, to = 0xFF) private val alpha: Int
 ) : ParcelableDeferredColor {

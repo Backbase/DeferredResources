@@ -7,7 +7,7 @@ import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.provider.FontsContractCompat.FontRequestCallback.FAIL_REASON_FONT_NOT_FOUND
 import com.backbase.deferredresources.internal.orUiHandler
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 
 /**
  * A wrapper for resolving a typeface on demand.
@@ -28,7 +28,7 @@ public interface DeferredTypeface {
     /**
      * A wrapper for a constant typeface [value].
      */
-    @DataApi public class Constant(
+    @Poko public class Constant(
         private val value: Typeface
     ) : DeferredTypeface {
         /**
@@ -48,7 +48,7 @@ public interface DeferredTypeface {
     /**
      * A wrapper for a [FontRes] [id].
      */
-    @DataApi public class Resource(
+    @Poko public class Resource(
         @FontRes private val id: Int
     ) : DeferredTypeface {
         /**
@@ -64,7 +64,7 @@ public interface DeferredTypeface {
             ResourcesCompat.getFont(context, id, fontCallback, handler)
     }
 
-    @DataApi public class Asset(
+    @Poko public class Asset(
         private val path: String
     ) : DeferredTypeface {
         /**

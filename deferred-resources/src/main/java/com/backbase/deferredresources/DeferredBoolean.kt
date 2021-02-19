@@ -6,7 +6,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.BoolRes
 import com.backbase.deferredresources.bool.ParcelableDeferredBoolean
 import com.backbase.deferredresources.internal.resolveAttribute
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
@@ -24,7 +24,7 @@ public interface DeferredBoolean {
      * A wrapper for a constant boolean [value].
      */
     @Parcelize
-    @DataApi public class Constant(
+    @Poko public class Constant(
         private val value: Boolean
     ) : ParcelableDeferredBoolean {
         /**
@@ -37,7 +37,7 @@ public interface DeferredBoolean {
      * A wrapper for a [BoolRes] [resId].
      */
     @Parcelize
-    @DataApi public class Resource(
+    @Poko public class Resource(
         @BoolRes private val resId: Int
     ) : ParcelableDeferredBoolean {
         /**
@@ -47,7 +47,7 @@ public interface DeferredBoolean {
     }
 
     @Parcelize
-    @DataApi public class Attribute(
+    @Poko public class Attribute(
         @AttrRes private val resId: Int
     ) : ParcelableDeferredBoolean {
 

@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.annotation.StringRes
 import com.backbase.deferredresources.internal.primaryLocale
 import com.backbase.deferredresources.text.ParcelableDeferredFormattedString
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -21,7 +21,7 @@ public interface DeferredFormattedString {
      * A wrapper for a constant format-able [format] string.
      */
     @Parcelize
-    @DataApi public class Constant(
+    @Poko public class Constant(
         private val format: String
     ) : ParcelableDeferredFormattedString {
         /**
@@ -35,7 +35,7 @@ public interface DeferredFormattedString {
      * A wrapper for a format-able [StringRes] [resId].
      */
     @Parcelize
-    @DataApi public class Resource(
+    @Poko public class Resource(
         @StringRes private val resId: Int
     ) : ParcelableDeferredFormattedString {
 

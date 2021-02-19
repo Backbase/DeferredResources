@@ -3,7 +3,7 @@ package com.backbase.deferredresources
 import android.content.Context
 import androidx.annotation.IntegerRes
 import com.backbase.deferredresources.integer.ParcelableDeferredInteger
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -20,7 +20,7 @@ public interface DeferredInteger {
      * A wrapper for a constant integer [value].
      */
     @Parcelize
-    @DataApi public class Constant(
+    @Poko public class Constant(
         private val value: Int
     ) : ParcelableDeferredInteger {
         /**
@@ -33,7 +33,7 @@ public interface DeferredInteger {
      * A wrapper for a [IntegerRes] [resId].
      */
     @Parcelize
-    @DataApi public class Resource(
+    @Poko public class Resource(
         @IntegerRes private val resId: Int
     ) : ParcelableDeferredInteger {
         /**

@@ -8,7 +8,7 @@ import androidx.annotation.Px
 import com.backbase.deferredresources.dimension.ParcelableDeferredDimension
 import com.backbase.deferredresources.internal.resolveAttribute
 import com.backbase.deferredresources.internal.toSize
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
@@ -37,7 +37,7 @@ public interface DeferredDimension {
      * A wrapper for a constant integer [pxValue].
      */
     @Parcelize
-    @DataApi public class Constant(
+    @Poko public class Constant(
         @Px private val pxValue: Float
     ) : ParcelableDeferredDimension {
 
@@ -67,7 +67,7 @@ public interface DeferredDimension {
      * A wrapper for a [DimenRes] [resId].
      */
     @Parcelize
-    @DataApi public class Resource(
+    @Poko public class Resource(
         @DimenRes private val resId: Int
     ) : ParcelableDeferredDimension {
         /**
@@ -90,7 +90,7 @@ public interface DeferredDimension {
      * A wrapper for an [AttrRes] [resId] reference to a dimension.
      */
     @Parcelize
-    @DataApi public class Attribute(
+    @Poko public class Attribute(
         @AttrRes private val resId: Int
     ) : ParcelableDeferredDimension {
 

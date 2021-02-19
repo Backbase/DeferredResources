@@ -10,7 +10,7 @@ import androidx.annotation.ColorRes
 import androidx.appcompat.content.res.AppCompatResources
 import com.backbase.deferredresources.color.ParcelableDeferredColor
 import com.backbase.deferredresources.internal.resolveAttribute
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
@@ -33,7 +33,7 @@ public interface DeferredColor {
      * A wrapper for a constant color [value].
      */
     @Parcelize
-    @DataApi public class Constant(
+    @Poko public class Constant(
         @ColorInt private val value: Int
     ) : ParcelableDeferredColor {
 
@@ -57,7 +57,7 @@ public interface DeferredColor {
      * A wrapper for a [ColorRes] [resId].
      */
     @Parcelize
-    @DataApi public class Resource(
+    @Poko public class Resource(
         @ColorRes private val resId: Int
     ) : ParcelableDeferredColor {
         /**
@@ -81,7 +81,7 @@ public interface DeferredColor {
      * A wrapper for a [AttrRes] [resId] reference to a color.
      */
     @Parcelize
-    @DataApi public class Attribute(
+    @Poko public class Attribute(
         @AttrRes private val resId: Int
     ) : ParcelableDeferredColor {
 

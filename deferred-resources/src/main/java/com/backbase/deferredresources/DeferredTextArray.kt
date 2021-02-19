@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.annotation.ArrayRes
 import com.backbase.deferredresources.DeferredTextArray.Resource.Type
 import com.backbase.deferredresources.text.ParcelableDeferredTextArray
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -25,7 +25,7 @@ public interface DeferredTextArray {
      */
     // Primary constructor is internal rather than private so the generated Creator can access it
     @Parcelize
-    @DataApi public class Constant internal constructor(
+    @Poko public class Constant internal constructor(
         private val values: List<CharSequence>
     ) : ParcelableDeferredTextArray {
 
@@ -54,7 +54,7 @@ public interface DeferredTextArray {
      * resource.
      */
     @Parcelize
-    @DataApi public class Resource @JvmOverloads constructor(
+    @Poko public class Resource @JvmOverloads constructor(
         @ArrayRes private val id: Int,
         private val type: Type = Type.STRING
     ) : ParcelableDeferredTextArray {

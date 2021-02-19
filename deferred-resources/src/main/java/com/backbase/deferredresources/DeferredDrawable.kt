@@ -7,7 +7,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import com.backbase.deferredresources.internal.resolveAttribute
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 
 /**
  * A wrapper for resolving a [Drawable] on demand.
@@ -22,7 +22,7 @@ public interface DeferredDrawable {
     /**
      * A wrapper for a constant Drawable [value].
      */
-    @DataApi public class Constant(
+    @Poko public class Constant(
         private val value: Drawable?
     ) : DeferredDrawable {
         /**
@@ -37,7 +37,7 @@ public interface DeferredDrawable {
      *
      * If [transformations] are supplied, [mutate] should be true.
      */
-    @DataApi public class Resource @JvmOverloads constructor(
+    @Poko public class Resource @JvmOverloads constructor(
         @DrawableRes private val resId: Int,
         private val mutate: Boolean = true,
         private val transformations: Drawable.(Context) -> Unit = {}
@@ -68,7 +68,7 @@ public interface DeferredDrawable {
      *
      * If [transformations] are supplied, [mutate] should be true.
      */
-    @DataApi public class Attribute @JvmOverloads constructor(
+    @Poko public class Attribute @JvmOverloads constructor(
         @AttrRes private val resId: Int,
         private val mutate: Boolean = true,
         private val transformations: Drawable.(Context) -> Unit = {}

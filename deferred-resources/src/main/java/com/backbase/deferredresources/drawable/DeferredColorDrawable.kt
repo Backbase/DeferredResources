@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 
 /**
  * Convert a [DeferredColor] to a [DeferredDrawable] by wrapping the resolved color in a [ColorDrawable].
@@ -14,7 +14,7 @@ import dev.drewhamilton.extracare.DataApi
 /**
  * Convert a [DeferredColor] to a [DeferredDrawable] by wrapping the resolved color in a [ColorDrawable].
  */
-@DataApi public class DeferredColorDrawable(
+@Poko public class DeferredColorDrawable(
     private val deferredColor: DeferredColor
 ) : DeferredDrawable {
 

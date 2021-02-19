@@ -3,7 +3,7 @@ package com.backbase.deferredresources
 import android.content.Context
 import androidx.annotation.StringRes
 import com.backbase.deferredresources.text.ParcelableDeferredText
-import dev.drewhamilton.extracare.DataApi
+import dev.drewhamilton.poko.Poko
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -20,7 +20,7 @@ public interface DeferredText {
      * A wrapper for a constant text [value].
      */
     @Parcelize
-    @DataApi public class Constant(
+    @Poko public class Constant(
         private val value: CharSequence
     ) : ParcelableDeferredText {
         /**
@@ -33,7 +33,7 @@ public interface DeferredText {
      * A wrapper for a text [resId].
      */
     @Parcelize
-    @DataApi public class Resource @JvmOverloads constructor(
+    @Poko public class Resource @JvmOverloads constructor(
         @StringRes private val resId: Int,
         private val type: Type = Type.STRING
     ) : ParcelableDeferredText {
