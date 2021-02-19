@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 1.3.0
+_2021-02-19_
+
+Add a number of `Parcelable` deferred types, such as `ParcelableDeferredText` and
+`ParcelableDeferredColor`. Ensure each concrete deferred type shipped in this library, such as
+`DeferredText.Constant` and `DeferredText.Resource`, implements a `Parcelable` parent interface.
+
+`DeferredDrawable` and `DeferredTypeface` are the only types without `Parcelable` options, because
+their resolved types are also not `Parcelable`.
+
 ## 1.2.1
 _2021-01-16_
 
