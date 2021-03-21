@@ -9,12 +9,15 @@
     android:orientation="horizontal"
     android:padding="16dp">
 
-  <ImageView
+  <com.google.android.material.imageview.ShapeableImageView
       android:id="@+id/drawableView"
       android:layout_width="48dp"
       android:layout_height="48dp"
       android:layout_gravity="center_vertical"
 
+      android:background="?colorSurface"
+
+      app:contentPadding="8dp"
       app:shapeAppearance="?shapeAppearanceSmallComponent"
 
       tools:srcCompat="@drawable/ic_flower_24"

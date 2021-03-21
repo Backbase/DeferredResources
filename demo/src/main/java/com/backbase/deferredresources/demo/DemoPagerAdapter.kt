@@ -69,7 +69,7 @@ class DemoPagerAdapter : RecyclerView.Adapter<DemoPagerAdapter.DeferredResourceV
             is DeferredDrawablesView -> {
                 val context = holder.root.context
                 view.display(
-                    DeferredDrawable.Constant(RoundedSquare().apply {
+                    DeferredDrawable.Constant(Circle().apply {
                         setTint(DeferredColor.Attribute(R.attr.colorPrimary), context)
                     })
                 )
@@ -92,9 +92,9 @@ class DemoPagerAdapter : RecyclerView.Adapter<DemoPagerAdapter.DeferredResourceV
     }
 
     @Suppress("FunctionName") // Factory
-    private fun RoundedSquare(): Drawable = GradientDrawable().apply {
+    private fun Circle(): Drawable = GradientDrawable().apply {
         shape = GradientDrawable.RECTANGLE
-        cornerRadius = 4f
+        cornerRadius = 8f
         val size = 16
         setSize(size, size)
     }
