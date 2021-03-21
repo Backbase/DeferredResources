@@ -56,7 +56,7 @@ ext {
     libraryVersion = '1.4.0-SNAPSHOT'
     minSdk = 14
     targetSdk = 30
-    buildToolsVersion = '30.0.2'
+    buildToolsVersion = '30.0.3'
 }
 
 apply plugin: 'binary-compatibility-validator'
