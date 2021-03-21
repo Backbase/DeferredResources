@@ -5,7 +5,7 @@ import com.backbase.deferredresources.dimension.ParcelableDeferredDimension
 import com.backbase.deferredresources.test.AppCompatContext
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.google.common.truth.Truth.assertThat
 import kotlin.math.roundToInt
 import org.junit.Test
@@ -74,7 +74,7 @@ internal class DeferredDimensionTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredDimension>(DeferredDimension.Constant(5.5f))
+        testParcelable<ParcelableDeferredDimension>(DeferredDimension.Constant(5.5f))
     }
     //endregion
 
@@ -100,7 +100,7 @@ internal class DeferredDimensionTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredDimension>(DeferredDimension.Resource(R.dimen.testDimen))
+        testParcelable<ParcelableDeferredDimension>(DeferredDimension.Resource(R.dimen.testDimen))
     }
     //endregion
 
@@ -139,7 +139,7 @@ internal class DeferredDimensionTest {
     }
 
     @Test fun attribute_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredDimension>(DeferredDimension.Attribute(R.attr.actionBarSize))
+        testParcelable<ParcelableDeferredDimension>(DeferredDimension.Attribute(R.attr.actionBarSize))
     }
     //endregion
 

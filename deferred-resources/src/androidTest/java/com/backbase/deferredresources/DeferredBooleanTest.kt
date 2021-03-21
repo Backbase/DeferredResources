@@ -4,7 +4,7 @@ import com.backbase.deferredresources.bool.ParcelableDeferredBoolean
 import com.backbase.deferredresources.test.AppCompatContext
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -16,7 +16,7 @@ internal class DeferredBooleanTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredBoolean>(DeferredBoolean.Constant(true))
+        testParcelable<ParcelableDeferredBoolean>(DeferredBoolean.Constant(true))
     }
 
     @Test fun resource_resolvesWithContext() {
@@ -25,7 +25,7 @@ internal class DeferredBooleanTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredBoolean>(DeferredBoolean.Resource(R.bool.testBool))
+        testParcelable<ParcelableDeferredBoolean>(DeferredBoolean.Resource(R.bool.testBool))
     }
 
     @Test fun attribute_resolvesWithContext() {
@@ -54,6 +54,6 @@ internal class DeferredBooleanTest {
     }
 
     @Test fun attribute_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredBoolean>(DeferredBoolean.Attribute(R.attr.isLightTheme))
+        testParcelable<ParcelableDeferredBoolean>(DeferredBoolean.Attribute(R.attr.isLightTheme))
     }
 }

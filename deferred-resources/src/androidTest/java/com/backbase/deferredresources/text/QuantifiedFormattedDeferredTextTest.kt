@@ -5,7 +5,7 @@ import android.graphics.drawable.ColorDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertThrows
 import org.junit.Test
@@ -74,7 +74,7 @@ internal class QuantifiedFormattedDeferredTextTest : SpecificLocaleTest() {
     }
 
     @Test fun quantifiedAndFormatted_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredText>(
+        testParcelable<ParcelableDeferredText>(
             QuantifiedFormattedDeferredText(DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals), 42)
         )
     }
@@ -91,7 +91,7 @@ internal class QuantifiedFormattedDeferredTextTest : SpecificLocaleTest() {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            testParcelableThroughBundle<ParcelableDeferredText>(quantifiedAndFormatted)
+            testParcelable<ParcelableDeferredText>(quantifiedAndFormatted)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelablePlurals")
     }
@@ -106,7 +106,7 @@ internal class QuantifiedFormattedDeferredTextTest : SpecificLocaleTest() {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            testParcelableThroughBundle<ParcelableDeferredText>(quantifiedAndFormatted)
+            testParcelable<ParcelableDeferredText>(quantifiedAndFormatted)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelableArg")
     }

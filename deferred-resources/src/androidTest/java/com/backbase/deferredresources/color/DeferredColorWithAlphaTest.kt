@@ -9,7 +9,7 @@ import androidx.core.graphics.alpha
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertThrows
 import org.junit.Test
@@ -101,7 +101,7 @@ internal class DeferredColorWithAlphaTest {
     }
 
     @Test fun withParcelableBase_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredColor>(
+        testParcelable<ParcelableDeferredColor>(
             DeferredColorWithAlpha(DeferredColor.Constant("#bdbdbd"), 0x80)
         )
     }
@@ -118,7 +118,7 @@ internal class DeferredColorWithAlphaTest {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            testParcelableThroughBundle<ParcelableDeferredColor>(withAlpha)
+            testParcelable<ParcelableDeferredColor>(withAlpha)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $base")
     }

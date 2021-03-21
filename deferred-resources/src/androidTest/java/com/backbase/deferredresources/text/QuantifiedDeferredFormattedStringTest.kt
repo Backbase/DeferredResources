@@ -4,7 +4,7 @@ import android.content.Context
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertThrows
 import org.junit.Test
@@ -30,7 +30,7 @@ internal class QuantifiedDeferredFormattedStringTest : SpecificLocaleTest() {
     }
 
     @Test fun quantified_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredFormattedString>(
+        testParcelable<ParcelableDeferredFormattedString>(
             QuantifiedDeferredFormattedString(DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals), 7)
         )
     }
@@ -47,7 +47,7 @@ internal class QuantifiedDeferredFormattedStringTest : SpecificLocaleTest() {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            testParcelableThroughBundle<ParcelableDeferredFormattedString>(quantified)
+            testParcelable<ParcelableDeferredFormattedString>(quantified)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelablePlurals")
     }

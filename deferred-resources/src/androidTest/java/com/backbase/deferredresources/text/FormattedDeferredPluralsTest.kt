@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.test.SpecificLocaleTest
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertThrows
 import org.junit.Test
@@ -63,7 +63,7 @@ internal class FormattedDeferredPluralsTest : SpecificLocaleTest() {
     }
 
     @Test fun formatted_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredPlurals>(
+        testParcelable<ParcelableDeferredPlurals>(
             FormattedDeferredPlurals(DeferredFormattedPlurals.Constant("%s"), "Cool")
         )
     }
@@ -80,7 +80,7 @@ internal class FormattedDeferredPluralsTest : SpecificLocaleTest() {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            testParcelableThroughBundle<ParcelableDeferredPlurals>(formatted)
+            testParcelable<ParcelableDeferredPlurals>(formatted)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelablePlurals")
     }
@@ -95,7 +95,7 @@ internal class FormattedDeferredPluralsTest : SpecificLocaleTest() {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            testParcelableThroughBundle<ParcelableDeferredPlurals>(formatted)
+            testParcelable<ParcelableDeferredPlurals>(formatted)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelableArg")
     }

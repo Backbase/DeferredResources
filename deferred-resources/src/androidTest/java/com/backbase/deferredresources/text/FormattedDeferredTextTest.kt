@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import com.backbase.deferredresources.DeferredFormattedString
 import com.backbase.deferredresources.test.context
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertThrows
 import org.junit.Test
@@ -61,7 +61,7 @@ internal class FormattedDeferredTextTest {
     }
 
     @Test fun formatted_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredText>(
+        testParcelable<ParcelableDeferredText>(
             FormattedDeferredText(DeferredFormattedString.Constant("%s"), "Cool")
         )
     }
@@ -77,7 +77,7 @@ internal class FormattedDeferredTextTest {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            testParcelableThroughBundle<ParcelableDeferredText>(formatted)
+            testParcelable<ParcelableDeferredText>(formatted)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $wrapped")
     }
@@ -92,7 +92,7 @@ internal class FormattedDeferredTextTest {
 
         // Only marshalling does not work:
         val exception = assertThrows(RuntimeException::class.java) {
-            testParcelableThroughBundle<ParcelableDeferredText>(formatted)
+            testParcelable<ParcelableDeferredText>(formatted)
         }
         assertThat(exception.message).isEqualTo("Parcel: unable to marshal value $nonParcelableArg")
     }

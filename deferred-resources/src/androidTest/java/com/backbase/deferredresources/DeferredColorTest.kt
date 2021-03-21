@@ -5,7 +5,7 @@ import com.backbase.deferredresources.color.ParcelableDeferredColor
 import com.backbase.deferredresources.test.AppCompatContext
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -37,7 +37,7 @@ internal class DeferredColorTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredColor>(DeferredColor.Constant(Color.GREEN))
+        testParcelable<ParcelableDeferredColor>(DeferredColor.Constant(Color.GREEN))
     }
     //endregion
 
@@ -89,7 +89,7 @@ internal class DeferredColorTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredColor>(
+        testParcelable<ParcelableDeferredColor>(
             DeferredColor.Resource(R.color.stateful_color_without_attr)
         )
     }
@@ -174,7 +174,7 @@ internal class DeferredColorTest {
     }
 
     @Test fun attribute_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredColor>(DeferredColor.Attribute(R.attr.colorPrimary))
+        testParcelable<ParcelableDeferredColor>(DeferredColor.Attribute(R.attr.colorPrimary))
     }
     //endregion
 }

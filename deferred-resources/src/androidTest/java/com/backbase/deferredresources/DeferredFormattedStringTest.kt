@@ -2,7 +2,7 @@ package com.backbase.deferredresources
 
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.backbase.deferredresources.text.ParcelableDeferredFormattedString
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
@@ -15,7 +15,7 @@ internal class DeferredFormattedStringTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredFormattedString>(
+        testParcelable<ParcelableDeferredFormattedString>(
             DeferredFormattedString.Constant("Parcelable %d")
         )
     }
@@ -26,7 +26,7 @@ internal class DeferredFormattedStringTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredFormattedString>(
+        testParcelable<ParcelableDeferredFormattedString>(
             DeferredFormattedString.Resource(R.string.formattedString)
         )
     }

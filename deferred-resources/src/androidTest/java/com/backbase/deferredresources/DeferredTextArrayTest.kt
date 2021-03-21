@@ -5,7 +5,7 @@ import android.text.SpannedString
 import android.text.style.StyleSpan
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.backbase.deferredresources.text.ParcelableDeferredTextArray
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
@@ -54,7 +54,7 @@ internal class DeferredTextArrayTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredTextArray>(DeferredTextArray.Constant("A", "B", "See", "D"))
+        testParcelable<ParcelableDeferredTextArray>(DeferredTextArray.Constant("A", "B", "See", "D"))
     }
 
     @Test fun resource_withTypeString_resolvesStringsWithContext() {
@@ -94,6 +94,6 @@ internal class DeferredTextArrayTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredTextArray>(DeferredTextArray.Resource(R.array.stringArray))
+        testParcelable<ParcelableDeferredTextArray>(DeferredTextArray.Resource(R.array.stringArray))
     }
 }

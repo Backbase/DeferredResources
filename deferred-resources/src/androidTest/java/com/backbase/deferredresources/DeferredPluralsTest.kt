@@ -7,7 +7,7 @@ import android.text.style.StyleSpan
 import androidx.test.filters.SdkSuppress
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.SpecificLocaleTest
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.backbase.deferredresources.text.ParcelableDeferredPlurals
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
@@ -77,7 +77,7 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
     }
 
     @Test fun constant_defaultType_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredPlurals>(
+        testParcelable<ParcelableDeferredPlurals>(
             DeferredPlurals.Constant(
                 zero = "No",
                 one = "A single",
@@ -91,7 +91,7 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
 
     @SdkSuppress(minSdkVersion = 24)
     @Test fun constant_ordinalType_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredPlurals>(
+        testParcelable<ParcelableDeferredPlurals>(
             DeferredPlurals.Constant(
                 zero = "No",
                 one = "A single",
@@ -134,6 +134,6 @@ internal class DeferredPluralsTest : SpecificLocaleTest() {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredPlurals>(DeferredPlurals.Resource(R.plurals.plainPlurals))
+        testParcelable<ParcelableDeferredPlurals>(DeferredPlurals.Resource(R.plurals.plainPlurals))
     }
 }
