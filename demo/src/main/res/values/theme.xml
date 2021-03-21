@@ -1,11 +1,13 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
   <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <item name="colorPrimary">@color/primary</item>
     <item name="colorPrimaryVariant">@color/primaryVariant</item>
+    <item name="colorPrimaryDark">?colorPrimaryVariant</item>
     <item name="colorOnPrimary">@color/onPrimary</item>
 
     <item name="colorSecondary">@color/secondary</item>
+    <item name="colorAccent">?colorSecondary</item>
     <item name="colorSecondaryVariant">@color/secondaryVariant</item>
     <item name="colorOnSecondary">@color/onSecondary</item>
 
@@ -18,9 +20,8 @@
     <item name="colorError">@color/error</item>
     <item name="colorOnError">@color/onError</item>
 
-    <!--Remap legacy AppCompat attributes to MaterialComponent attributes-->
-    <item name="colorPrimaryDark">?colorPrimaryVariant</item>
-    <item name="colorAccent">?colorSecondary</item>
+    <item name="android:navigationBarColor" tools:targetApi="21">@color/navigationBar</item>
+    <item name="android:windowLightNavigationBar" tools:targetApi="27">@bool/lightNavigationBar</item>
 
     <item name="demoIcon">@drawable/ic_fire_24</item>
   </style>

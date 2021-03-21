@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
@@ -9,16 +8,14 @@
     android:orientation="horizontal"
     android:padding="16dp">
 
-  <com.google.android.material.imageview.ShapeableImageView
+  <androidx.appcompat.widget.AppCompatImageView
       android:id="@+id/drawableView"
       android:layout_width="48dp"
       android:layout_height="48dp"
       android:layout_gravity="center_vertical"
 
-      android:background="?colorSurface"
-
-      app:contentPadding="8dp"
-      app:shapeAppearance="?shapeAppearanceSmallComponent"
+      android:background="@drawable/icon_background"
+      android:padding="8dp"
 
       tools:srcCompat="@drawable/ic_flower_24"
       tools:ignore="ContentDescription" />

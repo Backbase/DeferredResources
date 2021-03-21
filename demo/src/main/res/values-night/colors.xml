@@ -11,4 +11,7 @@
   <color name="onSurface">#ffffff</color>
 
   <color name="green">#99cc00</color>
+
+  <color name="navigationBar">@color/background</color>
+  <bool name="lightNavigationBar">false</bool>
 </resources>

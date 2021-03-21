@@ -20,4 +20,7 @@
   <color name="backbase_red">#C22327</color>
 
   <color name="green">#669900</color>
+
+  <color name="navigationBar">#000000</color>
+  <bool name="lightNavigationBar">false</bool>
 </resources>
