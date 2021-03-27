@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.annotation.ColorInt
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.deferredresources.DeferredColor
@@ -69,9 +70,9 @@ class DemoPagerAdapter : RecyclerView.Adapter<DemoPagerAdapter.DeferredResourceV
             is DeferredDrawablesView -> {
                 val context = holder.root.context
                 view.display(
-                    DeferredDrawable.Constant(RoundedSquare().apply {
-                        setTint(DeferredColor.Attribute(R.attr.colorPrimary), context)
-                    })
+                    DeferredDrawable.Constant(
+                        Circle(DeferredColor.Attribute(R.attr.colorPrimary).resolve(context))
+                    )
                 )
                 view.display(
                     DeferredDrawable.Resource(R.drawable.ic_flower_24) {
@@ -92,10 +93,14 @@ class DemoPagerAdapter : RecyclerView.Adapter<DemoPagerAdapter.DeferredResourceV
     }
 
     @Suppress("FunctionName") // Factory
-    private fun RoundedSquare(): Drawable = GradientDrawable().apply {
-        shape = GradientDrawable.RECTANGLE
-        cornerRadius = 4f
-        val size = 16
+    private fun Circle(
+        @ColorInt color: Int,
+    ): Drawable = GradientDrawable(
+        GradientDrawable.Orientation.BOTTOM_TOP,
+        intArrayOf(color, color),
+    ).apply {
+        cornerRadius = 64f
+        val size = 128
         setSize(size, size)
     }
 

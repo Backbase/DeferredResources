@@ -3,7 +3,7 @@ package com.backbase.deferredresources
 import com.backbase.deferredresources.integer.ParcelableDeferredIntegerArray
 import com.backbase.deferredresources.test.R
 import com.backbase.deferredresources.test.context
-import com.backbase.deferredresources.test.testParcelableThroughBundle
+import com.backbase.deferredresources.test.testParcelable
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -61,7 +61,7 @@ internal class DeferredIntegerArrayTest {
     }
 
     @Test fun constant_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredIntegerArray>(DeferredIntegerArray.Constant(1, 1, 2, 3, 5, 8))
+        testParcelable<ParcelableDeferredIntegerArray>(DeferredIntegerArray.Constant(1, 1, 2, 3, 5, 8))
     }
 
     @Test fun resource_resolvesIntegersWithContext() {
@@ -82,6 +82,6 @@ internal class DeferredIntegerArrayTest {
     }
 
     @Test fun resource_parcelsThroughBundle() {
-        testParcelableThroughBundle<ParcelableDeferredIntegerArray>(DeferredIntegerArray.Resource(R.array.integerArray))
+        testParcelable<ParcelableDeferredIntegerArray>(DeferredIntegerArray.Resource(R.array.integerArray))
     }
 }
