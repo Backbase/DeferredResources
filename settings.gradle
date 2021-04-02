@@ -17,7 +17,12 @@
 rootProject.name='Deferred Resources'
 
 include ':deferred-resources', ':view-extensions'
-include ':deferred-resources-compose'
 include ':demo'
 
 enableFeaturePreview('VERSION_CATALOGS')
+
+boolean includeComposeModule = Boolean.parseBoolean(composeEnabled)
+logger.lifecycle "Compose enabled: $includeComposeModule"
+if (includeComposeModule) {
+    include ':deferred-resources-compose'
+}
