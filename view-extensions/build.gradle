@@ -39,12 +39,11 @@ android {
 }
 
 dependencies {
-    api project(':deferred-resources')
+    api(project(':deferred-resources'))
 
-    implementation deps.appCompat
+    implementation(libs.androidx.appCompat)
 
-    androidTestImplementation deps.junitAndroidX
-    androidTestImplementation deps.androidTestRules
-    androidTestImplementation deps.androidTestRunner
-    androidTestImplementation deps.truth
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.bundles.androidx.test)
+    androidTestImplementation(libs.truth)
 }

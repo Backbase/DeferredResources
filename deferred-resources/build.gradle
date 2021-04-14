@@ -41,19 +41,18 @@ android {
 }
 
 dependencies {
-    implementation deps.androidAnnotations
+    implementation(libs.androidx.annotations)
 
-    implementation(deps.appCompat) {
+    implementation(libs.androidx.appCompat) {
         exclude group: 'androidx.fragment'
         exclude group: 'androidx.lifecycle'
     }
-    implementation(deps.coreKtx) {
+    implementation(libs.androidx.coreKtx) {
         exclude group: 'androidx.lifecycle'
     }
 
-    androidTestImplementation deps.junitAndroidX
-    androidTestImplementation deps.androidTestRules
-    androidTestImplementation deps.androidTestRunner
-    androidTestImplementation deps.truth
-    androidTestImplementation deps.coroutines
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.bundles.androidx.test)
+    androidTestImplementation(libs.kotlinx.coroutines)
+    androidTestImplementation(libs.truth)
 }
