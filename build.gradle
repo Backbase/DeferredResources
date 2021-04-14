@@ -1,32 +1,14 @@
 buildscript {
-    //region Dependency declarations
-    ext.versions = [
-        kotlin: '1.4.31',
-    ]
-
-    ext.deps = [
-        androidAnnotations: 'androidx.annotation:annotation:1.1.0',
-        androidTestRules: 'androidx.test:rules:1.3.0',
-        androidTestRunner: 'androidx.test:runner:1.3.0',
-        appCompat: 'androidx.appcompat:appcompat:1.2.0',
-        coreKtx: 'androidx.core:core-ktx:1.3.2',
-        coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6',
-        junit: 'junit:junit:4.13',
-        junitAndroidX: 'androidx.test.ext:junit-ktx:1.1.2',
-        truth: 'com.google.truth:truth:1.1.2',
-    ]
-    //endregion
-
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath(libs.android.gradlePlugin)
 
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.4.20'
-        classpath 'org.jetbrains.kotlinx:binary-compatibility-validator:0.5.0'
+        classpath(libs.kotlin.gradlePlugin)
+        classpath(libs.dokka.gradlePlugin)
+        classpath(libs.kotlinx.binaryCompatibilityValidator)
 
-        classpath 'dev.drewhamilton.poko:poko-gradle-plugin:0.7.2'
+        classpath(libs.poko.gradlePlugin)
 
-        classpath 'io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.15.0'
+        classpath(libs.detekt.gradlePlugin)
     }
 
     repositories {
