@@ -43,7 +43,6 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerVersion libs.versions.kotlin.get()
         kotlinCompilerExtensionVersion libs.versions.androidx.compose.get()
     }
 }
@@ -52,6 +51,7 @@ dependencies {
     api(libs.androidx.compose.runtime)
     api(project(':deferred-resources'))
 
+    implementation(libs.accompanist.imageLoading.core)
     implementation(libs.androidx.appCompat)
     implementation(libs.androidx.compose.ui)
 }
