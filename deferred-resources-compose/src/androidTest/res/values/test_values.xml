@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <bool name="testBool">true</bool>
+
+  <color name="blue">#0000ff</color>
+
+  <dimen name="testDimen">0.25dp</dimen>
+
+  <integer name="five">5</integer>
+
+  <integer-array name="integerArray">
+    <item>101</item>
+    <item>103</item>
+  </integer-array>
+
+  <plurals name="plainPlurals">
+    <item quantity="one">Car</item>
+    <item quantity="other">Cars</item>
+  </plurals>
+  <plurals name="richPlurals">
+    <item quantity="one">Limousine</item>
+    <item quantity="other"><i>Limousines</i></item>
+  </plurals>
+  <plurals name="formattedPlurals">
+    <item quantity="one">%d bear</item>
+    <item quantity="other">%d bears</item>
+  </plurals>
+
+  <string name="formattedString">This is %1$s text.</string>
+  <string name="plainString">A string</string>
+  <string name="richText"><b>Rich</b> text</string>
+
+  <string-array name="stringArray">
+    <item><b>Bold one</b></item>
+    <item>Regular one</item>
+  </string-array>
+</resources>

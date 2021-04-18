@@ -14,7 +14,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdk
+        minSdkVersion 21
         targetSdkVersion rootProject.ext.targetSdk
         versionName version
 
@@ -45,6 +45,13 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.androidx.compose.get()
     }
+
+    packagingOptions {
+        // Some of the coroutines-test files cause conflicts. Exclude them to enable our test APK to build (has no
+        //  effect on our AARs)
+        excludes += "/META-INF/AL2.0"
+        excludes += "/META-INF/LGPL2.1"
+    }
 }
 
 dependencies {
@@ -54,4 +61,8 @@ dependencies {
     implementation(libs.accompanist.imageLoading.core)
     implementation(libs.androidx.appCompat)
     implementation(libs.androidx.compose.ui)
+
+    androidTestImplementation(libs.androidx.compose.material)
+    androidTestImplementation(libs.androidx.compose.uiTest)
+    androidTestImplementation(libs.poko.annotations)
 }
