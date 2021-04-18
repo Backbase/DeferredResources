@@ -17,12 +17,13 @@ import com.google.accompanist.imageloading.AndroidDrawablePainter
 import com.google.accompanist.imageloading.toPainter
 
 /**
- * Wrap a [DeferredDrawable] into a Compose [Painter].
+ * Resolve a [deferredDrawable] into a Compose [Painter], remembering the resulting painter as long as the current
+ * [LocalContext] and [deferredDrawable] don't change.
  */
 @ExperimentalDeferredResourcesComposeSupport
-@Composable public fun rememberDeferredDrawablePainter(deferredDrawable: DeferredDrawable): Painter {
+@Composable public fun rememberResolvedPainter(deferredDrawable: DeferredDrawable): Painter {
     val context = LocalContext.current
-    val drawable = remember(deferredDrawable) {
+    val drawable = remember(context, deferredDrawable) {
         deferredDrawable.resolve(context)
     }
 
