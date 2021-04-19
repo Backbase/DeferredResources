@@ -15,7 +15,7 @@ internal class DeferredBooleanTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    @Test fun myTest() {
+    @Test fun resolve_withLocalContext_returnsExpectedValue() {
         val deferred = DeferredBoolean.Resource(R.bool.testBool)
         composeTestRule.setContent {
             MaterialTheme {
