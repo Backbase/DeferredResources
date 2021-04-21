@@ -1,26 +1,25 @@
 package com.backbase.deferredresources.compose
 
-import android.content.Context
-import androidx.annotation.Px
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import com.backbase.deferredresources.DeferredDimension
-import com.backbase.deferredresources.dimension.ParcelableDeferredDimension
-import dev.drewhamilton.poko.Poko
-import kotlinx.parcelize.Parcelize
+
+/**
+ * Instantiate a [DeferredDimension.DpConstant] with a Compose [Dp] [value].
+ */
+@ExperimentalDeferredResourcesComposeSupport
+@Suppress("FunctionName") // Factory
+public fun DeferredDimension.Companion.DpConstant(value: Dp): DeferredDimension.DpConstant =
+    DeferredDimension.DpConstant(dpValue = value.value)
 
 /**
  * Resolve the [DeferredDimension] to an exact [Dp] value using the current composition-local Context.
  */
 @ExperimentalDeferredResourcesComposeSupport
-@Composable public fun DeferredDimension.resolve(): Dp = when (this) {
-    is ComposeDeferredDimension -> value
-    else -> with(LocalDensity.current) {
-        resolveExact(LocalContext.current).toDp()
-    }
+@Composable public fun DeferredDimension.resolve(): Dp = with(LocalDensity.current) {
+    resolveExact(LocalContext.current).toDp()
 }
 
 /**
@@ -39,28 +38,4 @@ import kotlinx.parcelize.Parcelize
 @ExperimentalDeferredResourcesComposeSupport
 @Composable public fun DeferredDimension.resolveAsOffset(): Dp = with(LocalDensity.current) {
     resolveAsOffset(LocalContext.current).toDp()
-}
-
-@Parcelize
-@Poko public class ComposeDeferredDimension(
-    internal val value: Dp,
-) : ParcelableDeferredDimension {
-
-    @Px override fun resolveExact(context: Context): Float = with(Density(context)) {
-        value.toPx()
-    }
-
-    @Px override fun resolveAsSize(context: Context): Int = with(Density(context)) {
-        val roundedPxValue = value.roundToPx()
-        when {
-            roundedPxValue != 0 -> roundedPxValue
-            value.value == 0f -> 0
-            value.value > 0f -> 1
-            else -> -1
-        }
-    }
-
-    @Px override fun resolveAsOffset(context: Context): Int = with(Density(context)) {
-        value.toPx().toInt()
-    }
 }

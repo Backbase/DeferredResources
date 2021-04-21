@@ -60,6 +60,7 @@ public class com/backbase/deferredresources/DeferredBoolean$Resource$Creator : a
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredColor {
+	public static final field Companion Lcom/backbase/deferredresources/DeferredColor$Companion;
 	public abstract fun resolve (Landroid/content/Context;)I
 	public abstract fun resolveToStateList (Landroid/content/Context;)Landroid/content/res/ColorStateList;
 }
@@ -82,6 +83,9 @@ public class com/backbase/deferredresources/DeferredColor$Attribute$Creator : an
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
 	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredColor$Attribute;
 	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredColor$Companion {
 }
 
 public final class com/backbase/deferredresources/DeferredColor$Constant : com/backbase/deferredresources/color/ParcelableDeferredColor {
@@ -126,6 +130,7 @@ public class com/backbase/deferredresources/DeferredColor$Resource$Creator : and
 }
 
 public abstract interface class com/backbase/deferredresources/DeferredDimension {
+	public static final field Companion Lcom/backbase/deferredresources/DeferredDimension$Companion;
 	public abstract fun resolveAsOffset (Landroid/content/Context;)I
 	public abstract fun resolveAsSize (Landroid/content/Context;)I
 	public abstract fun resolveExact (Landroid/content/Context;)F
@@ -150,6 +155,9 @@ public class com/backbase/deferredresources/DeferredDimension$Attribute$Creator 
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
 	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredDimension$Attribute;
 	public synthetic fun newArray (I)[Ljava/lang/Object;
+}
+
+public final class com/backbase/deferredresources/DeferredDimension$Companion {
 }
 
 public final class com/backbase/deferredresources/DeferredDimension$Constant : com/backbase/deferredresources/dimension/ParcelableDeferredDimension {
