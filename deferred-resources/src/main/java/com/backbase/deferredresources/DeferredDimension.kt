@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.DimenRes
+import androidx.annotation.Dimension
 import androidx.annotation.Px
 import com.backbase.deferredresources.dimension.ParcelableDeferredDimension
 import com.backbase.deferredresources.internal.resolveAttribute
@@ -34,11 +35,11 @@ public interface DeferredDimension {
     @Px public fun resolveExact(context: Context): Float
 
     /**
-     * A wrapper for a constant integer [pxValue].
+     * A wrapper for a constant [pxValue].
      */
     @Parcelize
     @Poko public class Constant(
-        @Px private val pxValue: Float
+        @Px internal val pxValue: Float
     ) : ParcelableDeferredDimension {
 
         /**
@@ -61,6 +62,67 @@ public interface DeferredDimension {
          * Returns [pxValue]. [context] is ignored.
          */
         @Px override fun resolveExact(context: Context): Float = pxValue
+    }
+
+    /**
+     * A wrapper for a constant integer [dpValue]. The given DP value can be resolved to different [Px] values depending
+     * on the Context.
+     */
+    @Parcelize
+    @Poko public class DpConstant(
+        @Dimension(unit = Dimension.DP) private val dpValue: Float
+    ) : ParcelableDeferredDimension {
+
+        /**
+         * Convenience for initializing with an integer [dpValue].
+         */
+        public constructor(@Dimension(unit = Dimension.DP) dpValue: Int) : this(dpValue.toFloat())
+
+        /**
+         * Converts the constant DP value to PX and rounds the resulting PX value to an integer. If the PX value is
+         * non-zero but rounds to zero, returns 1 pixel.
+         */
+        @Px override fun resolveAsSize(context: Context): Int =
+            getPxConstant(context).resolveAsSize(context)
+
+        /**
+         * Truncates [dpValue] to an integer pixel value. [context] is ignored.
+         */
+        @Px override fun resolveAsOffset(context: Context): Int =
+            getPxConstant(context).resolveAsOffset(context)
+
+        /**
+         * Returns [dpValue]. [context] is ignored.
+         */
+        @Px override fun resolveExact(context: Context): Float = getPxConstant(context).resolveExact(context)
+
+        /**
+         * The instance of [Constant] that resolve calls are forwarded to after DP is converted to PX. Reused when
+         * possible to avoid creating new objects too often.
+         */
+        @IgnoredOnParcel private var reusedPxConstant: Constant? = null
+
+        /**
+         * Ensures new instances of [Constant] are only created if the calculated pixel value changes. Otherwise,
+         * returns the same instance of [Constant].
+         */
+        private fun getPxConstant(context: Context): Constant {
+            @Px val calculatedPxValue = calculatePx(context)
+
+            val localPxConstant = reusedPxConstant
+            return if (calculatedPxValue == localPxConstant?.pxValue) {
+                localPxConstant
+            } else {
+                Constant(calculatedPxValue).also {
+                    reusedPxConstant = it
+                }
+            }
+        }
+
+        /**
+         * Convert [dpValue] to a [Px] value.
+         */
+        @Px private fun calculatePx(context: Context): Float = dpValue * context.resources.displayMetrics.density
     }
 
     /**
