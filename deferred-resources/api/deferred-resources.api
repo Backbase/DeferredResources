@@ -155,7 +155,9 @@ public class com/backbase/deferredresources/DeferredDimension$Attribute$Creator 
 public final class com/backbase/deferredresources/DeferredDimension$Constant : com/backbase/deferredresources/dimension/ParcelableDeferredDimension {
 	public static final field CREATOR Landroid/os/Parcelable$Creator;
 	public fun <init> (F)V
+	public fun <init> (FLcom/backbase/deferredresources/DeferredDimension$Constant$Unit;)V
 	public fun <init> (I)V
+	public fun <init> (ILcom/backbase/deferredresources/DeferredDimension$Constant$Unit;)V
 	public fun describeContents ()I
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
@@ -174,26 +176,12 @@ public class com/backbase/deferredresources/DeferredDimension$Constant$Creator :
 	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
-public final class com/backbase/deferredresources/DeferredDimension$DpConstant : com/backbase/deferredresources/dimension/ParcelableDeferredDimension {
-	public static final field CREATOR Landroid/os/Parcelable$Creator;
-	public fun <init> (F)V
-	public fun <init> (I)V
-	public fun describeContents ()I
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun resolveAsOffset (Landroid/content/Context;)I
-	public fun resolveAsSize (Landroid/content/Context;)I
-	public fun resolveExact (Landroid/content/Context;)F
-	public fun toString ()Ljava/lang/String;
-	public fun writeToParcel (Landroid/os/Parcel;I)V
-}
-
-public class com/backbase/deferredresources/DeferredDimension$DpConstant$Creator : android/os/Parcelable$Creator {
-	public fun <init> ()V
-	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredDimension$DpConstant;
-	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
-	public final fun newArray (I)[Lcom/backbase/deferredresources/DeferredDimension$DpConstant;
-	public synthetic fun newArray (I)[Ljava/lang/Object;
+public final class com/backbase/deferredresources/DeferredDimension$Constant$Unit : java/lang/Enum {
+	public static final field DP Lcom/backbase/deferredresources/DeferredDimension$Constant$Unit;
+	public static final field PX Lcom/backbase/deferredresources/DeferredDimension$Constant$Unit;
+	public static final field SP Lcom/backbase/deferredresources/DeferredDimension$Constant$Unit;
+	public static fun valueOf (Ljava/lang/String;)Lcom/backbase/deferredresources/DeferredDimension$Constant$Unit;
+	public static fun values ()[Lcom/backbase/deferredresources/DeferredDimension$Constant$Unit;
 }
 
 public final class com/backbase/deferredresources/DeferredDimension$Resource : com/backbase/deferredresources/dimension/ParcelableDeferredDimension {

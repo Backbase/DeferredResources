@@ -14,6 +14,8 @@ import org.junit.Test
 internal class DeferredDimensionTest {
 
     //region Constant
+
+    //region PX
     @Test fun constantResolveAsSize_normalPxValue_returnsRoundedValue() {
         val deferred = DeferredDimension.Constant(9.6f)
         assertThat(deferred.resolveAsSize(context)).isEqualTo(10)
@@ -74,83 +76,163 @@ internal class DeferredDimensionTest {
         assertThat(deferred.resolveExact(context)).isEqualTo(-0.49f)
     }
 
-    @Test fun constant_parcelsThroughBundle() {
+    @Test fun constant_parcels() {
         testParcelable<ParcelableDeferredDimension>(DeferredDimension.Constant(5.5f))
     }
     //endregion
 
-    //region DpConstant
+    //region DP
     private val density: Float
         get() = context.resources.displayMetrics.density
 
-    @Test fun dpConstantResolveAsSize_normalDpValue_returnsRoundedValue() {
+    @Test fun constantResolveAsSize_normalDpValue_returnsRoundedValue() {
         val dpValue = 9.6f
-        val deferred = DeferredDimension.DpConstant(dpValue)
-        assertThat(deferred.resolveAsSize(context)).isEqualTo((dpValue * density).toSize())
+        val deferred = DeferredDimension.Constant(dpValue, DeferredDimension.Constant.Unit.DP)
+        assertThat(deferred.resolveAsSize(context)).isEqualTo((dpValue * scaledDensity).toSize())
     }
 
-    @Test fun dpConstantResolveAsSize_lowDpValue_returnsOne() {
-        val deferred = DeferredDimension.DpConstant(0.01f)
+    @Test fun constantResolveAsSize_lowDpValue_returnsOne() {
+        val deferred = DeferredDimension.Constant(0.01f, DeferredDimension.Constant.Unit.DP)
         assertThat(deferred.resolveAsSize(context)).isEqualTo(1)
     }
 
-    @Test fun dpConstantResolveAsSize_zeroDpValue_returnsZero() {
-        val deferred = DeferredDimension.DpConstant(0)
+    @Test fun constantResolveAsSize_zeroDpValue_returnsZero() {
+        val deferred = DeferredDimension.Constant(0, DeferredDimension.Constant.Unit.DP)
         assertThat(deferred.resolveAsSize(context)).isEqualTo(0)
     }
 
-    @Test fun dpConstantResolveAsSize_lowNegativeDpValue_returnsNegativeOne() {
-        val deferred = DeferredDimension.DpConstant(-0.01f)
+    @Test fun constantResolveAsSize_lowNegativeDpValue_returnsNegativeOne() {
+        val deferred = DeferredDimension.Constant(-0.01f, DeferredDimension.Constant.Unit.DP)
         assertThat(deferred.resolveAsSize(context)).isEqualTo(-1)
     }
 
-    @Test fun dpConstantResolveAsOffset_normalDpValue_returnsTruncatedValue() {
+    @Test fun constantResolveAsOffset_normalDpValue_returnsTruncatedValue() {
         val dpValue = 9.6f
-        val deferred = DeferredDimension.DpConstant(dpValue)
-        assertThat(deferred.resolveAsOffset(context)).isEqualTo((dpValue * density).toInt())
+        val deferred = DeferredDimension.Constant(dpValue, DeferredDimension.Constant.Unit.DP)
+        assertThat(deferred.resolveAsOffset(context)).isEqualTo((dpValue * scaledDensity).toInt())
     }
 
-    @Test fun dpConstantResolveAsOffset_lowDpValue_returnsZero() {
-        val deferred = DeferredDimension.DpConstant(0.03f)
+    @Test fun constantResolveAsOffset_lowDpValue_returnsZero() {
+        val deferred = DeferredDimension.Constant(0.03f, DeferredDimension.Constant.Unit.DP)
         assertThat(deferred.resolveAsOffset(context)).isEqualTo(0)
     }
 
-    @Test fun dpConstantResolveAsOffset_zeroDpValue_returnsZero() {
-        val deferred = DeferredDimension.DpConstant(0)
+    @Test fun constantResolveAsOffset_zeroDpValue_returnsZero() {
+        val deferred = DeferredDimension.Constant(0, DeferredDimension.Constant.Unit.DP)
         assertThat(deferred.resolveAsOffset(context)).isEqualTo(0)
     }
 
-    @Test fun dpConstantResolveAsOffset_lowNegativeDpValue_returnsZero() {
-        val deferred = DeferredDimension.DpConstant(-0.049f)
+    @Test fun constantResolveAsOffset_lowNegativeDpValue_returnsZero() {
+        val deferred = DeferredDimension.Constant(-0.049f, DeferredDimension.Constant.Unit.DP)
         assertThat(deferred.resolveAsOffset(context)).isEqualTo(0)
     }
 
-    @Test fun dpConstantResolveExact_normalDpValue_returnsExactValue() {
+    @Test fun constantResolveExact_normalDpValue_returnsExactValue() {
         val dpValue = 9.6f
-        val deferred = DeferredDimension.DpConstant(dpValue)
-        assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * density)
+        val deferred = DeferredDimension.Constant(dpValue, DeferredDimension.Constant.Unit.DP)
+        assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * scaledDensity)
     }
 
-    @Test fun dpConstantResolveExact_lowDpValue_returnsExactValue() {
+    @Test fun constantResolveExact_lowDpValue_returnsExactValue() {
         val dpValue = 0.03f
-        val deferred = DeferredDimension.DpConstant(dpValue)
-        assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * density)
+        val deferred = DeferredDimension.Constant(dpValue, DeferredDimension.Constant.Unit.DP)
+        assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * scaledDensity)
     }
 
-    @Test fun dpConstantResolveExact_zeroDpValue_returnsExactValue() {
-        val deferred = DeferredDimension.DpConstant(0)
+    @Test fun constantResolveExact_zeroDpValue_returnsExactValue() {
+        val deferred = DeferredDimension.Constant(0, DeferredDimension.Constant.Unit.DP)
         assertThat(deferred.resolveExact(context)).isEqualTo(0f)
     }
 
-    @Test fun dpConstantResolveExact_lowNegativeDpValue_returnsExactValue() {
+    @Test fun constantResolveExact_lowNegativeDpValue_returnsExactValue() {
         val dpValue = -0.049f
-        val deferred = DeferredDimension.DpConstant(dpValue)
-        assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * density)
+        val deferred = DeferredDimension.Constant(dpValue, DeferredDimension.Constant.Unit.DP)
+        assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * scaledDensity)
     }
 
-    @Test fun dpConstant_parcels() {
-        testParcelable<ParcelableDeferredDimension>(DeferredDimension.DpConstant(7.7f))
+    @Test fun constant_dp_parcels() {
+        testParcelable<ParcelableDeferredDimension>(
+            DeferredDimension.Constant(7.7f, DeferredDimension.Constant.Unit.DP)
+        )
     }
+    //endregion
+
+    //region SP
+    private val scaledDensity: Float
+        get() = context.resources.displayMetrics.scaledDensity
+
+    @Test fun constantResolveAsSize_normalSpValue_returnsRoundedValue() {
+        val dpValue = 9.6f
+        val deferred = DeferredDimension.Constant(dpValue, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveAsSize(context)).isEqualTo((dpValue * scaledDensity).toSize())
+    }
+
+    @Test fun constantResolveAsSize_lowSpValue_returnsOne() {
+        val deferred = DeferredDimension.Constant(0.01f, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveAsSize(context)).isEqualTo(1)
+    }
+
+    @Test fun constantResolveAsSize_zeroSpValue_returnsZero() {
+        val deferred = DeferredDimension.Constant(0, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveAsSize(context)).isEqualTo(0)
+    }
+
+    @Test fun constantResolveAsSize_lowNegativeSpValue_returnsNegativeOne() {
+        val deferred = DeferredDimension.Constant(-0.01f, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveAsSize(context)).isEqualTo(-1)
+    }
+
+    @Test fun constantResolveAsOffset_normalSpValue_returnsTruncatedValue() {
+        val dpValue = 9.6f
+        val deferred = DeferredDimension.Constant(dpValue, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveAsOffset(context)).isEqualTo((dpValue * scaledDensity).toInt())
+    }
+
+    @Test fun constantResolveAsOffset_lowSpValue_returnsZero() {
+        val deferred = DeferredDimension.Constant(0.03f, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveAsOffset(context)).isEqualTo(0)
+    }
+
+    @Test fun constantResolveAsOffset_zeroSpValue_returnsZero() {
+        val deferred = DeferredDimension.Constant(0, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveAsOffset(context)).isEqualTo(0)
+    }
+
+    @Test fun constantResolveAsOffset_lowNegativeSpValue_returnsZero() {
+        val deferred = DeferredDimension.Constant(-0.049f, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveAsOffset(context)).isEqualTo(0)
+    }
+
+    @Test fun constantResolveExact_normalSpValue_returnsExactValue() {
+        val dpValue = 9.6f
+        val deferred = DeferredDimension.Constant(dpValue, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * scaledDensity)
+    }
+
+    @Test fun constantResolveExact_lowSpValue_returnsExactValue() {
+        val dpValue = 0.03f
+        val deferred = DeferredDimension.Constant(dpValue, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * scaledDensity)
+    }
+
+    @Test fun constantResolveExact_zeroSpValue_returnsExactValue() {
+        val deferred = DeferredDimension.Constant(0, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveExact(context)).isEqualTo(0f)
+    }
+
+    @Test fun constantResolveExact_lowNegativeSpValue_returnsExactValue() {
+        val dpValue = -0.049f
+        val deferred = DeferredDimension.Constant(dpValue, DeferredDimension.Constant.Unit.SP)
+        assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * scaledDensity)
+    }
+
+    @Test fun constant_sp_parcels() {
+        testParcelable<ParcelableDeferredDimension>(
+            DeferredDimension.Constant(9.9f, DeferredDimension.Constant.Unit.SP)
+        )
+    }
+    //endregion
+
     //endregion
 
     //region Resource
