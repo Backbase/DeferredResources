@@ -12,7 +12,7 @@ import com.backbase.deferredresources.DeferredTypeface
  *
  * If the given [deferredTypeface] resolves to a null typeface, returns null.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun rememberResolvedFontFamily(deferredTypeface: DeferredTypeface): FontFamily? {
     val context = LocalContext.current
     val typeface = remember(context, deferredTypeface) {

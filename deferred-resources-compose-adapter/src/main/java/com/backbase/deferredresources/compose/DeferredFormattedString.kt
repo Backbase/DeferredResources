@@ -7,6 +7,6 @@ import com.backbase.deferredresources.DeferredFormattedString
 /**
  * Resolve the [DeferredFormattedString] using the current composition-local Context.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredFormattedString.resolve(vararg formatArgs: Any): String =
     resolve(LocalContext.current, *formatArgs)

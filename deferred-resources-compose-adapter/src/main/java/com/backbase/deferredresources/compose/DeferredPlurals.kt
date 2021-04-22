@@ -8,7 +8,7 @@ import com.backbase.deferredresources.DeferredPlurals
 /**
  * Resolve the [DeferredPlurals] using the current composition-local Context.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredPlurals.resolve(quantity: Int): AnnotatedString =
     when (val text = resolve(LocalContext.current, quantity)) {
         is AnnotatedString -> text

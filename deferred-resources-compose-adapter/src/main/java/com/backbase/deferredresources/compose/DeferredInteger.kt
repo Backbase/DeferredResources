@@ -7,5 +7,5 @@ import com.backbase.deferredresources.DeferredInteger
 /**
  * Resolve the [DeferredInteger] using the current composition-local Context.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredInteger.resolve(): Int = resolve(LocalContext.current)

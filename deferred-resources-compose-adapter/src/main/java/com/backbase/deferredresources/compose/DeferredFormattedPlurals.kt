@@ -8,7 +8,7 @@ import com.backbase.deferredresources.DeferredFormattedPlurals
  * Resolve the [DeferredFormattedPlurals] using the current composition-local Context, the given [quantity], and the
  * same quantity as the only format arg.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredFormattedPlurals.resolve(
     quantity: Int
 ): String = resolve(LocalContext.current, quantity, quantity)
@@ -17,7 +17,7 @@ import com.backbase.deferredresources.DeferredFormattedPlurals
  * Resolve the [DeferredFormattedPlurals] using the current composition-local Context, the given [quantity], and the
  * given [formatArgs].
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredFormattedPlurals.resolve(
     quantity: Int,
     vararg formatArgs: Any,

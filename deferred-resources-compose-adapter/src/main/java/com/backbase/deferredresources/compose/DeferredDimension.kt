@@ -9,7 +9,7 @@ import com.backbase.deferredresources.DeferredDimension
 /**
  * Instantiate a [DeferredDimension.DpConstant] with a Compose [Dp] [value].
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Suppress("FunctionName") // Factory
 public fun DeferredDimension.Companion.DpConstant(value: Dp): DeferredDimension.DpConstant =
     DeferredDimension.DpConstant(dpValue = value.value)
@@ -17,7 +17,7 @@ public fun DeferredDimension.Companion.DpConstant(value: Dp): DeferredDimension.
 /**
  * Resolve the [DeferredDimension] to an exact [Dp] value using the current composition-local Context.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredDimension.resolve(): Dp = with(LocalDensity.current) {
     resolveExact(LocalContext.current).toDp()
 }
@@ -26,7 +26,7 @@ public fun DeferredDimension.Companion.DpConstant(value: Dp): DeferredDimension.
  * Resolve the [DeferredDimension] to an integer [Dp] value for use as a size, using the current composition-local
  * Context. The exact value is rounded, and non-zero exact values are ensured to be at least one pixel in size.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredDimension.resolveAsSize(): Dp = with(LocalDensity.current) {
     resolveAsSize(LocalContext.current).toDp()
 }
@@ -35,7 +35,7 @@ public fun DeferredDimension.Companion.DpConstant(value: Dp): DeferredDimension.
  * Resolve the [DeferredDimension] to an integer [Dp] value using the current composition-local Context. The exact value
  * is truncated to an integer.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredDimension.resolveAsOffset(): Dp = with(LocalDensity.current) {
     resolveAsOffset(LocalContext.current).toDp()
 }

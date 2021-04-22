@@ -9,7 +9,7 @@ import com.backbase.deferredresources.DeferredColor
 /**
  * Instantiate a [DeferredColor.Constant] with a Compose [Color] [value].
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Suppress("FunctionName") // Factory
 public fun DeferredColor.Companion.Constant(value: Color): DeferredColor.Constant =
     DeferredColor.Constant(value = value.toArgb())
@@ -17,5 +17,5 @@ public fun DeferredColor.Companion.Constant(value: Color): DeferredColor.Constan
 /**
  * Resolve the [DeferredColor] to a [Color] using the current composition-local Context.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredColor.resolve(): Color = Color(resolve(LocalContext.current))

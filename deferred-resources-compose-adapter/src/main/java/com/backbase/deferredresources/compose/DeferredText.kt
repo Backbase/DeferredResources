@@ -9,7 +9,7 @@ import com.backbase.deferredresources.text.resolveToString
 /**
  * Resolve the [DeferredText] using the current composition-local Context.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredText.resolve(): AnnotatedString = when (val text = resolve(LocalContext.current)) {
     is AnnotatedString -> text
     // TODO: SpannedString
@@ -19,5 +19,5 @@ import com.backbase.deferredresources.text.resolveToString
 /**
  * Resolve the [DeferredText] to a String using the current composition-local Context.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredText.resolveToString(): String = resolveToString(LocalContext.current)

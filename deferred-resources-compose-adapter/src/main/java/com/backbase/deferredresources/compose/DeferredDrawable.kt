@@ -15,7 +15,7 @@ import com.google.accompanist.imageloading.rememberDrawablePainter
  *
  * Known issue: Currently the Painter does not retain the color or tint from the original drawable.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun rememberResolvedPainter(deferredDrawable: DeferredDrawable): Painter {
     val context = LocalContext.current
     val drawable = remember(context, deferredDrawable) {

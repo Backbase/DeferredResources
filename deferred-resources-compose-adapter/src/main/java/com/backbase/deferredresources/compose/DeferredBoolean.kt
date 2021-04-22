@@ -7,5 +7,5 @@ import com.backbase.deferredresources.DeferredBoolean
 /**
  * Resolve the [DeferredBoolean] using the current composition-local Context.
  */
-@ExperimentalDeferredResourcesComposeSupport
+@ExperimentalComposeAdapter
 @Composable public fun DeferredBoolean.resolve(): Boolean = resolve(LocalContext.current)

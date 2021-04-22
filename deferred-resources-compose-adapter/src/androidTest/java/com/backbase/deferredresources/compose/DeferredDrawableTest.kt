@@ -16,7 +16,7 @@ import com.backbase.deferredresources.compose.test.assertGenericValueEquals
 import org.junit.Rule
 import org.junit.Test
 
-@OptIn(ExperimentalDeferredResourcesComposeSupport::class)
+@OptIn(ExperimentalComposeAdapter::class)
 internal class DeferredDrawableTest {
 
     @get:Rule
