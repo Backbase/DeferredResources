@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: main
+    branches: [main]
   pull_request:
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
       - name: Build
-        run: ./gradlew clean build --stacktrace
+        run: ./gradlew clean build -PcomposeEnabled=true --stacktrace
       - name: Report Detekt results
         uses: github/codeql-action/upload-sarif@v1
         with:
@@ -30,7 +30,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2.14.3
         with:
           api-level: ${{ matrix.api-level }}
-          script: ./gradlew connectedCheck --stacktrace
+          script: ./gradlew connectedCheck -PcomposeEnabled=true --stacktrace
       - name: Publish test results
         uses: mikepenz/action-junit-report@v1.2.1
         if: success() || failure()
