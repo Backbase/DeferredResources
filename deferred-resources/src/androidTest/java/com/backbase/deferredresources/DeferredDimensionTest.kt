@@ -83,72 +83,72 @@ internal class DeferredDimensionTest {
     private val density: Float
         get() = context.resources.displayMetrics.density
 
-    @Test fun dpConstantResolveAsSize_normalPxValue_returnsRoundedValue() {
+    @Test fun dpConstantResolveAsSize_normalDpValue_returnsRoundedValue() {
         val dpValue = 9.6f
         val deferred = DeferredDimension.DpConstant(dpValue)
         assertThat(deferred.resolveAsSize(context)).isEqualTo((dpValue * density).toSize())
     }
 
-    @Test fun dpConstantResolveAsSize_lowPxValue_returnsOne() {
+    @Test fun dpConstantResolveAsSize_lowDpValue_returnsOne() {
         val deferred = DeferredDimension.DpConstant(0.01f)
         assertThat(deferred.resolveAsSize(context)).isEqualTo(1)
     }
 
-    @Test fun dpConstantResolveAsSize_zeroPxValue_returnsZero() {
+    @Test fun dpConstantResolveAsSize_zeroDpValue_returnsZero() {
         val deferred = DeferredDimension.DpConstant(0)
         assertThat(deferred.resolveAsSize(context)).isEqualTo(0)
     }
 
-    @Test fun dpConstantResolveAsSize_lowNegativePxValue_returnsNegativeOne() {
+    @Test fun dpConstantResolveAsSize_lowNegativeDpValue_returnsNegativeOne() {
         val deferred = DeferredDimension.DpConstant(-0.01f)
         assertThat(deferred.resolveAsSize(context)).isEqualTo(-1)
     }
 
-    @Test fun dpConstantResolveAsOffset_normalPxValue_returnsTruncatedValue() {
+    @Test fun dpConstantResolveAsOffset_normalDpValue_returnsTruncatedValue() {
         val dpValue = 9.6f
         val deferred = DeferredDimension.DpConstant(dpValue)
         assertThat(deferred.resolveAsOffset(context)).isEqualTo((dpValue * density).toInt())
     }
 
-    @Test fun dpConstantResolveAsOffset_lowPxValue_returnsZero() {
+    @Test fun dpConstantResolveAsOffset_lowDpValue_returnsZero() {
         val deferred = DeferredDimension.DpConstant(0.03f)
         assertThat(deferred.resolveAsOffset(context)).isEqualTo(0)
     }
 
-    @Test fun dpConstantResolveAsOffset_zeroPxValue_returnsZero() {
+    @Test fun dpConstantResolveAsOffset_zeroDpValue_returnsZero() {
         val deferred = DeferredDimension.DpConstant(0)
         assertThat(deferred.resolveAsOffset(context)).isEqualTo(0)
     }
 
-    @Test fun dpConstantResolveAsOffset_lowNegativePxValue_returnsZero() {
+    @Test fun dpConstantResolveAsOffset_lowNegativeDpValue_returnsZero() {
         val deferred = DeferredDimension.DpConstant(-0.049f)
         assertThat(deferred.resolveAsOffset(context)).isEqualTo(0)
     }
 
-    @Test fun dpConstantResolveExact_normalPxValue_returnsExactValue() {
+    @Test fun dpConstantResolveExact_normalDpValue_returnsExactValue() {
         val dpValue = 9.6f
         val deferred = DeferredDimension.DpConstant(dpValue)
         assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * density)
     }
 
-    @Test fun dpConstantResolveExact_lowPxValue_returnsExactValue() {
+    @Test fun dpConstantResolveExact_lowDpValue_returnsExactValue() {
         val dpValue = 0.03f
         val deferred = DeferredDimension.DpConstant(dpValue)
         assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * density)
     }
 
-    @Test fun dpConstantResolveExact_zeroPxValue_returnsExactValue() {
+    @Test fun dpConstantResolveExact_zeroDpValue_returnsExactValue() {
         val deferred = DeferredDimension.DpConstant(0)
         assertThat(deferred.resolveExact(context)).isEqualTo(0f)
     }
 
-    @Test fun dpConstantResolveExact_lowNegativePxValue_returnsExactValue() {
+    @Test fun dpConstantResolveExact_lowNegativeDpValue_returnsExactValue() {
         val dpValue = -0.049f
         val deferred = DeferredDimension.DpConstant(dpValue)
         assertThat(deferred.resolveExact(context)).isEqualTo(dpValue * density)
     }
 
-    @Test fun dpConstant_parcelsThroughBundle() {
+    @Test fun dpConstant_parcels() {
         testParcelable<ParcelableDeferredDimension>(DeferredDimension.DpConstant(7.7f))
     }
     //endregion
