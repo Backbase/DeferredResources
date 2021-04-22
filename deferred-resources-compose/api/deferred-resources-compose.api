@@ -3,10 +3,12 @@ public final class com/backbase/deferredresources/compose/DeferredBooleanKt {
 }
 
 public final class com/backbase/deferredresources/compose/DeferredColorKt {
+	public static final fun Constant-4WTKRHQ (Lcom/backbase/deferredresources/DeferredColor$Companion;J)Lcom/backbase/deferredresources/DeferredColor$Constant;
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredColor;Landroidx/compose/runtime/Composer;I)J
 }
 
 public final class com/backbase/deferredresources/compose/DeferredDimensionKt {
+	public static final fun DpConstant-3ABfNKs (Lcom/backbase/deferredresources/DeferredDimension$Companion;F)Lcom/backbase/deferredresources/DeferredDimension$DpConstant;
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
 	public static final fun resolveAsOffset (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
 	public static final fun resolveAsSize (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
@@ -17,7 +19,8 @@ public final class com/backbase/deferredresources/compose/DeferredDrawableKt {
 }
 
 public final class com/backbase/deferredresources/compose/DeferredFormattedPluralsKt {
-	public static final fun resolve (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;Landroidx/compose/runtime/Composer;II)Ljava/lang/String;
+	public static final fun resolve (Lcom/backbase/deferredresources/DeferredFormattedPlurals;ILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public static final fun resolve (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
 public final class com/backbase/deferredresources/compose/DeferredFormattedStringKt {
@@ -29,7 +32,7 @@ public final class com/backbase/deferredresources/compose/DeferredIntegerKt {
 }
 
 public final class com/backbase/deferredresources/compose/DeferredPluralsKt {
-	public static final fun resolve (Lcom/backbase/deferredresources/DeferredPlurals;ILandroidx/compose/runtime/Composer;I)Ljava/lang/CharSequence;
+	public static final fun resolve (Lcom/backbase/deferredresources/DeferredPlurals;ILandroidx/compose/runtime/Composer;I)Landroidx/compose/ui/text/AnnotatedString;
 }
 
 public final class com/backbase/deferredresources/compose/DeferredTextKt {
