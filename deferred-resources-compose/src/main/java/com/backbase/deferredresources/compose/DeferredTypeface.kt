@@ -10,16 +10,16 @@ import com.backbase.deferredresources.DeferredTypeface
  * Resolve a [deferredTypeface] to a Compose [FontFamily], remembering the resulting font family instance as long as the
  * current [LocalContext] and [deferredTypeface] don't change.
  *
- * If the given [deferredTypeface] resolves to a null typeface, returns [FontFamily.Default].
+ * If the given [deferredTypeface] resolves to a null typeface, returns null.
  */
 @ExperimentalDeferredResourcesComposeSupport
-@Composable public fun rememberResolvedFontFamily(deferredTypeface: DeferredTypeface): FontFamily {
+@Composable public fun rememberResolvedFontFamily(deferredTypeface: DeferredTypeface): FontFamily? {
     val context = LocalContext.current
     val typeface = remember(context, deferredTypeface) {
         deferredTypeface.resolve(context)
     }
 
     return remember(typeface) {
-        if (typeface == null) FontFamily.Default else FontFamily(typeface)
+        if (typeface == null) null else FontFamily(typeface)
     }
 }

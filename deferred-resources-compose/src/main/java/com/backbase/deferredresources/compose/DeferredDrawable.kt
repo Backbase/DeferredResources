@@ -12,6 +12,8 @@ import com.google.accompanist.imageloading.rememberDrawablePainter
 /**
  * Resolve a [deferredDrawable] into a Compose [Painter], remembering the resulting painter as long as the current
  * [LocalContext] and [deferredDrawable] don't change.
+ *
+ * Known issue: Currently the Painter does not retain the color or tint from the original drawable.
  */
 @ExperimentalDeferredResourcesComposeSupport
 @Composable public fun rememberResolvedPainter(deferredDrawable: DeferredDrawable): Painter {
