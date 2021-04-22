@@ -4,7 +4,7 @@ apply plugin: 'org.jetbrains.kotlin.plugin.parcelize'
 apply plugin: 'dev.drewhamilton.poko'
 
 ext {
-    artifactName = 'deferred-resources-compose'
+    artifactName = 'deferred-resources-compose-adapter'
     publishedDescription = 'Deferred Resources designed for use with Jetpack Compose.'
 }
 //apply from: '../publish.gradle'
