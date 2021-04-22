@@ -5,9 +5,12 @@ apply plugin: 'dev.drewhamilton.poko'
 
 ext {
     artifactName = 'deferred-resources-compose-adapter'
-    publishedDescription = 'Deferred Resources designed for use with Jetpack Compose.'
+    publishedDescription = "Adapters to resolve Deferred Resources types for use with Jetpack Compose UI."
 }
-//apply from: '../publish.gradle'
+
+if (rootProject.ext.libraryVersion.endsWith("SNAPSHOT")) {
+    apply from: "../publish.gradle"
+}
 
 android {
     compileSdkVersion rootProject.ext.targetSdk
