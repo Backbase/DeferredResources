@@ -4,7 +4,9 @@ import android.content.Context
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.DimenRes
+import androidx.annotation.Dimension
 import androidx.annotation.Px
+import com.backbase.deferredresources.DeferredDimension.Constant.Unit
 import com.backbase.deferredresources.dimension.ParcelableDeferredDimension
 import com.backbase.deferredresources.internal.resolveAttribute
 import com.backbase.deferredresources.internal.toSize
@@ -34,33 +36,67 @@ public interface DeferredDimension {
     @Px public fun resolveExact(context: Context): Float
 
     /**
-     * A wrapper for a constant integer [pxValue].
+     * A wrapper for a constant dimension [value]. If the given [unit] is [Unit.DP] or [Unit.SP], the resolved pixel
+     * value will depend on the [Context] used to resolve it.
      */
     @Parcelize
     @Poko public class Constant(
-        @Px private val pxValue: Float
+        @Dimension private val value: Float,
+        private val unit: Unit,
     ) : ParcelableDeferredDimension {
 
         /**
-         * Convenience for initializing with an integer [pxValue].
+         * Convenience for initializing with an integer [value] of the given [unit].
+         */
+        public constructor(@Dimension value: Int, unit: Unit) : this(value.toFloat(), unit)
+
+        /**
+         * Convenience for initializing with a [pxValue] of [Unit.PX].
+         */
+        public constructor(@Px pxValue: Float) : this(pxValue, Unit.PX)
+
+        /**
+         * Convenience for initializing with an integer [pxValue] of [Unit.PX].
          */
         public constructor(@Px pxValue: Int) : this(pxValue.toFloat())
 
         /**
-         * Rounds [pxValue] to an integer. If [pxValue] is non-zero but rounds to zero, returns 1 pixel. [context] is
-         * ignored.
+         * Rounds the resolved pixel value to an integer. If the pixel value is non-zero but rounds to zero, returns 1
+         * pixel. [context] is used to convert the original DP or SP value to pixels.
          */
-        @Px override fun resolveAsSize(context: Context): Int = pxValue.toSize()
+        @Px override fun resolveAsSize(context: Context): Int = pxValue(context).toSize()
 
         /**
-         * Truncates [pxValue] to an integer pixel value. [context] is ignored.
+         * Truncates the resolved pixel value to an integer. [context] is used to convert the original DP or SP value to
+         * pixels.
          */
-        @Px override fun resolveAsOffset(context: Context): Int = pxValue.toInt()
+        @Px override fun resolveAsOffset(context: Context): Int = pxValue(context).toInt()
 
         /**
-         * Returns [pxValue]. [context] is ignored.
+         * Returns the exact resolved pixel value. [context] is used to convert the original DP or SP value to pixels.
          */
-        @Px override fun resolveExact(context: Context): Float = pxValue
+        @Px override fun resolveExact(context: Context): Float = pxValue(context)
+
+        /**
+         * Convert [value] to a pixel value based on the [unit] and the given [context].
+         */
+        private fun pxValue(context: Context) = value * unit.scale(context)
+
+        /**
+         * Get the scale by which a value of a specific [Unit] should be multiplied to produce a pixel value.
+         */
+        private fun Unit.scale(context: Context): Float = when (this) {
+            Unit.PX -> 1f
+            Unit.DP -> context.resources.displayMetrics.density
+            Unit.SP -> context.resources.displayMetrics.scaledDensity
+        }
+
+        /**
+         * The measurement unit of the constant dimension value.
+         */
+        public enum class Unit {
+            PX, DP, SP;
+        }
     }
 
     /**
