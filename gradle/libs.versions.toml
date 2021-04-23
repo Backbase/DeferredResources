@@ -11,7 +11,7 @@ androidx-junit = { module = "androidx.test.ext:junit-ktx", version = "1.1.2" }
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "android-test" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "android-test" }
 detekt-gradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version = "1.15.0" }
-dokka-gradlePlugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version = "1.4.20" }
+dokka-gradlePlugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version = "1.4.32" }
 junit = { module = "junit:junit", version = "4.13" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlinx-binaryCompatibilityValidator = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version = "0.5.0" }
