@@ -21,7 +21,7 @@ internal class DeferredDimensionTest {
     val composeTestRule = createComposeRule()
 
     @Test fun constructWithComposeDp_resolvesExpectedValue() {
-        val deferred = DeferredDimension.DpConstant(16.dp)
+        val deferred = DeferredDimension.Constant(16.dp)
         composeTestRule.setContent {
             GenericValueNode(
                 value = deferred.resolve(),

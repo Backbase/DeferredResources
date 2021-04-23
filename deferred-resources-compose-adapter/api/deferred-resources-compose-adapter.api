@@ -8,7 +8,7 @@ public final class com/backbase/deferredresources/compose/DeferredColorKt {
 }
 
 public final class com/backbase/deferredresources/compose/DeferredDimensionKt {
-	public static final fun DpConstant-3ABfNKs (Lcom/backbase/deferredresources/DeferredDimension$Companion;F)Lcom/backbase/deferredresources/DeferredDimension$DpConstant;
+	public static final fun Constant-3ABfNKs (Lcom/backbase/deferredresources/DeferredDimension$Companion;F)Lcom/backbase/deferredresources/DeferredDimension$Constant;
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
 	public static final fun resolveAsOffset (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
 	public static final fun resolveAsSize (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
@@ -44,6 +44,6 @@ public final class com/backbase/deferredresources/compose/DeferredTypefaceKt {
 	public static final fun rememberResolvedFontFamily (Lcom/backbase/deferredresources/DeferredTypeface;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/text/font/FontFamily;
 }
 
-public abstract interface annotation class com/backbase/deferredresources/compose/ExperimentalDeferredResourcesComposeSupport : java/lang/annotation/Annotation {
+public abstract interface annotation class com/backbase/deferredresources/compose/ExperimentalComposeAdapter : java/lang/annotation/Annotation {
 }
 
