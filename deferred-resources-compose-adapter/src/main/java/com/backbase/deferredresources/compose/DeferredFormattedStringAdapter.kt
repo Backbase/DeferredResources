@@ -31,7 +31,7 @@ import com.backbase.deferredresources.DeferredFormattedString
     vararg formatArgs: Any
 ): String {
     val context = LocalContext.current
-    return remember(context, deferredFormattedString, *formatArgs) {
+    return remember(deferredFormattedString, *formatArgs) {
         deferredFormattedString.resolve(context, *formatArgs)
     }
 }

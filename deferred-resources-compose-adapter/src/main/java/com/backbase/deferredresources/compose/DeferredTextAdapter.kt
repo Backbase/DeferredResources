@@ -31,7 +31,7 @@ import com.backbase.deferredresources.text.resolveToString
 @ExperimentalComposeAdapter
 @Composable public fun rememberResolvedAnnotatedString(deferredText: DeferredText): AnnotatedString {
     val context = LocalContext.current
-    return remember(context, deferredText) {
+    return remember(deferredText) {
         when (val text = deferredText.resolve(context)) {
             is AnnotatedString -> text
             // TODO: SpannedString
@@ -47,7 +47,7 @@ import com.backbase.deferredresources.text.resolveToString
 @ExperimentalComposeAdapter
 @Composable public fun rememberResolvedString(deferredText: DeferredText): String {
     val context = LocalContext.current
-    return remember(context, deferredText) {
+    return remember(deferredText) {
         deferredText.resolveToString(context)
     }
 }

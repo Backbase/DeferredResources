@@ -27,7 +27,7 @@ import com.backbase.deferredresources.DeferredInteger
 @ExperimentalComposeAdapter
 @Composable public fun rememberResolvedValue(deferredInteger: DeferredInteger): Int {
     val context = LocalContext.current
-    return remember(context, deferredInteger) {
+    return remember(deferredInteger) {
         deferredInteger.resolve(context)
     }
 }

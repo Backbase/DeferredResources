@@ -19,7 +19,7 @@ package com.backbase.deferredresources.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.Density
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import com.backbase.deferredresources.DeferredDimension
 
@@ -38,8 +38,9 @@ public fun DeferredDimension.Companion.Constant(value: Dp): DeferredDimension.Co
 @ExperimentalComposeAdapter
 @Composable public fun rememberResolvedDp(deferredDimension: DeferredDimension): Dp {
     val context = LocalContext.current
-    return remember(context, deferredDimension) {
-        with(Density(context)) {
+    val density = LocalDensity.current
+    return remember(deferredDimension) {
+        with(density) {
             deferredDimension.resolveExact(context).toDp()
         }
     }

@@ -33,7 +33,7 @@ import com.backbase.deferredresources.DeferredPlurals
     quantity: Int,
 ): AnnotatedString {
     val context = LocalContext.current
-    return remember(context, quantity, deferredPlurals) {
+    return remember(deferredPlurals, quantity) {
         when (val text = deferredPlurals.resolve(context, quantity)) {
             is AnnotatedString -> text
             // TODO: SpannedString

@@ -34,7 +34,7 @@ import com.google.accompanist.imageloading.rememberDrawablePainter
 @ExperimentalComposeAdapter
 @Composable public fun rememberResolvedPainter(deferredDrawable: DeferredDrawable): Painter {
     val context = LocalContext.current
-    val drawable = remember(context, deferredDrawable) {
+    val drawable = remember(deferredDrawable) {
         deferredDrawable.resolve(context)
     }
 

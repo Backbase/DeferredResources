@@ -31,7 +31,7 @@ import com.backbase.deferredresources.DeferredTypeface
 @ExperimentalComposeAdapter
 @Composable public fun rememberResolvedFontFamily(deferredTypeface: DeferredTypeface): FontFamily? {
     val context = LocalContext.current
-    val typeface = remember(context, deferredTypeface) {
+    val typeface = remember(deferredTypeface) {
         deferredTypeface.resolve(context)
     }
 

@@ -42,7 +42,7 @@ import com.backbase.deferredresources.DeferredFormattedPlurals
     vararg formatArgs: Any,
 ): String {
     val context = LocalContext.current
-    return remember(context, quantity, deferredFormattedPlurals, *formatArgs) {
+    return remember(deferredFormattedPlurals, quantity, *formatArgs) {
         deferredFormattedPlurals.resolve(context, quantity, *formatArgs)
     }
 }

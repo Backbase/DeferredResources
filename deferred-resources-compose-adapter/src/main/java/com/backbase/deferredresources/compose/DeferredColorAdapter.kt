@@ -37,7 +37,7 @@ public fun DeferredColor.Companion.Constant(value: Color): DeferredColor.Constan
 @ExperimentalComposeAdapter
 @Composable public fun rememberResolvedColor(deferredColor: DeferredColor): Color {
     val context = LocalContext.current
-    return remember(context, deferredColor) {
+    return remember(deferredColor) {
         Color(deferredColor.resolve(context))
     }
 }

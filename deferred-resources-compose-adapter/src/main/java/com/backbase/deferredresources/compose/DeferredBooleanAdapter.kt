@@ -27,7 +27,7 @@ import com.backbase.deferredresources.DeferredBoolean
 @ExperimentalComposeAdapter
 @Composable public fun rememberResolvedValue(deferredBoolean: DeferredBoolean): Boolean {
     val context = LocalContext.current
-    return remember(context, deferredBoolean) {
+    return remember(deferredBoolean) {
         deferredBoolean.resolve(context)
     }
 }
