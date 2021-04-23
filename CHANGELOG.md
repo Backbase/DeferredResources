@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.4.0
+_2021-04-23_
+
+Add the ability to define a `DeferredDimension.Constant` with `DP` and `SP` units, in addition to
+the default `PX`.
+
 ## 1.3.0
 _2021-02-19_
 

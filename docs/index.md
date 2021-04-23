@@ -14,12 +14,15 @@ resolution or about Context:
 class LocalViewModel : MyViewModel {
     override fun getText(): DeferredText = DeferredText.Resource(R.string.someText)
     override fun getTextColor(): DeferredColor = DeferredColor.Attribute(R.attr.colorOnBackground)
+    override fun getTextSize(): DeferredDimension = DeferredDimension.Attribute(R.attr.bodyTextSize)
 }
 
 // API-based text and color:
 class RemoteViewModel(private val api: Api) : MyViewModel {
     override fun getText(): DeferredText = DeferredText.Constant(api.fetchText())
     override fun getTextColor(): DeferredColor = DeferredColor.Constant(api.fetchTextColor())
+    override fun getTextSize(): DeferredDimension =
+        DeferredDimension.Constant(api.fetchTextSize(), DeferredDimension.Constant.Unit.SP)
 }
 ```
 
@@ -27,8 +30,10 @@ In the view layer, resolve a deferred resource to display it:
 ```kotlin
 val text: DeferredText = viewModel.getText()
 val textColor: DeferredColor = viewModel.getTextColor()
+val textSize: DeferredDimension = viewModel.getTextSize()
 textView.text = text.resolve(context)
 textView.setTextColor(textColor.resolve(context))
+textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, deferredSize.resolveExact(context))
 ```
 
 With view extensions, this is even simpler. The View's own Context is used to resolve any deferred
@@ -36,6 +41,7 @@ resource types:
 ```kotlin
 textView.setText(viewModel.getText())
 textView.setTextColor(viewModel.getTextColor())
+textView.setTextSize(viewModel.getTextSize())
 ```
 
 ### Text types
