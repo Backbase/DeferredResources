@@ -1,46 +1,46 @@
-public final class com/backbase/deferredresources/compose/DeferredBooleanKt {
+public final class com/backbase/deferredresources/compose/DeferredBooleanAdapterKt {
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredBoolean;Landroidx/compose/runtime/Composer;I)Z
 }
 
-public final class com/backbase/deferredresources/compose/DeferredColorKt {
+public final class com/backbase/deferredresources/compose/DeferredColorAdapterKt {
 	public static final fun Constant-4WTKRHQ (Lcom/backbase/deferredresources/DeferredColor$Companion;J)Lcom/backbase/deferredresources/DeferredColor$Constant;
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredColor;Landroidx/compose/runtime/Composer;I)J
 }
 
-public final class com/backbase/deferredresources/compose/DeferredDimensionKt {
+public final class com/backbase/deferredresources/compose/DeferredDimensionAdapterKt {
 	public static final fun Constant-3ABfNKs (Lcom/backbase/deferredresources/DeferredDimension$Companion;F)Lcom/backbase/deferredresources/DeferredDimension$Constant;
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
 	public static final fun resolveAsOffset (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
 	public static final fun resolveAsSize (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
 }
 
-public final class com/backbase/deferredresources/compose/DeferredDrawableKt {
+public final class com/backbase/deferredresources/compose/DeferredDrawableAdapterKt {
 	public static final fun rememberResolvedPainter (Lcom/backbase/deferredresources/DeferredDrawable;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/graphics/painter/Painter;
 }
 
-public final class com/backbase/deferredresources/compose/DeferredFormattedPluralsKt {
+public final class com/backbase/deferredresources/compose/DeferredFormattedPluralsAdapterKt {
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredFormattedPlurals;ILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
-public final class com/backbase/deferredresources/compose/DeferredFormattedStringKt {
+public final class com/backbase/deferredresources/compose/DeferredFormattedStringAdapterKt {
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredFormattedString;[Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
-public final class com/backbase/deferredresources/compose/DeferredIntegerKt {
+public final class com/backbase/deferredresources/compose/DeferredIntegerAdapterKt {
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredInteger;Landroidx/compose/runtime/Composer;I)I
 }
 
-public final class com/backbase/deferredresources/compose/DeferredPluralsKt {
+public final class com/backbase/deferredresources/compose/DeferredPluralsAdapterKt {
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredPlurals;ILandroidx/compose/runtime/Composer;I)Landroidx/compose/ui/text/AnnotatedString;
 }
 
-public final class com/backbase/deferredresources/compose/DeferredTextKt {
+public final class com/backbase/deferredresources/compose/DeferredTextAdapterKt {
 	public static final fun resolve (Lcom/backbase/deferredresources/DeferredText;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/text/AnnotatedString;
 	public static final fun resolveToString (Lcom/backbase/deferredresources/DeferredText;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
-public final class com/backbase/deferredresources/compose/DeferredTypefaceKt {
+public final class com/backbase/deferredresources/compose/DeferredTypefaceAdapterKt {
 	public static final fun rememberResolvedFontFamily (Lcom/backbase/deferredresources/DeferredTypeface;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/text/font/FontFamily;
 }
 

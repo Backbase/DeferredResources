@@ -15,7 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalComposeAdapter::class)
-internal class DeferredDimensionTest {
+internal class DeferredDimensionAdapterTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()

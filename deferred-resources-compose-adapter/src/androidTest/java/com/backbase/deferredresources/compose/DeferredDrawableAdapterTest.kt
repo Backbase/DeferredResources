@@ -17,7 +17,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalComposeAdapter::class)
-internal class DeferredDrawableTest {
+internal class DeferredDrawableAdapterTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()

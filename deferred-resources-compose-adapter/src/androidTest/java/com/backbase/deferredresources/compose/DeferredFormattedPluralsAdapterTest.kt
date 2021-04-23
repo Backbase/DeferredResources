@@ -12,7 +12,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalComposeAdapter::class)
-internal class DeferredFormattedPluralsTest {
+internal class DeferredFormattedPluralsAdapterTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()

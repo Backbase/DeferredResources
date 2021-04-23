@@ -15,7 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalComposeAdapter::class)
-internal class DeferredPluralsTest {
+internal class DeferredPluralsAdapterTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
