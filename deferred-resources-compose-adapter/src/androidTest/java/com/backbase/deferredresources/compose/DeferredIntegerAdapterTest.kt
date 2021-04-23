@@ -21,7 +21,7 @@ internal class DeferredIntegerAdapterTest {
         val deferred = DeferredInteger.Resource(R.integer.five)
         composeTestRule.setContent {
             GenericValueNode(
-                value = deferred.resolve(),
+                value = rememberResolvedValue(deferred),
                 modifier = TestTagModifier,
             )
         }

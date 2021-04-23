@@ -21,11 +21,11 @@ internal class DeferredFormattedPluralsAdapterTest {
         val deferred = DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals)
         composeTestRule.setContent {
             GenericValueNode(
-                value = deferred.resolve(1),
+                value = rememberResolvedString(deferred, 1),
                 modifier = Modifier.testTag("oneValue"),
             )
             GenericValueNode(
-                value = deferred.resolve(9),
+                value = rememberResolvedString(deferred, 9),
                 modifier = Modifier.testTag("otherValue"),
             )
         }
@@ -38,11 +38,11 @@ internal class DeferredFormattedPluralsAdapterTest {
         val deferred = DeferredFormattedPlurals.Resource(R.plurals.formattedPlurals)
         composeTestRule.setContent {
             GenericValueNode(
-                value = deferred.resolve(1, 9),
+                value = rememberResolvedString(deferred, 1, 9),
                 modifier = Modifier.testTag("oneValue"),
             )
             GenericValueNode(
-                value = deferred.resolve(9, 1),
+                value = rememberResolvedString(deferred, 9, 1),
                 modifier = Modifier.testTag("otherValue"),
             )
         }

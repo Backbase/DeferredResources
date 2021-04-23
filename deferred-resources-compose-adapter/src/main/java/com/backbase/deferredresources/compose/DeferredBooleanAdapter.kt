@@ -1,11 +1,17 @@
 package com.backbase.deferredresources.compose
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import com.backbase.deferredresources.DeferredBoolean
 
 /**
- * Resolve the [DeferredBoolean] using the current composition-local Context.
+ * Resolve [deferredBoolean], remembering the resulting value as long as the current [LocalContext] doesn't change.
  */
 @ExperimentalComposeAdapter
-@Composable public fun DeferredBoolean.resolve(): Boolean = resolve(LocalContext.current)
+@Composable public fun rememberResolvedValue(deferredBoolean: DeferredBoolean): Boolean {
+    val context = LocalContext.current
+    return remember(context, deferredBoolean) {
+        deferredBoolean.resolve(context)
+    }
+}

@@ -1,6 +1,7 @@
 package com.backbase.deferredresources.compose
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
@@ -15,7 +16,12 @@ public fun DeferredColor.Companion.Constant(value: Color): DeferredColor.Constan
     DeferredColor.Constant(value = value.toArgb())
 
 /**
- * Resolve the [DeferredColor] to a [Color] using the current composition-local Context.
+ * Resolve [deferredColor], remembering the resulting value as long as the current [LocalContext] doesn't change.
  */
 @ExperimentalComposeAdapter
-@Composable public fun DeferredColor.resolve(): Color = Color(resolve(LocalContext.current))
+@Composable public fun rememberResolvedColor(deferredColor: DeferredColor): Color {
+    val context = LocalContext.current
+    return remember(context, deferredColor) {
+        Color(deferredColor.resolve(context))
+    }
+}

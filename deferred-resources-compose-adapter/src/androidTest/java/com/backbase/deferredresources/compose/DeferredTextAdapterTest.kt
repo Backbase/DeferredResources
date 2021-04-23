@@ -28,7 +28,7 @@ internal class DeferredTextAdapterTest {
         val deferred = DeferredText.Constant(originalValue)
         composeTestRule.setContent {
             GenericValueNode(
-                value = deferred.resolve(),
+                value = rememberResolvedAnnotatedString(deferred),
                 modifier = TestTagModifier,
             )
         }
@@ -40,7 +40,7 @@ internal class DeferredTextAdapterTest {
         val deferred = DeferredText.Resource(R.string.plainString)
         composeTestRule.setContent {
             GenericValueNode(
-                value = deferred.resolve(),
+                value = rememberResolvedAnnotatedString(deferred),
                 modifier = TestTagModifier,
             )
         }
@@ -52,7 +52,7 @@ internal class DeferredTextAdapterTest {
         val deferred = DeferredText.Resource(R.string.plainString)
         composeTestRule.setContent {
             GenericValueNode(
-                value = deferred.resolveToString(),
+                value = rememberResolvedString(deferred),
                 modifier = TestTagModifier,
             )
         }

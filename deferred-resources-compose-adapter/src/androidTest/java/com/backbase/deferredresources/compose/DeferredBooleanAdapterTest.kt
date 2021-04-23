@@ -21,7 +21,7 @@ internal class DeferredBooleanAdapterTest {
         val deferred = DeferredBoolean.Resource(R.bool.testBool)
         composeTestRule.setContent {
             GenericValueNode(
-                value = deferred.resolve(),
+                value = rememberResolvedValue(deferred),
                 modifier = TestTagModifier,
             )
         }

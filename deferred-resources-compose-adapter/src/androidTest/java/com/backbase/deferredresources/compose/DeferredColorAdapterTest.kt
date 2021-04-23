@@ -22,7 +22,7 @@ internal class DeferredColorAdapterTest {
         val deferred = DeferredColor.Constant(Color(0xff00ff00))
         composeTestRule.setContent {
             GenericValueNode(
-                value = deferred.resolve(),
+                value = rememberResolvedColor(deferred),
                 modifier = TestTagModifier,
             )
         }
@@ -34,7 +34,7 @@ internal class DeferredColorAdapterTest {
         val deferred = DeferredColor.Resource(R.color.blue)
         composeTestRule.setContent {
             GenericValueNode(
-                value = deferred.resolve(),
+                value = rememberResolvedColor(deferred),
                 modifier = TestTagModifier,
             )
         }

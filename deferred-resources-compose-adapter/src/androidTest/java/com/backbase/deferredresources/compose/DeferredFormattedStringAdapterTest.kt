@@ -21,7 +21,7 @@ internal class DeferredFormattedStringAdapterTest {
         val deferred = DeferredFormattedString.Resource(R.string.formattedString)
         composeTestRule.setContent {
             GenericValueNode(
-                value = deferred.resolve("localized"),
+                value = rememberResolvedString(deferred, "localized"),
                 modifier = TestTagModifier,
             )
         }
