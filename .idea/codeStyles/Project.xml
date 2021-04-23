@@ -63,6 +63,7 @@
       <option name="KEEP_BLANK_LINES" value="true" />
     </Properties>
     <XML>
+      <option name="XML_KEEP_LINE_BREAKS" value="true" />
       <option name="XML_KEEP_BLANK_LINES" value="1" />
     </XML>
     <codeStyleSettings language="Groovy">
