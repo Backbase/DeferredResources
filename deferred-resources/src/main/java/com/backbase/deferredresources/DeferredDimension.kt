@@ -77,16 +77,25 @@ public interface DeferredDimension {
          */
         @Px override fun resolveExact(context: Context): Float = pxValue(context)
 
-        private fun pxValue(context: Context) = value * unit.multiplier(context)
+        /**
+         * Convert [value] to a pixel value based on the [unit] and the given [context].
+         */
+        private fun pxValue(context: Context) = value * unit.scale(context)
 
+        /**
+         * Get the scale by which a value of a specific [Unit] should be multiplied to produce a pixel value.
+         */
+        private fun Unit.scale(context: Context): Float = when (this) {
+            Unit.PX -> 1f
+            Unit.DP -> context.resources.displayMetrics.density
+            Unit.SP -> context.resources.displayMetrics.scaledDensity
+        }
+
+        /**
+         * The measurement unit of the constant dimension value.
+         */
         public enum class Unit {
             PX, DP, SP;
-
-            internal fun multiplier(context: Context): Float = when (this) {
-                PX -> 1f
-                DP -> context.resources.displayMetrics.density
-                SP -> context.resources.displayMetrics.scaledDensity
-            }
         }
     }
 
