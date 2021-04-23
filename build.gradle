@@ -30,22 +30,6 @@ buildscript {
     repositories {
         mavenCentral()
         google()
-
-        // TODO: Remove Bintray dependencies when possible
-        maven { url 'https://dl.bintray.com/kotlin/dokka' }
-        maven { url 'https://dl.bintray.com/jetbrains/markdown' }
-    }
-
-    // TODO WORKAROUND: Remove when AGP no longer requires JCenter's trove4j
-    configurations.configureEach {
-        resolutionStrategy.eachDependency {
-            if (requested.group == 'org.jetbrains.trove4j' &&
-                requested.name == 'trove4j' &&
-                requested.version == '20160824'
-            ) {
-                useTarget('org.jetbrains.intellij.deps:trove4j:1.0.20181211')
-            }
-        }
     }
 }
 
@@ -67,11 +51,8 @@ allprojects { project ->
         mavenCentral()
         google()
 
-        // TODO: Remove Bintray dependencies when possible
-        maven { url 'https://dl.bintray.com/jetbrains/markdown' }
-        maven { url 'https://dl.bintray.com/korlibs/korlibs' }
-        maven { url 'https://dl.bintray.com/kotlin/dokka' }
-        maven { url 'https://dl.bintray.com/kotlin/kotlinx' }
+        // Transitive kotlinx-html-jvm dependency for Dokka:
+        maven { url = "https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven" }
     }
 
     project.plugins.withType(com.android.build.gradle.LibraryPlugin) {
@@ -80,18 +61,6 @@ allprojects { project ->
             variant.generateBuildConfigProvider.get().enabled = false
         }
         //endregion
-    }
-
-    // TODO WORKAROUND: Remove when AGP no longer requires JCenter's trove4j
-    configurations.configureEach {
-        resolutionStrategy.eachDependency {
-            if (requested.group == 'org.jetbrains.trove4j' &&
-                requested.name == 'trove4j' &&
-                requested.version == '20160824'
-            ) {
-                useTarget('org.jetbrains.intellij.deps:trove4j:1.0.20181211')
-            }
-        }
     }
 }
 
