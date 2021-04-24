@@ -32,7 +32,7 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
       - name: Build
-        run: ./gradlew clean build -PcomposeEnabled=${{ compose }} --stacktrace
+        run: ./gradlew clean build -PcomposeEnabled=${{ matrix.compose }} --stacktrace
       - name: Report Detekt results
         uses: github/codeql-action/upload-sarif@v1
         with:
@@ -42,7 +42,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2.14.3
         with:
           api-level: ${{ matrix.api-level }}
-          script: ./gradlew connectedCheck -PcomposeEnabled=${{ compose }} --stacktrace
+          script: ./gradlew connectedCheck -PcomposeEnabled=${{ matrix.compose }} --stacktrace
       - name: Publish test results
         uses: mikepenz/action-junit-report@v1.2.1
         if: success() || failure()
