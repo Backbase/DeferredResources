@@ -13,7 +13,6 @@ jobs:
       matrix:
         # TODO: Investigate flaky SecurityException during tests on API 18
         api-level: [ 15, 16, 17, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
-        compose: [ true, false ]
         include:
           - api-level: [ 15, 16, 17, 19 ]
             compose: false
