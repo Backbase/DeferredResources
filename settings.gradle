@@ -21,7 +21,7 @@ include ':demo'
 
 enableFeaturePreview('VERSION_CATALOGS')
 
-boolean includeComposeModule = Boolean.parseBoolean(composeEnabled)
+boolean includeComposeModule = Boolean.parseBoolean(composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
 logger.lifecycle "Compose enabled: $includeComposeModule"
 if (includeComposeModule) {
     include ':deferred-resources-compose-adapter'

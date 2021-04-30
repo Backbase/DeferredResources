@@ -15,14 +15,7 @@
  */
 
 buildscript {
-    Integer ciApiLevel
-    try {
-        ciApiLevel = Integer.parseInt(findProperty('ciApiLevel'))
-    } catch (NumberFormatException ignored) {
-        ciApiLevel = null
-    }
-    boolean composeEnabled = Boolean.parseBoolean(property('composeEnabled')) &&
-        (ciApiLevel == null || ciApiLevel >= 21)
+    boolean composeEnabled = Boolean.parseBoolean(composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
 
     dependencies {
         def androidGradlePlugin = composeEnabled ? libs.android.gradlePlugin7 : libs.android.gradlePlugin4
