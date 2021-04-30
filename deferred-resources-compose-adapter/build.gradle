@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.library'
-apply plugin: 'org.jetbrains.kotlin.android'
-apply plugin: 'org.jetbrains.kotlin.plugin.parcelize'
-apply plugin: 'dev.drewhamilton.poko'
+apply plugin: "com.android.library"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "org.jetbrains.kotlin.plugin.parcelize"
+apply plugin: "dev.drewhamilton.poko"
 
 ext {
-    artifactName = 'deferred-resources-compose-adapter'
+    artifactName = "deferred-resources-compose-adapter"
     publishedDescription = "Adapters to resolve Deferred Resources types for use with Jetpack Compose UI."
 }
 
@@ -33,11 +33,11 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion rootProject.ext.minSdkCompose
         targetSdkVersion rootProject.ext.targetSdk
         versionName version
 
-        consumerProguardFiles 'consumer-rules.pro'
+        consumerProguardFiles "consumer-rules.pro"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,7 +55,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
         useIR = true
-        freeCompilerArgs += ['-Xexplicit-api=strict', '-Xopt-in=kotlin.RequiresOptIn']
+        freeCompilerArgs += ["-Xexplicit-api=strict", "-Xopt-in=kotlin.RequiresOptIn"]
     }
 
     buildFeatures {
@@ -75,7 +75,7 @@ android {
 
 dependencies {
     api(libs.androidx.compose.runtime)
-    api(project(':deferred-resources'))
+    api(project(":deferred-resources"))
 
     implementation(libs.accompanist.imageLoading.core)
     implementation(libs.androidx.appCompatRc)

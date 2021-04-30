@@ -40,6 +40,7 @@ ext {
     publishGroup = 'com.backbase.oss.deferredresources'
     libraryVersion = '1.5.0-SNAPSHOT'
     minSdk = 14
+    minSdkCompose = 21
     targetSdk = 30
     buildToolsVersion = '30.0.3'
 }
