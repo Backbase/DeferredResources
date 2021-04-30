@@ -18,7 +18,7 @@ buildscript {
     boolean composeEnabled = Boolean.parseBoolean(composeEnabled)
 
     dependencies {
-        def androidGradlePlugin = composeEnabled ? libs.android.gradlePlugin7 : libs.android.gradlePlugin
+        def androidGradlePlugin = composeEnabled ? libs.android.gradlePlugin7 : libs.android.gradlePlugin4
         classpath(androidGradlePlugin)
 
         classpath(libs.kotlin.gradlePlugin)
