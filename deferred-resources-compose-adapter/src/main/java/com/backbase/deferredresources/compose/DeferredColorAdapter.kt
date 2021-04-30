@@ -24,14 +24,6 @@ import androidx.compose.ui.platform.LocalContext
 import com.backbase.deferredresources.DeferredColor
 
 /**
- * Instantiate a [DeferredColor.Constant] with a Compose [Color] [value].
- */
-@ExperimentalComposeAdapter
-@Suppress("FunctionName") // Factory
-public fun DeferredColor.Companion.Constant(value: Color): DeferredColor.Constant =
-    DeferredColor.Constant(value = value.toArgb())
-
-/**
  * Resolve [deferredColor], remembering the resulting value as long as the current [LocalContext] doesn't change.
  */
 @ExperimentalComposeAdapter

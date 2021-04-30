@@ -144,9 +144,4 @@ public interface DeferredColor {
             AppCompatResources.getColorStateList(this@resolveColorStateList, colorSelectorResId)
         }
     }
-
-    /**
-     * Companion object for [DeferredColor], public to allow extension factory functions in companion libraries.
-     */
-    public companion object
 }

@@ -34,18 +34,6 @@ internal class DeferredColorAdapterTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    @Test fun constructWithComposeColor_resolvesExpectedValue() {
-        val deferred = DeferredColor.Constant(Color(0xff00ff00))
-        composeTestRule.setContent {
-            GenericValueNode(
-                value = rememberResolvedColor(deferred),
-                modifier = TestTagModifier,
-            )
-        }
-
-        composeTestRule.onNodeWithTag(TestTag).assertGenericValueEquals(Color.Green)
-    }
-
     @Test fun resolve_withLocalContext_returnsExpectedValue() {
         val deferred = DeferredColor.Resource(R.color.blue)
         composeTestRule.setContent {

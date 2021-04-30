@@ -3,12 +3,10 @@ public final class com/backbase/deferredresources/compose/DeferredBooleanAdapter
 }
 
 public final class com/backbase/deferredresources/compose/DeferredColorAdapterKt {
-	public static final fun Constant-4WTKRHQ (Lcom/backbase/deferredresources/DeferredColor$Companion;J)Lcom/backbase/deferredresources/DeferredColor$Constant;
 	public static final fun rememberResolvedColor (Lcom/backbase/deferredresources/DeferredColor;Landroidx/compose/runtime/Composer;I)J
 }
 
 public final class com/backbase/deferredresources/compose/DeferredDimensionAdapterKt {
-	public static final fun Constant-3ABfNKs (Lcom/backbase/deferredresources/DeferredDimension$Companion;F)Lcom/backbase/deferredresources/DeferredDimension$Constant;
 	public static final fun rememberResolvedDp (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
 }
 

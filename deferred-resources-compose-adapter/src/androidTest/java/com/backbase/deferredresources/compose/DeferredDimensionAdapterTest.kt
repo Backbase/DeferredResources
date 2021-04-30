@@ -34,18 +34,6 @@ internal class DeferredDimensionAdapterTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    @Test fun constructWithComposeDp_resolvesExpectedValue() {
-        val deferred = DeferredDimension.Constant(16.dp)
-        composeTestRule.setContent {
-            GenericValueNode(
-                value = rememberResolvedDp(deferred),
-                modifier = TestTagModifier,
-            )
-        }
-
-        composeTestRule.onNodeWithTag(TestTag).assertGenericValueEquals(16.dp)
-    }
-
     @Test fun resolve_withLocalContext_returnsExpectedValue() {
         val deferred = DeferredDimension.Resource(R.dimen.testDimen)
         composeTestRule.setContent {

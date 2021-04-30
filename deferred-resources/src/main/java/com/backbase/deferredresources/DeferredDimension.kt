@@ -178,9 +178,4 @@ public interface DeferredDimension {
                 getDimension(resources.displayMetrics)
             }
     }
-
-    /**
-     * Companion object for [DeferredDimension], public to allow extension factory functions in companion libraries.
-     */
-    public companion object
 }

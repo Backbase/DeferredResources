@@ -24,14 +24,6 @@ import androidx.compose.ui.unit.Dp
 import com.backbase.deferredresources.DeferredDimension
 
 /**
- * Instantiate a [DeferredDimension.Constant] with a Compose [Dp] [value].
- */
-@ExperimentalComposeAdapter
-@Suppress("FunctionName") // Factory
-public fun DeferredDimension.Companion.Constant(value: Dp): DeferredDimension.Constant =
-    DeferredDimension.Constant(value = value.value, unit = DeferredDimension.Constant.Unit.DP)
-
-/**
  * Resolve [deferredDimension] to a [Dp] value, remembering the resulting value as long as the current [LocalContext]
  * doesn't change.
  */
