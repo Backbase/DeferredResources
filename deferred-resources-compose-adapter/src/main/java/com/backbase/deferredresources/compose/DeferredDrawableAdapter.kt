@@ -18,8 +18,6 @@ package com.backbase.deferredresources.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import com.backbase.deferredresources.DeferredDrawable
@@ -38,8 +36,5 @@ import com.google.accompanist.imageloading.rememberDrawablePainter
         deferredDrawable.resolve(context)
     }
 
-    return when (drawable) {
-        null -> remember { ColorPainter(Color.Transparent) }
-        else -> rememberDrawablePainter(drawable)
-    }
+    return rememberDrawablePainter(drawable)
 }
