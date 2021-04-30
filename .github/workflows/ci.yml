@@ -11,34 +11,8 @@ jobs:
 
     strategy:
       matrix:
-        include:
-          - api-level: 15
-            compose: false
-          - api-level: 16
-            compose: false
-          - api-level: 17
-            compose: false
-          # TODO: Investigate flaky SecurityException during tests on API 18
-          - api-level: 19
-            compose: false
-          - api-level: 21
-            compose: true
-          - api-level: 22
-            compose: true
-          - api-level: 23
-            compose: true
-          - api-level: 24
-            compose: true
-          - api-level: 25
-            compose: true
-          - api-level: 26
-            compose: true
-          - api-level: 27
-            compose: true
-          - api-level: 28
-            compose: true
-          - api-level: 29
-            compose: true
+        # TODO: Investigate flaky SecurityException during tests on API 18
+        api-level: [ 15, 16, 17, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
 
     steps:
       - name: Check out the repo
@@ -50,7 +24,7 @@ jobs:
         with:
           java-version: 11
       - name: Build
-        run: ./gradlew clean build -PcomposeEnabled=${{ matrix.compose }} --stacktrace
+        run: ./gradlew clean build -PciApiLevel=${{ matrix.api-level }} --stacktrace
       - name: Report Detekt results
         uses: github/codeql-action/upload-sarif@v1
         with:
@@ -60,7 +34,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2.14.3
         with:
           api-level: ${{ matrix.api-level }}
-          script: ./gradlew connectedCheck -PcomposeEnabled=${{ matrix.compose }} --stacktrace
+          script: ./gradlew connectedCheck -PciApiLevel=${{ matrix.api-level }} --stacktrace
       - name: Publish test results
         uses: mikepenz/action-junit-report@v1.2.1
         if: success() || failure()
