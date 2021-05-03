@@ -30,7 +30,7 @@ jobs:
           sarif_file: ${{ github.workspace }}/build/detekt/sarif
           checkout_path: ${{ github.workspace }}
       - name: Instrumented tests
-        uses: reactivecircus/android-emulator-runner@v2.14.3
+        uses: reactivecircus/android-emulator-runner@v2.15.0
         with:
           api-level: ${{ matrix.api-level }}
           script: ./gradlew connectedCheck -PciApiLevel=${{ matrix.api-level }} --stacktrace
