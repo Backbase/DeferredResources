@@ -1,0 +1,45 @@
+public final class com/backbase/deferredresources/compose/DeferredBooleanAdapterKt {
+	public static final fun rememberResolvedValue (Lcom/backbase/deferredresources/DeferredBoolean;Landroidx/compose/runtime/Composer;I)Z
+}
+
+public final class com/backbase/deferredresources/compose/DeferredColorAdapterKt {
+	public static final fun rememberResolvedColor (Lcom/backbase/deferredresources/DeferredColor;Landroidx/compose/runtime/Composer;I)J
+}
+
+public final class com/backbase/deferredresources/compose/DeferredDimensionAdapterKt {
+	public static final fun rememberResolvedDp (Lcom/backbase/deferredresources/DeferredDimension;Landroidx/compose/runtime/Composer;I)F
+}
+
+public final class com/backbase/deferredresources/compose/DeferredDrawableAdapterKt {
+	public static final fun rememberResolvedPainter (Lcom/backbase/deferredresources/DeferredDrawable;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/graphics/painter/Painter;
+}
+
+public final class com/backbase/deferredresources/compose/DeferredFormattedPluralsAdapterKt {
+	public static final fun rememberResolvedString (Lcom/backbase/deferredresources/DeferredFormattedPlurals;ILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+	public static final fun rememberResolvedString (Lcom/backbase/deferredresources/DeferredFormattedPlurals;I[Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/compose/DeferredFormattedStringAdapterKt {
+	public static final fun rememberResolvedString (Lcom/backbase/deferredresources/DeferredFormattedString;[Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/compose/DeferredIntegerAdapterKt {
+	public static final fun rememberResolvedValue (Lcom/backbase/deferredresources/DeferredInteger;Landroidx/compose/runtime/Composer;I)I
+}
+
+public final class com/backbase/deferredresources/compose/DeferredPluralsAdapterKt {
+	public static final fun rememberResolvedAnnotatedString (Lcom/backbase/deferredresources/DeferredPlurals;ILandroidx/compose/runtime/Composer;I)Landroidx/compose/ui/text/AnnotatedString;
+}
+
+public final class com/backbase/deferredresources/compose/DeferredTextAdapterKt {
+	public static final fun rememberResolvedAnnotatedString (Lcom/backbase/deferredresources/DeferredText;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/text/AnnotatedString;
+	public static final fun rememberResolvedString (Lcom/backbase/deferredresources/DeferredText;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+}
+
+public final class com/backbase/deferredresources/compose/DeferredTypefaceAdapterKt {
+	public static final fun rememberResolvedFontFamily (Lcom/backbase/deferredresources/DeferredTypeface;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/text/font/FontFamily;
+}
+
+public abstract interface annotation class com/backbase/deferredresources/compose/ExperimentalComposeAdapter : java/lang/annotation/Annotation {
+}
+

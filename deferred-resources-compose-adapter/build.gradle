@@ -1,0 +1,86 @@
+/*
+ * Copyright 2021 Backbase R&D B.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: "com.android.library"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "org.jetbrains.kotlin.plugin.parcelize"
+apply plugin: "dev.drewhamilton.poko"
+
+ext {
+    artifactName = "deferred-resources-compose-adapter"
+    publishedDescription = "Adapters to resolve Deferred Resources types for use with Jetpack Compose UI."
+}
+
+if (rootProject.ext.libraryVersion.endsWith("SNAPSHOT")) {
+    apply from: "../publish.gradle"
+}
+
+android {
+    compileSdkVersion rootProject.ext.targetSdk
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkCompose
+        targetSdkVersion rootProject.ext.targetSdk
+        versionName version
+
+        consumerProguardFiles "consumer-rules.pro"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+        useIR = true
+        freeCompilerArgs += ["-Xexplicit-api=strict", "-Xopt-in=kotlin.RequiresOptIn"]
+    }
+
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.androidx.compose.get()
+    }
+
+    packagingOptions {
+        // Some of the coroutines-test files cause conflicts. Exclude them to enable our test APK to build (has no
+        //  effect on our AARs)
+        excludes += "/META-INF/AL2.0"
+        excludes += "/META-INF/LGPL2.1"
+    }
+}
+
+dependencies {
+    api(libs.androidx.compose.runtime)
+    api(project(":deferred-resources"))
+
+    implementation(libs.accompanist.imageLoading.core)
+    implementation(libs.androidx.appCompatRc)
+    implementation(libs.androidx.compose.ui)
+
+    androidTestImplementation(libs.androidx.compose.material)
+    androidTestImplementation(libs.androidx.compose.uiTest)
+}

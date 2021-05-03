@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Backbase R&D B.V.
+ * Copyright 2021 Backbase R&D B.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-rootProject.name='Deferred Resources'
+package com.backbase.deferredresources.compose.test
 
-include ':deferred-resources', ':view-extensions'
-include ':demo'
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 
-enableFeaturePreview('VERSION_CATALOGS')
+/**
+ * A convenient tag string to use for test nodes.
+ */
+internal const val TestTag = "deferred-resources-compose-adapter-test-tag"
 
-boolean includeComposeModule = Boolean.parseBoolean(composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
-logger.lifecycle "Compose enabled: $includeComposeModule"
-if (includeComposeModule) {
-    include ':deferred-resources-compose-adapter'
-}
+/**
+ * A convenience for [Modifier.testTag] ([TestTag]).
+ */
+internal val TestTagModifier = Modifier.testTag(TestTag)

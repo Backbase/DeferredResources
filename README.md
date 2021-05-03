@@ -18,6 +18,9 @@ repository](https://oss.sonatype.org/#view-repositories;snapshots~browsestorage)
 ```groovy
 implementation "com.backbase.oss.deferredresources:deferred-resources:$version"
 implementation "com.backbase.oss.deferredresources:deferred-resources-view-extensions:$version"
+
+// Experimental, unstable Compose adapter is available only as a snapshot:
+implementation "com.backbase.oss.deferredresources:deferred-resources-compose-adapter:$version-SNAPSHOT"
 ```
 
 ## Use
@@ -80,6 +83,19 @@ val deferredPlurals: DeferredPlurals = deferredFormattedPlurals.withFormatArgs("
 ```
 
 All text-related types can eventually be converted to `DeferredText` through similar extensions.
+
+### Jetpack Compose UI
+
+For each Deferred Resources type, the experimental `deferred-resource-compose-adapter` library
+offers a `remember*` function to resolve the Deferred item to a standard Compose UI type.
+
+```kotlin
+val color: Color = rememberResolvedColor(deferredColor)
+val size: Dp = rememberResolvedDp(deferredDimension)
+val icon: Painter = rememberResolvedPainter(deferredDrawable)
+```
+
+All of these APIs are marked as `@ExperimentalComposeAdapter` and should not be considered stable.
 
 ## License
 ```

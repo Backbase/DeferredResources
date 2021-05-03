@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Backbase R&D B.V.
+ * Copyright 2021 Backbase R&D B.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-rootProject.name='Deferred Resources'
+package com.backbase.deferredresources.compose
 
-include ':deferred-resources', ':view-extensions'
-include ':demo'
-
-enableFeaturePreview('VERSION_CATALOGS')
-
-boolean includeComposeModule = Boolean.parseBoolean(composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
-logger.lifecycle "Compose enabled: $includeComposeModule"
-if (includeComposeModule) {
-    include ':deferred-resources-compose-adapter'
-}
+/**
+ * Indicates an experimental API for adapting Deferred Resources to Jetpack Compose. Such APIs are likely to break as
+ * Compose changes and best practices are iterated upon.
+ */
+@Retention(value = AnnotationRetention.BINARY)
+@RequiresOptIn
+public annotation class ExperimentalComposeAdapter

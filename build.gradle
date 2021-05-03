@@ -15,8 +15,11 @@
  */
 
 buildscript {
+    boolean composeEnabled = Boolean.parseBoolean(composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
+
     dependencies {
-        classpath(libs.android.gradlePlugin)
+        def androidGradlePlugin = composeEnabled ? libs.android.gradlePlugin7 : libs.android.gradlePlugin4
+        classpath(androidGradlePlugin)
 
         classpath(libs.kotlin.gradlePlugin)
         classpath(libs.dokka.gradlePlugin)
@@ -37,6 +40,7 @@ ext {
     publishGroup = 'com.backbase.oss.deferredresources'
     libraryVersion = '1.5.0-SNAPSHOT'
     minSdk = 14
+    minSdkCompose = 21
     targetSdk = 30
     buildToolsVersion = '30.0.3'
 }
