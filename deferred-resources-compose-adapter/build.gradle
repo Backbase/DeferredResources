@@ -78,7 +78,7 @@ dependencies {
     api(project(":deferred-resources"))
 
     implementation(libs.accompanist.imageLoading.core)
-    implementation(libs.androidx.appCompatRc)
+    implementation(libs.androidx.appCompat)
     implementation(libs.androidx.compose.ui)
 
     androidTestImplementation(libs.androidx.compose.material)
