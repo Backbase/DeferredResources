@@ -14,34 +14,33 @@
  * limitations under the License.
  */
 
-package com.backbase.deferredresources.demo.model
+package com.backbase.deferredresources.demo.core
 
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.lifecycle.ViewModel
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.DeferredText
-import com.backbase.deferredresources.demo.R
 
 /**
- * View model representing the samples shown in the demo UI.
+ * View model representing the samples shown in the demo UI. Consuming app must use
+ * [R.style.Theme_DeferredResourcesDemo].
  */
-class SamplesViewModel : ViewModel() {
+public class SamplesViewModel {
 
     /**
      * Title of the section displaying [colorSamples].
      */
-    val colorSamplesTitle: DeferredText = DeferredText.Constant("Colors")
+    public val colorSamplesTitle: DeferredText = DeferredText.Constant("Colors")
 
     /**
      * The [ColorSample]s to display.
      */
-    val colorSamples: List<ColorSample> = listOf(
+    public val colorSamples: List<ColorSample> = listOf(
         ColorSample(
             color = DeferredColor.Attribute(R.attr.colorSecondary),
             description = DeferredText.Constant("Secondary"),
@@ -59,22 +58,22 @@ class SamplesViewModel : ViewModel() {
     /**
      * Title of the section displaying a [formattedPluralsSample].
      */
-    val formattedPluralsSampleTitle: DeferredText = DeferredText.Constant("Plurals resource")
+    public val formattedPluralsSampleTitle: DeferredText = DeferredText.Constant("Plurals resource")
 
     /**
      * The [DeferredFormattedPlurals] to display.
      */
-    val formattedPluralsSample: DeferredFormattedPlurals = DeferredFormattedPlurals.Resource(R.plurals.horses)
+    public val formattedPluralsSample: DeferredFormattedPlurals = DeferredFormattedPlurals.Resource(R.plurals.horses)
 
     /**
      * Title of the section displaying [iconSamples].
      */
-    val iconSamplesTitle: DeferredText = DeferredText.Constant("Drawables")
+    public val iconSamplesTitle: DeferredText = DeferredText.Constant("Drawables")
 
     /**
      * The [IconSample]s to display.
      */
-    val iconSamples: List<IconSample> = listOf(
+    public val iconSamples: List<IconSample> = listOf(
         IconSample(
             icon = DeferredDrawable.Constant(GrayCircle()),
             description = DeferredText.Constant("Constant"),

@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package com.backbase.deferredresources.demo.model
+package com.backbase.deferredresources.demo
 
-import com.backbase.deferredresources.DeferredColor
-import com.backbase.deferredresources.DeferredText
+import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
+import com.backbase.deferredresources.demo.core.SamplesViewModel
 
-/**
- * A [color] which can be displayed to the user along with a [description].
- */
-data class ColorSample(
-    val color: DeferredColor,
-    val description: DeferredText,
-)
+fun ComponentActivity.samplesViewModel(): Lazy<SamplesViewModel> {
+    val lazyWrapper = viewModels<SamplesViewModelWrapper>()
+    return lazy(mode = LazyThreadSafetyMode.NONE) {
+        lazyWrapper.value.value
+    }
+}
+
+class SamplesViewModelWrapper: ViewModel() {
+    val value = SamplesViewModel()
+}

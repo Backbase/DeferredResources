@@ -16,7 +16,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-  <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+  <style name="Theme.DeferredResourcesDemo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <item name="colorPrimary">@color/primary</item>
     <item name="colorPrimaryVariant">@color/primaryVariant</item>
     <item name="colorPrimaryDark">?colorPrimaryVariant</item>

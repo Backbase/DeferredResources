@@ -20,7 +20,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.deferredresources.DeferredText
-import com.backbase.deferredresources.demo.model.SamplesViewModel
+import com.backbase.deferredresources.demo.core.SamplesViewModel
 
 class DemoPagerAdapter(
     private val viewModel: SamplesViewModel,

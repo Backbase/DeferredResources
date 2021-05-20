@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.backbase.deferredresources.demo.model
+package com.backbase.deferredresources.demo.core
 
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredText
@@ -22,7 +22,7 @@ import com.backbase.deferredresources.DeferredText
 /**
  * An [icon] which can be displayed to the user along with a [description].
  */
-data class IconSample(
+public data class IconSample(
     val icon: DeferredDrawable,
     val description: DeferredText,
 )
