@@ -16,28 +16,20 @@
 
 package com.backbase.deferredresources.demo
 
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.annotation.ColorInt
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.backbase.deferredresources.DeferredColor
-import com.backbase.deferredresources.DeferredDrawable
-import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.DeferredText
+import com.backbase.deferredresources.demo.model.SamplesViewModel
 
-class DemoPagerAdapter : RecyclerView.Adapter<DemoPagerAdapter.DeferredResourceViewHolder>() {
+class DemoPagerAdapter(
+    private val viewModel: SamplesViewModel,
+) : RecyclerView.Adapter<DemoPagerAdapter.DeferredResourceViewHolder>() {
 
-    private val formattedPluralsResource = DeferredFormattedPlurals.Resource(R.plurals.horses)
-
-    fun getPageName(position: Int): CharSequence = when (position) {
-        0 -> "Colors"
-        1 -> "Plurals resource"
-        2 -> "Drawables"
+    fun getPageName(position: Int): DeferredText = when (position) {
+        0 -> viewModel.colorSamplesTitle
+        1 -> viewModel.formattedPluralsSampleTitle
+        2 -> viewModel.iconSamplesTitle
         else -> throw IllegalArgumentException("Position $position in adapter with size $itemCount")
     }
 
@@ -66,58 +58,14 @@ class DemoPagerAdapter : RecyclerView.Adapter<DemoPagerAdapter.DeferredResourceV
 
     override fun onBindViewHolder(holder: DeferredResourceViewHolder, position: Int) {
         when (val view = holder.root) {
-            is DeferredColorsView -> {
-                view.display(
-                    DeferredColor.Attribute(R.attr.colorSecondary),
-                    DeferredText.Constant("Secondary")
-                )
-                view.display(
-                    DeferredColor.Resource(R.color.backbase_red),
-                    DeferredText.Constant("Backbase red")
-                )
-                view.display(
-                    DeferredColor.Constant(Color.WHITE),
-                    DeferredText.Constant("White")
-                )
+            is DeferredColorsView -> viewModel.colorSamples.forEach { sample ->
+                view.display(sample.color, sample.description)
             }
-            is DeferredPluralsView -> when (position) {
-                1 -> view.display(formattedPluralsResource)
-            }
-            is DeferredDrawablesView -> {
-                val context = holder.root.context
-                view.display(
-                    DeferredDrawable.Constant(
-                        Circle(DeferredColor.Attribute(R.attr.colorPrimary).resolve(context))
-                    )
-                )
-                view.display(
-                    DeferredDrawable.Resource(R.drawable.ic_flower_24) {
-                        setTint(DeferredColor.Resource(R.color.green), context)
-                    }
-                )
-                view.display(
-                    DeferredDrawable.Attribute(R.attr.demoIcon) {
-                        setTint(DeferredColor.Attribute(R.attr.colorSecondary), context)
-                    }
-                )
+            is DeferredPluralsView -> view.display(viewModel.formattedPluralsSample)
+            is DeferredDrawablesView -> viewModel.iconSamples.forEach { sample ->
+                view.display(sample.icon, sample.description)
             }
         }
-    }
-
-    private fun Drawable.setTint(color: DeferredColor, context: Context) {
-        DrawableCompat.setTint(this, color.resolve(context))
-    }
-
-    @Suppress("FunctionName") // Factory
-    private fun Circle(
-        @ColorInt color: Int,
-    ): Drawable = GradientDrawable(
-        GradientDrawable.Orientation.BOTTOM_TOP,
-        intArrayOf(color, color),
-    ).apply {
-        cornerRadius = 64f
-        val size = 128
-        setSize(size, size)
     }
 
     class DeferredResourceViewHolder(
