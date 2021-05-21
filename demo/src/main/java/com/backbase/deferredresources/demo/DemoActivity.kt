@@ -17,14 +17,15 @@
 package com.backbase.deferredresources.demo
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.backbase.deferredresources.demo.databinding.DemoBinding
 import com.backbase.deferredresources.demo.core.SamplesViewModel
+import com.backbase.deferredresources.demo.databinding.DemoBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DemoActivity : AppCompatActivity() {
 
-    private val viewModel: SamplesViewModel by samplesViewModel()
+    private val viewModel: SamplesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

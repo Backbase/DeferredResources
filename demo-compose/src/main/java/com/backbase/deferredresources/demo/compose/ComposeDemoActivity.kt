@@ -31,11 +31,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.compose.ExperimentalComposeAdapter
 import com.backbase.deferredresources.compose.rememberResolvedAnnotatedString
@@ -67,14 +69,16 @@ class ComposeDemoActivity : ComponentActivity() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background,
         ) {
-            val viewModel = remember { SamplesViewModel() }
+            val viewModel = viewModel<SamplesViewModel>()
             Column {
-                val pagerState by mutableStateOf(
-                    PagerState(
-                        pageCount = 3,
-                        currentPage = 0,
+                val pagerState by rememberSaveable(
+                    saver = Saver(
+                        save = { it.value.currentPage },
+                        restore = { mutablePagerState(it) },
                     )
-                )
+                ) {
+                    mutablePagerState(0)
+                }
 
                 Surface(elevation = 4.dp) {
                     TabRow(
@@ -135,4 +139,11 @@ class ComposeDemoActivity : ComponentActivity() {
     ) {
         Text(text = rememberResolvedAnnotatedString(text))
     }
+
+    private fun mutablePagerState(currentPage: Int = 0) = mutableStateOf(
+        PagerState(
+            pageCount = 3,
+            currentPage = currentPage,
+        )
+    )
 }

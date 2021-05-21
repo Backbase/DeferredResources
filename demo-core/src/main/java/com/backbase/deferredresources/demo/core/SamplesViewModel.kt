@@ -21,6 +21,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.lifecycle.ViewModel
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
@@ -90,7 +91,7 @@ public data class SamplesViewModel(
             description = DeferredText.Constant("Attribute"),
         ),
     ),
-) {
+) : ViewModel() {
 
     private companion object {
         @Suppress("FunctionName") // Factory
