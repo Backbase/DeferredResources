@@ -30,12 +30,11 @@ import com.backbase.deferredresources.DeferredText
  * View model representing the samples shown in the demo UI. Consuming app must use
  * [R.style.Theme_DeferredResourcesDemo].
  */
-public class SamplesViewModel {
-
+public data class SamplesViewModel(
     /**
      * Title of the section displaying [colorSamples].
      */
-    public val colorSamplesTitle: DeferredText = DeferredText.Constant("Colors")
+    public val colorSamplesTitle: DeferredText = DeferredText.Constant("Colors"),
 
     /**
      * The [ColorSample]s to display.
@@ -53,22 +52,22 @@ public class SamplesViewModel {
             color = DeferredColor.Constant(Color.WHITE),
             description = DeferredText.Constant("White"),
         ),
-    )
+    ),
 
     /**
      * Title of the section displaying a [formattedPluralsSample].
      */
-    public val formattedPluralsSampleTitle: DeferredText = DeferredText.Constant("Plurals resource")
+    public val formattedPluralsSampleTitle: DeferredText = DeferredText.Constant("Plurals resource"),
 
     /**
      * The [DeferredFormattedPlurals] to display.
      */
-    public val formattedPluralsSample: DeferredFormattedPlurals = DeferredFormattedPlurals.Resource(R.plurals.horses)
+    public val formattedPluralsSample: DeferredFormattedPlurals = DeferredFormattedPlurals.Resource(R.plurals.horses),
 
     /**
      * Title of the section displaying [iconSamples].
      */
-    public val iconSamplesTitle: DeferredText = DeferredText.Constant("Drawables")
+    public val iconSamplesTitle: DeferredText = DeferredText.Constant("Drawables"),
 
     /**
      * The [IconSample]s to display.
@@ -90,19 +89,22 @@ public class SamplesViewModel {
             },
             description = DeferredText.Constant("Attribute"),
         ),
-    )
+    ),
+) {
 
-    @Suppress("FunctionName") // Factory
-    private fun GrayCircle(): Drawable = GradientDrawable(
-        GradientDrawable.Orientation.BOTTOM_TOP,
-        intArrayOf(Color.GRAY, Color.GRAY),
-    ).apply {
-        cornerRadius = 64f
-        val size = 128
-        setSize(size, size)
-    }
+    private companion object {
+        @Suppress("FunctionName") // Factory
+        private fun GrayCircle(): Drawable = GradientDrawable(
+            GradientDrawable.Orientation.BOTTOM_TOP,
+            intArrayOf(Color.GRAY, Color.GRAY),
+        ).apply {
+            cornerRadius = 64f
+            val size = 128
+            setSize(size, size)
+        }
 
-    private fun Drawable.setTint(color: DeferredColor, context: Context) {
-        DrawableCompat.setTint(this, color.resolve(context))
+        private fun Drawable.setTint(color: DeferredColor, context: Context) {
+            DrawableCompat.setTint(this, color.resolve(context))
+        }
     }
 }
