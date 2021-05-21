@@ -26,6 +26,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdk
         versionName version
 
+        vectorDrawables.useSupportLibrary = true
+
         consumerProguardFiles 'consumer-rules.pro'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

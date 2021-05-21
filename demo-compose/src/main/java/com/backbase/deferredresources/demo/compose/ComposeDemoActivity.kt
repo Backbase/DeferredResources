@@ -32,7 +32,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,9 +40,17 @@ import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.compose.ExperimentalComposeAdapter
 import com.backbase.deferredresources.compose.rememberResolvedAnnotatedString
 import com.backbase.deferredresources.demo.core.SamplesViewModel
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
 import com.google.android.material.composethemeadapter.MdcTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalComposeAdapter::class)
+@OptIn(
+    ExperimentalComposeAdapter::class,
+    ExperimentalPagerApi::class,
+)
 class ComposeDemoActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,47 +69,69 @@ class ComposeDemoActivity : ComponentActivity() {
         ) {
             val viewModel = remember { SamplesViewModel() }
             Column {
-                var selectedTabIndex by mutableStateOf(0)
-                Surface(
-                    modifier = Modifier.fillMaxWidth(),
-                    color = MaterialTheme.colors.primary,
-                    elevation = 4.dp,
-                ) {
+                val pagerState by mutableStateOf(
+                    PagerState(
+                        pageCount = 3,
+                        currentPage = 0,
+                    )
+                )
+
+                Surface(elevation = 4.dp) {
                     TabRow(
-                        modifier = Modifier.fillMaxWidth().height(48.dp),
-                        selectedTabIndex = selectedTabIndex,
+                        selectedTabIndex = pagerState.currentPage,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp),
+                        backgroundColor = MaterialTheme.colors.primary,
                     ) {
+                        val coroutineScope = rememberCoroutineScope()
                         SampleTab(
-                            selected = selectedTabIndex == 0,
-                            onClick = { selectedTabIndex = 0 },
-                            viewModel.colorSamplesTitle,
+                            text = viewModel.colorSamplesTitle,
+                            index = 0,
+                            pagerState = pagerState,
+                            coroutineScope = coroutineScope,
                         )
                         SampleTab(
-                            selected = selectedTabIndex == 1,
-                            onClick = { selectedTabIndex = 1 },
-                            viewModel.formattedPluralsSampleTitle,
+                            text = viewModel.formattedPluralsSampleTitle,
+                            index = 1,
+                            pagerState = pagerState,
+                            coroutineScope = coroutineScope,
                         )
                         SampleTab(
-                            selected = selectedTabIndex == 2,
-                            onClick = { selectedTabIndex = 2 },
-                            viewModel.iconSamplesTitle,
+                            text = viewModel.iconSamplesTitle,
+                            index = 2,
+                            pagerState = pagerState,
+                            coroutineScope = coroutineScope,
                         )
                     }
                 }
 
-                // TODO: Pager
+                HorizontalPager(
+                    state = pagerState,
+                ) { page ->
+                    when (page) {
+                        0 -> ColorSamplesPage(viewModel.colorSamples)
+                        1 -> PluralsSamplePage(viewModel.formattedPluralsSample)
+                        2 -> IconSamplesPage(viewModel.iconSamples)
+                    }
+                }
             }
         }
     }
 
     @Composable
     private fun SampleTab(
-        selected: Boolean,
-        onClick: () -> Unit,
         text: DeferredText,
+        index: Int,
+        pagerState: PagerState,
+        coroutineScope: CoroutineScope,
     ) = Tab(
-        selected = selected,
-        onClick = onClick,
+        selected = index == pagerState.currentPage,
+        onClick = {
+            coroutineScope.launch {
+                pagerState.animateScrollToPage(index, skipPages = false)
+            }
+        },
     ) {
         Text(text = rememberResolvedAnnotatedString(text))
     }

@@ -72,4 +72,5 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.3.0-alpha08")
     implementation("androidx.compose.material:material:${libs.versions.androidx.compose.get()}")
     implementation("com.google.android.material:compose-theme-adapter:${libs.versions.androidx.compose.get()}")
+    implementation("com.google.accompanist:accompanist-pager:${libs.versions.accompanist.get()}")
 }
