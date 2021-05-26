@@ -31,7 +31,6 @@ import androidx.core.widget.TextViewCompat
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
-import com.backbase.deferredresources.DeferredPlurals
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.demo.databinding.ColorsBinding
 import com.backbase.deferredresources.demo.databinding.DrawableListItemBinding
@@ -93,30 +92,15 @@ class DeferredPluralsView(context: Context) : DeferredResourceView(context) {
         many.text = plurals.resolve(context, 14)
         other.text = plurals.resolve(context, 100)
     }
-
-    fun display(plurals: DeferredPlurals): Unit = with(binding) {
-        zero.text = plurals.resolve(context, 0)
-        one.text = plurals.resolve(context, 1)
-        two.text = plurals.resolve(context, 2)
-        few.text = plurals.resolve(context, 3)
-        many.text = plurals.resolve(context, 14)
-        other.text = plurals.resolve(context, 100)
-    }
 }
 
 class DeferredDrawablesView(context: Context) : DeferredResourceView(context) {
     private val binding = DrawablesBinding.inflate(LayoutInflater.from(context), this)
 
-    fun display(deferredDrawable: DeferredDrawable) = with(binding.container) {
-        val text = when (deferredDrawable) {
-            is DeferredDrawable.Constant -> DeferredText.Constant("Constant")
-            is DeferredDrawable.Resource -> DeferredText.Constant("Resource")
-            is DeferredDrawable.Attribute -> DeferredText.Constant("Attribute")
-            else -> DeferredText.Constant(deferredDrawable.javaClass.simpleName)
-        }
+    fun display(drawable: DeferredDrawable, text: DeferredText) = with(binding.container) {
         with(DrawableListItemBinding.inflate(LayoutInflater.from(context), this, true)) {
             drawableLabel.setText(text)
-            drawableView.setImageDrawable(deferredDrawable)
+            drawableView.setImageDrawable(drawable)
         }
     }
 }

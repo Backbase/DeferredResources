@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Backbase R&D B.V.
+ * Copyright 2021 Backbase R&D B.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-rootProject.name='Deferred Resources'
+package com.backbase.deferredresources.demo.core
 
-include ':deferred-resources', ':deferred-resources-view-extensions'
-include ':demo-core', ':demo'
+import com.backbase.deferredresources.DeferredColor
+import com.backbase.deferredresources.DeferredText
 
-enableFeaturePreview('VERSION_CATALOGS')
-
-boolean includeComposeModule = Boolean.parseBoolean(composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
-logger.lifecycle "Compose enabled: $includeComposeModule"
-if (includeComposeModule) {
-    include ':deferred-resources-compose-adapter'
-    include ':demo-compose'
-}
+/**
+ * A [color] which can be displayed to the user along with a [description].
+ */
+public data class ColorSample(
+    val color: DeferredColor,
+    val description: DeferredText,
+)

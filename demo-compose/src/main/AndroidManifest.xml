@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright 2020 Backbase R&D B.V.
+  ~ Copyright 2021 Backbase R&D B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -14,8 +15,9 @@
   ~ limitations under the License.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.backbase.deferredresources.demo">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.backbase.deferredresources.demo.compose">
 
   <application
       android:allowBackup="false"
@@ -25,11 +27,13 @@
       android:supportsRtl="true"
       android:theme="@style/Theme.DeferredResourcesDemo">
 
-    <activity android:name=".DemoActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+    <activity
+        android:name=".ComposeDemoActivity"
+        android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
     </activity>
 
   </application>
