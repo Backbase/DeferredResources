@@ -16,6 +16,7 @@
 
 buildscript {
     boolean composeEnabled = Boolean.parseBoolean(composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
+    ext.composeEnabled = composeEnabled
 
     dependencies {
         def androidGradlePlugin = composeEnabled ? libs.android.gradlePlugin7 : libs.android.gradlePlugin4
@@ -47,7 +48,10 @@ ext {
 
 apply plugin: 'binary-compatibility-validator'
 apiValidation {
-    ignoredProjects += ['demo']
+    ignoredProjects += ["demo-core", 'demo']
+    if (composeEnabled) {
+        ignoredProjects += ["demo-compose"]
+    }
 }
 
 allprojects { project ->
