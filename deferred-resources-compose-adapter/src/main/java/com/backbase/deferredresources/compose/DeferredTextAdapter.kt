@@ -16,10 +16,19 @@
 
 package com.backbase.deferredresources.compose
 
+import android.graphics.Typeface
+import android.text.SpannedString
+import android.text.style.CharacterStyle
+import android.text.style.StyleSpan
+import android.text.style.UnderlineSpan
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.text.resolveToString
 
@@ -34,9 +43,44 @@ import com.backbase.deferredresources.text.resolveToString
     return remember(deferredText) {
         when (val text = deferredText.resolve(context)) {
             is AnnotatedString -> text
-            // TODO: SpannedString
+            is SpannedString -> {
+                val spanStyles = mutableListOf<AnnotatedString.Range<SpanStyle>>()
+                spanStyles.addSpansFromText<UnderlineSpan>(text)
+                spanStyles.addSpansFromText<StyleSpan>(text)
+                AnnotatedString(text.toString(), spanStyles = spanStyles)
+            }
             else -> AnnotatedString(text.toString())
         }
+    }
+}
+
+private inline fun <reified T : CharacterStyle> MutableList<AnnotatedString.Range<SpanStyle>>.addSpansFromText(
+    text: SpannedString
+) = addAll(
+    with(text) {
+        getSpans(0, length, T::class.java).mapNotNull {
+            AnnotatedStringRange(it)
+        }
+    }
+)
+
+@Suppress("FunctionName") // Factory
+private fun SpannedString.AnnotatedStringRange(characterStyle: CharacterStyle): AnnotatedString.Range<SpanStyle>? {
+    val spanStyle = when (characterStyle) {
+        is StyleSpan -> SpanStyle(
+            fontWeight = if (characterStyle.style and Typeface.BOLD == 0) null else FontWeight.Bold,
+            fontStyle = if (characterStyle.style and Typeface.ITALIC == 0) null else FontStyle.Italic,
+        )
+        is UnderlineSpan -> SpanStyle(textDecoration = TextDecoration.Underline)
+        else -> null
+    }
+    return when (spanStyle) {
+        null -> null // TODO MISSING: Log a warning?
+        else -> AnnotatedString.Range(
+            item = spanStyle,
+            start = getSpanStart(characterStyle),
+            end = getSpanEnd(characterStyle),
+        )
     }
 }
 
