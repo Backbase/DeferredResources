@@ -15,33 +15,21 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout
+<merge
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
 
-    android:orientation="vertical">
+    tools:layout_height="match_parent"
+    tools:layout_width="match_parent"
 
-  <com.google.android.material.tabs.TabLayout
-      android:id="@+id/tabs"
-      style="@style/Widget.MaterialComponents.TabLayout.Colored"
+    tools:parentTag="android.widget.ScrollView">
+
+  <TextView
+      android:id="@+id/textView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
 
-      android:elevation="4dp"
+      android:padding="16dp"
+      android:textAppearance="?textAppearanceBody1" />
 
-      app:tabMode="scrollable"
-
-      tools:ignore="UnusedAttribute" />
-
-  <androidx.viewpager2.widget.ViewPager2
-      android:id="@+id/pager"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
-
-      tools:listitem="@layout/plurals" />
-
-</LinearLayout>
+</merge>

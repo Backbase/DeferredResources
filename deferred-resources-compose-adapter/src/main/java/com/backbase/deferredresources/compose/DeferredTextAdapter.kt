@@ -17,18 +17,29 @@
 package com.backbase.deferredresources.compose
 
 import android.graphics.Typeface
+import android.os.Build
 import android.text.SpannedString
 import android.text.style.CharacterStyle
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StrikethroughSpan
 import android.text.style.StyleSpan
+import android.text.style.SubscriptSpan
+import android.text.style.SuperscriptSpan
+import android.text.style.TypefaceSpan
 import android.text.style.UnderlineSpan
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextGeometricTransform
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.text.resolveToString
 
@@ -44,10 +55,19 @@ import com.backbase.deferredresources.text.resolveToString
         when (val text = deferredText.resolve(context)) {
             is AnnotatedString -> text
             is SpannedString -> {
-                val spanStyles = mutableListOf<AnnotatedString.Range<SpanStyle>>()
-                spanStyles.addSpansFromText<UnderlineSpan>(text)
-                spanStyles.addSpansFromText<StyleSpan>(text)
-                AnnotatedString(text.toString(), spanStyles = spanStyles)
+                AnnotatedString(
+                    text = text.toString(),
+                    spanStyles = mutableListOf<AnnotatedString.Range<SpanStyle>>().apply {
+                        addSpansFromText<StyleSpan>(text)
+                        addSpansFromText<UnderlineSpan>(text)
+                        addSpansFromText<StrikethroughSpan>(text)
+                        addSpansFromText<SuperscriptSpan>(text)
+                        addSpansFromText<SubscriptSpan>(text)
+                        addSpansFromText<ForegroundColorSpan>(text)
+                        addSpansFromText<TypefaceSpan>(text)
+                        addSpansFromText<RelativeSizeSpan>(text)
+                    }
+                )
             }
             else -> AnnotatedString(text.toString())
         }
@@ -72,10 +92,28 @@ private fun SpannedString.AnnotatedStringRange(characterStyle: CharacterStyle): 
             fontStyle = if (characterStyle.style and Typeface.ITALIC == 0) null else FontStyle.Italic,
         )
         is UnderlineSpan -> SpanStyle(textDecoration = TextDecoration.Underline)
+        is StrikethroughSpan -> SpanStyle(textDecoration = TextDecoration.LineThrough)
+        is SuperscriptSpan -> SpanStyle(baselineShift = BaselineShift.Superscript)
+        is SubscriptSpan -> SpanStyle(baselineShift = BaselineShift.Subscript)
+        is ForegroundColorSpan -> SpanStyle(color = Color(characterStyle.foregroundColor))
+        is TypefaceSpan -> SpanStyle(
+            fontFamily = when (characterStyle.family) {
+                "sans-serif" -> FontFamily.SansSerif
+                "serif" -> FontFamily.Serif
+                "monospace" -> FontFamily.Monospace
+                "cursive" -> FontFamily.Cursive
+                null -> if (Build.VERSION.SDK_INT < 28) null else characterStyle.typeface?.let { FontFamily(it) }
+                else -> null
+            },
+        )
+        // TODO: Scale on Y axis too for RelativeSizeSpan
+        is RelativeSizeSpan -> SpanStyle(
+            textGeometricTransform = TextGeometricTransform(scaleX = characterStyle.sizeChange)
+        )
         else -> null
     }
     return when (spanStyle) {
-        null -> null // TODO MISSING: Log a warning?
+        null -> null
         else -> AnnotatedString.Range(
             item = spanStyle,
             start = getSpanStart(characterStyle),

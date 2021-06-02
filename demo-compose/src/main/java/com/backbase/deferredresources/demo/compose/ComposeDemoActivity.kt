@@ -24,9 +24,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
-import androidx.compose.material.TabRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -81,7 +81,7 @@ class ComposeDemoActivity : ComponentActivity() {
                 }
 
                 Surface(elevation = 4.dp) {
-                    TabRow(
+                    ScrollableTabRow(
                         selectedTabIndex = pagerState.currentPage,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -107,6 +107,12 @@ class ComposeDemoActivity : ComponentActivity() {
                             pagerState = pagerState,
                             coroutineScope = coroutineScope,
                         )
+                        SampleTab(
+                            text = viewModel.textSampleTitle,
+                            index = 3,
+                            pagerState = pagerState,
+                            coroutineScope = coroutineScope,
+                        )
                     }
                 }
 
@@ -117,6 +123,7 @@ class ComposeDemoActivity : ComponentActivity() {
                         0 -> ColorSamplesPage(viewModel.colorSamples)
                         1 -> PluralsSamplePage(viewModel.formattedPluralsSample)
                         2 -> IconSamplesPage(viewModel.iconSamples)
+                        3 -> TextSamplePage(viewModel.textSample)
                     }
                 }
             }
@@ -136,13 +143,14 @@ class ComposeDemoActivity : ComponentActivity() {
                 pagerState.animateScrollToPage(index, skipPages = false)
             }
         },
-    ) {
-        Text(text = rememberResolvedAnnotatedString(text))
-    }
+        text = {
+            Text(text = rememberResolvedAnnotatedString(text))
+        },
+    )
 
     private fun mutablePagerState(currentPage: Int = 0) = mutableStateOf(
         PagerState(
-            pageCount = 3,
+            pageCount = 4,
             currentPage = currentPage,
         )
     )
