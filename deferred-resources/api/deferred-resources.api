@@ -13,7 +13,7 @@ public final class com/backbase/deferredresources/DeferredBoolean$Attribute : co
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredBoolean$Attribute$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredBoolean$Attribute$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredBoolean$Attribute;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -32,7 +32,7 @@ public final class com/backbase/deferredresources/DeferredBoolean$Constant : com
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredBoolean$Constant$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredBoolean$Constant$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredBoolean$Constant;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -51,7 +51,7 @@ public final class com/backbase/deferredresources/DeferredBoolean$Resource : com
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredBoolean$Resource$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredBoolean$Resource$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredBoolean$Resource;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -76,7 +76,7 @@ public final class com/backbase/deferredresources/DeferredColor$Attribute : com/
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredColor$Attribute$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredColor$Attribute$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredColor$Attribute;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -97,7 +97,7 @@ public final class com/backbase/deferredresources/DeferredColor$Constant : com/b
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredColor$Constant$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredColor$Constant$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredColor$Constant;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -117,7 +117,7 @@ public final class com/backbase/deferredresources/DeferredColor$Resource : com/b
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredColor$Resource$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredColor$Resource$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredColor$Resource;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -144,7 +144,7 @@ public final class com/backbase/deferredresources/DeferredDimension$Attribute : 
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredDimension$Attribute$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredDimension$Attribute$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredDimension$Attribute;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -168,7 +168,7 @@ public final class com/backbase/deferredresources/DeferredDimension$Constant : c
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredDimension$Constant$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredDimension$Constant$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredDimension$Constant;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -197,7 +197,7 @@ public final class com/backbase/deferredresources/DeferredDimension$Resource : c
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredDimension$Resource$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredDimension$Resource$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredDimension$Resource;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -259,7 +259,7 @@ public final class com/backbase/deferredresources/DeferredFormattedPlurals$Const
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredFormattedPlurals$Constant$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredFormattedPlurals$Constant$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredFormattedPlurals$Constant;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -282,7 +282,7 @@ public final class com/backbase/deferredresources/DeferredFormattedPlurals$Resou
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredFormattedPlurals$Resource$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredFormattedPlurals$Resource$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredFormattedPlurals$Resource;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -305,7 +305,7 @@ public final class com/backbase/deferredresources/DeferredFormattedString$Consta
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredFormattedString$Constant$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredFormattedString$Constant$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredFormattedString$Constant;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -324,7 +324,7 @@ public final class com/backbase/deferredresources/DeferredFormattedString$Resour
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredFormattedString$Resource$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredFormattedString$Resource$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredFormattedString$Resource;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -347,7 +347,7 @@ public final class com/backbase/deferredresources/DeferredInteger$Constant : com
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredInteger$Constant$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredInteger$Constant$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredInteger$Constant;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -366,7 +366,7 @@ public final class com/backbase/deferredresources/DeferredInteger$Resource : com
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredInteger$Resource$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredInteger$Resource$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredInteger$Resource;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -390,7 +390,7 @@ public final class com/backbase/deferredresources/DeferredIntegerArray$Constant 
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredIntegerArray$Constant$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredIntegerArray$Constant$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredIntegerArray$Constant;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -409,7 +409,7 @@ public final class com/backbase/deferredresources/DeferredIntegerArray$Resource 
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredIntegerArray$Resource$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredIntegerArray$Resource$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredIntegerArray$Resource;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -435,7 +435,7 @@ public final class com/backbase/deferredresources/DeferredPlurals$Constant : com
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredPlurals$Constant$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredPlurals$Constant$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredPlurals$Constant;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -455,7 +455,7 @@ public final class com/backbase/deferredresources/DeferredPlurals$Resource : com
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredPlurals$Resource$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredPlurals$Resource$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredPlurals$Resource;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -485,7 +485,7 @@ public final class com/backbase/deferredresources/DeferredText$Constant : com/ba
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredText$Constant$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredText$Constant$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredText$Constant;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -506,7 +506,7 @@ public final class com/backbase/deferredresources/DeferredText$Resource : com/ba
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredText$Resource$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredText$Resource$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredText$Resource;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -537,7 +537,7 @@ public final class com/backbase/deferredresources/DeferredTextArray$Constant : c
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredTextArray$Constant$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredTextArray$Constant$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredTextArray$Constant;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -558,7 +558,7 @@ public final class com/backbase/deferredresources/DeferredTextArray$Resource : c
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/DeferredTextArray$Resource$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/DeferredTextArray$Resource$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/DeferredTextArray$Resource;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -625,7 +625,7 @@ public final class com/backbase/deferredresources/color/DeferredColorWithAlpha :
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/color/DeferredColorWithAlpha$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/color/DeferredColorWithAlpha$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/color/DeferredColorWithAlpha;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -654,7 +654,7 @@ public final class com/backbase/deferredresources/color/SdkIntDeferredColor : co
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/color/SdkIntDeferredColor$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/color/SdkIntDeferredColor$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/color/SdkIntDeferredColor;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -699,7 +699,7 @@ public final class com/backbase/deferredresources/text/FormattedDeferredPlurals 
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/text/FormattedDeferredPlurals$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/text/FormattedDeferredPlurals$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/text/FormattedDeferredPlurals;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -723,7 +723,7 @@ public final class com/backbase/deferredresources/text/FormattedDeferredText : c
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/text/FormattedDeferredText$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/text/FormattedDeferredText$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/text/FormattedDeferredText;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -762,7 +762,7 @@ public final class com/backbase/deferredresources/text/QuantifiedDeferredFormatt
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/text/QuantifiedDeferredFormattedString$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/text/QuantifiedDeferredFormattedString$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/text/QuantifiedDeferredFormattedString;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -786,7 +786,7 @@ public final class com/backbase/deferredresources/text/QuantifiedDeferredText : 
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/text/QuantifiedDeferredText$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/text/QuantifiedDeferredText$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/text/QuantifiedDeferredText;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
@@ -811,7 +811,7 @@ public final class com/backbase/deferredresources/text/QuantifiedFormattedDeferr
 	public fun writeToParcel (Landroid/os/Parcel;I)V
 }
 
-public class com/backbase/deferredresources/text/QuantifiedFormattedDeferredText$Creator : android/os/Parcelable$Creator {
+public final class com/backbase/deferredresources/text/QuantifiedFormattedDeferredText$Creator : android/os/Parcelable$Creator {
 	public fun <init> ()V
 	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/backbase/deferredresources/text/QuantifiedFormattedDeferredText;
 	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
