@@ -3,7 +3,7 @@ accompanist = "0.11.1"
 androidx-compose = "1.0.0-beta08"
 android-test = "1.3.0"
 kotlin = "1.5.10"
-poko = "0.8.0"
+poko = "0.8.1"
 
 [libraries]
 accompanist-imageLoading-core = { module = "com.google.accompanist:accompanist-imageloading-core", version.ref = "accompanist" }
