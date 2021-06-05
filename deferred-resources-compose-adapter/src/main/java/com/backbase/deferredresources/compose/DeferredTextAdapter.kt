@@ -28,12 +28,10 @@ import android.text.style.SubscriptSpan
 import android.text.style.SuperscriptSpan
 import android.text.style.TypefaceSpan
 import android.text.style.UnderlineSpan
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -60,6 +58,7 @@ import com.backbase.deferredresources.text.resolveToString
     }
 }
 
+@Suppress("detekt.FunctionNaming") // Factory
 private fun AnnotatedString(text: SpannedString) = AnnotatedString(
     text = text.toString(),
     spanStyles = mutableListOf<AnnotatedString.Range<SpanStyle>>().apply {
@@ -86,33 +85,7 @@ private inline fun <reified T : CharacterStyle> MutableList<AnnotatedString.Rang
 
 @Suppress("FunctionName") // Factory
 private fun SpannedString.AnnotatedStringRange(characterStyle: CharacterStyle): AnnotatedString.Range<SpanStyle>? {
-    val spanStyle = when (characterStyle) {
-        is StyleSpan -> SpanStyle(
-            fontWeight = if (characterStyle.style and Typeface.BOLD == 0) null else FontWeight.Bold,
-            fontStyle = if (characterStyle.style and Typeface.ITALIC == 0) null else FontStyle.Italic,
-        )
-        is UnderlineSpan -> SpanStyle(textDecoration = TextDecoration.Underline)
-        is StrikethroughSpan -> SpanStyle(textDecoration = TextDecoration.LineThrough)
-        is SuperscriptSpan -> SpanStyle(baselineShift = BaselineShift.Superscript)
-        is SubscriptSpan -> SpanStyle(baselineShift = BaselineShift.Subscript)
-        is ForegroundColorSpan -> SpanStyle(color = Color(characterStyle.foregroundColor))
-        is TypefaceSpan -> SpanStyle(
-            fontFamily = when (characterStyle.family) {
-                "sans-serif" -> FontFamily.SansSerif
-                "serif" -> FontFamily.Serif
-                "monospace" -> FontFamily.Monospace
-                "cursive" -> FontFamily.Cursive
-                null -> if (Build.VERSION.SDK_INT < 28) null else characterStyle.typeface?.let { FontFamily(it) }
-                else -> null
-            },
-        )
-        // TODO: Scale on Y axis too for RelativeSizeSpan
-        is RelativeSizeSpan -> SpanStyle(
-            textGeometricTransform = TextGeometricTransform(scaleX = characterStyle.sizeChange)
-        )
-        else -> null
-    }
-    return when (spanStyle) {
+    return when (val spanStyle = characterStyle.toSpanStyle()) {
         null -> null
         else -> AnnotatedString.Range(
             item = spanStyle,
@@ -121,6 +94,38 @@ private fun SpannedString.AnnotatedStringRange(characterStyle: CharacterStyle): 
         )
     }
 }
+
+private fun CharacterStyle.toSpanStyle(): SpanStyle? = when (this) {
+    is StyleSpan -> SpanStyle(
+        fontWeight = if (isBold) FontWeight.Bold else null,
+        fontStyle = if (isItalic) FontStyle.Italic else null,
+    )
+    is UnderlineSpan -> SpanStyle(textDecoration = TextDecoration.Underline)
+    is StrikethroughSpan -> SpanStyle(textDecoration = TextDecoration.LineThrough)
+    is SuperscriptSpan -> SpanStyle(baselineShift = BaselineShift.Superscript)
+    is SubscriptSpan -> SpanStyle(baselineShift = BaselineShift.Subscript)
+    is ForegroundColorSpan -> SpanStyle(color = Color(foregroundColor))
+    is TypefaceSpan -> SpanStyle(fontFamily = fontFamily)
+    // TODO: Scale on Y axis too for RelativeSizeSpan
+    is RelativeSizeSpan -> SpanStyle(textGeometricTransform = TextGeometricTransform(scaleX = sizeChange))
+    else -> null
+}
+
+private val StyleSpan.isBold: Boolean
+    get() = style and Typeface.BOLD != 0
+
+private val StyleSpan.isItalic: Boolean
+    get() = style and Typeface.ITALIC != 0
+
+private val TypefaceSpan.fontFamily: FontFamily?
+    get() = when (family) {
+        "sans-serif" -> FontFamily.SansSerif
+        "serif" -> FontFamily.Serif
+        "monospace" -> FontFamily.Monospace
+        "cursive" -> FontFamily.Cursive
+        null -> if (Build.VERSION.SDK_INT < 28) null else typeface?.let { FontFamily(it) }
+        else -> null
+    }
 
 /**
  * Resolve [deferredText] to a plain string, remembering the resulting value as long as the current [LocalContext]
