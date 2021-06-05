@@ -15,12 +15,11 @@
  */
 
 buildscript {
-    boolean composeEnabled = Boolean.parseBoolean(composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
+    boolean composeEnabled = Boolean.parseBoolean(project.composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
     ext.composeEnabled = composeEnabled
 
     dependencies {
-        def androidGradlePlugin = composeEnabled ? libs.android.gradlePlugin7 : libs.android.gradlePlugin4
-        classpath(androidGradlePlugin)
+        classpath(libs.android.gradlePlugin)
 
         classpath(libs.kotlin.gradlePlugin)
         classpath(libs.dokka.gradlePlugin)
