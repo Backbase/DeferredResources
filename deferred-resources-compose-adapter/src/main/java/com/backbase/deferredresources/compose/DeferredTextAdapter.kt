@@ -28,10 +28,12 @@ import android.text.style.SubscriptSpan
 import android.text.style.SuperscriptSpan
 import android.text.style.TypefaceSpan
 import android.text.style.UnderlineSpan
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -45,8 +47,6 @@ import com.backbase.deferredresources.text.resolveToString
 
 /**
  * Resolve [deferredText], remembering the resulting value as long as the current [LocalContext] doesn't change.
- *
- * Note: Currently, style elements from resource-resolved text are not kept.
  */
 @ExperimentalComposeAdapter
 @Composable public fun rememberResolvedAnnotatedString(deferredText: DeferredText): AnnotatedString {
@@ -54,25 +54,25 @@ import com.backbase.deferredresources.text.resolveToString
     return remember(deferredText) {
         when (val text = deferredText.resolve(context)) {
             is AnnotatedString -> text
-            is SpannedString -> {
-                AnnotatedString(
-                    text = text.toString(),
-                    spanStyles = mutableListOf<AnnotatedString.Range<SpanStyle>>().apply {
-                        addSpansFromText<StyleSpan>(text)
-                        addSpansFromText<UnderlineSpan>(text)
-                        addSpansFromText<StrikethroughSpan>(text)
-                        addSpansFromText<SuperscriptSpan>(text)
-                        addSpansFromText<SubscriptSpan>(text)
-                        addSpansFromText<ForegroundColorSpan>(text)
-                        addSpansFromText<TypefaceSpan>(text)
-                        addSpansFromText<RelativeSizeSpan>(text)
-                    }
-                )
-            }
+            is SpannedString -> AnnotatedString(text)
             else -> AnnotatedString(text.toString())
         }
     }
 }
+
+private fun AnnotatedString(text: SpannedString) = AnnotatedString(
+    text = text.toString(),
+    spanStyles = mutableListOf<AnnotatedString.Range<SpanStyle>>().apply {
+        addSpansFromText<StyleSpan>(text)
+        addSpansFromText<UnderlineSpan>(text)
+        addSpansFromText<StrikethroughSpan>(text)
+        addSpansFromText<SuperscriptSpan>(text)
+        addSpansFromText<SubscriptSpan>(text)
+        addSpansFromText<ForegroundColorSpan>(text)
+        addSpansFromText<TypefaceSpan>(text)
+        addSpansFromText<RelativeSizeSpan>(text)
+    }
+)
 
 private inline fun <reified T : CharacterStyle> MutableList<AnnotatedString.Range<SpanStyle>>.addSpansFromText(
     text: SpannedString
