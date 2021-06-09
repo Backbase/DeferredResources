@@ -83,4 +83,5 @@ dependencies {
 
     androidTestImplementation(libs.androidx.compose.material)
     androidTestImplementation(libs.androidx.compose.uiTest)
+    androidTestImplementation(project(":demo-core"))
 }
