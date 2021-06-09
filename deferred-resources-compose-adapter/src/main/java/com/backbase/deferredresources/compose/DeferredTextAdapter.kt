@@ -58,6 +58,7 @@ import com.backbase.deferredresources.text.resolveToString
     }
 }
 
+//region SpannedString conversion
 @Suppress("detekt.FunctionNaming") // Factory
 private fun AnnotatedString(text: SpannedString) = AnnotatedString(
     text = text.toString(),
@@ -70,27 +71,28 @@ private fun AnnotatedString(text: SpannedString) = AnnotatedString(
         addSpansFromText<ForegroundColorSpan>(text)
         addSpansFromText<TypefaceSpan>(text)
         addSpansFromText<RelativeSizeSpan>(text)
-    }
+    },
+    // TODO: Parse paragraph styles
 )
 
 private inline fun <reified T : CharacterStyle> MutableList<AnnotatedString.Range<SpanStyle>>.addSpansFromText(
     text: SpannedString
-) = addAll(
-    with(text) {
-        getSpans(0, length, T::class.java).mapNotNull {
-            AnnotatedStringRange(it)
-        }
-    }
-)
+) = addAll(spansFromText<T>(text))
+
+private inline fun <reified T : CharacterStyle> spansFromText(
+    text: SpannedString
+): List<AnnotatedString.Range<SpanStyle>> =
+    text.getSpans(0, text.length, T::class.java)
+        .mapNotNull { it.toRangeInText(text) }
 
 @Suppress("FunctionName") // Factory
-private fun SpannedString.AnnotatedStringRange(characterStyle: CharacterStyle): AnnotatedString.Range<SpanStyle>? {
-    return when (val spanStyle = characterStyle.toSpanStyle()) {
+private fun CharacterStyle.toRangeInText(text: SpannedString): AnnotatedString.Range<SpanStyle>? {
+    return when (val spanStyle = toSpanStyle()) {
         null -> null
         else -> AnnotatedString.Range(
             item = spanStyle,
-            start = getSpanStart(characterStyle),
-            end = getSpanEnd(characterStyle),
+            start = text.getSpanStart(this),
+            end = text.getSpanEnd(this),
         )
     }
 }
@@ -126,6 +128,7 @@ private val TypefaceSpan.fontFamily: FontFamily?
         null -> if (Build.VERSION.SDK_INT < 28) null else typeface?.let { FontFamily(it) }
         else -> null
     }
+//endregion
 
 /**
  * Resolve [deferredText] to a plain string, remembering the resulting value as long as the current [LocalContext]
