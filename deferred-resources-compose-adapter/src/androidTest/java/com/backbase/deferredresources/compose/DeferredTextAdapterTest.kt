@@ -16,6 +16,7 @@
 
 package com.backbase.deferredresources.compose
 
+import android.os.Build
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -131,7 +132,19 @@ internal class DeferredTextAdapterTest {
                     start = 145,
                     end = 148,
                 ),
-                AnnotatedString.Range(item = SpanStyle(color = Color(0xfff2780c)), start = 74, end = 83),
+                AnnotatedString.Range(
+                    item = SpanStyle(
+                        color = Color(
+                            red = 0xf2,
+                            green = 0x78,
+                            blue = 0x0c,
+                            // Color incorrectly has alpha 0 on Lollipop:
+                            alpha = if (Build.VERSION.SDK_INT < 23) 0x00 else 0xff,
+                        )
+                    ),
+                    start = 74,
+                    end = 83
+                ),
                 AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Cursive), start = 105, end = 113),
                 AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Monospace), start = 117, end = 127),
                 AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.SansSerif), start = 86, end = 97),
