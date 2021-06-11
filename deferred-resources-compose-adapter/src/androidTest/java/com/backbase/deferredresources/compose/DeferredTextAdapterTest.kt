@@ -35,6 +35,8 @@ import com.backbase.deferredresources.compose.test.R
 import com.backbase.deferredresources.compose.test.TestTag
 import com.backbase.deferredresources.compose.test.TestTagModifier
 import com.backbase.deferredresources.compose.test.assertGenericValueEquals
+import com.backbase.deferredresources.compose.test.assertGenericValueSemanticallyMatches
+import com.google.common.truth.Truth.assertThat
 import org.junit.Rule
 import org.junit.Test
 
@@ -84,85 +86,80 @@ internal class DeferredTextAdapterTest {
             )
         }
 
-        composeTestRule.onNodeWithTag(TestTag).assertGenericValueEquals(
-            AnnotatedString(
-                text = """
-                    Styled text is supported:
+        val space = " "
+        val expected = AnnotatedString(
+            text = """
+                Styled text is supported:$space
 
-                    Bold, italic, underlined, struck through, and colorful.
+                Bold, italic, underlined, struck through, and colorful.$space
 
-                    Sans-serif, serif, cursive, or monospace.
+                Sans-serif, serif, cursive, or monospace.$space
 
-                    Superscript or subscript, big or small.
+                Superscript or subscript, big or small.$space
 
-                    These styles can also be combined:
-                    y = x2 - 4x + 7
-                """.trimIndent(),
-                // FIXME: Still fails
-                spanStyles = listOf(
-                    AnnotatedString.Range(item = SpanStyle(fontWeight = FontWeight.Bold), start = 28, end = 33),
-                    AnnotatedString.Range(item = SpanStyle(fontStyle = FontStyle.Italic), start = 34, end = 41),
-                    AnnotatedString.Range(item = SpanStyle(fontStyle = FontStyle.Italic), start = 208, end = 209),
-                    AnnotatedString.Range(item = SpanStyle(fontStyle = FontStyle.Italic), start = 212, end = 213),
-                    AnnotatedString.Range(item = SpanStyle(fontStyle = FontStyle.Italic), start = 218, end = 219),
-                    AnnotatedString.Range(
-                        item = SpanStyle(textDecoration = TextDecoration.Underline),
-                        start = 42,
-                        end = 53
-                    ),
-                    AnnotatedString.Range(
-                        item = SpanStyle(textDecoration = TextDecoration.LineThrough),
-                        start = 54,
-                        end = 69
-                    ),
-                    AnnotatedString.Range(
-                        item = SpanStyle(baselineShift = BaselineShift(multiplier = 0.5f)),
-                        start = 130,
-                        end = 135
-                    ),
-                    AnnotatedString.Range(
-                        item = SpanStyle(baselineShift = BaselineShift(multiplier = 0.5f)),
-                        start = 213,
-                        end = 214
-                    ),
-                    AnnotatedString.Range(
-                        item = SpanStyle(baselineShift = BaselineShift(multiplier = -0.5f)),
-                        start = 145,
-                        end = 148
-                    ),
-                    AnnotatedString.Range(item = SpanStyle(color = Color(0xfff2780c)), start = 74, end = 83),
-                    AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.SansSerif), start = 86, end = 97),
-                    AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Serif), start = 98, end = 104),
-                    AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Cursive), start = 105, end = 113),
-                    AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Monospace), start = 117, end = 127),
-                    AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Serif), start = 208, end = 223),
-                    AnnotatedString.Range(
-                        item = SpanStyle(
-                            textGeometricTransform = TextGeometricTransform(
-                                scaleX = 1.25f,
-                                skewX = 0f
-                            )
-                        ), start = 156, end = 159
-                    ),
-                    AnnotatedString.Range(
-                        item = SpanStyle(
-                            textGeometricTransform = TextGeometricTransform(
-                                scaleX = 0.8f,
-                                skewX = 0f
-                            )
-                        ), start = 163, end = 168
-                    ),
-                    AnnotatedString.Range(
-                        item = SpanStyle(
-                            textGeometricTransform = TextGeometricTransform(
-                                scaleX = 0.8f,
-                                skewX = 0f
-                            )
-                        ), start = 213, end = 214
-                    ),
+                These styles can also be combined:$space
+                y = x2 - 4x + 7$space
+            """.trimIndent(),
+            spanStyles = listOf(
+                AnnotatedString.Range(item = SpanStyle(fontWeight = FontWeight.Bold), start = 28, end = 33),
+                AnnotatedString.Range(item = SpanStyle(fontStyle = FontStyle.Italic), start = 34, end = 41),
+                AnnotatedString.Range(item = SpanStyle(fontStyle = FontStyle.Italic), start = 208, end = 209),
+                AnnotatedString.Range(item = SpanStyle(fontStyle = FontStyle.Italic), start = 212, end = 213),
+                AnnotatedString.Range(item = SpanStyle(fontStyle = FontStyle.Italic), start = 218, end = 219),
+                AnnotatedString.Range(
+                    item = SpanStyle(textDecoration = TextDecoration.Underline),
+                    start = 42,
+                    end = 53,
                 ),
-            )
+                AnnotatedString.Range(
+                    item = SpanStyle(textDecoration = TextDecoration.LineThrough),
+                    start = 54,
+                    end = 69,
+                ),
+                AnnotatedString.Range(
+                    item = SpanStyle(baselineShift = BaselineShift(multiplier = 0.5f)),
+                    start = 130,
+                    end = 135,
+                ),
+                AnnotatedString.Range(
+                    item = SpanStyle(baselineShift = BaselineShift(multiplier = 0.5f)),
+                    start = 213,
+                    end = 214,
+                ),
+                AnnotatedString.Range(
+                    item = SpanStyle(baselineShift = BaselineShift(multiplier = -0.5f)),
+                    start = 145,
+                    end = 148,
+                ),
+                AnnotatedString.Range(item = SpanStyle(color = Color(0xfff2780c)), start = 74, end = 83),
+                AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Cursive), start = 105, end = 113),
+                AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Monospace), start = 117, end = 127),
+                AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.SansSerif), start = 86, end = 97),
+                AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Serif), start = 98, end = 104),
+                AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Serif), start = 208, end = 223),
+                AnnotatedString.Range(
+                    item = SpanStyle(textGeometricTransform = TextGeometricTransform(scaleX = 1.25f, skewX = 0f)),
+                    start = 156,
+                    end = 159,
+                ),
+                AnnotatedString.Range(
+                    item = SpanStyle(textGeometricTransform = TextGeometricTransform(scaleX = 0.8f, skewX = 0f)),
+                    start = 163,
+                    end = 168,
+                ),
+                AnnotatedString.Range(
+                    item = SpanStyle(textGeometricTransform = TextGeometricTransform(scaleX = 0.8f, skewX = 0f)),
+                    start = 213,
+                    end = 214,
+                ),
+            ),
         )
+        composeTestRule.onNodeWithTag(TestTag).assertGenericValueSemanticallyMatches<AnnotatedString> { value ->
+            assertThat(value.text).isEqualTo(expected.text)
+            assertThat(value.spanStyles).hasSize(expected.spanStyles.size)
+            // `inOrder` is intentionally not called because we do not care about the order:
+            assertThat(value.spanStyles).containsExactlyElementsIn(expected.spanStyles)
+        }
     }
 
     @Test fun resolveToString_withLocalContext_returnsExpectedValue() {
