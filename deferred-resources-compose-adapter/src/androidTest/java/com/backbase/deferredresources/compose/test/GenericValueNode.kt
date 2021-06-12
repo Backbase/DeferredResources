@@ -46,4 +46,20 @@ import androidx.compose.ui.test.assert
 internal fun <T> SemanticsNodeInteraction.assertGenericValueEquals(value: T) =
     assert(SemanticsMatcher.expectValue(GenericValue, value))
 
+/**
+ * Assert that the node is a [GenericValueNode] with a value matching the given [assertions].
+ */
+internal inline fun <reified T : Any> SemanticsNodeInteraction.assertGenericValueSemanticallyMatches(
+    crossinline assertions: (T) -> Unit,
+) {
+    val node = fetchSemanticsNode()
+    val value = node.config.getOrElseNullable(GenericValue) { null }
+
+    if (value is T) {
+        assertions(value)
+    } else {
+        "Expected instance of ${T::class.java.simpleName}, but got <$value>"
+    }
+}
+
 private val GenericValue = SemanticsPropertyKey<Any?>("GenericValue") { parentNode, _ -> parentNode }

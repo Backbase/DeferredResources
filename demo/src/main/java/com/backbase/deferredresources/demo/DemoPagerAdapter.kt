@@ -30,6 +30,7 @@ class DemoPagerAdapter(
         0 -> viewModel.colorSamplesTitle
         1 -> viewModel.formattedPluralsSampleTitle
         2 -> viewModel.iconSamplesTitle
+        3 -> viewModel.textSampleTitle
         else -> throw IllegalArgumentException("Position $position in adapter with size $itemCount")
     }
 
@@ -39,6 +40,7 @@ class DemoPagerAdapter(
         0 -> ViewType.COLORS.ordinal
         1 -> ViewType.PLURALS.ordinal
         2 -> ViewType.DRAWABLES.ordinal
+        3 -> ViewType.STYLED_TEXT.ordinal
         else -> throw IndexOutOfBoundsException("Position $position in adapter with size $itemCount")
     }
 
@@ -47,6 +49,7 @@ class DemoPagerAdapter(
             ViewType.COLORS -> DeferredColorsView(parent.context)
             ViewType.PLURALS -> DeferredPluralsView(parent.context)
             ViewType.DRAWABLES -> DeferredDrawablesView(parent.context)
+            ViewType.STYLED_TEXT -> DeferredTextView(parent.context)
         }.apply {
             layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -65,6 +68,7 @@ class DemoPagerAdapter(
             is DeferredDrawablesView -> viewModel.iconSamples.forEach { sample ->
                 view.display(sample.icon, sample.description)
             }
+            is DeferredTextView -> view.display(viewModel.textSample)
         }
     }
 
@@ -73,6 +77,6 @@ class DemoPagerAdapter(
     ) : RecyclerView.ViewHolder(root)
 
     private enum class ViewType {
-        COLORS, PLURALS, DRAWABLES
+        COLORS, PLURALS, DRAWABLES, STYLED_TEXT,
     }
 }

@@ -36,6 +36,7 @@ import com.backbase.deferredresources.demo.databinding.ColorsBinding
 import com.backbase.deferredresources.demo.databinding.DrawableListItemBinding
 import com.backbase.deferredresources.demo.databinding.DrawablesBinding
 import com.backbase.deferredresources.demo.databinding.PluralsBinding
+import com.backbase.deferredresources.demo.databinding.TextBinding
 import com.backbase.deferredresources.viewx.setImageDrawable
 import com.backbase.deferredresources.viewx.setText
 import com.google.android.material.textview.MaterialTextView
@@ -102,5 +103,13 @@ class DeferredDrawablesView(context: Context) : DeferredResourceView(context) {
             drawableLabel.setText(text)
             drawableView.setImageDrawable(drawable)
         }
+    }
+}
+
+class DeferredTextView(context: Context) : DeferredResourceView(context) {
+    private val binding = TextBinding.inflate(LayoutInflater.from(context), this)
+
+    fun display(text: DeferredText) {
+        binding.textView.setText(text)
     }
 }

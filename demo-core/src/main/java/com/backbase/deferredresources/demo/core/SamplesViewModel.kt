@@ -91,6 +91,19 @@ public data class SamplesViewModel(
             description = DeferredText.Constant("Attribute"),
         ),
     ),
+
+    /**
+     * Title of the section displaying a [textSample].
+     */
+    public val textSampleTitle: DeferredText = DeferredText.Constant("Styled text"),
+
+    /**
+     * The styled [DeferredText] to display.
+     */
+    public val textSample: DeferredText = DeferredText.Resource(
+        resId = R.string.styled_string,
+        type = DeferredText.Resource.Type.TEXT,
+    ),
 ) : ViewModel() {
 
     private companion object {
