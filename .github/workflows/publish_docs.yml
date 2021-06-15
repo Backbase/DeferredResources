@@ -3,6 +3,8 @@ name: Publish docs to GitHub Pages
 on:
   release:
     types: [published]
+  push:
+    branches: [ drew/fix-docs ]
 
 jobs:
   deploy-website:
