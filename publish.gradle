@@ -31,14 +31,11 @@ detekt {
 }
 tasks.detekt.jvmTarget = JavaVersion.VERSION_1_8
 
+apply plugin: 'org.jetbrains.dokka'
+
 task sourcesJar(type: Jar) {
     archiveClassifier.set 'sources'
     from android.sourceSets.main.java.srcDirs
-}
-
-apply plugin: 'org.jetbrains.dokka'
-dokkaGfm {
-    outputDirectory.set new File("$rootDir/docs/1.x")
 }
 
 task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
