@@ -53,6 +53,11 @@ apiValidation {
     }
 }
 
+apply plugin: "org.jetbrains.dokka"
+dokkaGfmMultiModule {
+    outputDirectory.set new File("$rootDir/docs/1.x")
+}
+
 allprojects { project ->
     repositories {
         mavenCentral()
@@ -73,4 +78,5 @@ allprojects { project ->
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+    delete rootProject.file("docs/1.x")
 }
