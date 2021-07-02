@@ -23,10 +23,7 @@ ext {
     artifactName = "deferred-resources-compose-adapter"
     publishedDescription = "Adapters to resolve Deferred Resources types for use with Jetpack Compose UI."
 }
-
-if (rootProject.ext.libraryVersion.endsWith("SNAPSHOT")) {
-    apply from: "../publish.gradle"
-}
+apply from: "../publish.gradle"
 
 android {
     compileSdkVersion rootProject.ext.targetSdk
