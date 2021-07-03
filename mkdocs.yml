@@ -12,6 +12,7 @@ nav:
   - '1.x API':
     - 'deferred-resources': 1.x/deferred-resources/index.md
     - 'view-extensions': 1.x/deferred-resources-view-extensions/index.md
+    - 'compose-adapter': 1.x/deferred-resources-compose-adapter/index.md
   - 'Changelog': changelog.md
   - 'Contributing': contributing.md
 
