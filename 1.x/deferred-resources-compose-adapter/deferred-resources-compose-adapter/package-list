@@ -1,0 +1,19 @@
+$dokka.format:gfm-v1
+$dokka.linkExtension:md
+$dokka.location:com.backbase.deferredresources.compose////PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/index.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedAnnotatedString/#com.backbase.deferredresources.DeferredPlurals#kotlin.Int/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-annotated-string.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedAnnotatedString/#com.backbase.deferredresources.DeferredText/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-annotated-string.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedColor/#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-color.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedDp/#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-dp.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedFontFamily/#com.backbase.deferredresources.DeferredTypeface/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-font-family.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedPainter/#com.backbase.deferredresources.DeferredDrawable/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-painter.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedString/#com.backbase.deferredresources.DeferredFormattedPlurals#kotlin.Int#kotlin.Array[kotlin.Any]/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-string.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedString/#com.backbase.deferredresources.DeferredFormattedPlurals#kotlin.Int/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-string.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedString/#com.backbase.deferredresources.DeferredFormattedString#kotlin.Array[kotlin.Any]/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-string.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedString/#com.backbase.deferredresources.DeferredText/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-string.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedValue/#com.backbase.deferredresources.DeferredBoolean/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-value.md
+$dokka.location:com.backbase.deferredresources.compose//rememberResolvedValue/#com.backbase.deferredresources.DeferredInteger/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/remember-resolved-value.md
+$dokka.location:com.backbase.deferredresources.compose/ExperimentalComposeAdapter///PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/-experimental-compose-adapter/index.md
+$dokka.location:com.backbase.deferredresources.compose/ExperimentalComposeAdapter/ExperimentalComposeAdapter/#/PointingToDeclaration/deferred-resources-compose-adapter/com.backbase.deferredresources.compose/-experimental-compose-adapter/-experimental-compose-adapter.md
+com.backbase.deferredresources.compose
+
