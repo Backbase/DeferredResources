@@ -18,9 +18,7 @@ repository](https://oss.sonatype.org/#view-repositories;snapshots~browsestorage)
 ```groovy
 implementation "com.backbase.oss.deferredresources:deferred-resources:$version"
 implementation "com.backbase.oss.deferredresources:deferred-resources-view-extensions:$version"
-
-// Experimental, unstable Compose adapter is available only as a snapshot:
-implementation "com.backbase.oss.deferredresources:deferred-resources-compose-adapter:$version-SNAPSHOT"
+implementation "com.backbase.oss.deferredresources:deferred-resources-compose-adapter:$version"
 ```
 
 ## Use
@@ -96,6 +94,7 @@ val icon: Painter = rememberResolvedPainter(deferredDrawable)
 ```
 
 All of these APIs are marked as `@ExperimentalComposeAdapter` and should not be considered stable.
+Their behavior and binary compatibility are not guaranteed.
 
 ## License
 ```

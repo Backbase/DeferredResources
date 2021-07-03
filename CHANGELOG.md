@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.5.0
+_2021-07-03_
+
+Introduce the `deferred-resources-compose-adapter` artifact for Jetpack Compose UI. This provides
+APIs for resolving existing Deferred Resources types in a Compose UI context. For example,
+`rememberResolvedColor` resolves a `DeferredColor` as an `androidx.compose.ui.graphics.Color`.
+
+Compile with Kotlin 1.5.10 and AndroidX Core-KTX 1.5.0.
+
 ## 1.4.0
 _2021-04-23_
 
