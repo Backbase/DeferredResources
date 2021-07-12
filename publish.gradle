@@ -17,8 +17,8 @@
 // Applied per published module
 //  The module must define ext.artifactName and ext.publishedDescription
 
-group = rootProject.ext.publishGroup
-version = rootProject.ext.libraryVersion
+group = rootProject.publishGroup
+version = rootProject.libraryVersion
 
 apply plugin: 'io.gitlab.arturbosch.detekt'
 detekt {
