@@ -56,6 +56,8 @@ dokkaGfmMultiModule {
     outputDirectory.set new File("$rootDir/docs/1.x")
 }
 
+apply from: "gradle/version.gradle"
+
 allprojects { project ->
     repositories {
         mavenCentral()
