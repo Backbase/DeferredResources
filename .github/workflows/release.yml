@@ -2,8 +2,8 @@ name: Release
 
 on:
   push:
-    branches: [main]
-    tags: ['*']
+    branches: [ main ]
+    tags: [ '*' ]
 
 jobs:
   release:
@@ -23,3 +23,22 @@ jobs:
           ORG_GRADLE_PROJECT_backbaseOssGpgKey: ${{ secrets.ORG_GRADLE_PROJECT_backbaseOssGpgKey }}
           ORG_GRADLE_PROJECT_backbaseOssGpgPassword: ${{ secrets.ORG_GRADLE_PROJECT_backbaseOssGpgPassword }}
         run: ./gradlew publishReleasePublicationToMavenCentralRepository --stacktrace
+
+  prepare-next-development-version:
+    runs-on: ubuntu-latest
+    # Only runs on tagged releases:
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.BACKBASE_BOT_TOKEN }}
+      - name: Bump to next development version
+        run: ./gradlew bumpToNextDevelopmentVersion
+      - name: Push version to main
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Prepare next development version
+          branch: main
+          file_pattern: gradle.properties
+          commit_author: GitHub Actions <actions@github.com>
