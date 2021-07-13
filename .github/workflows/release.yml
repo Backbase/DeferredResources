@@ -13,6 +13,8 @@ jobs:
       version: ${{ steps.version.outputs.value }}
 
     steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
       - name: Parse release version
         id: version
         uses: madhead/read-java-properties@1.1
