@@ -52,7 +52,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.BACKBASE_BOT_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN }}
       - name: Bump to next development version
         run: ./gradlew bumpToNextDevelopmentVersion
       - name: Push version to main
