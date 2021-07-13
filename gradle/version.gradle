@@ -1,0 +1,89 @@
+import java.util.function.Function
+
+/*
+ * Copyright 2021 Backbase R&D B.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Bumps this project's version, defined in gradle.properties, to the next development (minor) version, with a
+ * "-SNAPSHOT" suffix. The following examples illustrate how this bump is calculated. Note that the last example yields
+ * no change in version.
+ * - 1.2.3          => 1.3.0-SNAPSHOT
+ * - 1.3.0          => 1.4.0-SNAPSHOT
+ * - 1.3.0-alpha01  => 1.3.0-SNAPSHOT
+ * - 1.3.1-alpha01  => 1.3.1-SNAPSHOT
+ * - 1.3.1-SNAPSHOT => 1.3.1-SNAPSHOT
+ */
+task bumpToNextDevelopmentVersion {
+    doLast {
+        replaceVersionName() { currentVersionName ->
+            // Ensure currentVersionName is of the form #.#.#-optionalSuffix. Otherwise, we won't know how to bump.
+            String[] parts = currentVersionName.split("\\.")
+            if (parts.length != 3) {
+                throw IllegalStateException("Expected current version name with 3 parts, but was <$currentVersionName>")
+            }
+            String[] patchParts = parts[2].split("-")
+            if (patchParts.length > 2) {
+                throw IllegalStateException("Expected at most 1 hyphenated suffix, but <$currentVersionName> has more")
+            }
+
+            int majorVersion = Integer.parseInt(parts[0])
+            int minorVersion = Integer.parseInt(parts[1])
+            int patchVersion = Integer.parseInt(patchParts[0])
+            String suffix = patchParts.length > 1 ? patchParts[1] : null
+
+            if (suffix == null) {
+                // If there is no suffix, bump to the next minor snapshot.
+                //  1.2.3 => 1.3.0-SNAPSHOT
+                //  1.3.0 => 1.4.0-SNAPSHOT
+                return "$majorVersion.${minorVersion + 1}.0-SNAPSHOT"
+            } else {
+                // If there is a suffix, it's considered a preview of the next version, so bump to that same version:
+                //  1.3.0-alpha01 => 1.3.0-SNAPSHOT
+                //  1.3.1-alpha01 => 1.3.1-SNAPSHOT
+                //  1.3.1-SNAPSHOT => 1.3.1-SNAPSHOT (i.e. nothing to do)
+                return "$majorVersion.$minorVersion.$patchVersion-SNAPSHOT"
+            }
+        }
+    }
+}
+
+/**
+ * Parses the current library version from gradle.properties, passes that version to the given Action, and then replaces
+ * that version with the result of the Action in gradle.properties.
+ *
+ * @param resolveNewVersionName Action taking the current version name as input and returning the new version name.
+ */
+private void replaceVersionName(Function<String, String> resolveNewVersionName) {
+    File versionFile = new File("$rootDir/gradle.properties")
+    String fileText = versionFile.getText()
+
+    String currentVersionNameDefinition = fileText.find("libraryVersion=.*")
+    String currentVersionName = currentVersionNameDefinition.replace("libraryVersion=", "")
+    logger.info "Found current version name $currentVersionName"
+
+    String newVersionName = resolveNewVersionName.apply(currentVersionName)
+
+    if (newVersionName == currentVersionName) {
+        logger.lifecycle "versionName is already $currentVersionName; making no changes"
+        return
+    }
+
+    String newVersionNameDefinition = "libraryVersion=$newVersionName"
+    String newFileText = fileText.replace(currentVersionNameDefinition, newVersionNameDefinition)
+
+    logger.lifecycle "Changing versionName from $currentVersionName to $newVersionName"
+    versionFile.setText(newFileText)
+}

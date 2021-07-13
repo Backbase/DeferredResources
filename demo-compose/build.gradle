@@ -26,7 +26,7 @@ android {
         minSdkVersion rootProject.ext.minSdkCompose
         targetSdkVersion rootProject.ext.targetSdk
         versionCode 1
-        versionName rootProject.ext.libraryVersion
+        versionName rootProject.libraryVersion
 
         vectorDrawables.useSupportLibrary = true
 
