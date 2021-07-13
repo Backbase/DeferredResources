@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Parse release version
         id: version
-        uses: madhead/read-java-properties
+        uses: madhead/read-java-properties@1.1
         with:
           file: gradle.properties
           property: libraryVersion
