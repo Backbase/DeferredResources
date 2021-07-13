@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [ main, drew/pr-based-release ]
+    branches: [ main ]
     tags: [ '*' ]
 
 jobs:
@@ -59,6 +59,6 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Prepare next development version
-          branch: drew/pr-based-release
+          branch: main
           file_pattern: gradle.properties
           commit_author: GitHub Actions <actions@github.com>
