@@ -18,4 +18,5 @@ If step 10 fails; drop the Sonatype repo, delete the tag, fix the problem, and s
 
 [`startship`](https://github.com/saket/startship) can be installed via Homebrew. You must have
 `backbaseOssSonatypeUsername` and `backbaseOssSonatypePassword` defined in your machine's
-gradle.properties file to release.
+gradle.properties file to release. Alternatively, you could visit [Sonatype Nexus OSS](https://oss.sonatype.org/#stagingRepositories)
+while logged in as Backbase's username to manually drop/promote/release repositories.
