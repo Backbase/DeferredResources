@@ -6,7 +6,24 @@ on:
     tags: [ '*' ]
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+
+    outputs:
+      version: ${{ steps.version.outputs.value }}
+
+    steps:
+      - name: Parse release version
+        id: version
+        uses: madhead/read-java-properties
+        with:
+          file: gradle.properties
+          property: libraryVersion
+
   release:
+    needs: prepare
+    # Only proceed for tagged releases and snapshots:
+    if: startsWith(github.ref, 'refs/tags/') || endsWith(needs.prepare.outputs.version, '-SNAPSHOT')
     runs-on: ubuntu-latest
 
     steps:
@@ -25,8 +42,9 @@ jobs:
         run: ./gradlew publishReleasePublicationToMavenCentralRepository --stacktrace
 
   prepare-next-development-version:
+    needs: release
     runs-on: ubuntu-latest
-    # Only runs on tagged releases:
+    # Only proceed for tagged releases:
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Check out the repo
