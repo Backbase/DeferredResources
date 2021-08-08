@@ -21,7 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import com.backbase.deferredresources.DeferredDrawable
-import com.google.accompanist.imageloading.rememberDrawablePainter
+import com.google.accompanist.drawablepainter.rememberDrawablePainter
 
 /**
  * Resolve a [deferredDrawable] into a Compose [Painter], remembering the resulting painter as long as the current
