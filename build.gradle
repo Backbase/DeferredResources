@@ -37,8 +37,6 @@ buildscript {
 }
 
 ext {
-    publishGroup = 'com.backbase.oss.deferredresources'
-    libraryVersion = '1.6.0-SNAPSHOT'
     minSdk = 14
     minSdkCompose = 21
     targetSdk = 30
@@ -57,6 +55,8 @@ apply plugin: "org.jetbrains.dokka"
 dokkaGfmMultiModule {
     outputDirectory.set new File("$rootDir/docs/1.x")
 }
+
+apply from: "gradle/version.gradle"
 
 allprojects { project ->
     repositories {
