@@ -17,6 +17,12 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
 
+ext {
+    artifactName = 'deferred-resources-animation-lottie'
+    publishedDescription = 'Providing Lottie animation deferred resource.'
+}
+apply from: '../publish.gradle'
+
 android {
     compileSdkVersion rootProject.ext.targetSdk
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -26,11 +32,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdk
         versionName version
 
-        vectorDrawables.useSupportLibrary = true
-
-        consumerProguardFiles 'consumer-rules.pro'
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -51,11 +54,12 @@ android {
 }
 
 dependencies {
-    api(project(':deferred-resources'))
-    api(project(':deferred-resources-animation-lottie'))
-    api(libs.lottie)
+    implementation(project(':deferred-resources'))
+    implementation(libs.androidx.annotations)
+    implementation(libs.lottie)
 
-    api("com.google.android.material:material:1.3.0")
-
-    implementation(libs.androidx.coreKtx)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.bundles.androidx.test)
+    androidTestImplementation(libs.kotlinx.coroutines)
+    androidTestImplementation(libs.truth)
 }

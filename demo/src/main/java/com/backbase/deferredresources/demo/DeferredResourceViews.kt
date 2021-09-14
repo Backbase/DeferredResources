@@ -32,6 +32,8 @@ import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.DeferredText
+import com.backbase.deferredresources.demo.databinding.AnimatedDrawableListItemBinding
+import com.backbase.deferredresources.demo.databinding.AnimatedDrawablesBinding
 import com.backbase.deferredresources.demo.databinding.ColorsBinding
 import com.backbase.deferredresources.demo.databinding.DrawableListItemBinding
 import com.backbase.deferredresources.demo.databinding.DrawablesBinding
@@ -100,6 +102,17 @@ class DeferredDrawablesView(context: Context) : DeferredResourceView(context) {
 
     fun display(drawable: DeferredDrawable, text: DeferredText) = with(binding.container) {
         with(DrawableListItemBinding.inflate(LayoutInflater.from(context), this, true)) {
+            drawableLabel.setText(text)
+            drawableView.setImageDrawable(drawable)
+        }
+    }
+}
+
+class DeferredAnimatedDrawablesView(context: Context): DeferredResourceView(context) {
+    private val binding = AnimatedDrawablesBinding.inflate(LayoutInflater.from(context), this)
+
+    fun display(drawable: DeferredDrawable, text: DeferredText) = with(binding.container) {
+        with(AnimatedDrawableListItemBinding.inflate(LayoutInflater.from(context), this, true)) {
             drawableLabel.setText(text)
             drawableView.setImageDrawable(drawable)
         }
