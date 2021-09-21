@@ -38,6 +38,7 @@ buildscript {
 
 ext {
     minSdk = 14
+    minSdkLottie = 16
     minSdkCompose = 21
     targetSdk = 30
     buildToolsVersion = '30.0.3'
