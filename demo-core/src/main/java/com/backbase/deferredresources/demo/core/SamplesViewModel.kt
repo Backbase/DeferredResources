@@ -22,12 +22,10 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.ViewModel
-import com.airbnb.lottie.LottieDrawable
 import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.DeferredText
-import com.backbase.deferredresources.animation.lottie.DeferredLottieDrawable
 
 /**
  * View model representing the samples shown in the demo UI. Consuming app must use
@@ -92,24 +90,6 @@ public data class SamplesViewModel(
             },
             description = DeferredText.Constant("Attribute"),
         ),
-    ),
-
-    /**
-     * Title of the section displaying [animatedIconSamples].
-     */
-    public val animatedIconSamplesTitle: DeferredText = DeferredText.Constant("Animated Drawables"),
-
-    /**
-     * The [IconSample]s to display.
-     */
-    public val animatedIconSamples: List<IconSample> = listOf(
-        IconSample(
-            icon = DeferredLottieDrawable.Resource(R.raw.demo_lottie_file) {
-                playAnimation()
-                repeatCount = LottieDrawable.INFINITE
-            },
-            description = DeferredText.Constant("Lottie"),
-        )
     ),
 
     /**

@@ -15,22 +15,7 @@
   ~ limitations under the License.
   -->
 
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-
-    tools:layout_height="match_parent"
-    tools:layout_width="match_parent"
-
-    tools:parentTag="android.widget.ScrollView">
-
-  <LinearLayout
-      android:id="@+id/container"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-
-      android:clipToPadding="false"
-      android:orientation="vertical"
-      android:padding="8dp" />
-
-</merge>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+  <background android:drawable="@drawable/ic_launcher_background" />
+  <foreground android:drawable="@drawable/ic_launcher_foreground" />
+</adaptive-icon>

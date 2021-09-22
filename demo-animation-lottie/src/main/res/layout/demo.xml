@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright 2020 Backbase R&D B.V.
+  ~ Copyright 2021 Backbase R&D B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -15,39 +15,28 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
   <androidx.appcompat.widget.AppCompatImageView
       android:id="@+id/drawableView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
 
       android:background="@drawable/icon_background"
       android:padding="8dp"
 
-      tools:srcCompat="@drawable/ic_flower_24"
-      tools:ignore="ContentDescription" />
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
 
-  <TextView
-      android:id="@+id/drawableLabel"
-      android:layout_width="wrap_content"
-      android:layout_height="0dp"
-      android:layout_weight="1"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginEnd="0dp"
-      android:layout_marginLeft="16dp"
-      android:layout_marginRight="0dp"
-      android:layout_marginStart="16dp"
+      tools:ignore="ContentDescription"
+      tools:srcCompat="@drawable/ic_flower_24" />
 
-      android:textAppearance="?textAppearanceHeadline5"
-
-      tools:text="DeferredDrawable type label" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
