@@ -23,6 +23,7 @@ import com.airbnb.lottie.LottieComposition
 import com.airbnb.lottie.LottieCompositionFactory
 import com.airbnb.lottie.LottieDrawable
 import com.backbase.deferredresources.DeferredDrawable
+import dev.drewhamilton.poko.Poko
 import java.io.InputStream
 
 /**
@@ -38,7 +39,7 @@ public interface DeferredLottieDrawable : DeferredDrawable {
     /**
      * A wrapper for a constant LottieDrawable [drawable].
      */
-    public class Constant(
+    @Poko public class Constant(
         private val drawable: LottieDrawable?,
     ) : DeferredLottieDrawable {
 
@@ -53,7 +54,7 @@ public interface DeferredLottieDrawable : DeferredDrawable {
      * Optionally provide [transformations] (such as [LottieDrawable.setRepeatCount]) to apply each time the
      * LottieDrawable is resolved.
      */
-    public class Asset(
+    @Poko public class Asset(
         private val fileName: String,
         private val transformations: LottieDrawable.(Context) -> Unit = {},
     ) : DeferredLottieDrawable {
@@ -77,7 +78,7 @@ public interface DeferredLottieDrawable : DeferredDrawable {
      * A wrapper for a [LottieDrawable] [rawResId]. Optionally provide
      * [transformations] (such as [LottieDrawable.setRepeatCount]) to apply each time the LottieDrawable is resolved.
      */
-    public class Resource(
+    @Poko public class Resource(
         @RawRes private val rawResId: Int,
         private val transformations: LottieDrawable.(Context) -> Unit = {},
     ) : DeferredLottieDrawable {
@@ -103,7 +104,7 @@ public interface DeferredLottieDrawable : DeferredDrawable {
      * Optionally provide [transformations] (such as [LottieDrawable.setRepeatCount]) to apply each time
      * the LottieDrawable is resolved.
      */
-    public class Stream(
+    @Poko public class Stream(
         private val stream: InputStream,
         private val key: String? = null,
         private val transformations: LottieDrawable.(Context) -> Unit = {},

@@ -16,10 +16,11 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'dev.drewhamilton.poko'
 
 ext {
     artifactName = 'deferred-resources-animation-lottie'
-    publishedDescription = 'Providing Lottie animation deferred resource.'
+    publishedDescription = 'Lottie based Deferred Resource animation library.'
 }
 apply from: '../publish.gradle'
 
