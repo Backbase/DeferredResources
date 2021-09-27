@@ -16,8 +16,8 @@
 
 rootProject.name='Deferred Resources'
 
-include ':deferred-resources', ':deferred-resources-view-extensions', ':deferred-resources-animation-lottie'
-include ':demo-core', ':demo', ':demo-animation-lottie'
+include ':deferred-resources', ':deferred-resources-view-extensions'
+include ':demo-core', ':demo'
 
 enableFeaturePreview('VERSION_CATALOGS')
 
@@ -26,4 +26,11 @@ logger.lifecycle "Compose enabled: $includeComposeModule"
 if (includeComposeModule) {
     include ':deferred-resources-compose-adapter'
     include ':demo-compose'
+}
+
+boolean includeLottieAnimationModule = Boolean.parseBoolean(lottieAnimationEnabled) && Integer.parseInt(ciApiLevel) >= 16
+logger.lifecycle "Lottie animation enabled: $includeLottieAnimationModule"
+if (includeLottieAnimationModule) {
+    include ':deferred-resources-animation-lottie'
+    include ':demo-animation-lottie'
 }

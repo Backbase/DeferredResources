@@ -55,9 +55,10 @@ android {
 }
 
 dependencies {
-    implementation(project(':deferred-resources'))
+    api(project(':deferred-resources'))
+    api(libs.lottie)
+
     implementation(libs.androidx.annotations)
-    implementation(libs.lottie)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.bundles.androidx.test)
