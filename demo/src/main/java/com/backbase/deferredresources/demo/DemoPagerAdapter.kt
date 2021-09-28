@@ -77,6 +77,6 @@ class DemoPagerAdapter(
     ) : RecyclerView.ViewHolder(root)
 
     private enum class ViewType {
-        COLORS, PLURALS, DRAWABLES, STYLED_TEXT,
+        COLORS, PLURALS, DRAWABLES, STYLED_TEXT
     }
 }
