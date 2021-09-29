@@ -19,6 +19,7 @@ repository](https://oss.sonatype.org/#view-repositories;snapshots~browsestorage)
 implementation "com.backbase.oss.deferredresources:deferred-resources:$version"
 implementation "com.backbase.oss.deferredresources:deferred-resources-view-extensions:$version"
 implementation "com.backbase.oss.deferredresources:deferred-resources-compose-adapter:$version"
+implementation "com.backbase.oss.deferredresources:deferred-resources-animation-lottie:$version"
 ```
 
 ## Use
@@ -84,7 +85,7 @@ All text-related types can eventually be converted to `DeferredText` through sim
 
 ### Jetpack Compose UI
 
-For each Deferred Resources type, the experimental `deferred-resource-compose-adapter` library
+For each Deferred Resources type, the experimental `deferred-resources-compose-adapter` library
 offers a `remember*` function to resolve the Deferred item to a standard Compose UI type.
 
 ```kotlin
@@ -95,6 +96,12 @@ val icon: Painter = rememberResolvedPainter(deferredDrawable)
 
 All of these APIs are marked as `@ExperimentalComposeAdapter` and should not be considered stable.
 Their behavior and binary compatibility are not guaranteed.
+
+### Lottie animations
+
+For each `Drawable` type, the `deferred-resources-animation-lottie` library offers a new
+`DeferredLottieDrawable` class which resolves [Lottie](https://github.com/airbnb/lottie-android) files
+into a `LottieDrawable`. This API is useful if one wishes to configure animations in their app.
 
 ## License
 ```

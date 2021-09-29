@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.6.0
+_2021-09-29_
+
+Introduce the `deferred-resources-animation-lottie` artifact for supporting Lottie animations. 
+This provides APIs for resolving existing Deferred Drawable types into a `LottieDrawable`.
+
+Compile with Kotlin 1.5.21 and AndroidX Core-KTX 1.5.0.
+
 ## 1.5.0
 _2021-07-03_
 
