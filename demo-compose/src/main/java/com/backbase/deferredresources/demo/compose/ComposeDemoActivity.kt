@@ -117,6 +117,7 @@ class ComposeDemoActivity : ComponentActivity() {
                 }
 
                 HorizontalPager(
+                    count = 4,
                     state = pagerState,
                 ) { page ->
                     when (page) {
@@ -140,7 +141,7 @@ class ComposeDemoActivity : ComponentActivity() {
         selected = index == pagerState.currentPage,
         onClick = {
             coroutineScope.launch {
-                pagerState.animateScrollToPage(index, skipPages = false)
+                pagerState.animateScrollToPage(page = index)
             }
         },
         text = {
@@ -150,7 +151,6 @@ class ComposeDemoActivity : ComponentActivity() {
 
     private fun mutablePagerState(currentPage: Int = 0) = mutableStateOf(
         PagerState(
-            pageCount = 4,
             currentPage = currentPage,
         )
     )
