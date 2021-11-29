@@ -30,6 +30,7 @@ import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextGeometricTransform
+import androidx.compose.ui.unit.em
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.compose.test.GenericValueNode
 import com.backbase.deferredresources.compose.test.R
@@ -150,21 +151,9 @@ internal class DeferredTextAdapterTest {
                 AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.SansSerif), start = 86, end = 97),
                 AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Serif), start = 98, end = 104),
                 AnnotatedString.Range(item = SpanStyle(fontFamily = FontFamily.Serif), start = 208, end = 223),
-                AnnotatedString.Range(
-                    item = SpanStyle(textGeometricTransform = TextGeometricTransform(scaleX = 1.25f, skewX = 0f)),
-                    start = 156,
-                    end = 159,
-                ),
-                AnnotatedString.Range(
-                    item = SpanStyle(textGeometricTransform = TextGeometricTransform(scaleX = 0.8f, skewX = 0f)),
-                    start = 163,
-                    end = 168,
-                ),
-                AnnotatedString.Range(
-                    item = SpanStyle(textGeometricTransform = TextGeometricTransform(scaleX = 0.8f, skewX = 0f)),
-                    start = 213,
-                    end = 214,
-                ),
+                AnnotatedString.Range(item = SpanStyle(fontSize = 1.25f.em), start = 156, end = 159),
+                AnnotatedString.Range(item = SpanStyle(fontSize = 0.8f.em), start = 163, end = 168),
+                AnnotatedString.Range(item = SpanStyle(fontSize = 0.8f.em), start = 213, end = 214),
             ),
         )
         composeTestRule.onNodeWithTag(TestTag).assertGenericValueSemanticallyMatches<AnnotatedString> { value ->

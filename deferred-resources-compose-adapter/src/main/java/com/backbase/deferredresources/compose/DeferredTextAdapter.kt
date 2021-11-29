@@ -40,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextGeometricTransform
+import androidx.compose.ui.unit.em
 import com.backbase.deferredresources.DeferredText
 import com.backbase.deferredresources.text.resolveToString
 
@@ -108,8 +109,7 @@ private fun CharacterStyle.toSpanStyle(): SpanStyle? = when (this) {
     is SubscriptSpan -> SpanStyle(baselineShift = BaselineShift.Subscript)
     is ForegroundColorSpan -> SpanStyle(color = Color(foregroundColor))
     is TypefaceSpan -> SpanStyle(fontFamily = fontFamily)
-    // TODO: Scale on Y axis too for RelativeSizeSpan
-    is RelativeSizeSpan -> SpanStyle(textGeometricTransform = TextGeometricTransform(scaleX = sizeChange))
+    is RelativeSizeSpan -> SpanStyle(fontSize = sizeChange.em)
     else -> null
 }
 
