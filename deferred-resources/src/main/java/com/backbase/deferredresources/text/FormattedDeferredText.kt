@@ -33,7 +33,7 @@ import kotlinx.parcelize.RawValue
  * Convert a [DeferredFormattedString] to a normal [DeferredText] by providing [formatArgs] to be used when resolved.
  */
 @Suppress("unused")
-@Deprecated("Covariant return type introduced", level = DeprecationLevel.HIDDEN)
+@Deprecated("Covariant return type introduced", level = DeprecationLevel.ERROR)
 // Unused generic is added to allow return-type overload
 @JvmSynthetic public fun <T> DeferredFormattedString.withFormatArgs(vararg formatArgs: Any): DeferredText =
     FormattedDeferredText(wrapped = this, formatArgs = formatArgs)

@@ -33,7 +33,7 @@ import kotlinx.parcelize.RawValue
  * Convert a [DeferredPlurals] to a normal [DeferredText] by providing a [quantity] to be used when resolved.
  */
 @Suppress("unused")
-@Deprecated("Covariant return type introduced", level = DeprecationLevel.HIDDEN)
+@Deprecated("Covariant return type introduced", level = DeprecationLevel.ERROR)
 // Unused generic is added to allow return-type overload
 @JvmSynthetic public fun <T> DeferredPlurals.withQuantity(quantity: Int): DeferredText =
     QuantifiedDeferredText(wrapped = this, quantity = quantity)

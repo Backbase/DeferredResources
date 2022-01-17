@@ -35,7 +35,7 @@ import kotlinx.parcelize.RawValue
  * A quantity must still be provided when resolved.
  */
 @Suppress("unused")
-@Deprecated("Covariant return type introduced", level = DeprecationLevel.HIDDEN)
+@Deprecated("Covariant return type introduced", level = DeprecationLevel.ERROR)
 // Unused generic is added to allow return-type overload
 @JvmSynthetic public fun <T> DeferredFormattedPlurals.withFormatArgs(vararg formatArgs: Any): DeferredPlurals =
     FormattedDeferredPlurals(wrapped = this, formatArgs = formatArgs)
