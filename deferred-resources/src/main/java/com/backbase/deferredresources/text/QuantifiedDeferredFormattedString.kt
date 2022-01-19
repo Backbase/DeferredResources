@@ -35,7 +35,14 @@ import kotlinx.parcelize.RawValue
  * resolved. Format arguments must still be provided when resolved.
  */
 @Suppress("unused")
-@Deprecated("Covariant return type introduced", level = DeprecationLevel.ERROR)
+@Deprecated(
+    message = "Covariant return type introduced",
+    level = DeprecationLevel.ERROR,
+    replaceWith = ReplaceWith(
+        "QuantifiedDeferredFormattedString(wrapped = this, quantity = quantity)",
+        "com.backbase.deferredresources.text.QuantifiedDeferredFormattedString"
+    )
+)
 // Unused generic is added to allow return-type overload
 @JvmSynthetic public fun <T> DeferredFormattedPlurals.withQuantity(quantity: Int): DeferredFormattedString =
     QuantifiedDeferredFormattedString(wrapped = this, quantity = quantity)
