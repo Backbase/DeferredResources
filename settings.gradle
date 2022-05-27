@@ -32,5 +32,4 @@ boolean includeLottieAnimationModule = Boolean.parseBoolean(lottieAnimationEnabl
 logger.lifecycle "Lottie animation enabled: $includeLottieAnimationModule"
 if (includeLottieAnimationModule) {
     include ':deferred-resources-animation-lottie'
-    include ':demo-animation-lottie'
 }

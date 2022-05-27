@@ -53,10 +53,6 @@ apiValidation {
     if (composeEnabled) {
         ignoredProjects += ["demo-compose"]
     }
-
-    if(lottieAnimationEnabled) {
-        ignoredProjects += ["demo-animation-lottie"]
-    }
 }
 
 apply plugin: "org.jetbrains.dokka"
