@@ -32,9 +32,11 @@ import com.backbase.deferredresources.DeferredColor
 import com.backbase.deferredresources.DeferredDrawable
 import com.backbase.deferredresources.DeferredFormattedPlurals
 import com.backbase.deferredresources.DeferredText
+import com.backbase.deferredresources.animation.lottie.DeferredLottieDrawable
 import com.backbase.deferredresources.demo.databinding.ColorsBinding
 import com.backbase.deferredresources.demo.databinding.DrawableListItemBinding
 import com.backbase.deferredresources.demo.databinding.DrawablesBinding
+import com.backbase.deferredresources.demo.databinding.LottieBinding
 import com.backbase.deferredresources.demo.databinding.PluralsBinding
 import com.backbase.deferredresources.demo.databinding.TextBinding
 import com.backbase.deferredresources.viewx.setImageDrawable
@@ -111,5 +113,13 @@ class DeferredTextView(context: Context) : DeferredResourceView(context) {
 
     fun display(text: DeferredText) {
         binding.textView.setText(text)
+    }
+}
+
+class DeferredLottieView(context: Context) : DeferredResourceView(context) {
+    private val binding = LottieBinding.inflate(LayoutInflater.from(context), this)
+
+    fun display(animation: DeferredLottieDrawable) {
+        binding.drawableView.setImageDrawable(animation)
     }
 }
