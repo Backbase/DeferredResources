@@ -18,9 +18,6 @@ buildscript {
     boolean composeEnabled = Boolean.parseBoolean(project.composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
     ext.composeEnabled = composeEnabled
 
-    boolean lottieAnimationEnabled = Boolean.parseBoolean(project.lottieAnimationEnabled) && Integer.parseInt(ciApiLevel) >= 16
-    ext.lottieAnimationEnabled = lottieAnimationEnabled
-
     dependencies {
         classpath(libs.android.gradlePlugin)
 
