@@ -18,6 +18,9 @@ buildscript {
     boolean composeEnabled = Boolean.parseBoolean(project.composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
     ext.composeEnabled = composeEnabled
 
+    boolean lottieAnimationEnabled = Integer.parseInt(ciApiLevel) >= 16
+    ext.lottieAnimationEnabled = lottieAnimationEnabled
+
     dependencies {
         classpath(libs.android.gradlePlugin)
 
@@ -46,9 +49,12 @@ ext {
 
 apply plugin: 'binary-compatibility-validator'
 apiValidation {
-    ignoredProjects += ["demo-core", 'demo']
+    ignoredProjects += ["demo-core"]
     if (composeEnabled) {
         ignoredProjects += ["demo-compose"]
+    }
+    if (lottieAnimationEnabled) {
+        ignoredProjects += ["demo"]
     }
 }
 
