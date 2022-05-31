@@ -49,12 +49,11 @@ ext {
 
 apply plugin: 'binary-compatibility-validator'
 apiValidation {
-    ignoredProjects += ["demo-core"]
+    if (lottieAnimationEnabled) {
+        ignoredProjects += ["demo-core", "demo"]
+    }
     if (composeEnabled) {
         ignoredProjects += ["demo-compose"]
-    }
-    if (lottieAnimationEnabled) {
-        ignoredProjects += ["demo"]
     }
 }
 

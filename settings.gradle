@@ -17,7 +17,6 @@
 rootProject.name='Deferred Resources'
 
 include ':deferred-resources', ':deferred-resources-view-extensions'
-include ':demo-core'
 
 enableFeaturePreview('VERSION_CATALOGS')
 
@@ -32,5 +31,5 @@ boolean includeLottieAnimationModule = Integer.parseInt(ciApiLevel) >= 16
 logger.lifecycle "Lottie animation enabled: $includeLottieAnimationModule"
 if (includeLottieAnimationModule) {
     include ':deferred-resources-animation-lottie'
-    include ":demo"
+    include ":demo-core", ":demo"
 }
