@@ -23,7 +23,7 @@ android {
 
     defaultConfig {
         applicationId 'com.backbase.deferredresources.demo'
-        minSdkVersion rootProject.ext.minSdk
+        minSdkVersion rootProject.minSdkLottie
         targetSdkVersion rootProject.ext.targetSdk
         versionCode 1
         versionName rootProject.libraryVersion
@@ -58,6 +58,7 @@ dependencies {
     implementation(project(':demo-core'))
 
     implementation(project(':deferred-resources'))
+    implementation(project(':deferred-resources-animation-lottie'))
     implementation(project(':deferred-resources-view-extensions'))
 
     implementation("androidx.activity:activity-ktx:1.2.3")

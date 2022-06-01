@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright 2020 Backbase R&D B.V.
+  ~ Copyright 2021 Backbase R&D B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -15,7 +15,23 @@
   ~ limitations under the License.
   -->
 
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-  <background android:drawable="@drawable/ic_launcher_background" />
-  <foreground android:drawable="@drawable/ic_launcher_foreground" />
-</adaptive-icon>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:layout_height="match_parent"
+    tools:layout_width="match_parent"
+
+    tools:parentTag="android.widget.ScrollView">
+
+  <androidx.appcompat.widget.AppCompatImageView
+      android:id="@+id/drawableView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+
+      android:padding="8dp"
+
+      tools:ignore="ContentDescription"
+      tools:srcCompat="@drawable/ic_flower_24" />
+
+</merge>

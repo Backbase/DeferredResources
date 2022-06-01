@@ -18,7 +18,7 @@ buildscript {
     boolean composeEnabled = Boolean.parseBoolean(project.composeEnabled) && Integer.parseInt(ciApiLevel) >= 21
     ext.composeEnabled = composeEnabled
 
-    boolean lottieAnimationEnabled = Boolean.parseBoolean(project.lottieAnimationEnabled) && Integer.parseInt(ciApiLevel) >= 16
+    boolean lottieAnimationEnabled = Integer.parseInt(ciApiLevel) >= 16
     ext.lottieAnimationEnabled = lottieAnimationEnabled
 
     dependencies {
@@ -49,13 +49,11 @@ ext {
 
 apply plugin: 'binary-compatibility-validator'
 apiValidation {
-    ignoredProjects += ["demo-core", 'demo']
+    if (lottieAnimationEnabled) {
+        ignoredProjects += ["demo-core", "demo"]
+    }
     if (composeEnabled) {
         ignoredProjects += ["demo-compose"]
-    }
-
-    if(lottieAnimationEnabled) {
-        ignoredProjects += ["demo-animation-lottie"]
     }
 }
 
