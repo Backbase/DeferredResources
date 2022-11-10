@@ -31,7 +31,6 @@ android {
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkCompose
-        targetSdkVersion rootProject.ext.targetSdk
         versionName version
 
         consumerProguardFiles "consumer-rules.pro"
