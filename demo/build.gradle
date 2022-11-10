@@ -18,7 +18,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
-    compileSdkVersion rootProject.ext.targetSdk
+    compileSdkVersion rootProject.ext.compileSdk
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
