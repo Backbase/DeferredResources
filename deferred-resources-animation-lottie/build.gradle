@@ -25,12 +25,11 @@ ext {
 apply from: '../publish.gradle'
 
 android {
-    compileSdkVersion rootProject.ext.targetSdk
+    compileSdkVersion rootProject.ext.compileSdk
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkLottie
-        targetSdkVersion rootProject.ext.targetSdk
         versionName version
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
