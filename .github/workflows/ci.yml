@@ -31,6 +31,8 @@ jobs:
         with:
           sarif_file: ${{ github.workspace }}/build/detekt/sarif
           checkout_path: ${{ github.workspace }}
+      - name: Install HAXM
+        run: brew install --cask intel-haxm
       - name: Emulator cache
         uses: actions/cache@v3
         id: avd-cache
