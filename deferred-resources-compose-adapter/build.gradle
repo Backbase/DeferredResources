@@ -50,7 +50,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
-        useIR = true
         freeCompilerArgs += ["-Xexplicit-api=strict", "-Xopt-in=kotlin.RequiresOptIn"]
     }
 
@@ -58,7 +57,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.androidx.compose.get()
+        kotlinCompilerExtensionVersion libs.versions.androidx.compose.compiler.get()
     }
 
     packagingOptions {
