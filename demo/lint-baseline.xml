@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 7.3.1" type="baseline" client="gradle" dependencies="false" name="AGP (7.3.1)" variant="all" version="7.3.1">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 16): `java.lang.Iterable#forEach`"
+        errorLine1="            is DeferredColorsView -> viewModel.colorSamples.forEach { sample ->"
+        errorLine2="                                                            ~~~~~~~">
+        <location
+            file="src/main/java/com/backbase/deferredresources/demo/DemoPagerAdapter.kt"
+            line="67"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 16): `java.lang.Iterable#forEach`"
+        errorLine1="            is DeferredDrawablesView -> viewModel.iconSamples.forEach { sample ->"
+        errorLine2="                                                              ~~~~~~~">
+        <location
+            file="src/main/java/com/backbase/deferredresources/demo/DemoPagerAdapter.kt"
+            line="71"
+            column="63"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.activity:activity-ktx than 1.2.3 is available: 1.7.0"
+        errorLine1="    implementation(project(&apos;:deferred-resources&apos;))"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="64"
+            column="20"/>
+    </issue>
+
+</issues>
