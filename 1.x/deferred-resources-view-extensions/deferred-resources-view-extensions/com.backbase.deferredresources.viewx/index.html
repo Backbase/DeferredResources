@@ -1,0 +1,585 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Deferred Resources - Decoupling resource declaration from resource resolution on Android.">
+      
+      
+      
+        <meta name="author" content="Backbase R&amp;D, B.V.">
+      
+      
+        <link rel="canonical" href="https://backbase.github.io/DeferredResources/1.x/deferred-resources-view-extensions/deferred-resources-view-extensions/com.backbase.deferredresources.viewx/">
+      
+      <link rel="icon" href="../../../../images/favicon-backbase.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+    
+    
+      
+        <title>Package com.backbase.deferredresources.viewx   - Deferred Resources - Deferred Resources</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#02a6f2">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-blue" data-md-color-accent="orange">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#package-combackbasedeferredresourcesviewx" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Deferred Resources" class="md-header__button md-logo" aria-label="Deferred Resources" data-md-component="logo">
+      
+  <img src="../../../../images/icon-backbase.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Deferred Resources
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Package com.backbase.deferredresources.viewx   - Deferred Resources
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/Backbase/DeferredResources/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DeferredResources
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Deferred Resources" class="md-nav__button md-logo" aria-label="Deferred Resources" data-md-component="logo">
+      
+  <img src="../../../../images/icon-backbase.png" alt="logo">
+
+    </a>
+    Deferred Resources
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/Backbase/DeferredResources/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DeferredResources
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        1.x API
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="1.x API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.x API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deferred-resources/" class="md-nav__link">
+        deferred-resources
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        view-extensions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deferred-resources-compose-adapter/" class="md-nav__link">
+        compose-adapter
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/Backbase/DeferredResources/edit/master/docs/1.x/deferred-resources-view-extensions/deferred-resources-view-extensions/com.backbase.deferredresources.viewx/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <p>//<a href="../../">deferred-resources-view-extensions</a>/<a href="./">com.backbase.deferredresources.viewx</a></p>
+<h1 id="package-combackbasedeferredresourcesviewx">Package com.backbase.deferredresources.viewx</h1>
+<h2 id="functions">Functions</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//announceForAccessibility/android.view.View#com.backbase.deferredresources.DeferredText/PointingToDeclaration/"></a><a href="announce-for-accessibility/">announceForAccessibility</a></td>
+<td><a name="com.backbase.deferredresources.viewx//announceForAccessibility/android.view.View#com.backbase.deferredresources.DeferredText/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>@<a href="https://developer.android.com/reference/kotlin/androidx/annotation/RequiresApi.html">RequiresApi</a>(value = 16)  <br>  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="announce-for-accessibility/">announceForAccessibility</a>(deferredText: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-text/">DeferredText</a>)  <br>More info  <br>Convenience method for sending a <a href="https://developer.android.com/reference/kotlin/android/view/accessibility/AccessibilityEvent.html#type_announcement">android.view.accessibility.AccessibilityEvent.TYPE_ANNOUNCEMENT</a> to suggest that an accessibility service announce the resolved <a href="announce-for-accessibility/">deferredText</a> to its users.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//offsetLeftAndRight/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="offset-left-and-right/">offsetLeftAndRight</a></td>
+<td><a name="com.backbase.deferredresources.viewx//offsetLeftAndRight/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="offset-left-and-right/">offsetLeftAndRight</a>(deferredOffset: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolve <a href="offset-left-and-right/">deferredOffset</a> and offset this view's horizontal location by the resolved amount.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//offsetTopAndBottom/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="offset-top-and-bottom/">offsetTopAndBottom</a></td>
+<td><a name="com.backbase.deferredresources.viewx//offsetTopAndBottom/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="offset-top-and-bottom/">offsetTopAndBottom</a>(deferredOffset: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolve <a href="offset-top-and-bottom/">deferredOffset</a> and offset this view's vertical location by the resolved amount.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setAccessibilityPaneTitle/android.view.View#com.backbase.deferredresources.DeferredText?/PointingToDeclaration/"></a><a href="set-accessibility-pane-title/">setAccessibilityPaneTitle</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setAccessibilityPaneTitle/android.view.View#com.backbase.deferredresources.DeferredText?/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-accessibility-pane-title/">setAccessibilityPaneTitle</a>(deferredAccessibilityPaneTitle: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-text/">DeferredText</a>?)  <br>More info  <br>Resolve <a href="set-accessibility-pane-title/">deferredAccessibilityPaneTitle</a> and set it as the View's accessibility pane title.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setAutoSizeTextTypeUniformWithConfiguration/android.widget.TextView#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-auto-size-text-type-uniform-with-configuration/">setAutoSizeTextTypeUniformWithConfiguration</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setAutoSizeTextTypeUniformWithConfiguration/android.widget.TextView#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-auto-size-text-type-uniform-with-configuration/">setAutoSizeTextTypeUniformWithConfiguration</a>(deferredMinTextSize: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>, deferredMaxTextSize: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>, deferredStepGranularity: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Specify whether this widget should automatically scale the text to try to perfectly fit within the layout bounds.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setBackground/android.view.View#com.backbase.deferredresources.DeferredDrawable/PointingToDeclaration/"></a><a href="set-background/">setBackground</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setBackground/android.view.View#com.backbase.deferredresources.DeferredDrawable/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-background/">setBackground</a>(deferredBackground: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-drawable/">DeferredDrawable</a>)  <br>More info  <br>Resolve <a href="set-background/">deferredBackground</a> and set the background of the view to the resolved Drawable, or remove the background if the resolved drawable is null.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setBackgroundColor/android.view.View#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a><a href="set-background-color/">setBackgroundColor</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setBackgroundColor/android.view.View#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-background-color/">setBackgroundColor</a>(deferredColor: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-color/">DeferredColor</a>)  <br>More info  <br>Resolves <a href="set-background-color/">deferredColor</a> and sets the background color for this view.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setBackgroundTintList/android.view.View#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a><a href="set-background-tint-list/">setBackgroundTintList</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setBackgroundTintList/android.view.View#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-background-tint-list/">setBackgroundTintList</a>(deferredTintList: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-color/">DeferredColor</a>)  <br>More info  <br>Resolves <a href="set-background-tint-list/">deferredTintList</a> and applies the resolved color as a tint to the background drawable.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setCameraDistance/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-camera-distance/">setCameraDistance</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setCameraDistance/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-camera-distance/">setCameraDistance</a>(deferredDistance: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-camera-distance/">deferredDistance</a> and sets the distance along the Z axis from the camera to this view.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setColorFilter/android.widget.ImageView#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a><a href="set-color-filter/">setColorFilter</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setColorFilter/android.widget.ImageView#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/ImageView.html">ImageView</a>.<a href="set-color-filter/">setColorFilter</a>(deferredColor: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-color/">DeferredColor</a>)  <br>More info  <br>Resolve <a href="set-color-filter/">deferredColor</a> and set the resolved color as a tinting option for the image.  <br><br><br>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/ImageView.html">ImageView</a>.<a href="set-color-filter/">setColorFilter</a>(deferredColor: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-color/">DeferredColor</a>, mode: <a href="https://developer.android.com/reference/kotlin/android/graphics/PorterDuff.Mode.html">PorterDuff.Mode</a>)  <br>More info  <br>Resolve <a href="set-color-filter/">deferredColor</a> and set the resolved color as a tinting option for the image and the given blending <a href="set-color-filter/">mode</a>.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setContentDescription/android.view.View#com.backbase.deferredresources.DeferredText/PointingToDeclaration/"></a><a href="set-content-description/">setContentDescription</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setContentDescription/android.view.View#com.backbase.deferredresources.DeferredText/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-content-description/">setContentDescription</a>(deferredContentDescription: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-text/">DeferredText</a>)  <br>More info  <br>Sets the View's content description to the resolved <a href="set-content-description/">deferredContentDescription</a>.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setElevation/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-elevation/">setElevation</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setElevation/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-elevation/">setElevation</a>(deferredElevation: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-elevation/">deferredElevation</a> and sets the base elevation of this view.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setFadingEdgeLength/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-fading-edge-length/">setFadingEdgeLength</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setFadingEdgeLength/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-fading-edge-length/">setFadingEdgeLength</a>(deferredLength: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolve <a href="set-fading-edge-length/">deferredLength</a> and set the size of the faded edge used to indicate that more content in this view is available.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setFirstBaselineToTopHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-first-baseline-to-top-height/">setFirstBaselineToTopHeight</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setFirstBaselineToTopHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-first-baseline-to-top-height/">setFirstBaselineToTopHeight</a>(deferredFirstBaselineToTopHeight: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-first-baseline-to-top-height/">deferredFirstBaselineToTopHeight</a> and updates the top padding of the TextView so that the resolved height is equal to the distance between the first text baseline and the top of this TextView.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setForeground/android.view.View#com.backbase.deferredresources.DeferredDrawable/PointingToDeclaration/"></a><a href="set-foreground/">setForeground</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setForeground/android.view.View#com.backbase.deferredresources.DeferredDrawable/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>@<a href="https://developer.android.com/reference/kotlin/androidx/annotation/RequiresApi.html">RequiresApi</a>(value = 23)  <br>  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-foreground/">setForeground</a>(deferredForeground: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-drawable/">DeferredDrawable</a>)  <br>More info  <br>Resolve <a href="set-foreground/">deferredForeground</a> and supply the resolved Drawable to be rendered on top of all of the content in the view.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setForegroundTintList/android.view.View#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a><a href="set-foreground-tint-list/">setForegroundTintList</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setForegroundTintList/android.view.View#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>@<a href="https://developer.android.com/reference/kotlin/androidx/annotation/RequiresApi.html">RequiresApi</a>(value = 23)  <br>  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-foreground-tint-list/">setForegroundTintList</a>(deferredTint: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-color/">DeferredColor</a>)  <br>More info  <br>Resolves <a href="set-foreground-tint-list/">deferredTint</a> and applies the resolved color as a tint to the foreground drawable.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-height/">setHeight</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-height/">setHeight</a>(deferredHeight: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-height/">deferredHeight</a> and sets the height of the TextView to be exactly that tall.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setHint/android.widget.TextView#com.backbase.deferredresources.DeferredText/PointingToDeclaration/"></a><a href="set-hint/">setHint</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setHint/android.widget.TextView#com.backbase.deferredresources.DeferredText/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-hint/">setHint</a>(deferredHint: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-text/">DeferredText</a>)  <br>More info  <br>Resolves <a href="set-hint/">deferredHint</a> and sets the text to be displayed when the text of the TextView is empty.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setHintTextColor/android.widget.TextView#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a><a href="set-hint-text-color/">setHintTextColor</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setHintTextColor/android.widget.TextView#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-hint-text-color/">setHintTextColor</a>(deferredColor: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-color/">DeferredColor</a>)  <br>More info  <br>Resolves <a href="set-hint-text-color/">deferredColor</a> and sets the color of the hint text for all the states of this TextView.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setImageDrawable/android.widget.ImageView#com.backbase.deferredresources.DeferredDrawable/PointingToDeclaration/"></a><a href="set-image-drawable/">setImageDrawable</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setImageDrawable/android.widget.ImageView#com.backbase.deferredresources.DeferredDrawable/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/ImageView.html">ImageView</a>.<a href="set-image-drawable/">setImageDrawable</a>(deferredDrawable: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-drawable/">DeferredDrawable</a>)  <br>More info  <br>Resolves <a href="set-image-drawable/">deferredDrawable</a> and sets the resolved drawable as the content of this ImageView.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setLastBaselineToBottomHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-last-baseline-to-bottom-height/">setLastBaselineToBottomHeight</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setLastBaselineToBottomHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-last-baseline-to-bottom-height/">setLastBaselineToBottomHeight</a>(deferredLastBaselineToBottomHeight: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-last-baseline-to-bottom-height/">deferredLastBaselineToBottomHeight</a> and updates the bottom padding of the TextView so that the resolved height is equal to the distance between the last text baseline and the bottom of this TextView.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setLineHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-line-height/">setLineHeight</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setLineHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-line-height/">setLineHeight</a>(deferredLineHeight: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-line-height/">deferredLineHeight</a> and sets an explicit line height for this TextView.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setMaxHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-max-height/">setMaxHeight</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setMaxHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-max-height/">setMaxHeight</a>(deferredMaxHeight: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-max-height/">deferredMaxHeight</a> and sets the height of the TextView to be at most that tall.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setMaxWidth/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-max-width/">setMaxWidth</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setMaxWidth/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-max-width/">setMaxWidth</a>(deferredMaxWidth: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-max-width/">deferredMaxWidth</a> and sets the width of the TextView to be at most that wide.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setMinHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-min-height/">setMinHeight</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setMinHeight/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-min-height/">setMinHeight</a>(deferredMinHeight: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-min-height/">deferredMinHeight</a> and sets the height of the TextView to be at least that tall.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setMinimumHeight/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-minimum-height/">setMinimumHeight</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setMinimumHeight/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-minimum-height/">setMinimumHeight</a>(deferredMinHeight: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-minimum-height/">deferredMinHeight</a> and sets the minimum height of the view.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setMinimumWidth/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-minimum-width/">setMinimumWidth</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setMinimumWidth/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-minimum-width/">setMinimumWidth</a>(deferredMinWidth: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-minimum-width/">deferredMinWidth</a> and sets the minimum width of the view.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setMinWidth/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-min-width/">setMinWidth</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setMinWidth/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-min-width/">setMinWidth</a>(deferredMinWidth: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-min-width/">deferredMinWidth</a> and sets the width of the TextView to be at least that wide.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setPadding/android.view.View#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-padding/">setPadding</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setPadding/android.view.View#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-padding/">setPadding</a>(deferredLeft: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a> = DeferredDimension.Constant(paddingLeft), deferredTop: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a> = DeferredDimension.Constant(paddingTop), deferredRight: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a> = DeferredDimension.Constant(paddingRight), deferredBottom: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a> = DeferredDimension.Constant(paddingBottom))  <br>More info  <br>Resolves each of <a href="set-padding/">deferredLeft</a>, <a href="set-padding/">deferredTop</a>, <a href="set-padding/">deferredRight</a>, and <a href="set-padding/">deferredBottom</a> and sets the padding.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setPaddingRelative/android.view.View#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-padding-relative/">setPaddingRelative</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setPaddingRelative/android.view.View#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-padding-relative/">setPaddingRelative</a>(deferredStart: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a> = DeferredDimension.Constant(ViewCompat.getPaddingStart(this)), deferredTop: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a> = DeferredDimension.Constant(paddingTop), deferredEnd: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a> = DeferredDimension.Constant(ViewCompat.getPaddingEnd(this)), deferredBottom: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a> = DeferredDimension.Constant(paddingBottom))  <br>More info  <br>Resolves each of <a href="set-padding-relative/">deferredStart</a>, <a href="set-padding-relative/">deferredTop</a>, <a href="set-padding-relative/">deferredEnd</a>, and <a href="set-padding-relative/">deferredBottom</a> and sets the relative padding.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setText/android.widget.TextView#com.backbase.deferredresources.DeferredText/PointingToDeclaration/"></a><a href="set-text/">setText</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setText/android.widget.TextView#com.backbase.deferredresources.DeferredText/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-text/">setText</a>(deferredText: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-text/">DeferredText</a>)  <br>More info  <br>Resolves <a href="set-text/">deferredText</a> and sets it as the text to be displayed.  <br><br><br>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-text/">setText</a>(deferredText: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-text/">DeferredText</a>, type: <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.BufferType.html">TextView.BufferType</a>)  <br>More info  <br>Resolves <a href="set-text/">deferredText</a> and sets it as the text to be displayed with the given <a href="set-text/">type</a>.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setTextColor/android.widget.TextView#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a><a href="set-text-color/">setTextColor</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setTextColor/android.widget.TextView#com.backbase.deferredresources.DeferredColor/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-text-color/">setTextColor</a>(deferredColor: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-color/">DeferredColor</a>)  <br>More info  <br>Resolves <a href="set-text-color/">deferredColor</a> and sets the text color for all the states to be the resolved color.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setTextSize/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-text-size/">setTextSize</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setTextSize/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-text-size/">setTextSize</a>(deferredSize: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolve <a href="set-text-size/">deferredSize</a> and set the default text size to the resolved value.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setTranslationX/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-translation-x/">setTranslationX</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setTranslationX/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-translation-x/">setTranslationX</a>(deferredTranslationX: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-translation-x/">deferredTranslationX</a> and sets the horizontal location of this view relative to its <a href="https://developer.android.com/reference/kotlin/android/view/View.html#getleft">left</a> position.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setTranslationY/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-translation-y/">setTranslationY</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setTranslationY/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-translation-y/">setTranslationY</a>(deferredTranslationY: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-translation-y/">deferredTranslationY</a> and sets the vertical location of this view relative to its <a href="https://developer.android.com/reference/kotlin/android/view/View.html#gettop">top</a> position.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setTranslationZ/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-translation-z/">setTranslationZ</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setTranslationZ/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-translation-z/">setTranslationZ</a>(deferredTranslationZ: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-translation-z/">deferredTranslationZ</a> and sets the depth location of this view relative to its <a href="https://developer.android.com/reference/kotlin/android/view/View.html#getelevation">elevation</a>.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setTypeface/android.widget.TextView#com.backbase.deferredresources.DeferredTypeface/PointingToDeclaration/"></a><a href="set-typeface/">setTypeface</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setTypeface/android.widget.TextView#com.backbase.deferredresources.DeferredTypeface/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-typeface/">setTypeface</a>(deferredTypeface: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-typeface/">DeferredTypeface</a>)  <br>More info  <br>Resolves the <a href="set-typeface/">deferredTypeface</a> and sets the typeface and style in which the text should be displayed.  <br><br><br>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-typeface/">setTypeface</a>(deferredTypeface: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-typeface/">DeferredTypeface</a>, style: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>)  <br>More info  <br>Resolves the <a href="set-typeface/">deferredTypeface</a> and sets the typeface along with the <a href="set-typeface/">style</a> in which the text should be displayed.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setWidth/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-width/">setWidth</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setWidth/android.widget.TextView#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/widget/TextView.html">TextView</a>.<a href="set-width/">setWidth</a>(deferredWidth: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-width/">deferredWidth</a> and sets the width of the TextView to be exactly that wide.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setX/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-x/">setX</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setX/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-x/">setX</a>(deferredX: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-x/">deferredX</a> and sets the visual x position of this view.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setY/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-y/">setY</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setY/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-y/">setY</a>(deferredY: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-y/">deferredY</a> and sets the visual y position of this view.  <br><br><br></td>
+</tr>
+<tr>
+<td><a name="com.backbase.deferredresources.viewx//setZ/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a><a href="set-z/">setZ</a></td>
+<td><a name="com.backbase.deferredresources.viewx//setZ/android.view.View#com.backbase.deferredresources.DeferredDimension/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a>.<a href="set-z/">setZ</a>(deferredZ: <a href="../../../deferred-resources/deferred-resources/com.backbase.deferredresources/-deferred-dimension/">DeferredDimension</a>)  <br>More info  <br>Resolves <a href="set-z/">deferredZ</a> and sets the visual z position of this view.  <br><br><br></td>
+</tr>
+</tbody>
+</table>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2020 Backbase R&amp;D, B.V.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      
+    
+  </body>
+</html>
