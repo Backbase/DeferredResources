@@ -11,7 +11,7 @@ In all steps, replace "x.y.z" with the actual version being released.
  6. Open a PR to the main branch titled "Release x.y.z". Obtain approval and squash/merge.
  7. Tag the merged PR commit `x.y.z` and push the tag.
  8. Wait for the "release" Action to complete.
- 9. `startship release -u backbaseOssSonatypeUsername -p backbaseOssSonatypePassword -c com.backbase.oss.deferredresources:deferred-resources,deferred-resources-view-extensions,deferred-resources-compose-adapter:x.y.z`
+ 9. Log in to Sonatype Nexus and close and release the staging repository.
 10. Create the release on GitHub with release notes copied from the changelog.
 
 If step 10 fails; drop the Sonatype repo, delete the tag, fix the problem, and start again.

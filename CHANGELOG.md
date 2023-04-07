@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.6.1
+_2023-04-06_
+
+Compile with Kotlin 1.8.10 and Android SDK 33.
+
+Improve superscript and subscript rendering in `DeferredText` Compose adapter.
+
 ## 1.6.0
 _2021-09-29_
 
