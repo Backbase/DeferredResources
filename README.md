@@ -80,6 +80,18 @@ val deferredFormattedString: DeferredFormattedString = deferredFormattedPlurals.
 // If you have only the format args:
 val deferredPlurals: DeferredPlurals = deferredFormattedPlurals.withFormatArgs("million")
 ```
+#### Auxiliary type(s)
+`FormattedDeferredText` is a type that wraps a `DeferredFormattedString`. This is useful for when 
+the format arguments are determined at the declaration site rather than the resolution site. 
+
+```kotlin
+val formattedString = DeferredFormattedString.Constant("%s and %s")
+// Formatted text with arguments at resolution site
+formattedString.resolve(context, "A", "B")
+
+// Formatted text with arguments at declaration site
+FormattedDeferredText(formattedString, "A", "B").resolve(context)
+```
 
 All text-related types can eventually be converted to `DeferredText` through similar extensions.
 
